@@ -5,6 +5,7 @@
  */
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/LeadService.php';
 
 class ContactService
 {
@@ -156,6 +157,21 @@ class ContactService
 
         $contactId = (int) $this->pdo->lastInsertId();
 
+        $leadService = new LeadService($this->pdo);
+        $leadService->createLead([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'phone' => $phone,
+            'city' => $city,
+            'type' => $intent ?: 'contact',
+            'source' => 'contact_form',
+            'message' => $message,
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+        ], false);
+
         // Email de confirmation
         $this->sendConfirmationEmail($firstname, $email, $type_demande);
 
@@ -219,6 +235,21 @@ class ContactService
         ]);
 
         $contactId = (int) $this->pdo->lastInsertId();
+
+        $leadService = new LeadService($this->pdo);
+        $leadService->createLead([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'phone' => $phone,
+            'city' => $city,
+            'type' => $intent ?: 'contact',
+            'source' => 'contact_admin',
+            'message' => $message,
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+        ], false);
 
         // Email de confirmation
         $this->sendConfirmationEmail($firstname, $email, $type_demande);

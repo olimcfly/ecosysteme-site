@@ -50,7 +50,7 @@ try {
     error_log("Contact API Error: " . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'message' => 'Erreur serveur: ' . $e->getMessage()
+        'message' => 'Erreur serveur'
     ]);
 }
 

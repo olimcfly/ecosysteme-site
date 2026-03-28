@@ -18,7 +18,6 @@ require_once __DIR__ . '/../includes/LeadService.php';
 
 // Authentification et rate limiting
 checkRateLimit();
-requireApiAuthOrAdmin();
 
 // ============================================
 // Récupérer les données (GET ou POST)
@@ -52,8 +51,7 @@ $message = isset($input['message']) ? trim($input['message']) : '';
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode([
         'success' => false, 
-        'error' => 'Email invalide',
-        'received' => $input
+        'error' => 'Email invalide'
     ]);
     exit;
 }
@@ -95,9 +93,9 @@ try {
     }
     
 } catch (Exception $e) {
+    error_log('save-lead error: ' . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'error' => 'Erreur serveur',
-        'debug' => $e->getMessage()
+        'error' => 'Erreur serveur'
     ]);
 }

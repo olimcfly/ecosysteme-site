@@ -1,7 +1,7 @@
 <?php
 /**
  * ÉCOSYSTÈME IMMO LOCAL+ — API Prise de RDV
- * Endpoint: /api/bookings.php
+ * Endpoint: /api/booking.php
  * 
  * GET  ?action=slots&date=2026-02-20  → créneaux dispo pour une date
  * GET  ?action=month&month=2026-02    → jours avec dispo sur un mois
@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 require_once __DIR__ . '/../includes/rate-limiter.php';
+require_once __DIR__ . '/../includes/LeadService.php';
 checkRateLimit();
 
 // ── CONFIG ────────────────────────────────────────────────
@@ -397,6 +398,27 @@ function createBooking() {
     
     // Notification par email (si mail() est dispo)
     sendNotificationEmail($firstName, $lastName, $email, $phone, $date, $time, $message);
+
+    // Synchronisation CRM (capture lead)
+    try {
+        $leadService = new LeadService($pdo ?: null);
+        $leadService->createLead([
+            'firstname' => $firstName,
+            'lastname' => $lastName,
+            'email' => $email,
+            'phone' => $phone,
+            'city' => null,
+            'type' => 'demo',
+            'source' => 'rdv',
+            'resource' => 'booking',
+            'message' => trim("RDV {$date} {$time}\n" . $message),
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+        ], false);
+    } catch (Throwable $e) {
+        error_log('booking lead sync error: ' . $e->getMessage());
+    }
     
     jsonResponse([
         'success' => true,
