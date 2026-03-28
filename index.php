@@ -25,28 +25,60 @@ if ($routePath !== '') {
  'merci-ville' => 'front/pages/merci-ville.php',
  'traitement-ville' => 'front/pages/traitement-ville.php',
  'traitement-rdv.php' => 'front/pages/rdv.php',
+ // Alias legacy (.php) pour éviter les ruptures de navigation
+ 'plateforme.php' => 'front/pages/plateforme.php',
+ 'methode.php' => 'front/pages/methode.php',
+ 'assistant.php' => 'front/pages/assistant.php',
+ 'demo.php' => 'front/pages/demo.php',
+ 'verifier-ma-ville.php' => 'front/pages/verifier-ma-ville.php',
+ 'rdv.php' => 'front/pages/rdv.php',
+ 'contact.php' => 'front/pages/contact.php',
+ 'tarifs.php' => 'front/pages/tarifs.php',
+ 'temoignages.php' => 'front/pages/temoignages.php',
+ 'mentions-legales.php' => 'front/pages/mentions-legales.php',
+ 'cgv.php' => 'front/pages/cgv.php',
+ 'politique-confidentialite.php' => 'front/pages/politique-confidentialite.php',
+ 'ressources.php' => 'front/pages/ressources.php',
  ];
 
- $renderRoute = static function (string $relativePath): void {
- $absolutePath = __DIR__ . '/' . ltrim($relativePath, '/');
- if (!is_file($absolutePath)) {
- return;
+ $redirectMap = [
+ 'verifier-zone.php' => '/verifier-ma-ville',
+ 'verification-zone.php' => '/verifier-ma-ville',
+ ];
+
+ if (isset($redirectMap[$routePath])) {
+ header('Location: ' . $redirectMap[$routePath], true, 301);
+ exit;
  }
 
+ $renderRoute = static function (string $relativePath): bool {
+ $absolutePath = __DIR__ . '/' . ltrim($relativePath, '/');
+ if (!is_file($absolutePath)) {
+ return false;
+ }
+
+ $originalCwd = getcwd();
  chdir(dirname($absolutePath));
  require basename($absolutePath);
- exit;
+ if ($originalCwd !== false) {
+ chdir($originalCwd);
+ }
+ return true;
  };
 
  if (isset($routeMap[$routePath])) {
- $renderRoute($routeMap[$routePath]);
+ if ($renderRoute($routeMap[$routePath])) {
+ exit;
+ }
  }
 
  if (strpos($routePath, 'blog/') === 0) {
  $slug = basename($routePath);
+ if (preg_match('/^[a-z0-9-]+$/', $slug)) {
  $articlePath = 'front/blog/articles/' . $slug . '.php';
- if (is_file(__DIR__ . '/' . $articlePath)) {
- $renderRoute($articlePath);
+ if (is_file(__DIR__ . '/' . $articlePath) && $renderRoute($articlePath)) {
+ exit;
+ }
  }
  }
 

@@ -324,13 +324,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
  <!-- Droite : formulaire -->
  <div>
- <form action="/traitement-rdv.php" method="POST" style="background:white; padding:32px; border-radius:16px; box-shadow:0 4px 20px rgba(102,126,234,0.12);">
- <?= csrfField() ?>
+ <form action="/rdv" method="GET" style="background:white; padding:32px; border-radius:16px; box-shadow:0 4px 20px rgba(102,126,234,0.12);">
  <p style="font-size:1.05rem; font-weight:700; color:#1a202c; margin:0 0 22px;"> R&eacute;server ma d&eacute;mo gratuite</p>
 
  <div class="rdv-group">
  <label for="rdv_nom">Nom complet *</label>
- <input type="text" id="rdv_nom" name="nom" placeholder="Jean Dupont" required>
+ <input type="text" id="rdv_nom" name="name" placeholder="Jean Dupont" required>
  </div>
  <div class="rdv-group">
  <label for="rdv_email">Email *</label>
@@ -338,15 +337,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
  </div>
  <div class="rdv-group">
  <label for="rdv_telephone">T&eacute;l&eacute;phone *</label>
- <input type="tel" id="rdv_telephone" name="telephone" placeholder="06 xx xx xx xx" required>
+ <input type="tel" id="rdv_telephone" name="phone" placeholder="06 xx xx xx xx" required>
  </div>
  <div class="rdv-group">
  <label for="rdv_ville">Votre ville *</label>
- <input type="text" id="rdv_ville" name="ville" placeholder="Ex&nbsp;: Lyon, Rennes&hellip;" required>
+ <input type="text" id="rdv_ville" name="city" placeholder="Ex&nbsp;: Lyon, Rennes&hellip;" required>
  </div>
  <div class="rdv-group" style="margin-bottom:22px;">
  <label for="rdv_reseau">Votre r&eacute;seau</label>
- <select id="rdv_reseau" name="reseau">
+ <select id="rdv_reseau" name="network">
  <option value="">S&eacute;lectionnez&hellip;</option>
  <option>IAD</option>
  <option>Safti</option>
