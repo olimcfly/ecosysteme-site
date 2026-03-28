@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Email marketing immobilier : Templates & sequences gagnantes | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Email marketing immobilier : Templates & sequences gagnantes | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Les meilleurs agents envoient des emails sophistiqués. Voici les 5 sequences que vous devriez automatiser dès aujourd\'hui.';
 include '../../../includes/header.php';
 ?>
@@ -224,7 +224,7 @@ include '../../../includes/header.php';
         <h2>Outils pour automatiser</h2>
 
         <ul>
-            <li><strong>ÉCOSYSTÈME IMMO+ :</strong> Tout inclus (sequences pré-faites)</li>
+            <li><strong>ÉCOSYSTÈME IMMO LOCAL+ :</strong> Tout inclus (sequences pré-faites)</li>
             <li><strong>Brevo :</strong> Email + SMS affordable</li>
             <li><strong>ActiveCampaign :</strong> CRM + email + automation avancée</li>
             <li><strong>Zapier/Make :</strong> Connecter outils ensemble</li>
@@ -242,7 +242,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à automatiser vos emails ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut 50+ templates email, 5 sequences préconfigurées, et automation complète. Zéro code.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut 50+ templates email, 5 sequences préconfigurées, et automation complète. Zéro code.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - API pour sauvegarder notes et type de lead
+ * ÉCOSYSTÈME IMMO LOCAL+ - API pour sauvegarder notes et type de lead
  */
 session_start();
 header('Content-Type: application/json');

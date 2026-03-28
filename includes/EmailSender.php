@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - EmailSender
+ * ÉCOSYSTÈME IMMO LOCAL+ - EmailSender
  * Fonctions pour l'envoi et la gestion des séquences email
  * CRM v2.5
  */

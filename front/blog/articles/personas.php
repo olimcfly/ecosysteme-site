@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Personas immobiliers : Parlez aux bons vendeurs | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Personas immobiliers : Parlez aux bons vendeurs | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Les séniors, familles, investisseurs n\'ont pas les mêmes besoins. Créez des personas pour convertir plus.';
 include '../../../includes/header.php';
 ?>
@@ -180,7 +180,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à créer vos personas ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut NeuroPersona, un framework complet pour identifier, segmenter et cibler vos personas automatiquement.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut NeuroPersona, un framework complet pour identifier, segmenter et cibler vos personas automatiquement.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

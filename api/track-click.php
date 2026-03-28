@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - Click Tracking Redirect
+ * ÉCOSYSTÈME IMMO LOCAL+ - Click Tracking Redirect
  *
  * Usage: api/track-click.php?id=TRACKING_ID&url=TARGET_URL
  * Logs the click then redirects to the target URL.

@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - API AI Email Generator
+ * ÉCOSYSTÈME IMMO LOCAL+ - API AI Email Generator
  * Proxy sécurisé pour appeler l'API Anthropic
  */
 

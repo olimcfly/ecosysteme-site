@@ -214,7 +214,7 @@ $activePage = $activePage ?? '';
     <div class="sidebar-brand">
         <div class="sidebar-brand-icon">🏠</div>
         <div>
-            <div class="sidebar-brand-text"><?= SITE_NAME ?? 'Ecosysteme Immo' ?></div>
+            <div class="sidebar-brand-text"><?= SITE_NAME ?? 'Ecosysteme Immo Local+' ?></div>
             <div class="sidebar-brand-sub">Administration</div>
         </div>
     </div>

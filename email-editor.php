@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - Éditeur Email avec IA
+ * ÉCOSYSTÈME IMMO LOCAL+ - Éditeur Email avec IA
  * Composant réutilisable avec Quill.js + Claude AI
  */
 
@@ -19,7 +19,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éditeur Email IA - ÉCOSYSTÈME IMMO+</title>
+    <title>Éditeur Email IA - ÉCOSYSTÈME IMMO LOCAL+</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Quill CSS -->

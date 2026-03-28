@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - API AI Générateur d'Offres
+ * ÉCOSYSTÈME IMMO LOCAL+ - API AI Générateur d'Offres
  * Chat IA guidé pour construire une offre immobilière complète
  * Utilise l'API Anthropic pour guider l'utilisateur étape par étape
  */

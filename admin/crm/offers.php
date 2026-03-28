@@ -886,7 +886,7 @@ $offers = $stmt->fetchAll();
         var terms = 'CONDITIONS GENERALES - ' + title.toUpperCase() + '\n';
         terms += '========================================\n\n';
         terms += '1. OBJET\n';
-        terms += 'Les presentes conditions regissent la souscription a l\'offre "' + title + '" proposee par Ecosysteme Immo Local+.\n\n';
+        terms += 'Les presentes conditions regissent la souscription a l\'offre "' + title + '" proposee par Ecosysteme Immo Local+ Local+.\n\n';
         terms += '2. TARIFICATION\n';
         terms += '- Prix : ' + priceLabel + ' (' + typeLabel + ')';
         terms += intervalText;
@@ -916,14 +916,14 @@ $offers = $stmt->fetchAll();
             terms += '- Les delais de livraison sont communiques lors de la souscription.\n\n';
         }
         terms += '6. RESPONSABILITE\n';
-        terms += 'Ecosysteme Immo Local+ s\'engage a fournir les services decrits dans l\'offre avec diligence et professionnalisme. La responsabilite est limitee au montant de la prestation.\n\n';
+        terms += 'Ecosysteme Immo Local+ Local+ s\'engage a fournir les services decrits dans l\'offre avec diligence et professionnalisme. La responsabilite est limitee au montant de la prestation.\n\n';
         terms += '7. DONNEES PERSONNELLES\n';
         terms += 'Les donnees collectees sont traitees conformement au RGPD. Le client dispose d\'un droit d\'acces, de rectification et de suppression de ses donnees.\n\n';
         terms += '8. LITIGES\n';
         terms += 'En cas de litige, les parties s\'engagent a rechercher une solution amiable. A defaut, les tribunaux competents seront saisis conformement au droit francais.\n\n';
         terms += '---\n';
         terms += 'Date de generation : ' + new Date().toLocaleDateString('fr-FR') + '\n';
-        terms += 'Ecosysteme Immo Local+ - Tous droits reserves.';
+        terms += 'Ecosysteme Immo Local+ Local+ - Tous droits reserves.';
 
         document.getElementById('termsField').value = terms;
     }

@@ -14,7 +14,7 @@
 <ul><li>Montrer des cas de succès</li><li>Appel à l'action "Appel conseil"</li><li>Cibler : visiteurs site + leads</li></ul>
 <h2>Budget réaliste et ROI</h2>
 <ul><li>Budget/mois : 500€</li><li>Leads générés : 25-30</li><li>Coût/lead : 16-20€</li><li>Conversion en RDV : 30% = 8 RDV</li><li>Conversion en mandat : 40% = 3 mandats</li><li>Valeur/mandat : 1500-2000€ de commission</li><li>ROI : 4500-6000€ en retour / 500€ investi = 900-1200% ROI</li></ul>
-<div class="article-cta"><h3>🚀 Prêt à lancer vos campagnes ?</h3><p>L'ÉCOSYSTÈME IMMO+ inclut les templates ads, audiences ciblées et tracking de ROI en temps réel.</p><a href="/demo" class="btn-primary">Voir la démo →</a></div>
+<div class="article-cta"><h3>🚀 Prêt à lancer vos campagnes ?</h3><p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut les templates ads, audiences ciblées et tracking de ROI en temps réel.</p><a href="/demo" class="btn-primary">Voir la démo →</a></div>
 <h2>En résumé</h2><p>Facebook/Instagram ne sont plus optionnels pour les agents. 500€/mois bien investis = 3+ mandats supplémentaires. ROI = 900%+.</p>
 </div></article>
 <?php include '../../../includes/footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * API — Vérification de disponibilité de zone IMMO LOCAL+
+ * API — Vérification de disponibilité de zone ÉCOSYSTÈME IMMO LOCAL+
  * 
  * Endpoint : POST /api/check-zone.php
  * Params   : latitude, longitude, ville (optionnel)
@@ -181,7 +181,7 @@ if ($latitude < 41.0 || $latitude > 51.5 || $longitude < -5.5 || $longitude > 10
         'success' => true,
         'disponible' => false,
         'raison' => 'hors_france',
-        'message' => 'IMMO LOCAL+ est disponible uniquement en France métropolitaine pour le moment.'
+        'message' => 'ÉCOSYSTÈME IMMO LOCAL+ est disponible uniquement en France métropolitaine pour le moment.'
     ]);
     exit;
 }
