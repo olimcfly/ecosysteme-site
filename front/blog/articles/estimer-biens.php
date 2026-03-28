@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Estimer les biens : La stratégie cachée des meilleurs agents | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Estimer les biens : La stratégie cachée des meilleurs agents | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'L\'estimation n\'est pas un service. C\'est un lead magnet. Transformez chaque estimation en conversation de vente.';
 include '../../../includes/header.php';
 ?>
@@ -179,7 +179,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à créer votre estimateur ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut un estimateur complet, formules intelligentes, capture lead automatisée, et follow-up SMS/email intégré.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut un estimateur complet, formules intelligentes, capture lead automatisée, et follow-up SMS/email intégré.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'SEO Local : Dominer Google dans votre ville | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'SEO Local : Dominer Google dans votre ville | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Guide complet du SEO local pour agents immobiliers. Optimisez votre présence Google et dominez votre marché local.';
 include '../../../includes/header.php';
 ?>
@@ -242,7 +242,7 @@ include '../../../includes/header.php';
         <div class="article-cta">
             <h3>🚀 Prêt à dominer Google dans ta ville ?</h3>
             <p>
-                L'ÉCOSYSTÈME IMMO+ inclut des templates prêts à l'emploi pour chaque quartier, 
+                L'ÉCOSYSTÈME IMMO LOCAL+ inclut des templates prêts à l'emploi pour chaque quartier, 
                 une stratégie complète de contenu local et des outils pour tracker tes rankings.
             </p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>

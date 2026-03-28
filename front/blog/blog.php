@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Blog ÉCOSYSTÈME IMMO+ | Stratégies, Guides & Conseils Immobilier';
+$pageTitle = 'Blog ÉCOSYSTÈME IMMO LOCAL+ | Stratégies, Guides & Conseils Immobilier';
 $pageDescription = 'Articles détaillés sur le SEO local, lead generation, automation marketing et stratégies digitales pour agents immobiliers.';
 include '../../includes/header.php';
 
@@ -303,7 +303,7 @@ $articles = [
 <!-- HERO -->
 <section class="blog-hero">
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        <h1>📚 Blog ÉCOSYSTÈME IMMO+</h1>
+        <h1>📚 Blog ÉCOSYSTÈME IMMO LOCAL+</h1>
         <p>Stratégies, guides et conseils pour dominer votre marché immobilier local</p>
     </div>
 </section>

@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Comment attirer 50 vendeurs/mois sans portail | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Comment attirer 50 vendeurs/mois sans portail | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Stratégie complète pour générer 50 leads vendeurs par mois sans dépendre des portails immobiliers.';
 include '../../../includes/header.php';
 ?>
@@ -233,7 +233,7 @@ include '../../../includes/header.php';
         <div class="article-cta">
             <h3>🚀 Prêt à construire ta machine à leads ?</h3>
             <p>
-                L'ÉCOSYSTÈME IMMO+ automatise tout : lead magnet, landing page, email nurturing, 
+                L'ÉCOSYSTÈME IMMO LOCAL+ automatise tout : lead magnet, landing page, email nurturing, 
                 et analytics. Tu n'as qu'à promouvoir et suivre.
             </p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>

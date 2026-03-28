@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Blog immobilier : Stratégie complète pour dominer | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Blog immobilier : Stratégie complète pour dominer | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Créer un blog n\'est pas assez. C\'est la distribution et le calendrier éditorial qui font la différence.';
 include '../../../includes/header.php';
 ?>
@@ -153,7 +153,7 @@ include '../../../includes/header.php';
         <ul>
             <li><strong>Calendrier :</strong> Airtable ou Notion</li>
             <li><strong>Analytics :</strong> Google Analytics + Search Console</li>
-            <li><strong>Distribution :</strong> Buffer, Hootsuite, ou ÉCOSYSTÈME IMMO+</li>
+            <li><strong>Distribution :</strong> Buffer, Hootsuite, ou ÉCOSYSTÈME IMMO LOCAL+</li>
             <li><strong>Lead capture :</strong> Formulaires + email automatisé</li>
         </ul>
 
@@ -174,7 +174,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à créer votre stratégie blog ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut 100+ templates d'articles, calendrier éditorial, et distribution automatisée sur tous les canaux.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut 100+ templates d'articles, calendrier éditorial, et distribution automatisée sur tous les canaux.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

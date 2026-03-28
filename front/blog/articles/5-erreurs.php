@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'blog';
-$pageTitle = 'Les 5 erreurs qui tuent votre présence en ligne | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = 'Les 5 erreurs qui tuent votre présence en ligne | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = 'Design mauvais, pas de mobile, contenu faible. Ces 5 erreurs coûtent des milliers en leads perdus.';
 include '../../../includes/header.php';
 ?>
@@ -130,7 +130,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à fixer ces 5 erreurs ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut un site modern, mobile-first, optimisé SEO avec contenu local et analytics temps réel.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut un site modern, mobile-first, optimisé SEO avec contenu local et analytics temps réel.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

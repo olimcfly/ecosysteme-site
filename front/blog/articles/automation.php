@@ -11,7 +11,7 @@
 // ========================================
 
 $currentPage = 'blog';
-$pageTitle = '%TITLE% | Blog ÉCOSYSTÈME IMMO+';
+$pageTitle = '%TITLE% | Blog ÉCOSYSTÈME IMMO LOCAL+';
 $pageDescription = '%DESC%';
 include '../../../includes/header.php';
 ?>
@@ -118,7 +118,7 @@ include '../../../includes/header.php';
         <div class="article-cta">
             <h3>🚀 Prêt à transformer votre immobilier ?</h3>
             <p>
-                L'ÉCOSYSTÈME IMMO+ automatise tout : lead magnets, email nurturing, 
+                L'ÉCOSYSTÈME IMMO LOCAL+ automatise tout : lead magnets, email nurturing, 
                 et analytics. Découvrez comment les meilleurs agents dominent leur marché.
             </p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>

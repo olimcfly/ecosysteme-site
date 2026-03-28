@@ -1,6 +1,6 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO+ - CRON Email Automation
+ * ÉCOSYSTÈME IMMO LOCAL+ - CRON Email Automation
  * 
  * Exécution : toutes les 15 minutes via CRON
  * Commande : /usr/bin/php /home/tasq5564/public_html/cron/send-emails.php
@@ -163,7 +163,7 @@ try {
             // Ajouter le footer avec préférences et désinscription
             $footer = '<hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
                 <p style="font-size: 12px; color: #6b7280; text-align: center;">
-                    Vous recevez cet email car vous avez téléchargé une ressource sur ÉCOSYSTÈME IMMO+.<br>
+                    Vous recevez cet email car vous avez téléchargé une ressource sur ÉCOSYSTÈME IMMO LOCAL+.<br>
                     <a href="' . $prefsUrl . '" style="color: #6b7280;">Gérer mes préférences</a> |
                     <a href="' . $unsubscribeUrl . '" style="color: #6b7280;">Se désinscrire</a>
                 </p>';
@@ -176,7 +176,7 @@ try {
             
             // Envoyer l'email
             $fromEmail = isset($settings['from_email']) ? $settings['from_email'] : 'contact@ecosystemeimmo.fr';
-            $fromName = isset($settings['from_name']) ? $settings['from_name'] : 'ÉCOSYSTÈME IMMO+';
+            $fromName = isset($settings['from_name']) ? $settings['from_name'] : 'ÉCOSYSTÈME IMMO LOCAL+';
             
             $sendResult = sendEmail(
                 $emailData['email'],
@@ -315,7 +315,7 @@ function generateToken() {
  * Construire le template HTML de l'email
  */
 function buildEmailTemplate($subject, $bodyContent, $settings) {
-    $fromName = isset($settings['from_name']) ? htmlspecialchars($settings['from_name']) : 'ÉCOSYSTÈME IMMO+';
+    $fromName = isset($settings['from_name']) ? htmlspecialchars($settings['from_name']) : 'ÉCOSYSTÈME IMMO LOCAL+';
     
     return '<!DOCTYPE html>
 <html lang="fr">

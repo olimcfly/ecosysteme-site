@@ -1,5 +1,5 @@
 -- ============================================
--- ÉCOSYSTÈME IMMO+ - Email System Improvements
+-- ÉCOSYSTÈME IMMO LOCAL+ - Email System Improvements
 -- Tables: email_bounces, email_preferences, email_click_logs
 -- ============================================
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * IMMO LOCAL+ — API Prise de RDV
+ * ÉCOSYSTÈME IMMO LOCAL+ — API Prise de RDV
  * Endpoint: /api/bookings.php
  * 
  * GET  ?action=slots&date=2026-02-20  → créneaux dispo pour une date

@@ -86,7 +86,7 @@ include '../../../includes/header.php';
 
         <div class="article-cta">
             <h3>🚀 Prêt à structurer votre CRM ?</h3>
-            <p>L'ÉCOSYSTÈME IMMO+ inclut un CRM pré-structuré avec toutes les étapes, scoring automatisé et reporting temps réel.</p>
+            <p>L'ÉCOSYSTÈME IMMO LOCAL+ inclut un CRM pré-structuré avec toutes les étapes, scoring automatisé et reporting temps réel.</p>
             <a href="/demo" class="btn-primary">Voir la démo →</a>
         </div>
 

@@ -10,7 +10,7 @@ $stats = $gmbStats ?? [];
     <div class="sidebar-header">
         <a href="/admin/crm" class="sidebar-logo">
             <span class="logo-icon">🏢</span>
-            <span class="logo-text">ÉCOSYSTÈME IMMO+</span>
+            <span class="logo-text">ÉCOSYSTÈME IMMO LOCAL+</span>
         </a>
     </div>
 
