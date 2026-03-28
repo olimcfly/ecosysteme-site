@@ -333,9 +333,9 @@ body {
 
 <body>
 
-<nav class="navbar" id="mainNav">
+<nav class="navbar" id="mainNav" aria-label="Navigation principale">
  <div class="nav-container">
- <a href="/" class="nav-logo">ÉCOSYSTÈME IMMO LOCAL+</a>
+ <a href="/" class="nav-logo" aria-label="Retour à l'accueil ÉCOSYSTÈME IMMO LOCAL+">ÉCOSYSTÈME IMMO LOCAL+</a>
 
  <ul class="nav-menu" id="mainMenu">
  <li>
@@ -359,6 +359,11 @@ body {
  </a>
  </li>
  <li>
+ <a href="/tarifs" class="nav-link <?php echo ($currentPage ?? '') === 'tarifs' ? 'active' : ''; ?>">
+ Tarifs
+ </a>
+ </li>
+ <li>
  <a href="/assistant" class="nav-link <?php echo ($currentPage ?? '') === 'assistant' ? 'active' : ''; ?>">
  IA
  <span class="nav-badge">IA</span>
@@ -370,8 +375,8 @@ body {
  <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
  </a>
  <div class="nav-dropdown-menu">
- <a href="/ressources" class="nav-dropdown-link"> Guides</a>
- <a href="/blog" class="nav-dropdown-link"> Blog</a>
+ <a href="/ressources" class="nav-dropdown-link">Guides SEO immobiliers</a>
+ <a href="/blog" class="nav-dropdown-link">Blog immobilier</a>
  <a href="/temoignages" class="nav-dropdown-link">Avis clients</a>
  </div>
  </li>
@@ -384,14 +389,14 @@ body {
  </ul>
 
  <div class="nav-actions">
- <a href="/demo" class="nav-demo">Démo</a>
+ <a href="/demo" class="nav-demo" aria-label="Voir la démonstration de la plateforme">Démo</a>
  <a href="/verifier-ma-ville" class="nav-cta">
  <span class="nav-pulse"></span>
- Vérifier
+ Vérifier ma ville
  </a>
  </div>
 
- <button class="nav-toggle" id="navToggle" aria-label="Menu">
+ <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu principal" aria-expanded="false" aria-controls="navMobile">
  <span></span>
  <span></span>
  <span></span>
@@ -403,12 +408,14 @@ body {
  <a href="/plateforme">Plateforme</a>
  <a href="/methode">Méthode</a>
  <a href="/modules">Modules</a>
+ <a href="/tarifs">Tarifs</a>
  <a href="/assistant">Assistant IA</a>
- <a href="/ressources"> Guides</a>
- <a href="/blog"> Blog</a>
+ <a href="/ressources">Guides SEO immobiliers</a>
+ <a href="/blog">Blog immobilier</a>
  <a href="/temoignages">Avis clients</a>
  <a href="/villes">Villes</a>
  <a href="/demo">Démo</a>
+ <a href="/contact">Contact</a>
 
  <a href="/verifier-ma-ville" class="nav-mobile-cta">
  <span class="nav-pulse"></span>
@@ -430,6 +437,8 @@ body {
  toggle.addEventListener('click', function() {
  toggle.classList.toggle('open');
  mobile.classList.toggle('open');
+ const isExpanded = toggle.classList.contains('open');
+ toggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
  });
 
  mobile.querySelectorAll('a').forEach(link => {
