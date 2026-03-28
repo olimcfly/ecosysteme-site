@@ -24,26 +24,28 @@ if ($routePath !== '') {
  'confidentialite' => 'front/pages/politique-confidentialite.php',
  'merci-ville' => 'front/pages/merci-ville.php',
  'traitement-ville' => 'front/pages/traitement-ville.php',
- 'traitement-rdv.php' => 'front/pages/rdv.php',
- // Alias legacy (.php) pour éviter les ruptures de navigation
- 'plateforme.php' => 'front/pages/plateforme.php',
- 'methode.php' => 'front/pages/methode.php',
- 'assistant.php' => 'front/pages/assistant.php',
- 'demo.php' => 'front/pages/demo.php',
- 'verifier-ma-ville.php' => 'front/pages/verifier-ma-ville.php',
- 'rdv.php' => 'front/pages/rdv.php',
- 'contact.php' => 'front/pages/contact.php',
- 'tarifs.php' => 'front/pages/tarifs.php',
- 'temoignages.php' => 'front/pages/temoignages.php',
- 'mentions-legales.php' => 'front/pages/mentions-legales.php',
- 'cgv.php' => 'front/pages/cgv.php',
- 'politique-confidentialite.php' => 'front/pages/politique-confidentialite.php',
- 'ressources.php' => 'front/pages/ressources.php',
+ 'traitement-rdv' => 'front/pages/rdv.php',
  ];
 
  $redirectMap = [
  'verifier-zone.php' => '/verifier-ma-ville',
  'verification-zone.php' => '/verifier-ma-ville',
+ // Redirections legacy (.php) vers URLs propres pour éviter le contenu dupliqué
+ 'plateforme.php' => '/plateforme',
+ 'methode.php' => '/methode',
+ 'assistant.php' => '/assistant',
+ 'demo.php' => '/demo',
+ 'verifier-ma-ville.php' => '/verifier-ma-ville',
+ 'rdv.php' => '/rdv',
+ 'contact.php' => '/contact',
+ 'tarifs.php' => '/tarifs',
+ 'temoignages.php' => '/temoignages',
+ 'mentions-legales.php' => '/mentions-legales',
+ 'cgv.php' => '/cgv',
+ 'politique-confidentialite.php' => '/confidentialite',
+ 'ressources.php' => '/ressources',
+ 'traitement-rdv.php' => '/rdv',
+ 'index.php' => '/',
  ];
 
  $legacyRouteMap = [
