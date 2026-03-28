@@ -1,4 +1,109 @@
 <?php
+$routePath = isset($_GET['url']) ? trim((string) parse_url($_GET['url'], PHP_URL_PATH), '/') : '';
+
+if ($routePath !== '') {
+ $routeMap = [
+ 'plateforme' => 'front/pages/plateforme.php',
+ 'methode' => 'front/pages/methode.php',
+ 'modules' => 'front/pages/licence.php',
+ 'assistant' => 'front/pages/assistant.php',
+ 'ressources' => 'front/pages/ressources.php',
+ 'blog' => 'front/blog/blog.php',
+ 'temoignages' => 'front/pages/temoignages.php',
+ 'villes' => 'front/pages/verifier-ma-ville.php',
+ 'villes-pilotes' => 'front/pages/villes-pilotes.php',
+ 'demo' => 'front/pages/demo.php',
+ 'verifier-ma-ville' => 'front/pages/verifier-ma-ville.php',
+ 'rdv' => 'front/pages/rdv.php',
+ 'tarifs' => 'front/pages/tarifs.php',
+ 'contact' => 'front/pages/contact.php',
+ 'pourquoi' => 'front/pages/pourquoi.php',
+ 'avance' => 'front/pages/avance-concurrents.php',
+ 'mentions-legales' => 'front/pages/mentions-legales.php',
+ 'cgv' => 'front/pages/cgv.php',
+ 'confidentialite' => 'front/pages/politique-confidentialite.php',
+ 'merci-ville' => 'front/pages/merci-ville.php',
+ 'traitement-ville' => 'front/pages/traitement-ville.php',
+ 'traitement-rdv.php' => 'front/pages/rdv.php',
+ // Alias legacy (.php) pour éviter les ruptures de navigation
+ 'plateforme.php' => 'front/pages/plateforme.php',
+ 'methode.php' => 'front/pages/methode.php',
+ 'assistant.php' => 'front/pages/assistant.php',
+ 'demo.php' => 'front/pages/demo.php',
+ 'verifier-ma-ville.php' => 'front/pages/verifier-ma-ville.php',
+ 'rdv.php' => 'front/pages/rdv.php',
+ 'contact.php' => 'front/pages/contact.php',
+ 'tarifs.php' => 'front/pages/tarifs.php',
+ 'temoignages.php' => 'front/pages/temoignages.php',
+ 'mentions-legales.php' => 'front/pages/mentions-legales.php',
+ 'cgv.php' => 'front/pages/cgv.php',
+ 'politique-confidentialite.php' => 'front/pages/politique-confidentialite.php',
+ 'ressources.php' => 'front/pages/ressources.php',
+ ];
+
+ $redirectMap = [
+ 'verifier-zone.php' => '/verifier-ma-ville',
+ 'verification-zone.php' => '/verifier-ma-ville',
+ ];
+
+ if (isset($redirectMap[$routePath])) {
+ header('Location: ' . $redirectMap[$routePath], true, 301);
+ exit;
+ }
+
+ $renderRoute = static function (string $relativePath): bool {
+ $absolutePath = __DIR__ . '/' . ltrim($relativePath, '/');
+ if (!is_file($absolutePath)) {
+ return false;
+ }
+
+ $originalCwd = getcwd();
+ chdir(dirname($absolutePath));
+ require basename($absolutePath);
+ if ($originalCwd !== false) {
+ chdir($originalCwd);
+ }
+ return true;
+ };
+
+ if (isset($routeMap[$routePath])) {
+ if ($renderRoute($routeMap[$routePath])) {
+ exit;
+ }
+ }
+
+ if (strpos($routePath, 'blog/') === 0) {
+ $slug = basename($routePath);
+ if (preg_match('/^[a-z0-9-]+$/', $slug)) {
+ $articlePath = 'front/blog/articles/' . $slug . '.php';
+ if (is_file(__DIR__ . '/' . $articlePath) && $renderRoute($articlePath)) {
+ exit;
+ }
+ }
+ }
+
+ http_response_code(404);
+ $pageTitle = 'Page introuvable';
+ $pageDescription = 'Cette page n’existe pas ou a été déplacée.';
+ $currentPage = '';
+ include __DIR__ . '/includes/header.php';
+ ?>
+ <section style="padding:120px 0 90px; text-align:center;">
+ <div class="container" style="max-width:760px;">
+ <h1 style="font-size:2rem; margin-bottom:12px; color:#1a202c;">Page introuvable (404)</h1>
+ <p style="color:#64748b; line-height:1.7; margin-bottom:24px;">
+ La page demandée est introuvable. Utilisez le menu pour continuer votre navigation.
+ </p>
+ <a href="/" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; text-decoration:none; padding:12px 22px; border-radius:10px; font-weight:600;">
+ Retour à l’accueil
+ </a>
+ </div>
+ </section>
+ <?php
+ include __DIR__ . '/includes/footer.php';
+ exit;
+}
+
 $pageTitle = "L'&eacute;cosyst&egrave;me digital que vos concurrents ne pourront jamais avoir";
 $pageDescription = '&Eacute;COSYST&Egrave;ME IMMO LOCAL+ : la plateforme tout-en-un pour les pros immobiliers avec exclusivit&eacute; territoriale garantie. Site, SEO, CRM, IA et m&eacute;thode guid&eacute;e.';
 $currentPage = 'accueil';

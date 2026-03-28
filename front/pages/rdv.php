@@ -410,7 +410,7 @@ textarea.rdv-input { resize: vertical; min-height: 70px; }
  
  <div class="rdv-ty-links">
  <a href="/" class="rdv-ty-link rdv-ty-link-primary"> Retour à l'accueil</a>
- <a href="/front/pages/verifier-zone.php" class="rdv-ty-link rdv-ty-link-ghost"> Vérifier ma zone</a>
+ <a href="/verifier-ma-ville" class="rdv-ty-link rdv-ty-link-ghost"> Vérifier ma zone</a>
  </div>
  <div class="rdv-ty-footer">© 2026 ÉCOSYSTÈME IMMO LOCAL+ — SAS OCDM Agency</div>
  </div>

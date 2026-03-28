@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
  session_start();
 }
 
-include 'includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 $formErrors = $_SESSION['form_errors'] ?? [];
 $formData = $_SESSION['form_data'] ?? [];
 unset($_SESSION['form_errors'], $_SESSION['form_data']);
@@ -364,11 +364,11 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <p style="font-size:1.05rem; opacity:0.95; margin-bottom:32px; line-height:1.7;">
  Une fois la ville r&eacute;serv&eacute;e, l'acc&egrave;s est d&eacute;finitivement ferm&eacute;.
  </p>
- <a href="#nom" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
+ <a href="#prenom" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
  V&eacute;rifier la disponibilit&eacute; de ma ville
  </a>
  </div>
  </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

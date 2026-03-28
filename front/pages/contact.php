@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  <h2>Candidature re&ccedil;ue !</h2>
  <p>Merci <strong><?php echo h($_POST['prenom']); ?></strong> &mdash; on revient vers toi sous 48h pour valider ta zone et pr&eacute;ciser les prochaines &eacute;tapes.</p>
  <div class="recap"> Confirmation envoy&eacute;e &agrave; <strong><?php echo h($_POST['email']); ?></strong></div>
- <a href="/front/pages/zones-pilotes.php">️ Voir les zones pilotes</a>
+ <a href="/villes-pilotes">️ Voir les zones pilotes</a>
  </div>
 
  <?php else: ?>
