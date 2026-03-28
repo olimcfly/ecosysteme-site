@@ -327,6 +327,14 @@ if (!isset($currentPage)) $currentPage = 'accueil';
 body {
  padding-top: 60px;
 }
+
+html {
+ scroll-padding-top: 76px;
+}
+
+:target {
+ scroll-margin-top: 76px;
+}
 </style>
 
 </head>
@@ -391,7 +399,7 @@ body {
  </a>
  </div>
 
- <button class="nav-toggle" id="navToggle" aria-label="Menu">
+ <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navMobile">
  <span></span>
  <span></span>
  <span></span>
@@ -420,23 +428,43 @@ body {
 <script>
 (function() {
  const nav = document.getElementById('mainNav');
+ if (!nav) return;
+
  window.addEventListener('scroll', function() {
  nav.classList.toggle('scrolled', window.scrollY > 20);
  });
 
  const toggle = document.getElementById('navToggle');
  const mobile = document.getElementById('navMobile');
- 
+ if (!toggle || !mobile) return;
+
+ const setMobileState = function(isOpen) {
+ toggle.classList.toggle('open', isOpen);
+ mobile.classList.toggle('open', isOpen);
+ toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+ document.body.style.overflow = isOpen ? 'hidden' : '';
+ };
+
  toggle.addEventListener('click', function() {
- toggle.classList.toggle('open');
- mobile.classList.toggle('open');
+ setMobileState(!mobile.classList.contains('open'));
  });
 
  mobile.querySelectorAll('a').forEach(link => {
  link.addEventListener('click', function() {
- toggle.classList.remove('open');
- mobile.classList.remove('open');
+ setMobileState(false);
  });
+ });
+
+ document.addEventListener('keydown', function(event) {
+ if (event.key === 'Escape') {
+ setMobileState(false);
+ }
+ });
+
+ document.addEventListener('click', function(event) {
+ if (!mobile.classList.contains('open')) return;
+ if (nav.contains(event.target)) return;
+ setMobileState(false);
  });
 })();
 </script>

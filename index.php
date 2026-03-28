@@ -46,6 +46,31 @@ if ($routePath !== '') {
  'verification-zone.php' => '/verifier-ma-ville',
  ];
 
+ $legacyRouteMap = [
+ 'front/pages/verifier-ma-ville.php' => '/verifier-ma-ville',
+ 'front/pages/demo.php' => '/demo',
+ 'front/pages/rdv.php' => '/rdv',
+ 'front/pages/contact.php' => '/contact',
+ 'front/pages/temoignages.php' => '/temoignages',
+ 'front/pages/tarifs.php' => '/tarifs',
+ 'front/pages/plateforme.php' => '/plateforme',
+ 'front/pages/methode.php' => '/methode',
+ 'front/pages/licence.php' => '/modules',
+ 'front/pages/assistant.php' => '/assistant',
+ 'front/pages/ressources.php' => '/ressources',
+ 'front/pages/mentions-legales.php' => '/mentions-legales',
+ 'front/pages/cgv.php' => '/cgv',
+ 'front/pages/politique-confidentialite.php' => '/confidentialite',
+ 'ressources.php' => '/ressources',
+ ];
+
+ foreach ($legacyRouteMap as $legacyPath => $canonicalPath) {
+ if ($routePath === trim($legacyPath, '/')) {
+ header('Location: ' . $canonicalPath, true, 301);
+ exit;
+ }
+ }
+
  if (isset($redirectMap[$routePath])) {
  header('Location: ' . $redirectMap[$routePath], true, 301);
  exit;
