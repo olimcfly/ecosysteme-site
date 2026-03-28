@@ -1,5 +1,9 @@
 // BURGER MENU
 document.addEventListener('DOMContentLoaded', function () {
+    // Le header principal gère déjà #navMobile en inline.
+    // On évite de doubler les handlers (comportement instable mobile).
+    if (document.getElementById('navMobile')) return;
+
     const toggle = document.querySelector('.nav-toggle');
     const menu   = document.querySelector('.nav-menu');
 
