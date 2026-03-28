@@ -5,35 +5,39 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Récupère le formulaire avec l'attribut data-resource-form
-    const form = document.getElementById('form-capture');
-    
-    if (!form) {
-        console.warn('Formulaire #form-capture non trouvé');
+    const forms = document.querySelectorAll('form.lead-form');
+
+    if (!forms.length) {
         return;
     }
-    
-    // Récupère le type de ressource depuis data-resource-form
-    const resourceType = form.getAttribute('data-resource-form');
-    
-    if (!resourceType) {
-        console.warn('Attribut data-resource-form manquant');
-        return;
-    }
-    
-    // Mapping des ressources vers les pages de remerciement
+
     const redirectMap = {
         'neuropersona': '/front/ressources/merci-neuropersona.php',
         'seo': '/front/ressources/merci-seo.php',
         'mere': '/front/ressources/merci-mere.php',
         'journal-gmb': '/front/ressources/merci-gmb.php',
-        'audit-visibilite': '/front/ressources/audit-visibilite.php',
-        'estimateur': '/front/ressources/estimateur.php',
-        'calculateur-roi': '/front/ressources/calculateur-roi.php'
+        'audit-visibilite': '/front/ressources/merci-ressource-audit.php',
+        'estimateur': '/front/ressources/merci-ressource-estimateur.php',
+        'calculateur-roi': '/front/ressources/merci-ressource-roi.php'
     };
-    
-    // Gère la soumission du formulaire
-    form.addEventListener('submit', function(e) {
+
+    const resourceIntentMap = {
+        'calculateur-roi': 'outil',
+        'audit-visibilite': 'outil',
+        'estimateur': 'outil',
+        'journal-gmb': 'ressource',
+        'neuropersona': 'ressource',
+        'seo': 'ressource',
+        'mere': 'ressource'
+    };
+
+    forms.forEach((form) => {
+        const resourceType = form.getAttribute('data-resource-form') || form.getAttribute('data-resource');
+        if (!resourceType) {
+            return;
+        }
+
+        form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Collecte les données du formulaire
@@ -42,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Ajoute le type de ressource
         data.resource = resourceType;
-        data.type = 'contact'; // Type par défaut
+        data.type = resourceIntentMap[resourceType] || 'ressource';
         data.source = 'ressources'; // Source identifiée
         
         // Désactive le bouton de soumission
@@ -97,10 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
         });
+        });
     });
-    
-    // Log pour débugger
-    console.log('form-handler.js chargé avec succès');
-    console.log('Ressource détectée:', resourceType);
-    console.log('Redirection vers:', redirectMap[resourceType] || 'NON CONFIGURÉE');
 });

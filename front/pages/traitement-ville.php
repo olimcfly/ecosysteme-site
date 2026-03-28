@@ -8,6 +8,7 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/security-headers.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/csrf.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/LeadService.php';
 
 // ── 1. M&eacute;thode ──────────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -97,6 +98,27 @@ try {
  error_log('[traitement-ville] Insert error: ' . $e->getMessage());
  header('Location: /verifier-ma-ville?status=error');
  exit;
+}
+
+// ── 6b. Synchronisation CRM central (leads) ─────────────────────
+try {
+ $leadService = new LeadService($pdo);
+ $leadService->createLead([
+ 'firstname' => $prenom,
+ 'lastname' => null,
+ 'email' => $email,
+ 'phone' => $telephone,
+ 'city' => $ville,
+ 'type' => 'diagnostic',
+ 'source' => 'verifier-ville',
+ 'resource' => 'zone-check',
+ 'message' => trim("Réseau: {$reseau}\nBesoin: {$besoin}"),
+ 'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+ 'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+ 'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+ ], false);
+} catch (Throwable $e) {
+ error_log('[traitement-ville] lead sync error: ' . $e->getMessage());
 }
 
 // ── 7. Email admin ───────────────────────────────────────────

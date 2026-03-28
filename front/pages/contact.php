@@ -8,6 +8,7 @@ $pageDescription = 'Candidatez au Programme Fondateurs ou au coaching digital im
 $currentPage = 'contact';
 
 include '../../includes/header.php';
+require_once '../../includes/LeadService.php';
 
 $success = false;
 $errors = [];
@@ -32,9 +33,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  if (empty($activite)) $errors[] = 'Votre activit&eacute; est obligatoire.';
 
  if (empty($errors)) {
- $log = date('Y-m-d H:i:s') . " | $offre | $prenom $nom | $email | $ville | $activite\n";
- @file_put_contents(__DIR__ . '/../../logs/contacts.log', $log, FILE_APPEND);
+ try {
+ $leadService = new LeadService();
+ $result = $leadService->createLead([
+ 'firstname' => $prenom,
+ 'lastname' => $nom,
+ 'email' => $email,
+ 'phone' => $telephone,
+ 'city' => $ville,
+ 'type' => $offre === 'coaching' ? 'demo' : 'diagnostic',
+ 'source' => 'programme-contact',
+ 'message' => trim($activite . "\n" . $message),
+ 'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+ 'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+ 'referrer' => $_SERVER['HTTP_REFERER'] ?? null,
+ ], false);
+
+ if (!($result['success'] ?? false)) {
+ $errors[] = 'Impossible d’enregistrer votre demande pour le moment.';
+ } else {
  $success = true;
+ }
+ } catch (Throwable $e) {
+ error_log('front/pages/contact.php lead create error: ' . $e->getMessage());
+ $errors[] = 'Impossible d’enregistrer votre demande pour le moment.';
+ }
  }
 }
 ?>
