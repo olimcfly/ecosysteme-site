@@ -489,10 +489,10 @@ include '../../includes/header.php';
  Une seule licence par zone de 50km. Vérifiez avant qu'un concurrent ne réserve la vôtre.
  </p>
  <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
- <a href="verification-zone.php" class="btn btn-lg" style="background: white; color: #667eea;">
+ <a href="/verifier-ma-ville" class="btn btn-lg" style="background: white; color: #667eea;">
  Vérifier ma zone
  </a>
- <a href="demo.php" class="btn btn-lg btn-secondary" style="border-color: white; color: white;">
+ <a href="/demo" class="btn btn-lg btn-secondary" style="border-color: white; color: white;">
  Voir la démo
  </a>
  </div>
