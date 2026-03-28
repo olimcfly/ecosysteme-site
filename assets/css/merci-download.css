@@ -1,0 +1,702 @@
+/**
+ * ÉCOSYSTÈME IMMO LOCAL+ - Pages Remerciement Téléchargement
+ * CSS commun pour merci-personas, merci-seo, merci-mere, merci-offre
+ */
+
+
+/* SEO - Vert Émeraude */
+.theme-seo {
+    --gradient-start: #10b981;
+    --gradient-end: #059669;
+}/* ========================================
+   ADDITIONS À AJOUTER DANS merci-download.css
+======================================== */
+
+/* ========================================
+   STATUS BOX (Téléchargement réussi/en attente)
+======================================== */
+.status-box {
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.status-box.success {
+    background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(5,150,105,0.1));
+    border: 2px solid var(--gradient-start, #10b981);
+}
+
+.status-box.pending {
+    background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(217,119,6,0.1));
+    border: 2px solid #f59e0b;
+}
+
+.status-box .status-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.status-box h2 {
+    margin: 15px 0 10px 0;
+    font-size: 1.4rem;
+}
+
+.status-box.success h2 {
+    color: var(--gradient-start, #10b981);
+}
+
+.status-box.pending h2 {
+    color: #d97706;
+}
+
+.status-box p {
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* ========================================
+   PARCOURS / JOURNEY CARDS
+======================================== */
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.journey-card {
+    padding: 25px;
+    background: #f7fafc;
+    border-radius: 14px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.journey-card.completed {
+    background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(5,150,105,0.1));
+    border-color: #10b981;
+}
+
+.journey-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.journey-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+}
+
+.journey-number.orange { background: #f97316; }
+.journey-number.purple { background: #8b5cf6; }
+.journey-number.green { background: #10b981; }
+
+.journey-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.journey-label.orange { color: #f97316; }
+.journey-label.purple { color: #8b5cf6; }
+.journey-label.green { color: #10b981; }
+
+.journey-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: #1a202c;
+}
+
+.journey-card p {
+    margin: 0 0 15px 0;
+    color: #718096;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.journey-card a {
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.journey-card a.orange { color: #f97316; }
+.journey-card a.purple { color: #8b5cf6; }
+
+.journey-status {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   TIP BOX
+======================================== */
+.tip-box {
+    background: linear-gradient(135deg, rgba(var(--gradient-start-rgb, 16,185,129), 0.08), rgba(var(--gradient-end-rgb, 5,150,105), 0.08));
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+}
+
+.tip-box p {
+    color: #1a202c;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* ========================================
+   STATS GRID
+======================================== */
+.stats-section {
+    padding: 60px 20px;
+    background: #f8f9fa;
+}
+
+.stats-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stats-container h2 {
+    color: #1a202c;
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.stat-value {
+    font-size: 2rem;
+    color: var(--gradient-start, #10b981);
+    font-weight: 700;
+    display: block;
+}
+
+.stat-card p {
+    margin: 10px 0 0 0;
+    color: #718096;
+    line-height: 1.4;
+}
+
+/* ========================================
+   BADGE TAG
+======================================== */
+.badge-new {
+    background: #8b5cf6;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-left: 8px;
+}
+/* ========================================
+   HERO SECTION
+======================================== */
+.merci-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.merci-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--gradient-start, #667eea) 0%, var(--gradient-end, #764ba2) 100%);
+    z-index: -1;
+}
+
+.merci-hero-content {
+    max-width: 700px;
+    color: white;
+}
+
+.merci-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounceIn 0.8s ease-out;
+}
+
+.merci-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.merci-hero .subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    margin-bottom: 30px;
+}
+
+/* ========================================
+   DOWNLOAD BOX
+======================================== */
+.download-section {
+    padding: 60px 20px;
+    background: #f8f9fa;
+}
+
+.download-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.download-box {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gradient-start, #667eea), var(--gradient-end, #764ba2));
+}
+
+.download-box h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.download-box p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, var(--gradient-start, #667eea), var(--gradient-end, #764ba2));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-download:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+}
+
+.btn-download .icon {
+    font-size: 1.5rem;
+}
+
+.download-note {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f4ff;
+    border-radius: 10px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* ========================================
+   CONTENT SUMMARY
+======================================== */
+.content-summary {
+    margin-top: 40px;
+    text-align: left;
+    padding: 30px;
+    background: #fafbfc;
+    border-radius: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.content-summary h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-summary li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.content-summary li:last-child {
+    border-bottom: none;
+}
+
+.content-summary li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gradient-start, #667eea);
+    font-weight: bold;
+}
+
+/* ========================================
+   NEXT STEPS SECTION
+======================================== */
+.next-steps {
+    padding: 60px 20px;
+    background: white;
+}
+
+.next-steps-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.next-steps h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.next-steps .section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.step-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-start, #667eea);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.step-card.featured {
+    background: linear-gradient(135deg, #f0f4ff, #ede7f6);
+    border-color: var(--gradient-start, #667eea);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--gradient-start, #667eea), var(--gradient-end, #764ba2));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 20px;
+}
+
+.step-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.step-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.step-card .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.step-card .btn-primary {
+    background: linear-gradient(135deg, var(--gradient-start, #667eea), var(--gradient-end, #764ba2));
+    color: white;
+}
+
+.step-card .btn-outline {
+    background: white;
+    color: var(--gradient-start, #667eea);
+    border: 2px solid var(--gradient-start, #667eea);
+}
+
+.step-card .btn:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   OTHER RESOURCES
+======================================== */
+.other-resources {
+    padding: 60px 20px;
+    background: #f8f9fa;
+}
+
+.other-resources-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.other-resources h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.resource-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.resource-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.resource-card h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.resource-card p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.resource-card a {
+    color: var(--gradient-start, #667eea);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.resource-card a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   CTA FINAL
+======================================== */
+.cta-final {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--gradient-start, #667eea), var(--gradient-end, #764ba2));
+    text-align: center;
+    color: white;
+}
+
+.cta-final-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-final h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.cta-final p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    margin-bottom: 30px;
+}
+
+.cta-final .btn-white {
+    display: inline-block;
+    padding: 18px 40px;
+    background: white;
+    color: var(--gradient-start, #667eea);
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.cta-final .btn-white:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+    .merci-hero {
+        min-height: 40vh;
+        padding: 100px 15px 50px;
+    }
+    
+    .merci-icon {
+        font-size: 60px;
+    }
+    
+    .download-box {
+        padding: 30px 20px;
+    }
+    
+    .btn-download {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .next-steps h2,
+    .other-resources h2,
+    .cta-final h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ========================================
+   THEME VARIATIONS
+======================================== */
+/* Personas - Violet/Rose */
+.theme-personas {
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+}
+
+/* SEO - Vert/Teal */
+.theme-seo {
+    --gradient-start: #11998e;
+    --gradient-end: #38ef7d;
+}
+
+/* MERE - Orange/Rouge */
+.theme-mere {
+    --gradient-start: #f093fb;
+    --gradient-end: #f5576c;
+}
+
+/* Offre - Bleu/Cyan */
+.theme-offre {
+    --gradient-start: #4facfe;
+    --gradient-end: #00f2fe;
+}

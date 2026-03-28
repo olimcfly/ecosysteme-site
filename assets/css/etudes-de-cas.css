@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Études de Cas - Styles spécifiques
+   ========================================================================== */
+
+.case-hero {
+    background: var(--gradient);
+    padding: 150px 0 80px;
+    text-align: center;
+    color: white;
+}
+
+.case-hero h1 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.case-hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+.site-preview {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--light);
+}
+
+.case-study-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.case-study-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.case-study-card:hover .case-study-overlay {
+    opacity: 1;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.result-item {
+    background: var(--light-purple);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.result-item .number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    display: block;
+}
+
+.result-item .label {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.methodology-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.methodology-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gradient);
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-item h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .case-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .case-grid > div {
+        order: unset !important;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-item .number {
+        font-size: 2rem;
+    }
+}

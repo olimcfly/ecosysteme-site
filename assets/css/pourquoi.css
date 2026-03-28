@@ -1,0 +1,351 @@
+/* ==========================================================================
+   Pourquoi ce projet - Styles spécifiques
+   ========================================================================== */
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: var(--spacing-xl) 0;
+}
+
+.stat-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+/* Info Box */
+.info-box {
+    background: var(--light-purple);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.info-box h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-box p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* Alerts */
+.alert {
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.alert-danger {
+    background: var(--danger-light);
+    border-left: 4px solid var(--danger);
+    color: #721c24;
+}
+
+.alert-success {
+    background: var(--success-light);
+    border-left: 4px solid var(--success);
+    color: #155724;
+}
+
+/* Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: var(--spacing-xl) 0;
+}
+
+.comparison-col {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.comparison-col h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Check & Cross Lists */
+.check-list,
+.cross-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.check-list li,
+.cross-list li {
+    padding: var(--spacing-sm) 0;
+    padding-left: 30px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+}
+
+.check-list li:last-child,
+.cross-list li:last-child {
+    border-bottom: none;
+}
+
+.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+.cross-list li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: var(--danger);
+    font-weight: bold;
+}
+
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-xl) 0;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-table th {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.comparison-table th.bg-success {
+    background: var(--success);
+}
+
+.comparison-table th.bg-danger {
+    background: var(--danger);
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background: var(--light);
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--light-purple);
+}
+
+/* Quote Box */
+.quote-box {
+    background: var(--gradient);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.quote-box p {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Target Grid */
+.target-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin: var(--spacing-xl) 0;
+}
+
+.target-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.target-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(5px);
+}
+
+.target-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--success-light);
+    color: var(--success);
+    border-radius: 50%;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Sources Box */
+.sources-box {
+    background: var(--light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.sources-box h4 {
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.95rem;
+}
+
+.sources-box ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sources-box li {
+    color: var(--text);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.sources-box li::before {
+    content: '•';
+    margin-right: 8px;
+    color: var(--primary);
+}
+
+/* CTA Highlight */
+.cta-highlight {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.cta-highlight p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Utility Classes */
+.text-success {
+    color: var(--success) !important;
+}
+
+.text-danger {
+    color: var(--danger) !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-4 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.mt-4 {
+    margin-top: var(--spacing-lg);
+}
+
+.mt-5 {
+    margin-top: var(--spacing-xl);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-table {
+        font-size: 0.9rem;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .quote-box p {
+        font-size: 1.1rem;
+    }
+    
+    .target-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

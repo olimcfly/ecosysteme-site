@@ -1,0 +1,42 @@
+[24-Mar-2026 15:31:18 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[24-Mar-2026 15:31:18 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[24-Mar-2026 15:31:18 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[24-Mar-2026 15:31:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 251
+[26-Mar-2026 02:57:41 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 02:57:41 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 02:57:41 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 02:57:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 251
+[26-Mar-2026 04:12:51 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 04:12:51 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 04:12:51 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 04:12:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 251
+[26-Mar-2026 15:31:07 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 15:31:07 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 15:31:07 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 15:31:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 251
+[26-Mar-2026 19:52:39 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 19:52:39 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 19:52:39 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 6
+[26-Mar-2026 19:52:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/tasq5564/ecosystemeimmo.fr/front/pages/verifier-ma-ville.php on line 251
+[27-Mar-2026 14:20:29 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/sc1tasq5564/site/front/pages/verifier-ma-ville.php on line 6
+[27-Mar-2026 14:20:29 UTC] PHP Warning:  include(includes/header.php): Failed to open stream: No such file or directory in /home/sc1tasq5564/site/front/pages/verifier-ma-ville.php on line 6
+[27-Mar-2026 14:20:29 UTC] PHP Warning:  include(): Failed opening 'includes/header.php' for inclusion (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/sc1tasq5564/site/front/pages/verifier-ma-ville.php on line 6
+[27-Mar-2026 14:20:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function csrfField() in /home/sc1tasq5564/site/front/pages/verifier-ma-ville.php:251
+Stack trace:
+#0 {main}
+  thrown in /home/sc1tasq5564/site/front/pages/verifier-ma-ville.php on line 251

@@ -1,0 +1,19 @@
+User-agent: *
+
+# Autoriser le crawl du front
+Allow: /
+Allow: /front/
+Allow: /blog/
+Allow: /assets/
+
+# Bloquer les répertoires sensibles
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /logs/
+Disallow: /phpmailer/
+Disallow: /downloads/
+
+# Sitemap
+Sitemap: https://ecosystemeimmo.fr/sitemap.xml

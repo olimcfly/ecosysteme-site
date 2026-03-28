@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Stratégique L'Écrin Conciergerie - Transformez Votre Business</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-label {
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .hero .subtitle {
+            font-size: 22px;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #0f0f1e;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #ffd700;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .cta-button:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .cta-button-white {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-button-white:hover {
+            background: white;
+            color: #0f0f1e;
+        }
+        
+        /* ===== STATS ===== */
+        .stats {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            border-top: 4px solid #ffd700;
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #0f0f1e;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 15px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #ffd700;
+            margin: 20px auto 0;
+        }
+        
+        /* ===== PROBLEMS ===== */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .problem-card {
+            padding: 30px;
+            background: #fff5f5;
+            border-left: 5px solid #d62828;
+            border-radius: 6px;
+        }
+        
+        .problem-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0f0f1e;
+        }
+        
+        .problem-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #3a3a3a;
+        }
+        
+        /* ===== SOLUTIONS ===== */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .solution-card {
+            padding: 30px;
+            background: #f0fff4;
+            border-left: 5px solid #2a9d4f;
+            border-radius: 6px;
+        }
+        
+        .solution-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0f0f1e;
+        }
+        
+        .solution-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #3a3a3a;
+        }
+        
+        /* ===== OFFER ===== */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .offer-card {
+            padding: 35px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            border-color: #ffd700;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .offer-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #fffbf0;
+            color: #d48806;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .offer-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0f0f1e;
+        }
+        
+        .offer-list {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .offer-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px;
+        }
+        
+        .offer-list li::before {
+            content: '✓ ';
+            color: #2a9d4f;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .offer-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffd700;
+            margin: 25px 0;
+        }
+        
+        /* ===== ROADMAP ===== */
+        .roadmap-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .roadmap-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: 99px;
+            top: 0;
+            bottom: -60px;
+            width: 2px;
+            background: #ffd700;
+        }
+        
+        .roadmap-item:last-child::before {
+            display: none;
+        }
+        
+        .roadmap-phase {
+            position: relative;
+        }
+        
+        .roadmap-phase::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 50%;
+        }
+        
+        .roadmap-label {
+            font-weight: 700;
+            color: #0f0f1e;
+            margin-top: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .roadmap-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #0f0f1e;
+        }
+        
+        .roadmap-content ul {
+            list-style: none;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .roadmap-content li::before {
+            content: '→ ';
+            color: #ffd700;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        /* ===== ROI BOX ===== */
+        .roi-box {
+            background: linear-gradient(135deg, #0f0f1e 0%, #16213e 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .roi-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .roi-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .roi-metric {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+        
+        .roi-metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        
+        .roi-metric-label {
+            font-size: 13px;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+        
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0f0f1e;
+            color: white;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .roadmap-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .roadmap-item::before {
+                left: 19px;
+            }
+            
+            .roadmap-phase::before {
+                left: 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-label">Cas d'Étude Premium</div>
+            <h1>De Catalogue à Marque Premium</h1>
+            <p class="subtitle">L'audit stratégique complet qui transforme une conciergerie haut de gamme en machine d'acquisition rentable</p>
+            <div style="margin-top: 40px;">
+                <a href="#download" class="cta-button">Télécharger l'Audit Complet (PDF)</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">€1.7M</div>
+                <div class="stat-label">Potentiel revenue additionnel par an</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10x</div>
+                <div class="stat-label">Multiplicateur de chiffre d'affaires</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">86x</div>
+                <div class="stat-label">ROI sur investissement</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PROBLÈMES -->
+<section style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Les 3 Problèmes Majeurs</h2>
+        <div class="problems-grid">
+            <div class="problem-card">
+                <h3>❌ Positionnement Fragmenté</h3>
+                <p>Services énumérés comme un catalogue. Aucune promesse client unifiée. Le visiteur ne comprend pas la valeur unique en 10 secondes.</p>
+            </div>
+            <div class="problem-card">
+                <h3>❌ Zéro Acquisition</h3>
+                <p>Pas de SEO, pas d'ads payantes, pas de partenaires. Croissance 100% bouche-à-oreille (non-scalable et plafonnée).</p>
+            </div>
+            <div class="problem-card">
+                <h3>❌ Crédibilité Insuffisante</h3>
+                <p>Pas de testimonials, pas de story, pas de chiffres. Présentation générique qui n'inspire pas la confiance premium.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section style="background: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title">Les 3 Piliers de la Solution</h2>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <h3>🎯 Positionnement Clair</h3>
+                <p><strong>"Nous transformons votre séjour en moments privilégiés où chaque détail devient mémorable"</strong> — Une promesse unifiée, neuroscientifiquement percutante.</p>
+            </div>
+            <div class="solution-card">
+                <h3>📦 Offre Signature</h3>
+                <p><strong>3 tiers clairs</strong> (Silver €2.5k, Gold €6.5k, Platinum €15k+) que le client comprend en 10 secondes. Fin des 20 services confus.</p>
+            </div>
+            <div class="solution-card">
+                <h3>📈 Machine d'Acquisition</h3>
+                <p><strong>SEO + Ads + Partenaires</strong> = Trafic x4, Conversion x2.5 = 50-70 leads/mois (vs 6 actuellement)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXEMPLE TRANSFORMATION -->
+<section style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Exemple: La Promesse Transformée</h2>
+        
+        <div style="margin: 60px 0;">
+            <div style="padding: 30px; background: #fff5f5; border-left: 5px solid #d62828; border-radius: 6px; margin-bottom: 40px;">
+                <h3 style="color: #d62828; margin-top: 0;">❌ AVANT (Catalogue)</h3>
+                <p><strong>"Transferts en taxi avec élégance et confort"</strong></p>
+                <p>Simplifiez vos déplacements à Megève avec notre service de transfert en taxi de luxe. Nos chauffeurs professionnels vous conduisent avec élégance et discrétion...</p>
+            </div>
+            
+            <div style="padding: 30px; background: #f0fff4; border-left: 5px solid #2a9d4f; border-radius: 6px;">
+                <h3 style="color: #2a9d4f; margin-top: 0;">✅ APRÈS (Promesse)</h3>
+                <p><strong>"De l'aéroport à votre refuge : Le Voyage Commence Avant Votre Arrivée"</strong></p>
+                <p>Votre première impression à Megève ne doit pas être une file d'attente. Elle doit être une promesse tenue : un chauffeur qui vous connaît, une voiture confortable, et la sérénité d'arriver directement à votre destination.</p>
+                <p>✓ Chauffeur personnel attentif | ✓ Véhicule premium | ✓ Arrivée anticipée</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center; color: #666; font-style: italic; margin-top: 40px;">La première version vend un service. La deuxième crée une émotion. Le client ne compare plus les prix, il achète l'expérience.</p>
+    </div>
+</section>
+
+<!-- OFFRE SIGNATURE -->
+<section style="background: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title">Structure de l'Offre Signature</h2>
+        <div class="offer-grid">
+            <div class="offer-card">
+                <div class="offer-badge">🥈 ENTRÉE</div>
+                <h3 class="offer-title">SILVER</h3>
+                <p style="color: #666; font-size: 14px;">Séjour Découverte</p>
+                <ul class="offer-list">
+                    <li>Transfert aéroport</li>
+                    <li>1 réservation restaurant</li>
+                    <li>1 activité (ski ou loisir)</li>
+                    <li>Conciergerie 24h</li>
+                </ul>
+                <div class="offer-price">€2,500</div>
+                <button class="cta-button">Explorer</button>
+            </div>
+            
+            <div class="offer-card" style="border-color: #ffd700; box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);">
+                <div class="offer-badge" style="background: #ffd700; color: #0f0f1e;">🥇 POPULAIRE</div>
+                <h3 class="offer-title">GOLD</h3>
+                <p style="color: #666; font-size: 14px;">Séjour Privilégié</p>
+                <ul class="offer-list">
+                    <li>Transferts illimités</li>
+                    <li>3 repas gastronomiques</li>
+                    <li>2 activités premium</li>
+                    <li>Service bien-être</li>
+                    <li>Conciergerie prioritaire</li>
+                </ul>
+                <div class="offer-price">€6,500</div>
+                <button class="cta-button">Explorer</button>
+            </div>
+            
+            <div class="offer-card">
+                <div class="offer-badge">👑 PRESTIGE</div>
+                <h3 class="offer-title">PLATINUM</h3>
+                <p style="color: #666; font-size: 14px;">Sur Mesure Illimité</p>
+                <ul class="offer-list">
+                    <li>Transfert jet/hélico</li>
+                    <li>Chef à domicile</li>
+                    <li>Accès VIP partout</li>
+                    <li>Assistant 24h</li>
+                    <li>Concierge dédié</li>
+                </ul>
+                <div class="offer-price">À partir de €15k</div>
+                <button class="cta-button">Demander</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP -->
+<section style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Roadmap 12 Mois</h2>
+        <div class="roadmap-timeline">
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="roadmap-label">Mois 1-2</div>
+                </div>
+                <div class="roadmap-content">
+                    <h3>🏗️ Phase 1: Fondation</h3>
+                    <ul>
+                        <li>Clarifier positionnement stratégique</li>
+                        <li>Recueillir social proof (testimonials)</li>
+                        <li>Refondre page d'accueil (3 tiers)</li>
+                        <li>Créer page "À Propos" humanisée</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">Investissement: €3k-5k | Résultat: +30% conversion</p>
+                </div>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="roadmap-label">Mois 2-6</div>
+                </div>
+                <div class="roadmap-content">
+                    <h3>🔍 Phase 2: SEO Organique</h3>
+                    <ul>
+                        <li>Audit SEO complet</li>
+                        <li>Créer pilier content (10 articles)</li>
+                        <li>Optimiser on-page</li>
+                        <li>Stratégie backlinks</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">Investissement: €4k | Résultat: 500+ visites/mois</p>
+                </div>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="roadmap-label">Mois 2-12</div>
+                </div>
+                <div class="roadmap-content">
+                    <h3>📢 Phase 3: Acquisition Payante</h3>
+                    <ul>
+                        <li>Lancer Google Ads</li>
+                        <li>Lancer Facebook/Instagram ads</li>
+                        <li>A/B testing continu</li>
+                        <li>Optimisation CPA</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">Investissement: €1.5k-2k/mois | Résultat: 25-35 leads/mois</p>
+                </div>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="roadmap-label">Mois 6-12</div>
+                </div>
+                <div class="roadmap-content">
+                    <h3>🚀 Phase 4: Scaling</h3>
+                    <ul>
+                        <li>Doubler ce qui fonctionne</li>
+                        <li>Affiner audiences ads</li>
+                        <li>Lancer programme d'affiliation</li>
+                        <li>Optimiser conversion funnel</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">Investissement: €2.5k-3.5k/mois | Résultat: 50-70 leads/mois</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROI BOX -->
+<section style="background: white;">
+    <div class="container">
+        <div class="roi-box">
+            <h2>Impact Financier Complet</h2>
+            <div class="roi-metrics">
+                <div class="roi-metric">
+                    <div class="roi-metric-value">€37k</div>
+                    <div class="roi-metric-label">Investissement total</div>
+                </div>
+                <div class="roi-metric">
+                    <div class="roi-metric-value">€1.7M</div>
+                    <div class="roi-metric-label">Revenue additionnel/an</div>
+                </div>
+                <div class="roi-metric">
+                    <div class="roi-metric-value">86x</div>
+                    <div class="roi-metric-label">ROI</div>
+                </div>
+            </div>
+            <p style="font-size: 18px; margin-top: 30px; opacity: 0.95;">Chaque €1 investi génère €90+ de revenue supplémentaire</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="download">
+    <div class="container">
+        <h2>Vous Êtes Intéressé?</h2>
+        <p>Téléchargez l'audit complet (8 pages) avec analyse détaillée, recommandations et roadmap d'implémentation.</p>
+        <button class="cta-button" onclick="alert('Lien de téléchargement PDF: /mnt/user-data/outputs/Audit_Premium_Ecrin.html')">📥 Télécharger l'Audit (PDF Premium)</button>
+        <p style="margin-top: 30px; font-size: 13px; color: #888;">Document confidentiel • Format PDF optimisé • 8 pages complètes • À partager avec vos clients</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p><strong>Écosystème Immo Local+</strong> — Audit & Stratégie Digitale pour Conciergeries Haut de Gamme</p>
+        <p>Olivier OCDM | Janvier 2026</p>
+        <p style="margin-top: 30px; opacity: 0.6;">© 2026 Tous droits réservés | Document Confidentiel</p>
+    </div>
+</footer>
+
+</body>
+</html>

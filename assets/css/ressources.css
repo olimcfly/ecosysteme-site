@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Ressources - Complete Styles - COPIER TOUT CE FICHIER DANS /css/ressources.css
+   ========================================================================== */
+
+/* === Resources Hero Section === */
+.resources-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 120px 0 60px;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.resources-hero h1 {
+    color: white;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.resources-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* === Resources Section === */
+.resources-section {
+    padding: 60px 0;
+}
+
+.resources-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* === Resource Card Preview === */
+.resource-card-preview {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.resource-card-icon {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.resource-card-body {
+    padding: 25px;
+}
+
+.resource-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.resource-badge--diagnostic {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.resource-badge--outil {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.resource-badge--ressource {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.resource-card-body h3 {
+    font-size: 1.25rem;
+    color: #1a202c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.resource-card-body p {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.resource-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+.resource-features li {
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+    color: #4a5568;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.resource-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.resource-ideal {
+    background: #f0fdf4;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #166534;
+    margin-bottom: 20px;
+    border-left: 3px solid #10b981;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* === Section Header === */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.section-badge {
+    display: inline-block;
+    background: #f0f3ff;
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+/* === Utility Sections === */
+.bg-light {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+}
+
+.bg-gradient h2 {
+    color: white;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.bg-gradient p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin-bottom: 30px;
+}
+
+/* === Buttons === */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.btn-lg {
+    padding: 15px 32px;
+    font-size: 1.1rem;
+}
+
+/* === Container === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .resources-hero {
+        padding: 80px 0 40px;
+        margin-top: 60px;
+    }
+
+    .resources-grid-large {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-card-icon {
+        height: 100px;
+        font-size: 2.5rem;
+    }
+
+    .resource-card-body {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .bg-gradient {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .resources-grid-large {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+}

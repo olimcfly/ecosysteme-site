@@ -1,0 +1,356 @@
+/* ==============================================
+   LEGAL.CSS - Pages Légales ÉCOSYSTÈME IMMO+
+   CGV, Mentions Légales, Politique Confidentialité
+   ============================================== */
+
+/* Hero Legal */
+.legal-hero {
+    background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.legal-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.legal-hero .last-update {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* Legal Content */
+.legal-content {
+    padding: 60px 0 100px;
+    background: white;
+}
+
+.legal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Table of Contents */
+.legal-toc {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 50px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.legal-toc h3 {
+    font-size: 1.1rem;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+}
+
+.legal-toc ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.legal-toc li {
+    margin-bottom: 10px;
+}
+
+.legal-toc a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.legal-toc a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Legal Sections */
+.legal-section {
+    margin-bottom: 50px;
+    scroll-margin-top: 100px;
+}
+
+.legal-section h2 {
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legal-section h2 .section-number {
+    background: var(--primary-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.legal-section h3 {
+    font-size: 1.15rem;
+    color: var(--gray-800);
+    margin: 30px 0 15px;
+}
+
+.legal-section p {
+    color: var(--gray-700);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.legal-section ul,
+.legal-section ol {
+    color: var(--gray-700);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.legal-section li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* Info Cards in Legal */
+.legal-info-card {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.legal-info-card h4 {
+    color: var(--gray-900);
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.legal-info-card p {
+    margin-bottom: 8px;
+}
+
+.legal-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Contact Box */
+.legal-contact {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.legal-contact h4 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.legal-contact p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+}
+
+.legal-contact a {
+    color: white;
+    font-weight: 600;
+}
+
+/* Highlight Box */
+.legal-highlight {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.legal-highlight p {
+    color: #92400e;
+    margin: 0;
+}
+
+.legal-highlight strong {
+    color: #78350f;
+}
+
+/* Warning Box */
+.legal-warning {
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.legal-warning p {
+    color: #991b1b;
+    margin: 0;
+}
+
+/* Success Box */
+.legal-success {
+    background: #f0fdf4;
+    border: 1px solid #22c55e;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.legal-success p {
+    color: #166534;
+    margin: 0;
+}
+
+/* Table in Legal */
+.legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+}
+
+.legal-table th,
+.legal-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.legal-table th {
+    background: var(--gray-100);
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.legal-table td {
+    color: var(--gray-700);
+}
+
+.legal-table tr:hover td {
+    background: var(--gray-50);
+}
+
+/* Back Link */
+.legal-back {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+}
+
+.legal-back a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.legal-back a:hover {
+    color: var(--primary-dark);
+    gap: 12px;
+}
+
+/* Navigation between legal pages */
+.legal-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.legal-nav a {
+    padding: 10px 20px;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.legal-nav a:hover {
+    background: var(--gray-200);
+}
+
+.legal-nav a.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Print Styles */
+@media print {
+    .legal-hero {
+        background: white;
+        color: black;
+        padding: 20px 0;
+    }
+    
+    .legal-nav,
+    .legal-back {
+        display: none;
+    }
+    
+    .legal-section {
+        page-break-inside: avoid;
+    }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .legal-hero {
+        padding: 80px 0 50px;
+    }
+    
+    .legal-content {
+        padding: 40px 0 60px;
+    }
+    
+    .legal-toc {
+        padding: 20px;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .legal-nav {
+        justify-content: center;
+    }
+    
+    .legal-nav a {
+        flex: 1;
+        min-width: 140px;
+        text-align: center;
+    }
+    
+    .legal-table {
+        font-size: 0.85rem;
+    }
+    
+    .legal-table th,
+    .legal-table td {
+        padding: 10px;
+    }
+}
