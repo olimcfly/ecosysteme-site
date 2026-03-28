@@ -32,6 +32,7 @@
  <li><a href="/plateforme">La Plateforme</a></li>
  <li><a href="/methode">La Méthode</a></li>
  <li><a href="/modules">Modules</a></li>
+ <li><a href="/tarifs">Tarifs</a></li>
  <li><a href="/temoignages">Témoignages</a></li>
  </ul>
  </div>
@@ -40,11 +41,14 @@
  <div class="footer-col">
  <h4>Découvrir</h4>
  <ul class="footer-links">
- <li><a href="/blog"> Blog</a></li>
+ <li><a href="/blog">Blog immobilier</a></li>
+ <li><a href="/ressources">Guides SEO immobiliers</a></li>
  <li><a href="/villes">Villes disponibles</a></li>
+ <li><a href="/villes-pilotes">Villes pilotes</a></li>
  <li><a href="/demo">Voir la démo</a></li>
  <li><a href="/verifier-ma-ville">Vérifier ma ville</a></li>
  <li><a href="/rdv">Réserver un appel</a></li>
+ <li><a href="/contact">Contacter l'équipe</a></li>
  <li>
  <a href="tel:+33785611700" class="footer-phone">
  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
