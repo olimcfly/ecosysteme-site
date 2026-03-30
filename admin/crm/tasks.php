@@ -391,93 +391,10 @@ $totalLeads = $stmt->fetch()['total'];
     </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-title">🎯 ÉCOSYSTÈME IMMO LOCAL+</div>
-            </div>
+    <div class="container app-shell">
+        <?php $activePage = 'tasks'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-            <nav class="sidebar-menu">
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Principal</div>
-                    <a href="/admin/crm" class="sidebar-item">
-                        <span class="sidebar-icon">📊</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="/admin/crm/leads" class="sidebar-item">
-                        <span class="sidebar-icon">👥</span>
-                        <span>Tous les Leads</span>
-                        <span class="sidebar-badge"><?= $totalLeads ?></span>
-                    </a>
-                    <a href="/admin/crm/tasks" class="sidebar-item active">
-                        <span class="sidebar-icon">✅</span>
-                        <span>Tâches</span>
-                        <span class="sidebar-badge"><?= $todoCount ?></span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Par Intent</div>
-                    <a href="/admin/crm/leads?intent=diagnostic" class="sidebar-item">
-                        <span class="sidebar-icon">🔍</span>
-                        <span>Diagnostic</span>
-                    </a>
-                    <a href="/admin/crm/leads?intent=demo" class="sidebar-item">
-                        <span class="sidebar-icon">🎥</span>
-                        <span>Demo</span>
-                    </a>
-                    <a href="/admin/crm/leads?intent=outil" class="sidebar-item">
-                        <span class="sidebar-icon">🛠️</span>
-                        <span>Outil</span>
-                    </a>
-                    <a href="/admin/crm/leads?intent=ressource" class="sidebar-item">
-                        <span class="sidebar-icon">📚</span>
-                        <span>Ressource</span>
-                    </a>
-                    <a href="/admin/crm/leads?intent=cold" class="sidebar-item">
-                        <span class="sidebar-icon">❄️</span>
-                        <span>Cold</span>
-                    </a>
-                    <a href="/admin/crm/leads?status=client" class="sidebar-item">
-                        <span class="sidebar-icon">✅</span>
-                        <span>Clients</span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Offres</div>
-                    <a href="/admin/crm/offre-generator" class="sidebar-item">
-                        <span class="sidebar-icon">🤖</span>
-                        <span>Générateur IA</span>
-                    </a>
-                    <a href="/admin/crm/offres" class="sidebar-item">
-                        <span class="sidebar-icon">📋</span>
-                        <span>Mes Offres</span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Outils</div>
-                    <a href="/admin/emails" class="sidebar-item">
-                        <span class="sidebar-icon">📧</span>
-                        <span>Messages</span>
-                    </a>
-                </div>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="user-card">
-                    <div class="user-avatar"><?= strtoupper(substr($_SESSION['admin_firstname'] ?? 'A', 0, 1)) ?></div>
-                    <div class="user-info">
-                        <span class="user-name"><?= htmlspecialchars($_SESSION['admin_firstname'] ?? 'Admin') ?></span>
-                        <span class="user-email"><?= htmlspecialchars($_SESSION['admin_email'] ?? '') ?></span>
-                    </div>
-                </div>
-                <a href="/admin/auth/logout" class="logout-btn">Déconnexion</a>
-            </div>
-        </aside>
-
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <div>
                     <h1 class="header-title">📋 Tâches</h1>

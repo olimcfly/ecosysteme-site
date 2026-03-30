@@ -149,6 +149,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         fclose($output);
         exit;
     }
+
+    // =============================================
+    // SUPPRIMER UN CONTACT
+    // =============================================
+    if ($action === 'delete_contact') {
+        $contactId = intval($_POST['contact_id'] ?? 0);
+
+        if ($contactId <= 0) {
+            $message = '❌ Contact invalide';
+            $messageType = 'error';
+        } else {
+            try {
+                $stmt = $pdo->prepare("DELETE FROM leads WHERE id = ? LIMIT 1");
+                $stmt->execute([$contactId]);
+
+                if ($stmt->rowCount() > 0) {
+                    $message = '✅ Contact supprimé';
+                    $messageType = 'success';
+                } else {
+                    $message = '⚠️ Contact introuvable ou déjà supprimé';
+                    $messageType = 'error';
+                }
+            } catch (Exception $e) {
+                $message = '❌ Suppression impossible';
+                $messageType = 'error';
+            }
+        }
+    }
 }
 
 // ============================================
@@ -185,6 +213,19 @@ $stmt = $pdo->query("
     WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)
 ")->fetch()['total'];
 $leadsWeek = $stmt;
+
+$recentContacts = [];
+try {
+    $stmt = $pdo->query("
+        SELECT id, firstname, lastname, email, phone, city, status, created_at
+        FROM leads
+        ORDER BY created_at DESC
+        LIMIT 30
+    ");
+    $recentContacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $recentContacts = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -391,6 +432,11 @@ $leadsWeek = $stmt;
             border-collapse: collapse;
             margin-top: 1rem;
         }
+
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         
         .table thead {
             background: var(--gray-50);
@@ -426,6 +472,21 @@ $leadsWeek = $stmt;
             background: var(--danger);
             color: white;
         }
+
+        .badge-status {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
         
         .help-text {
             font-size: 0.8rem;
@@ -458,83 +519,22 @@ $leadsWeek = $stmt;
             .btn-group {
                 flex-direction: column;
             }
+            .table th, .table td {
+                padding: 0.65rem 0.75rem;
+                font-size: 0.82rem;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-title">🎯 ÉCOSYSTÈME IMMO LOCAL+</div>
-            </div>
-            
-            <nav class="sidebar-menu">
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Principal</div>
-                    <a href="/admin/crm" class="sidebar-item">
-                        <span class="sidebar-icon">📊</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="/admin/crm/leads" class="sidebar-item">
-                        <span class="sidebar-icon">👥</span>
-                        <span>Tous les Leads</span>
-                    </a>
-                    <a href="/admin/crm/analytics.php" class="sidebar-item">
-                        <span class="sidebar-icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                    <a href="/admin/crm/calls" class="sidebar-item">
-                        <span class="sidebar-icon">☎️</span>
-                        <span>À Appeler</span>
-                    </a>
-                    <a href="/admin/crm/analytics.php" class="sidebar-item">
-                        <span class="sidebar-icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                </div>
+    <div class="container app-shell">
+        <?php $activePage = 'contacts'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Offres</div>
-                    <a href="/admin/crm/offre-generator" class="sidebar-item">
-                        <span class="sidebar-icon">🤖</span>
-                        <span>Générateur IA</span>
-                    </a>
-                    <a href="/admin/crm/offres" class="sidebar-item">
-                        <span class="sidebar-icon">📋</span>
-                        <span>Mes Offres</span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Outils</div>
-                    <a href="/admin/crm/contacts" class="sidebar-item active">
-                        <span class="sidebar-icon">📇</span>
-                        <span>Contacts</span>
-                    </a>
-                    <a href="/admin/emails" class="sidebar-item">
-                        <span class="sidebar-icon">📧</span>
-                        <span>Messages</span>
-                    </a>
-                    <a href="/admin/crm/settings" class="sidebar-item">
-                        <span class="sidebar-icon">⚙️</span>
-                        <span>Paramètres</span>
-                    </a>
-                </div>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-card">
-                    <div class="user-avatar"><?= strtoupper(substr($_SESSION['admin_firstname'] ?? 'A', 0, 1)) ?></div>
-                    <div class="user-info">
-                        <span class="user-name"><?= h($_SESSION['admin_firstname'] ?? 'Admin') ?></span>
-                        <span class="user-email"><?= h($_SESSION['admin_email'] ?? '') ?></span>
-                    </div>
-                </div>
-                <a href="/admin/auth/logout" class="logout-btn">Déconnexion</a>
-            </div>
-        </aside>
-        
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <h1 class="header-title">📇 Gestion des Contacts</h1>
                 <div class="header-breadcrumb">Dashboard > Contacts</div>
@@ -625,6 +625,7 @@ $leadsWeek = $stmt;
                         ⚠️ <?= count($duplicates) ?> email(s) en doublon détecté(s)
                     </div>
                     
+                    <div class="table-wrapper">
                     <table class="table">
                         <thead>
                             <tr>
@@ -657,6 +658,54 @@ $leadsWeek = $stmt;
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🗂️ Contacts récents (suppression rapide)</div>
+
+                <?php if (empty($recentContacts)): ?>
+                    <div class="no-results">Aucun contact pour le moment.</div>
+                <?php else: ?>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Téléphone</th>
+                                    <th>Ville</th>
+                                    <th>Statut</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($recentContacts as $contact): ?>
+                                <tr>
+                                    <td><strong><?= h(trim(($contact['firstname'] ?? '') . ' ' . ($contact['lastname'] ?? ''))) ?: '—' ?></strong></td>
+                                    <td><?= h($contact['email'] ?? '—') ?></td>
+                                    <td><?= h($contact['phone'] ?? '—') ?></td>
+                                    <td><?= h($contact['city'] ?? '—') ?></td>
+                                    <td><span class="badge badge-status"><?= h($contact['status'] ?? 'nouveau') ?></span></td>
+                                    <td><?= !empty($contact['created_at']) ? date('d/m/Y H:i', strtotime($contact['created_at'])) : '—' ?></td>
+                                    <td>
+                                        <div class="btn-group" style="margin:0;">
+                                            <a href="/admin/crm/lead-detail.php?id=<?= intval($contact['id']) ?>" class="btn btn-secondary" style="text-decoration:none; padding:0.5rem 0.75rem;">Voir</a>
+                                            <form method="POST" onsubmit="return confirm('Supprimer ce contact ? Action irréversible.');" style="margin:0;">
+                                                <?= csrfField() ?>
+                                                <input type="hidden" name="action" value="delete_contact">
+                                                <input type="hidden" name="contact_id" value="<?= intval($contact['id']) ?>">
+                                                <button type="submit" class="btn btn-danger" style="padding:0.5rem 0.75rem;">Supprimer</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php endif; ?>
             </div>
             

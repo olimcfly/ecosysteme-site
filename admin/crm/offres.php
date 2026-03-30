@@ -309,63 +309,10 @@ while ($row = $stmt->fetch()) {
     </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-title">ECOSYSTEME IMMO LOCAL+</div>
-            </div>
-            <nav class="sidebar-menu">
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Principal</div>
-                    <a href="/admin/crm" class="sidebar-item">
-                        <span class="sidebar-icon">📊</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="/admin/crm/leads" class="sidebar-item">
-                        <span class="sidebar-icon">👥</span>
-                        <span>Tous les Leads</span>
-                        <span class="sidebar-badge"><?= $totalLeads ?></span>
-                    </a>
-                    <a href="/admin/crm/analytics.php" class="sidebar-item">
-                        <span class="sidebar-icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                </div>
+    <div class="container app-shell">
+        <?php $activePage = 'offers'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Offres</div>
-                    <a href="/admin/crm/offre-generator" class="sidebar-item">
-                        <span class="sidebar-icon">🤖</span>
-                        <span>Generateur IA</span>
-                    </a>
-                    <a href="/admin/crm/offres" class="sidebar-item active">
-                        <span class="sidebar-icon">📋</span>
-                        <span>Mes Offres</span>
-                        <span class="sidebar-badge"><?= $totalOffres ?></span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Outils</div>
-                    <a href="/admin/emails" class="sidebar-item">
-                        <span class="sidebar-icon">📧</span>
-                        <span>Messages</span>
-                    </a>
-                </div>
-            </nav>
-            <div class="sidebar-footer">
-                <div class="user-card">
-                    <div class="user-avatar"><?= strtoupper(substr($_SESSION['admin_firstname'] ?? 'A', 0, 1)) ?></div>
-                    <div class="user-info">
-                        <span class="user-name"><?= h($_SESSION['admin_firstname'] ?? 'Admin') ?></span>
-                        <span class="user-email"><?= h($_SESSION['admin_email'] ?? '') ?></span>
-                    </div>
-                </div>
-                <a href="/admin/auth/logout" class="logout-btn">Deconnexion</a>
-            </div>
-        </aside>
-
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <div>
                     <h1 class="header-title">📋 Mes Offres</h1>

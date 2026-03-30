@@ -102,10 +102,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container app-shell">
         <?php $activePage = 'invoices'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-        <main class="main">
+        <main class="main app-content">
             <div class="page-header">
                 <h1>Factures</h1>
             </div>
