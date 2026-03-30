@@ -478,95 +478,10 @@ $intents = $stmt->fetchAll(PDO::FETCH_COLUMN);
     </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-title">🎯 ÉCOSYSTÈME IMMO LOCAL+</div>
-            </div>
-            
-            <nav class="sidebar-menu">
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Principal</div>
-                    <a href="/admin/crm" class="sidebar-item">
-                        <span class="sidebar-icon">📊</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="/admin/crm/leads" class="sidebar-item">
-                        <span class="sidebar-icon">👥</span>
-                        <span>Tous les Leads</span>
-                    </a>
-                    <a href="/admin/crm/analytics.php" class="sidebar-item">
-                        <span class="sidebar-icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                    <a href="/admin/crm/calls" class="sidebar-item active">
-                        <span class="sidebar-icon">☎️</span>
-                        <span>À Appeler</span>
-                    </a>
-                    <a href="/admin/crm/analytics.php" class="sidebar-item">
-                        <span class="sidebar-icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                </div>
+    <div class="container app-shell">
+        <?php $activePage = 'calls'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Par Intent</div>
-                    <a href="/admin/crm/calls?intent=diagnostic" class="sidebar-item">
-                        <span class="sidebar-icon">🔍</span>
-                        <span>Diagnostic</span>
-                    </a>
-                    <a href="/admin/crm/calls?intent=demo" class="sidebar-item">
-                        <span class="sidebar-icon">🎥</span>
-                        <span>Demo</span>
-                    </a>
-                    <a href="/admin/crm/calls?intent=outil" class="sidebar-item">
-                        <span class="sidebar-icon">🛠️</span>
-                        <span>Outil</span>
-                    </a>
-                    <a href="/admin/crm/calls?intent=ressource" class="sidebar-item">
-                        <span class="sidebar-icon">📚</span>
-                        <span>Ressource</span>
-                    </a>
-                    <a href="/admin/crm/calls?intent=cold" class="sidebar-item">
-                        <span class="sidebar-icon">❄️</span>
-                        <span>Cold</span>
-                    </a>
-                </div>
-                
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Offres</div>
-                    <a href="/admin/crm/offre-generator" class="sidebar-item">
-                        <span class="sidebar-icon">🤖</span>
-                        <span>Générateur IA</span>
-                    </a>
-                    <a href="/admin/crm/offres" class="sidebar-item">
-                        <span class="sidebar-icon">📋</span>
-                        <span>Mes Offres</span>
-                    </a>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-title">Outils</div>
-                    <a href="/admin/emails" class="sidebar-item">
-                        <span class="sidebar-icon">📧</span>
-                        <span>Messages</span>
-                    </a>
-                </div>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-card">
-                    <div class="user-avatar"><?= strtoupper(substr($_SESSION['admin_firstname'] ?? 'A', 0, 1)) ?></div>
-                    <div class="user-info">
-                        <span class="user-name"><?= h($_SESSION['admin_firstname'] ?? 'Admin') ?></span>
-                        <span class="user-email"><?= h($_SESSION['admin_email'] ?? '') ?></span>
-                    </div>
-                </div>
-                <a href="/admin/auth/logout" class="logout-btn">Déconnexion</a>
-            </div>
-        </aside>
-        
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <h1 class="header-title">☎️ Leads à Appeler</h1>
                 <div class="header-breadcrumb">Dashboard > À Appeler</div>
