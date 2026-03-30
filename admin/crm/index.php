@@ -348,7 +348,7 @@ $recentLeads = $stmt->fetchAll();
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container app-shell">
         <?php $activePage = 'dashboard'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
                 <div class="sidebar-section">
@@ -417,7 +417,7 @@ $recentLeads = $stmt->fetchAll();
             </div>
         </aside>
         
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <div>
                     <h1 class="header-title">📊 Dashboard</h1>
