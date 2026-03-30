@@ -140,6 +140,32 @@ $showBack = $activePage !== 'dashboard';
         -webkit-overflow-scrolling: touch;
     }
 
+    @media (min-width: 768px) and (max-width: 991px) {
+        .topbar {
+            height: 62px;
+            padding: 0 1rem;
+        }
+
+        .topbar-title {
+            font-size: 1rem;
+        }
+
+        .bottom-nav {
+            max-width: 720px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid var(--gray-200, #e5e7eb);
+            border-bottom: none;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            box-shadow: 0 -6px 18px rgba(17,24,39,0.08);
+        }
+
+        .app-content {
+            padding: calc(62px + 1.25rem) 1.25rem calc(94px + env(safe-area-inset-bottom));
+        }
+    }
+
     .sidebar {
         display: none;
     }

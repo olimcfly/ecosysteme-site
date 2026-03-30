@@ -274,6 +274,12 @@ $builtinTemplates = [
             border-radius: 0.5rem 0.5rem 0 0;
             background: var(--gray-50);
         }
+
+        .ql-toolbar.ql-snow {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
         
         .btn {
             padding: 0.75rem 1.5rem;
@@ -359,6 +365,20 @@ $builtinTemplates = [
             }
             .btn-group {
                 flex-direction: column;
+            }
+            .editor-section {
+                padding: 1rem;
+            }
+            .ql-editor {
+                min-height: 240px;
+                padding: 1rem;
+            }
+            .ql-toolbar.ql-snow {
+                white-space: normal;
+            }
+            .ql-toolbar.ql-snow .ql-formats {
+                margin-right: 0.25rem;
+                margin-bottom: 0.25rem;
             }
         }
     </style>
