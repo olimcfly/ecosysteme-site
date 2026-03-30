@@ -1,24 +1,178 @@
 <?php
 /**
- * ÉCOSYSTÈME IMMO LOCAL+ - Sidebar CRM partagée
- * Style sombre inspiré du design "Estimation Angers"
+ * ÉCOSYSTÈME IMMO LOCAL+ - Navigation CRM partagée
  *
  * Variable attendue : $activePage (ex: 'dashboard', 'leads', 'pipeline', etc.)
  */
 $activePage = $activePage ?? '';
+
+$pageMeta = [
+    'dashboard' => ['title' => 'Accueil', 'icon' => '🏠'],
+    'leads' => ['title' => 'Leads', 'icon' => '👥'],
+    'pipeline' => ['title' => 'Pipeline', 'icon' => '📋'],
+    'contacts' => ['title' => 'Contacts', 'icon' => '🤝'],
+    'calls' => ['title' => 'Appels', 'icon' => '📞'],
+    'tasks' => ['title' => 'Taches', 'icon' => '✅'],
+    'blog' => ['title' => 'Blog', 'icon' => '📝'],
+    'seo' => ['title' => 'SEO Hub', 'icon' => '🔍'],
+    'images-ia' => ['title' => 'Images IA', 'icon' => '🎨'],
+    'offers' => ['title' => 'Offres', 'icon' => '🎁'],
+    'tunnels' => ['title' => 'Tunnels', 'icon' => '🔄'],
+    'invoices' => ['title' => 'Factures', 'icon' => '🧾'],
+    'automation' => ['title' => 'Automation', 'icon' => '⚡'],
+    'analytics' => ['title' => 'Analytics', 'icon' => '📈'],
+    'editor' => ['title' => 'Email', 'icon' => '📧'],
+    'settings' => ['title' => 'Parametres', 'icon' => '⚙️'],
+];
+
+$currentTitle = $pageMeta[$activePage]['title'] ?? 'Administration';
+$showBack = $activePage !== 'dashboard';
 ?>
 <style>
-    .sidebar {
-        width: 240px;
-        background: #1e1e2d;
-        color: #c5c5d2;
+    .app-shell {
+        min-height: 100vh;
+        background: var(--gray-50, #f9fafb);
+        display: block;
+    }
+
+    .topbar {
         position: fixed;
-        height: 100vh;
-        overflow-y: auto;
-        z-index: 100;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        background: #ffffff;
+        border-bottom: 1px solid var(--gray-200, #e5e7eb);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 0 0.85rem;
+        z-index: 220;
+    }
+
+    .topbar-left,
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .topbar-right {
+        justify-content: flex-end;
+    }
+
+    .topbar-title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--gray-900, #111827);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.75rem;
+    }
+
+    .topbar-btn,
+    .topbar-logo {
+        min-width: 2rem;
+        height: 2rem;
+        border-radius: 0.6rem;
+        border: 1px solid var(--gray-200, #e5e7eb);
+        background: #ffffff;
+        color: var(--gray-800, #1f2937);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0 0.55rem;
+    }
+
+    .topbar-logo {
+        width: auto;
+        font-size: 0.78rem;
+        letter-spacing: 0.2px;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        padding: 0.4rem 0.45rem calc(0.45rem + env(safe-area-inset-bottom));
+        background: #ffffff;
+        border-top: 1px solid var(--gray-200, #e5e7eb);
+        z-index: 220;
+    }
+
+    .bottom-nav-item {
+        min-height: 3.1rem;
         display: flex;
         flex-direction: column;
-        font-size: 0.88rem;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--gray-500, #6b7280);
+        border-radius: 0.75rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        line-height: 1.2;
+        gap: 0.2rem;
+    }
+
+    .bottom-nav-item .icon {
+        font-size: 1rem;
+    }
+
+    .bottom-nav-item.active {
+        background: rgba(192, 57, 43, 0.12);
+        color: #c0392b;
+    }
+
+    .app-content {
+        min-height: 100vh;
+        padding: calc(58px + 1rem) 1rem calc(88px + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 992px) {
+        .app-shell {
+            display: flex;
+        }
+
+        .topbar,
+        .bottom-nav {
+            display: none;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #1e1e2d;
+            color: #c5c5d2;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            font-size: 0.88rem;
+        }
+
+        .app-content {
+            margin-left: 240px;
+            flex: 1;
+            padding: 2rem;
+            min-height: 100vh;
+        }
     }
 
     .sidebar-brand {
@@ -116,11 +270,6 @@ $activePage = $activePage ?? '';
         color: #8a8a9e;
     }
 
-    .sidebar-sub-item {
-        padding-left: 3.2rem;
-        font-size: 0.82rem;
-    }
-
     .sidebar-footer {
         padding: 1rem 1.25rem;
         border-top: 1px solid rgba(255,255,255,0.06);
@@ -191,24 +340,43 @@ $activePage = $activePage ?? '';
     .sidebar-logout:hover {
         color: #e74c3c;
     }
-
-    .main {
-        margin-left: 240px;
-        flex: 1;
-        padding: 2rem;
-        min-height: 100vh;
-    }
-
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
-        .sidebar-menu { max-height: 50vh; }
-        .main { margin-left: 0; }
-    }
 </style>
+
+<header class="topbar">
+    <div class="topbar-left">
+        <?php if ($showBack): ?>
+            <button type="button" class="topbar-btn" onclick="history.back()" aria-label="Retour">←</button>
+        <?php else: ?>
+            <a href="/admin/crm/index.php" class="topbar-logo" aria-label="Accueil admin">ECO+</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="topbar-title"><?= h($currentTitle) ?></div>
+
+    <div class="topbar-right">
+        <a href="/admin/emails/index.php" class="topbar-btn" aria-label="Notifications">🔔</a>
+        <a href="/admin/crm/leads.php" class="topbar-btn" aria-label="Ajouter un element">＋</a>
+    </div>
+</header>
+
+<nav class="bottom-nav" aria-label="Navigation principale mobile">
+    <a href="/admin/crm/index.php" class="bottom-nav-item <?= $activePage === 'dashboard' ? 'active' : '' ?>">
+        <span class="icon">🏠</span>
+        <span>Accueil</span>
+    </a>
+    <a href="/admin/crm/contacts.php" class="bottom-nav-item <?= $activePage === 'contacts' ? 'active' : '' ?>">
+        <span class="icon">👥</span>
+        <span>Contacts</span>
+    </a>
+    <a href="/admin/crm/pipeline.php" class="bottom-nav-item <?= $activePage === 'pipeline' ? 'active' : '' ?>">
+        <span class="icon">📋</span>
+        <span>Pipeline</span>
+    </a>
+    <a href="/admin/crm/settings.php" class="bottom-nav-item <?= in_array($activePage, ['settings', 'offers', 'tunnels', 'invoices', 'blog', 'seo', 'images-ia', 'editor', 'tasks', 'calls', 'automation', 'analytics', 'leads'], true) && !in_array($activePage, ['contacts', 'pipeline'], true) ? 'active' : '' ?>">
+        <span class="icon">☰</span>
+        <span>Plus</span>
+    </a>
+</nav>
 
 <aside class="sidebar">
     <div class="sidebar-brand">
@@ -220,80 +388,41 @@ $activePage = $activePage ?? '';
     </div>
 
     <nav class="sidebar-menu">
-        <!-- PRINCIPAL -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">Principal</div>
-            <a href="/admin/crm/index.php" class="sidebar-item <?= $activePage === 'dashboard' ? 'active' : '' ?>">
-                <span class="icon">📊</span> Tableau de bord
-            </a>
-            <a href="/admin/crm/leads.php" class="sidebar-item <?= $activePage === 'leads' ? 'active' : '' ?>">
-                <span class="icon">👥</span> Leads
-            </a>
-            <a href="/admin/crm/pipeline.php" class="sidebar-item <?= $activePage === 'pipeline' ? 'active' : '' ?>">
-                <span class="icon">📋</span> Pipeline
-            </a>
-            <a href="/admin/crm/contacts.php" class="sidebar-item <?= $activePage === 'contacts' ? 'active' : '' ?>">
-                <span class="icon">🤝</span> Partenaires
-            </a>
-            <a href="/admin/crm/calls.php" class="sidebar-item <?= $activePage === 'calls' ? 'active' : '' ?>">
-                <span class="icon">📞</span> Appels
-            </a>
-            <a href="/admin/crm/tasks.php" class="sidebar-item <?= $activePage === 'tasks' ? 'active' : '' ?>">
-                <span class="icon">✅</span> Taches
-            </a>
+            <a href="/admin/crm/index.php" class="sidebar-item <?= $activePage === 'dashboard' ? 'active' : '' ?>"><span class="icon">📊</span> Tableau de bord</a>
+            <a href="/admin/crm/leads.php" class="sidebar-item <?= $activePage === 'leads' ? 'active' : '' ?>"><span class="icon">👥</span> Leads</a>
+            <a href="/admin/crm/pipeline.php" class="sidebar-item <?= $activePage === 'pipeline' ? 'active' : '' ?>"><span class="icon">📋</span> Pipeline</a>
+            <a href="/admin/crm/contacts.php" class="sidebar-item <?= $activePage === 'contacts' ? 'active' : '' ?>"><span class="icon">🤝</span> Partenaires</a>
+            <a href="/admin/crm/calls.php" class="sidebar-item <?= $activePage === 'calls' ? 'active' : '' ?>"><span class="icon">📞</span> Appels</a>
+            <a href="/admin/crm/tasks.php" class="sidebar-item <?= $activePage === 'tasks' ? 'active' : '' ?>"><span class="icon">✅</span> Taches</a>
         </div>
 
-        <!-- CONTENU & SEO -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">Contenu & SEO</div>
-            <a href="/admin/crm/blog.php" class="sidebar-item <?= $activePage === 'blog' ? 'active' : '' ?>">
-                <span class="icon">📝</span> Articles Blog
-            </a>
-            <a href="/admin/crm/seo.php" class="sidebar-item <?= $activePage === 'seo' ? 'active' : '' ?>">
-                <span class="icon">🔍</span> SEO Hub
-            </a>
-            <a href="/admin/crm/images-ia.php" class="sidebar-item <?= $activePage === 'images-ia' ? 'active' : '' ?>">
-                <span class="icon">🎨</span> Images IA
-            </a>
+            <a href="/admin/crm/blog.php" class="sidebar-item <?= $activePage === 'blog' ? 'active' : '' ?>"><span class="icon">📝</span> Articles Blog</a>
+            <a href="/admin/crm/seo.php" class="sidebar-item <?= $activePage === 'seo' ? 'active' : '' ?>"><span class="icon">🔍</span> SEO Hub</a>
+            <a href="/admin/crm/images-ia.php" class="sidebar-item <?= $activePage === 'images-ia' ? 'active' : '' ?>"><span class="icon">🎨</span> Images IA</a>
         </div>
 
-        <!-- VENTES -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">Ventes</div>
-            <a href="/admin/crm/offers.php" class="sidebar-item <?= $activePage === 'offers' ? 'active' : '' ?>">
-                <span class="icon">🎁</span> Offres
-            </a>
-            <a href="/admin/crm/tunnels.php" class="sidebar-item <?= $activePage === 'tunnels' ? 'active' : '' ?>">
-                <span class="icon">🔄</span> Tunnels
-            </a>
-            <a href="/admin/crm/invoices.php" class="sidebar-item <?= $activePage === 'invoices' ? 'active' : '' ?>">
-                <span class="icon">🧾</span> Factures
-            </a>
+            <a href="/admin/crm/offers.php" class="sidebar-item <?= $activePage === 'offers' ? 'active' : '' ?>"><span class="icon">🎁</span> Offres</a>
+            <a href="/admin/crm/tunnels.php" class="sidebar-item <?= $activePage === 'tunnels' ? 'active' : '' ?>"><span class="icon">🔄</span> Tunnels</a>
+            <a href="/admin/crm/invoices.php" class="sidebar-item <?= $activePage === 'invoices' ? 'active' : '' ?>"><span class="icon">🧾</span> Factures</a>
         </div>
 
-        <!-- MARKETING -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">Marketing</div>
-            <a href="/admin/crm/automation.php" class="sidebar-item <?= $activePage === 'automation' ? 'active' : '' ?>">
-                <span class="icon">⚡</span> Automation
-            </a>
-            <a href="/admin/crm/analytics.php" class="sidebar-item <?= $activePage === 'analytics' ? 'active' : '' ?>">
-                <span class="icon">📈</span> Analytics
-            </a>
-            <a href="/admin/crm/editor.php" class="sidebar-item <?= $activePage === 'editor' ? 'active' : '' ?>">
-                <span class="icon">📧</span> Email Marketing
-            </a>
+            <a href="/admin/crm/automation.php" class="sidebar-item <?= $activePage === 'automation' ? 'active' : '' ?>"><span class="icon">⚡</span> Automation</a>
+            <a href="/admin/crm/analytics.php" class="sidebar-item <?= $activePage === 'analytics' ? 'active' : '' ?>"><span class="icon">📈</span> Analytics</a>
+            <a href="/admin/crm/editor.php" class="sidebar-item <?= $activePage === 'editor' ? 'active' : '' ?>"><span class="icon">📧</span> Email Marketing</a>
         </div>
 
-        <!-- PARAMETRES -->
         <div class="sidebar-section">
             <div class="sidebar-section-title">Systeme</div>
-            <a href="/admin/crm/settings.php" class="sidebar-item <?= $activePage === 'settings' ? 'active' : '' ?>">
-                <span class="icon">⚙️</span> Parametres
-            </a>
-            <a href="/" class="sidebar-item" target="_blank">
-                <span class="icon">🌐</span> Voir le site
-            </a>
+            <a href="/admin/crm/settings.php" class="sidebar-item <?= $activePage === 'settings' ? 'active' : '' ?>"><span class="icon">⚙️</span> Parametres</a>
+            <a href="/" class="sidebar-item" target="_blank"><span class="icon">🌐</span> Voir le site</a>
         </div>
     </nav>
 
@@ -306,8 +435,6 @@ $activePage = $activePage ?? '';
                 <span class="sidebar-user-email"><?= h($_SESSION['admin_email'] ?? '') ?></span>
             </div>
         </div>
-        <a href="/admin/logout" class="sidebar-logout">
-            <span>🚪</span> Deconnexion
-        </a>
+        <a href="/admin/logout" class="sidebar-logout"><span>🚪</span> Deconnexion</a>
     </div>
 </aside>

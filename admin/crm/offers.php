@@ -537,10 +537,10 @@ $offers = $stmt->fetchAll();
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container app-shell">
         <?php $activePage = 'offers'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <div>
                     <h1 class="header-title">Offres</h1>

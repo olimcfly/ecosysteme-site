@@ -364,10 +364,10 @@ $builtinTemplates = [
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container app-shell">
         <?php $activePage = 'editor'; include __DIR__ . '/../shared/sidebar.php'; ?>
         
-        <main class="main">
+        <main class="main app-content">
             <div class="header">
                 <div class="header-left">
                     <h1>✏️ Éditeur d'Emails</h1>

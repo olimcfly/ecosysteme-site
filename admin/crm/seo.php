@@ -102,10 +102,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container app-shell">
         <?php $activePage = 'seo'; include __DIR__ . '/../shared/sidebar.php'; ?>
 
-        <main class="main">
+        <main class="main app-content">
             <div class="page-header">
                 <h1>SEO Hub</h1>
             </div>
