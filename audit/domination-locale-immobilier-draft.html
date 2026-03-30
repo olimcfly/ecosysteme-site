@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOMINATION LOCALE IMMOBILIER™ - Leads Exclusifs Sans Prospecter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /*
+      Draft intégré à partir de la maquette HTML fournie en message.
+      Cette version sert de base de travail et peut être fusionnée ensuite
+      dans les templates PHP du site (index.php / includes/*) si souhaité.
+    */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #1E3A8A;
+      --primary-light: #2d52b8;
+      --secondary: #F59E0B;
+      --secondary-dark: #D97706;
+      --accent: #10B981;
+      --danger: #EF4444;
+      --text-dark: #1F2937;
+      --text-gray: #4B5563;
+      --text-light: #9CA3AF;
+      --bg-white: #FFFFFF;
+      --bg-light: #F9FAFB;
+      --bg-gray: #F3F4F6;
+      --border: #E5E7EB;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--bg-white); line-height: 1.6; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      background: linear-gradient(135deg, #0f1f4d 0%, #1E3A8A 50%, #1a4fa8 100%);
+      padding: 100px 0 80px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0 auto 24px;
+      color: rgba(255,255,255,0.82);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(245,158,11,0.2);
+      border: 1px solid rgba(245,158,11,0.4);
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all .3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .muted { color: var(--text-gray); }
+
+    footer {
+      padding: 42px 0;
+      background: #111827;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">NOUVEAU SYSTÈME LOCAL 2026</span>
+      <h1>DOMINATION LOCALE IMMOBILIER™</h1>
+      <p>Leads exclusifs, autorité locale et pipeline vendeur prévisible — sans prospection froide.</p>
+      <a class="btn btn-primary" href="#">Réserver ma ville</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Version de travail importée depuis votre maquette</h2>
+      <p class="muted">J’ai créé un fichier HTML autonome pour servir de base d’intégration. Dites-moi si vous voulez que je remplace directement la home PHP avec cette structure complète.</p>
+      <div class="cards">
+        <article class="card"><h3>1. Captation locale</h3><p class="muted">Pages optimisées + formulaires à forte conversion.</p></article>
+        <article class="card"><h3>2. Exclusivité territoriale</h3><p class="muted">Une zone = un seul partenaire immobilier.</p></article>
+        <article class="card"><h3>3. Automatisation CRM</h3><p class="muted">Suivi automatique des leads jusqu’au RDV.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">Draft HTML — Ecosystème Site</div>
+  </footer>
+</body>
+</html>
