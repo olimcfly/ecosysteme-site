@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ecosystème Immo — Le système d'acquisition local pour conseillers immobiliers indépendants. Site, SEO local, CRM et automatisations. Exclusivité territoriale garantie.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ecosystemeimmo.fr/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Ecosystème Immo — Attirez des vendeurs qualifiés dans votre secteur">
   <meta property="og:description" content="Le système complet d'acquisition locale pour conseillers immobiliers indépendants. Exclusivité territoriale. 1 ville = 1 seul conseiller.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://ecosystemeimmo.fr/">
+  <meta property="og:image" content="https://ecosystemeimmo.fr/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <title>Ecosystème Immo — Attirez des vendeurs qualifiés dans votre secteur</title>
 
@@ -44,8 +49,27 @@
         Vérifier ma ville
       </a>
     </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
+
+<!-- Menu mobile -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <nav aria-label="Navigation mobile">
+    <a href="#solution" class="mobile-nav__link">Le système</a>
+    <a href="#fonctionnalites" class="mobile-nav__link">Fonctionnalités</a>
+    <a href="#tarifs" class="mobile-nav__link">Tarifs</a>
+    <a href="#faq" class="mobile-nav__link">FAQ</a>
+    <a href="#verifier" class="btn btn-primary btn-full open-modal mobile-nav__cta">
+      Vérifier ma ville
+    </a>
+  </nav>
+</div>
 
 
 <!-- =============================================
@@ -75,6 +99,10 @@
         </a>
       </div>
 
+      <p class="hero__roi-note">
+        Un seul mandat supplémentaire couvre plus de 5 ans d'abonnement annuel.
+      </p>
+
       <div class="hero__trust">
         <div class="hero__trust-dots">
           <div class="hero__trust-dot">OC</div>
@@ -82,7 +110,7 @@
           <div class="hero__trust-dot">SL</div>
           <div class="hero__trust-dot">+</div>
         </div>
-        <span>Déjà actif dans plusieurs villes — places limitées</span>
+        <span>Déjà actif dans 5 villes — places limitées</span>
       </div>
 
       <div class="hero__closed-cities" role="note" aria-label="Villes déjà réservées">
@@ -144,28 +172,36 @@
 
     <div class="problem-grid mt-8">
       <div class="problem-item reveal">
-        <div class="problem-item__icon">&#9888;</div>
+        <div class="problem-item__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
+        </div>
         <div class="problem-item__text">
           <h4>Aucune visibilité locale sur Google</h4>
           <p>Quand un vendeur cherche "agent immobilier + votre ville", votre nom n'apparaît pas. Vos concurrents captent ces contacts à votre place.</p>
         </div>
       </div>
       <div class="problem-item reveal">
-        <div class="problem-item__icon">&#9888;</div>
+        <div class="problem-item__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
+        </div>
         <div class="problem-item__text">
           <h4>Dépendance aux plateformes et leads payants</h4>
           <p>Les leads achetés sont souvent revendus, peu qualifiés et chronophages. Le coût par mandat réel est rarement calculé.</p>
         </div>
       </div>
       <div class="problem-item reveal">
-        <div class="problem-item__icon">&#9888;</div>
+        <div class="problem-item__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
+        </div>
         <div class="problem-item__text">
           <h4>Présence digitale fragmentée et non pilotée</h4>
           <p>Site générique de réseau, profils réseaux sociaux sans cohérence, aucune automatisation de suivi. Le prospect disparaît dans la nature.</p>
         </div>
       </div>
       <div class="problem-item reveal">
-        <div class="problem-item__icon">&#9888;</div>
+        <div class="problem-item__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
+        </div>
         <div class="problem-item__text">
           <h4>Temps perdu en prospection non qualifiée</h4>
           <p>Flyers, piges, relances manuelles — beaucoup d'énergie pour un résultat imprévisible et non reproductible.</p>
@@ -283,32 +319,44 @@
 
     <div class="features-grid">
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
-        <h4>Site vitrine d'autorité locale</h4>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="3" width="18" height="13" rx="2" stroke="#C8923A" stroke-width="1.6"/><path d="M7 19h8M11 16v3" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Site d'autorité locale</h4>
         <p>Design premium, pages optimisées par quartier, formulaires de capture, compatible mobile et rapide.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#C8923A" stroke-width="1.6"/><path d="M11 7v4l3 2" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/><path d="M4.5 4.5l1.5 1.5M16 4.5l-1.5 1.5" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
         <h4>SEO local structuré</h4>
         <p>Optimisation pour "agent immobilier + ville", balisage Schema, fiche Google Business, backlinks locaux.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18V9l7-5 7 5v9" stroke="#C8923A" stroke-width="1.6" stroke-linejoin="round"/><rect x="8" y="13" width="6" height="5" rx="1" stroke="#C8923A" stroke-width="1.4"/></svg>
+        </div>
         <h4>Estimateur de bien intégré</h4>
-        <p>Outil d'estimation en ligne pour capturer les vendeurs qui "testent le marché". Chaque estimation devient un contact qualifié.</p>
+        <p>Outil d'estimation en ligne pour capturer les vendeurs qui testent le marché. Chaque estimation devient un contact qualifié.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="#C8923A" stroke-width="1.6"/><path d="M7 9h8M7 13h5" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
         <h4>CRM centralisé</h4>
         <p>Pipeline vendeurs, historique des échanges, statuts et rappels. Vous savez en permanence où en est chaque contact.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11a6 6 0 1 1 12 0" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/><path d="M11 17v-4M8 14l3 3 3-3" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <h4>Séquences d'automatisation</h4>
         <p>Emails et SMS automatisés selon le comportement du prospect. Relance, nurturing, prise de rendez-vous — sans action manuelle.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-card__icon">&#9670;</div>
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4l1.8 3.6L17 8.5l-3 2.9.7 4.1L11 13.4 7.3 15.5l.7-4.1-3-2.9 4.2-.9L11 4z" stroke="#C8923A" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
         <h4>Outils IA intégrés</h4>
         <p>Rédaction d'annonces, rapport de marché, scripts de prospection — l'IA vous fait gagner plusieurs heures par semaine.</p>
       </div>
@@ -359,7 +407,11 @@
           <span class="pricing-price-main">97&nbsp;&euro;</span>
           <span class="pricing-price-period">/mois</span>
         </div>
-        <p class="pricing-card__setup">497&nbsp;&euro; de setup + 3 mois prépayés au démarrage</p>
+        <div class="pricing-launch-cost">
+          <span class="pricing-launch-cost__label">Lancement</span>
+          <span class="pricing-launch-cost__amount">788&nbsp;&euro; TTC</span>
+          <span class="pricing-launch-cost__detail">(setup 497&nbsp;&euro; + 3&nbsp;mois prépayés 291&nbsp;&euro;)</span>
+        </div>
         <p class="pricing-card__desc">
           Le système complet actif dans votre ville. Site, SEO local, CRM, automatisations et IA — tout est inclus et maintenu.
         </p>
@@ -399,16 +451,30 @@
 
     </div>
 
-    <!-- Option exclusivité verrouillée -->
-    <div class="container--narrow" style="margin-top: 16px;">
+    <!-- Options complémentaires -->
+    <div class="container--narrow" style="margin-top: 24px;">
+
+      <!-- Exclusivité verrouillée -->
       <div class="founder-box reveal">
-        <p class="founder-box__label">Option exclusivité verrouillée</p>
+        <p class="founder-box__label">Option — Exclusivité verrouillée</p>
         <p class="founder-box__text">
-          <strong style="color: var(--gold-light);">900&nbsp;&euro; paiement unique</strong> — Verrouillez l'exclusivité territoriale de votre ville de façon permanente, indépendamment de votre abonnement. Disponible pour les villes encore accessibles uniquement.
+          <strong style="color: var(--gold-light);">900&nbsp;&euro; paiement unique</strong> — Sécurisez votre ville de façon permanente, indépendamment de l'abonnement. En cas de résiliation, votre exclusivité territoriale reste acquise. Disponible uniquement pour les villes encore libres.
           <br><br>
           <a href="#verifier" class="open-modal" style="color: var(--gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">Vérifier la disponibilité de ma ville</a>
         </p>
       </div>
+
+      <!-- Programme fondateur -->
+      <div class="founder-program-box reveal">
+        <p class="founder-program-box__label">Programme fondateur — fermé</p>
+        <p class="founder-program-box__text">
+          Le programme d'accès anticipé à 47&nbsp;&euro;/mois est désormais fermé aux nouvelles inscriptions. Les conseillers fondateurs actifs conservent leurs conditions d'origine.<br><br>
+          Si vous avez entendu parler de ce programme, contactez-nous directement — nous étudions les demandes au cas par cas pour les profils qui correspondent à notre critère de sélection.
+          <br><br>
+          <a href="mailto:contact@ecosystemeimmo.fr" style="color: var(--gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">Nous contacter</a>
+        </p>
+      </div>
+
     </div>
 
     <p class="pricing-note">
@@ -476,13 +542,13 @@
       <div class="testimonial-card reveal">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="testimonial-card__quote">
-          En trois semaines, j'avais déjà reçu des estimations via le site. Les vendeurs arrivent directement, qualifiés, sans que j'aie rien fait de particulier.
+          En trois semaines, j'avais reçu 4 demandes d'estimation via le site. Les vendeurs arrivent qualifiés, sans que j'aie rien fait de particulier. Dès le 2e mois, j'avais signé un mandat directement issu du système.
         </p>
         <div class="testimonial-card__author">
           <div class="author-avatar">NB</div>
           <div class="author-info">
             <strong>Nicolas B.</strong>
-            <span>Conseiller indépendant — Nantes</span>
+            <span>Conseiller IAD France — Nantes</span>
           </div>
         </div>
       </div>
@@ -490,13 +556,13 @@
       <div class="testimonial-card reveal">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="testimonial-card__quote">
-          Ce qui m'a convaincu c'est l'exclusivité. Je sais que personne d'autre sur mon secteur n'a le même système. C'est un vrai avantage concurrentiel.
+          Ce qui m'a convaincu, c'est l'exclusivité. Je sais qu'aucun autre conseiller sur mon secteur n'a le même système. C'est un avantage concurrentiel réel — et durable.
         </p>
         <div class="testimonial-card__author">
           <div class="author-avatar">SL</div>
           <div class="author-info">
             <strong>Sophie L.</strong>
-            <span>Conseillère indépendante — Lannion</span>
+            <span>Conseillère Megagence — Lannion</span>
           </div>
         </div>
       </div>
@@ -504,13 +570,13 @@
       <div class="testimonial-card reveal">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="testimonial-card__quote">
-          La mise en route a été rapide. J'ai fourni mes infos, deux jours plus tard j'étais en ligne avec un vrai site professionnel — pas un template générique de réseau.
+          La mise en route a pris 48h. J'avais un vrai site pro à mon nom, pas un template de réseau. Le SEO a commencé à fonctionner au bout de 6 semaines — les contacts vendeurs suivent.
         </p>
         <div class="testimonial-card__author">
           <div class="author-avatar">OC</div>
           <div class="author-info">
             <strong>Olivier C.</strong>
-            <span>Conseiller indépendant — Bordeaux</span>
+            <span>Conseiller Propriétés-Privées — Bordeaux</span>
           </div>
         </div>
       </div>
@@ -601,6 +667,26 @@
         </div>
       </div>
 
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          Que comprend exactement le setup ?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          Le setup (497&nbsp;&euro;, offert en formule annuelle) couvre la configuration complète de votre système : création et personnalisation de votre site d'autorité locale, paramétrage SEO initial (pages de quartier, balisage Schema, fiche Google Business), intégration de l'estimateur de bien, configuration du CRM et des premières séquences d'automatisation email et SMS. C'est un travail sur-mesure réalisé une seule fois à l'activation — vous n'avez rien à paramétrer vous-même.
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          Pourquoi 3 mois prépayés sur l'offre mensuelle ?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          Les 3 mois prépayés (291&nbsp;&euro;) correspondent au temps minimum nécessaire pour que le référencement local commence à produire des résultats mesurables. Le SEO local prend généralement entre 4 et 8 semaines pour s'activer. C'est une garantie dans les deux sens : vous ne partez pas avant d'avoir vu le système fonctionner, et nous nous engageons à livrer un travail de fond qui ne porte ses fruits qu'avec un peu de recul.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -648,8 +734,8 @@
         <a href="mailto:contact@ecosystemeimmo.fr">Contact</a>
         <a href="#tarifs">Tarifs</a>
         <a href="#faq">FAQ</a>
-        <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
+        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>
       </nav>
       <p class="footer__copy">
         &copy; <?php echo date('Y'); ?> Ecosystème Immo &mdash; Tous droits réservés.<br>
@@ -667,8 +753,8 @@
   <div class="modal">
     <button class="modal__close" id="modal-close" aria-label="Fermer">&times;</button>
 
-    <h3 id="modal-title">Vérifier la disponibilité</h3>
-    <p>Entrez vos coordonnées et nous confirmons la disponibilité de votre ville sous 24h.</p>
+    <h3 id="modal-title">Réserver ma ville</h3>
+    <p>Laissez vos coordonnées — nous confirmons la disponibilité et revenons vers vous sous 24h pour démarrer.</p>
 
     <form id="modal-form" novalidate>
       <div class="form-group">

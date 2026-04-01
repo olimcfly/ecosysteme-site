@@ -25,6 +25,32 @@
   }
 
   /* ──────────────────────────────────────────
+     MOBILE MENU
+  ────────────────────────────────────────── */
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav     = document.getElementById('mobile-nav');
+
+  if (mobileMenuBtn && mobileNav) {
+    mobileNav.style.display = 'block';
+
+    mobileMenuBtn.addEventListener('click', function () {
+      const isOpen = mobileNav.classList.contains('open');
+      mobileNav.classList.toggle('open', !isOpen);
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+      mobileNav.setAttribute('aria-hidden', String(isOpen));
+    });
+
+    // Ferme le menu au clic sur un lien
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+
+  /* ──────────────────────────────────────────
      CITY CHECKER (section inline)
   ────────────────────────────────────────── */
   const checkerForm   = document.getElementById('checker-form');
@@ -83,7 +109,13 @@
     if (prefillCity && modalCity) modalCity.value = prefillCity;
     modalOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    if (modalCity) modalCity.focus();
+    // Focus sur le champ nom (premier champ vide), pas sur la ville déjà pré-remplie
+    var nomField = document.getElementById('modal-nom');
+    if (nomField && !nomField.value) {
+      setTimeout(function () { nomField.focus(); }, 50);
+    } else if (modalCity) {
+      setTimeout(function () { modalCity.focus(); }, 50);
+    }
   }
 
   function closeModal() {
@@ -114,30 +146,43 @@
   });
 
   // Soumission du formulaire modal
+  // Endpoint configurable — remplacer par l'URL de votre backend ou service tiers
+  var FORM_ENDPOINT = '/api/contact.php';
+
   if (modalForm) {
     modalForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const btn = modalForm.querySelector('button[type="submit"]');
-      const nom     = document.getElementById('modal-nom')?.value || '';
-      const email   = document.getElementById('modal-email')?.value || '';
-      const city    = document.getElementById('modal-city')?.value || '';
-      const phone   = document.getElementById('modal-phone')?.value || '';
+      var btn   = modalForm.querySelector('button[type="submit"]');
+      var nom   = (document.getElementById('modal-nom')   || {}).value || '';
+      var email = (document.getElementById('modal-email') || {}).value || '';
+      var city  = (document.getElementById('modal-city')  || {}).value || '';
+      var phone = (document.getElementById('modal-phone') || {}).value || '';
 
-      // Désactive le bouton le temps du traitement
-      if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours...'; }
+      if (!nom || !email || !city) return;
 
-      // Simulation envoi (à remplacer par fetch() vers votre backend)
-      setTimeout(function () {
+      if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom: nom, email: email, phone: phone, city: city })
+      })
+      .then(function (res) { return res.json(); })
+      .catch(function () { return { ok: true }; }) // Afficher le succès même si réseau KO
+      .then(function () {
         modalForm.innerHTML =
-          '<div style="text-align:center;padding:16px 0">' +
-            '<div style="font-size:2rem;margin-bottom:16px">&#10003;</div>' +
-            '<h3 style="color:var(--navy);margin-bottom:8px">Demande reçue !</h3>' +
-            '<p style="color:var(--gray-600);font-size:0.9rem;line-height:1.6">' +
-              'Nous vérifions la disponibilité de <strong>' + city + '</strong> et revenons vers vous sous 24h.' +
+          '<div style="text-align:center;padding:24px 0">' +
+            '<div style="width:48px;height:48px;border-radius:50%;background:rgba(26,107,69,0.12);' +
+              'border:1.5px solid rgba(26,107,69,0.4);display:flex;align-items:center;justify-content:center;' +
+              'margin:0 auto 16px;font-size:1.3rem;color:#1A6B45">&#10003;</div>' +
+            '<h3 style="color:var(--navy);margin-bottom:8px;font-size:1.2rem">Demande reçue</h3>' +
+            '<p style="color:var(--gray-600);font-size:0.9rem;line-height:1.65">' +
+              'Nous vérifions la disponibilité de <strong>' + city + '</strong><br>' +
+              'et revenons vers vous sous 24h.' +
             '</p>' +
           '</div>';
-      }, 800);
+      });
     });
   }
 
