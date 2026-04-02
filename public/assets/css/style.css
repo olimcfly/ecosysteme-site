@@ -1293,3 +1293,189 @@ section { padding: 80px 0; }
 @media (min-width: 768px) {
   .mobile-nav { display: none !important; }
 }
+
+/* =============================================
+   DEVIS SITE WEB PAGE
+   ============================================= */
+.devis-page {
+  background: var(--off-white);
+  color: var(--navy);
+}
+
+.devis-main {
+  padding: 48px 0 80px;
+}
+
+.devis-hero {
+  padding: 48px 0 24px;
+}
+
+.devis-lang-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.devis-lang-label {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+.lang-btn {
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lang-btn.active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.devis-eyebrow {
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.devis-subtitle {
+  max-width: 780px;
+  color: var(--gray-600);
+  margin-top: 14px;
+}
+
+.devis-credibility,
+.devis-pricing,
+.devis-form-section {
+  padding: 16px 0;
+}
+
+.devis-credibility ul {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.devis-credibility li {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.pricing-card {
+  background: linear-gradient(135deg, #0B1A2E 0%, #1E3A5F 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+}
+
+.progress-wrap {
+  margin: 14px 0 18px;
+}
+
+.progress-bar {
+  height: 8px;
+  width: 100%;
+  background: var(--gray-200);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  height: 100%;
+  display: block;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.progress-steps {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.86rem;
+}
+
+.progress-steps span {
+  color: var(--gray-600);
+}
+
+.progress-steps span.active {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.progress-steps span.done {
+  color: var(--green);
+}
+
+.devis-form {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.devis-form input,
+.devis-form select,
+.devis-form textarea {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font: inherit;
+}
+
+.form-hint {
+  margin-top: -6px;
+  color: var(--gray-600);
+}
+
+.radio-group {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.radio-group legend {
+  font-weight: 600;
+  padding: 0 4px;
+  margin-bottom: 4px;
+}
+
+.devis-microcopy {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 0.9rem;
+}
+
+.form-feedback {
+  text-align: center;
+  color: var(--red);
+  min-height: 22px;
+}
+
+.success-box {
+  border: 1px solid rgba(26,107,69,0.3);
+  background: rgba(26,107,69,0.06);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 8px;
+}
+
+.lead-score {
+  font-weight: 700;
+  color: var(--green);
+}
