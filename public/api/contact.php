@@ -32,6 +32,7 @@ $nom = isset($data['nom']) ? trim(strip_tags((string) $data['nom'])) : '';
 $email = isset($data['email']) ? trim(strip_tags((string) $data['email'])) : '';
 $phone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
 $city = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
+$visitorId = isset($data['visitor_id']) ? trim(strip_tags((string) $data['visitor_id'])) : '';
 
 if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$city) {
     http_response_code(422);
@@ -44,6 +45,19 @@ $lead = crm_create_lead([
     'email' => $email,
     'phone' => $phone,
     'city' => $city,
+    'visitor_id' => $visitorId,
+]);
+
+crm_attach_visitor_events_to_lead($visitorId, (string) $lead['id']);
+crm_track_event('formulaire_rempli', 'Formulaire rempli', [
+    'lead_id' => (string) $lead['id'],
+    'visitor_id' => $visitorId,
+    'page' => '/#modal-form',
+]);
+crm_track_event('rdv_pris', 'RDV pris', [
+    'lead_id' => (string) $lead['id'],
+    'visitor_id' => $visitorId,
+    'page' => '/#cta-final',
 ]);
 
 $subject = SUBJECT_PREFIX . $city;

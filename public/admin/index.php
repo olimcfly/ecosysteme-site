@@ -72,7 +72,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
     <table>
       <thead>
         <tr>
-          <th>Lead</th><th>Contact</th><th>Statut</th><th>Score</th><th>Séquence email</th><th>Notes</th><th>Action</th>
+          <th>Lead</th><th>Contact</th><th>Statut</th><th>Score</th><th>Timeline</th><th>Séquence email</th><th>Notes</th><th>Action</th>
         </tr>
       </thead>
       <tbody id="lead-body"></tbody>
@@ -87,6 +87,11 @@ const feedback = document.getElementById('feedback');
 const statuses = ['nouveau','qualifie','rdv_planifie','close','perdu'];
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function formatTimelineItem(event){
+  const label = esc(event.event_label || event.event_key || 'Action');
+  const date = esc(event.created_at || '');
+  return `<div class="small" style="margin-bottom:6px;">• <strong>${label}</strong><br><span>${date}</span></div>`;
+}
 
 async function loadLeads(){
   const res = await fetch('/api/crm.php?action=list');
@@ -96,6 +101,8 @@ async function loadLeads(){
   body.innerHTML = leads.map(lead => {
     const pending = (lead.email_sequence || []).filter(s => s.status === 'pending').length;
     const sent = (lead.email_sequence || []).filter(s => s.status === 'sent').length;
+    const timeline = (lead.timeline || []).slice(0, 6);
+    const autoStatus = lead.status === 'rdv_planifie' ? 'Auto: RDV pris' : (lead.status === 'qualifie' ? 'Auto: formulaire rempli' : '');
 
     return `<tr>
       <td><strong>${esc(lead.nom)}</strong><div class="small">${esc(lead.city)}<br>${esc(lead.created_at)}</div></td>
@@ -104,8 +111,10 @@ async function loadLeads(){
         <select data-id="${esc(lead.id)}" data-field="status">
           ${statuses.map(s => `<option ${lead.status===s?'selected':''}>${s}</option>`).join('')}
         </select>
+        <div class="small">${esc(autoStatus)}</div>
       </td>
       <td>${esc(lead.score)}/100</td>
+      <td>${timeline.length ? timeline.map(formatTimelineItem).join('') : '<span class="small">—</span>'}</td>
       <td><span class="small">Envoyés: ${sent}<br>En attente: ${pending}</span></td>
       <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2" style="min-width:180px">${esc(lead.notes || '')}</textarea></td>
       <td><button class="btn save" data-id="${esc(lead.id)}">Sauver</button></td>

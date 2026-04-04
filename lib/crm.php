@@ -5,6 +5,7 @@ declare(strict_types=1);
 const CRM_STORAGE_DIR = __DIR__ . '/../storage';
 const CRM_LEADS_FILE = CRM_STORAGE_DIR . '/leads.json';
 const CRM_EMAIL_LOG_FILE = CRM_STORAGE_DIR . '/email_log.json';
+const CRM_EVENTS_FILE = CRM_STORAGE_DIR . '/events.json';
 
 /**
  * @return array<int, array<string, mixed>>
@@ -42,10 +43,22 @@ function crm_save_json(string $path, array $payload): void
 function crm_get_leads(): array
 {
     $leads = crm_load_json(CRM_LEADS_FILE);
+    $events = crm_get_events();
 
     usort($leads, static function (array $a, array $b): int {
         return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
     });
+
+    foreach ($leads as &$lead) {
+        $leadEvents = [];
+        foreach ($events as $event) {
+            if (($event['lead_id'] ?? '') === ($lead['id'] ?? '')) {
+                $leadEvents[] = $event;
+            }
+        }
+        $lead['timeline'] = $leadEvents;
+    }
+    unset($lead);
 
     return $leads;
 }
@@ -73,6 +86,7 @@ function crm_create_lead(array $payload): array
         'status' => 'nouveau',
         'score' => crm_compute_score($payload),
         'source' => 'landing_ecosystemeimmo',
+        'visitor_id' => $payload['visitor_id'] ?? null,
         'notes' => '',
         'created_at' => gmdate('c'),
         'email_sequence' => crm_build_email_sequence(),
@@ -82,6 +96,113 @@ function crm_create_lead(array $payload): array
     crm_save_json(CRM_LEADS_FILE, $leads);
 
     return $lead;
+}
+
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_events(): array
+{
+    $events = crm_load_json(CRM_EVENTS_FILE);
+
+    usort($events, static function (array $a, array $b): int {
+        return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
+    });
+
+    return $events;
+}
+
+function crm_compute_status_from_event(string $currentStatus, string $eventKey): string
+{
+    $allowed = ['nouveau', 'qualifie', 'rdv_planifie', 'close', 'perdu'];
+    if (!in_array($currentStatus, $allowed, true)) {
+        $currentStatus = 'nouveau';
+    }
+
+    if ($eventKey === 'rdv_pris') {
+        return 'rdv_planifie';
+    }
+
+    if ($eventKey === 'formulaire_rempli' && $currentStatus === 'nouveau') {
+        return 'qualifie';
+    }
+
+    return $currentStatus;
+}
+
+function crm_update_status_from_event(string $leadId, string $eventKey): void
+{
+    $leads = crm_get_leads();
+    $updated = false;
+
+    foreach ($leads as &$lead) {
+        if (($lead['id'] ?? '') !== $leadId) {
+            continue;
+        }
+
+        $newStatus = crm_compute_status_from_event((string) ($lead['status'] ?? 'nouveau'), $eventKey);
+        if ($newStatus !== ($lead['status'] ?? '')) {
+            $lead['status'] = $newStatus;
+            $lead['updated_at'] = gmdate('c');
+            $updated = true;
+        }
+        break;
+    }
+    unset($lead);
+
+    if ($updated) {
+        crm_save_json(CRM_LEADS_FILE, $leads);
+    }
+}
+
+function crm_track_event(string $eventKey, string $eventLabel, array $payload = []): array
+{
+    $events = crm_get_events();
+    $event = [
+        'id' => bin2hex(random_bytes(8)),
+        'event_key' => $eventKey,
+        'event_label' => $eventLabel,
+        'lead_id' => $payload['lead_id'] ?? null,
+        'visitor_id' => $payload['visitor_id'] ?? null,
+        'page' => $payload['page'] ?? null,
+        'meta' => is_array($payload['meta'] ?? null) ? $payload['meta'] : [],
+        'created_at' => gmdate('c'),
+    ];
+
+    $events[] = $event;
+    crm_save_json(CRM_EVENTS_FILE, $events);
+
+    if (!empty($event['lead_id'])) {
+        crm_update_status_from_event((string) $event['lead_id'], $eventKey);
+    }
+
+    return $event;
+}
+
+function crm_attach_visitor_events_to_lead(string $visitorId, string $leadId): int
+{
+    if ($visitorId === '' || $leadId === '') {
+        return 0;
+    }
+
+    $events = crm_get_events();
+    $updatedCount = 0;
+
+    foreach ($events as &$event) {
+        if (($event['visitor_id'] ?? '') !== $visitorId || !empty($event['lead_id'])) {
+            continue;
+        }
+
+        $event['lead_id'] = $leadId;
+        $updatedCount++;
+    }
+    unset($event);
+
+    if ($updatedCount > 0) {
+        crm_save_json(CRM_EVENTS_FILE, $events);
+    }
+
+    return $updatedCount;
 }
 
 function crm_compute_score(array $payload): int
