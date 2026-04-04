@@ -74,6 +74,7 @@ function crm_create_lead(array $payload): array
         'score' => crm_compute_score($payload),
         'source' => 'landing_ecosystemeimmo',
         'notes' => '',
+        'estimated_amount' => 0,
         'created_at' => gmdate('c'),
         'email_sequence' => crm_build_email_sequence(),
     ];
@@ -156,7 +157,17 @@ function crm_update_lead(string $leadId, array $updates): bool
         }
 
         if (isset($updates['status'])) {
-            $allowed = ['nouveau', 'qualifie', 'rdv_planifie', 'close', 'perdu'];
+            $allowed = [
+                'nouveau',
+                'video_non_vue',
+                'video_vue',
+                'offre_vue',
+                'rdv_pris',
+                'rdv_realise',
+                'qualifie',
+                'paiement_envoye',
+                'client',
+            ];
             if (in_array($updates['status'], $allowed, true)) {
                 $lead['status'] = $updates['status'];
             }
@@ -164,6 +175,11 @@ function crm_update_lead(string $leadId, array $updates): bool
 
         if (isset($updates['notes'])) {
             $lead['notes'] = trim((string) $updates['notes']);
+        }
+
+        if (array_key_exists('estimated_amount', $updates)) {
+            $amount = is_numeric($updates['estimated_amount']) ? (float) $updates['estimated_amount'] : 0.0;
+            $lead['estimated_amount'] = max(0, round($amount, 2));
         }
 
         $lead['updated_at'] = gmdate('c');
@@ -176,6 +192,39 @@ function crm_update_lead(string $leadId, array $updates): bool
     }
 
     return $updated;
+}
+
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_leads_with_defaults(): array
+{
+    $defaults = [
+        'status' => 'nouveau',
+        'notes' => '',
+        'estimated_amount' => 0,
+    ];
+
+    $allowedStatuses = [
+        'nouveau',
+        'video_non_vue',
+        'video_vue',
+        'offre_vue',
+        'rdv_pris',
+        'rdv_realise',
+        'qualifie',
+        'paiement_envoye',
+        'client',
+    ];
+
+    return array_map(static function (array $lead) use ($defaults, $allowedStatuses): array {
+        $normalized = array_merge($defaults, $lead);
+        if (!in_array($normalized['status'], $allowedStatuses, true)) {
+            $normalized['status'] = 'nouveau';
+        }
+
+        return $normalized;
+    }, crm_get_leads());
 }
 
 function crm_render_template(string $text, array $lead): string

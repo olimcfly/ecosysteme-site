@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($action === 'list') {
         echo json_encode([
             'ok' => true,
-            'leads' => crm_get_leads(),
+            'leads' => crm_get_leads_with_defaults(),
         ]);
         exit;
     }
@@ -43,6 +43,7 @@ if ($action === 'update') {
     $updated = crm_update_lead($leadId, [
         'status' => $input['status'] ?? null,
         'notes' => $input['notes'] ?? null,
+        'estimated_amount' => $input['estimated_amount'] ?? null,
     ]);
 
     if (!$updated) {
