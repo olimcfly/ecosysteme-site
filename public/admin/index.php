@@ -41,6 +41,8 @@ $loggedIn = !empty($_SESSION['crm_admin']);
     .btn{cursor:pointer;background:#0ea5e9;border-color:#0284c7;color:#fff}
     .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .small{font-size:.8rem;color:#94a3b8}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:10px 0 18px}
+    .stats .card{padding:12px}
     .ok{color:#22c55e}.err{color:#ef4444}
     .top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}
     .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px}
@@ -89,7 +91,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
 
 <script>
 const feedback = document.getElementById('feedback');
-const statsBox = document.getElementById('stats');
+const statsNode = document.getElementById('stats');
 const statuses = ['nouveau','qualifie','rdv_planifie','close','perdu'];
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
@@ -126,10 +128,24 @@ async function loadLeads(){
   const res = await fetch('/api/crm.php?action=list');
   const data = await res.json();
   const leads = data.leads || [];
-  renderStats(data.stats || {});
+  const globalStats = data.stats || {};
 
-  body.innerHTML = leads.map(lead => `
-    <tr>
+  statsNode.innerHTML = [
+    ['Leads', globalStats.total_leads || 0],
+    ['Emails envoyés', globalStats.emails_sent || 0],
+    ['Ouvertures', globalStats.emails_opened || 0],
+    ['Clics', globalStats.emails_clicked || 0],
+    ['RDV pris', globalStats.rdv_taken || 0],
+  ].map(([label, value]) => `<div class="card"><div class="small">${esc(label)}</div><strong>${esc(value)}</strong></div>`).join('');
+
+  body.innerHTML = leads.map(lead => {
+    const sequence = (lead.email_sequence || []).map(step => {
+      const opened = step.opened_at ? 'oui' : 'non';
+      const clicked = step.clicked_at ? 'oui' : 'non';
+      return `<li>${esc(step.name || step.id)} — ${esc(step.status || 'pending')} (open: ${opened}, click: ${clicked})</li>`;
+    }).join('');
+
+    return `<tr>
       <td><strong>${esc(lead.nom)}</strong><div class="small">${esc(lead.city)}<br>${esc(lead.created_at)}</div></td>
       <td>${esc(lead.email)}<br>${esc(lead.phone || '—')}</td>
       <td>
@@ -139,8 +155,7 @@ async function loadLeads(){
         <div class="small">${esc(autoStatus)}</div>
       </td>
       <td>${esc(lead.score)}/100</td>
-      <td>${renderSequence(lead)}</td>
-      <td>${renderEmailStats(lead)}</td>
+      <td><ul class="small" style="margin:0;padding-left:18px">${sequence}</ul></td>
       <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2" style="min-width:180px">${esc(lead.notes || '')}</textarea></td>
       <td><button class="btn save" data-id="${esc(lead.id)}">Sauver</button></td>
     </tr>`).join('');

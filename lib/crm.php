@@ -6,6 +6,10 @@ const CRM_STORAGE_DIR = __DIR__ . '/../storage';
 const CRM_LEADS_FILE = CRM_STORAGE_DIR . '/leads.json';
 const CRM_EMAIL_LOG_FILE = CRM_STORAGE_DIR . '/email_log.json';
 const CRM_EMAIL_QUEUE_FILE = CRM_STORAGE_DIR . '/email_queue.json';
+const CRM_EMAIL_TEMPLATE_ORIGIN = 'https://ecosystemeimmo.fr';
+const CRM_VIDEO_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/video-presentation';
+const CRM_OFFER_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/offre';
+const CRM_CALENDAR_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/rdv';
 
 /**
  * Connexion PDO MySQL pour le CRM.
@@ -86,9 +90,9 @@ function crm_create_lead(array $payload): array
         'estimated_amount' => 0,
         'created_at' => gmdate('c'),
         'automation' => [
-            'video_viewed' => false,
-            'offer_viewed' => false,
-            'meeting_booked' => false,
+            'video_viewed_at' => null,
+            'offer_viewed_at' => null,
+            'rdv_taken_at' => null,
             'stopped_at' => null,
         ],
         'email_sequence' => crm_build_email_sequence(),
@@ -96,7 +100,9 @@ function crm_create_lead(array $payload): array
 
     $id = (int) $pdo->lastInsertId();
 
-    return crm_find_contact($id) ?? [];
+    crm_schedule_email_jobs();
+
+    return $lead;
 }
 
 /**
@@ -221,49 +227,48 @@ function crm_compute_score(array $payload): int
  */
 function crm_get_contacts(array $filters = []): array
 {
-    $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
-    $steps = [
+    return [
         [
-            'delay_days' => 0,
-            'key' => 'video_access',
-            'subject' => 'Vidéo offerte : méthode locale pour générer des vendeurs',
-            'body' => "Bonjour {{nom}},\n\nVoici votre accès à la vidéo stratégique pour {{city}} : {{video_url}}\n\nRegardez-la maintenant pour poser les bases de votre système local.",
+            'id' => 'email_1_video_access',
+            'name' => 'Email 1 : accès vidéo',
+            'subject' => 'Accès immédiat à votre vidéo stratégique',
+            'body' => "Bonjour {{nom}},\n\nVoici votre accès vidéo : {{video_link}}\n\nRegardez-la aujourd'hui pour poser les bases de votre acquisition locale.",
+            'status' => 'pending',
+            'sent_at' => null,
+            'opened_at' => null,
+            'clicked_at' => null,
         ],
         [
-            'delay_days' => 1,
-            'key' => 'video_reminder',
-            'subject' => 'Rappel vidéo : 15 min qui peuvent changer votre prospection',
-            'body' => "Bonjour {{nom}},\n\nPetit rappel : votre accès vidéo est ici {{video_url}}\n\nSi vous ne l'avez pas encore vue, prenez 15 minutes aujourd'hui.",
+            'id' => 'email_2_video_reminder',
+            'name' => 'Email 2 : rappel vidéo',
+            'subject' => 'Avez-vous vu la vidéo ? (rappel)',
+            'body' => "Bonjour {{nom}},\n\nJe vous renvoie la vidéo ici : {{video_link}}\n\nSi vous ne l'avez pas vue, prenez 5 minutes aujourd'hui.",
+            'status' => 'pending',
+            'sent_at' => null,
+            'opened_at' => null,
+            'clicked_at' => null,
         ],
         [
-            'delay_days' => 3,
-            'key' => 'offer',
-            'subject' => 'Offre : plan d\'implémentation SEO + CRM + automatisation',
-            'body' => "Bonjour {{nom}},\n\nNous avons préparé votre plan d'action local. Détails ici : {{offer_url}}\n\nSi c'est pertinent pour vous, réservez un RDV : {{booking_url}}",
+            'id' => 'email_3_offer',
+            'name' => 'Email 3 : offre',
+            'subject' => 'Voici l’offre pour accélérer votre visibilité locale',
+            'body' => "Bonjour {{nom}},\n\nVoici l'offre détaillée : {{offer_link}}\n\nSi c'est aligné avec vos objectifs, vous pouvez réserver un RDV : {{rdv_link}}",
+            'status' => 'pending',
+            'sent_at' => null,
+            'opened_at' => null,
+            'clicked_at' => null,
         ],
         [
-            'delay_days' => 5,
-            'key' => 'urgency',
-            'subject' => 'Dernière relance : les créneaux d\'accompagnement se ferment',
-            'body' => "Bonjour {{nom}},\n\nDernier rappel avant fermeture des créneaux sur {{city}}.\n\nVoir l'offre : {{offer_url}}\nRéserver un RDV : {{booking_url}}",
+            'id' => 'email_4_urgency',
+            'name' => 'Email 4 : urgence / rareté',
+            'subject' => 'Dernières places disponibles cette semaine',
+            'body' => "Bonjour {{nom}},\n\nLes créneaux se remplissent vite.\n\nSi vous souhaitez avancer, prenez votre RDV maintenant : {{rdv_link}}",
+            'status' => 'pending',
+            'sent_at' => null,
+            'opened_at' => null,
+            'clicked_at' => null,
         ],
     ];
-
-    return array_map(static function (array $step) use ($now): array {
-        $dueAt = $now->modify('+' . (int) $step['delay_days'] . ' days')->format('c');
-
-        return [
-            'id' => bin2hex(random_bytes(6)),
-            'key' => $step['key'],
-            'subject' => $step['subject'],
-            'body' => $step['body'],
-            'due_at' => $dueAt,
-            'sent_at' => null,
-            'status' => 'pending',
-            'open_count' => 0,
-            'click_count' => 0,
-        ];
-    }, $steps);
 }
 
 function crm_update_lead(string $leadId, array $updates): bool
@@ -298,7 +303,8 @@ function crm_update_lead(string $leadId, array $updates): bool
         }
 
         if (($lead['status'] ?? '') === 'rdv_planifie') {
-            crm_mark_meeting_booked($lead);
+            $lead['automation']['rdv_taken_at'] = $lead['automation']['rdv_taken_at'] ?? gmdate('c');
+            $lead['automation']['stopped_at'] = gmdate('c');
         }
 
         $lead['updated_at'] = gmdate('c');
@@ -325,276 +331,305 @@ function crm_mark_meeting_booked(array &$lead): void
     unset($step);
 }
 
-function crm_build_public_base_url(): string
-{
-    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVER['SERVER_PORT'] ?? '') === '443');
-    $scheme = $https ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-
-    return $scheme . '://' . $host;
-}
-
 function crm_render_template(string $text, array $lead, string $stepId): string
 {
-    $baseUrl = crm_build_public_base_url();
-    $videoUrl = $baseUrl . '/api/crm.php?action=track-click&type=video&lead_id=' . urlencode((string) $lead['id']) . '&step_id=' . urlencode($stepId) . '&redirect=' . urlencode($baseUrl . '/?video=1');
-    $offerUrl = $baseUrl . '/api/crm.php?action=track-click&type=offer&lead_id=' . urlencode((string) $lead['id']) . '&step_id=' . urlencode($stepId) . '&redirect=' . urlencode($baseUrl . '/?offre=1');
-    $bookingUrl = $baseUrl . '/api/crm.php?action=track-click&type=rdv&lead_id=' . urlencode((string) $lead['id']) . '&step_id=' . urlencode($stepId) . '&redirect=' . urlencode($baseUrl . '/?rdv=1');
+    $leadId = (string) ($lead['id'] ?? '');
+    $videoLink = crm_build_tracking_link($leadId, $stepId, 'video');
+    $offerLink = crm_build_tracking_link($leadId, $stepId, 'offer');
+    $rdvLink = crm_build_tracking_link($leadId, $stepId, 'rdv');
 
     return strtr($text, [
         '{{nom}}' => (string) ($lead['nom'] ?? ''),
         '{{city}}' => (string) ($lead['city'] ?? ''),
-        '{{video_url}}' => $videoUrl,
-        '{{offer_url}}' => $offerUrl,
-        '{{booking_url}}' => $bookingUrl,
+        '{{video_link}}' => $videoLink,
+        '{{offer_link}}' => $offerLink,
+        '{{rdv_link}}' => $rdvLink,
     ]);
 }
 
-function crm_should_send_step(array $lead, array $step): bool
+function crm_build_tracking_link(string $leadId, string $stepId, string $target): string
 {
-    $automation = $lead['automation'] ?? [];
+    return CRM_EMAIL_TEMPLATE_ORIGIN . '/api/email-track.php?action=click&lead=' . urlencode($leadId)
+        . '&step=' . urlencode($stepId)
+        . '&target=' . urlencode($target);
+}
 
-    if (!empty($automation['meeting_booked'])) {
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_email_queue(): array
+{
+    return crm_load_json(CRM_EMAIL_QUEUE_FILE);
+}
+
+function crm_mark_step_queued(array &$lead, string $stepId, string $queuedAt): void
+{
+    foreach ($lead['email_sequence'] as &$step) {
+        if (($step['id'] ?? '') === $stepId && ($step['status'] ?? 'pending') === 'pending') {
+            $step['status'] = 'queued';
+            $step['queued_at'] = $queuedAt;
+            break;
+        }
+    }
+    unset($step);
+}
+
+function crm_find_sequence_step(array &$lead, string $stepId): ?array
+{
+    foreach ($lead['email_sequence'] as &$step) {
+        if (($step['id'] ?? '') === $stepId) {
+            return $step;
+        }
+    }
+
+    return null;
+}
+
+function crm_get_step(array $lead, string $stepId): ?array
+{
+    foreach (($lead['email_sequence'] ?? []) as $step) {
+        if (($step['id'] ?? '') === $stepId) {
+            return $step;
+        }
+    }
+
+    return null;
+}
+
+function crm_has_step_status(array $lead, string $stepId, array $statuses): bool
+{
+    $step = crm_get_step($lead, $stepId);
+    if ($step === null) {
         return false;
     }
 
-    $key = (string) ($step['key'] ?? '');
+    return in_array((string) ($step['status'] ?? 'pending'), $statuses, true);
+}
 
-    if ($key === 'video_reminder' && !empty($automation['video_viewed'])) {
+function crm_enqueue_step(array &$lead, array &$queue, string $stepId, DateTimeImmutable $now): bool
+{
+    if (crm_has_step_status($lead, $stepId, ['queued', 'sent'])) {
         return false;
     }
 
-    if ($key === 'urgency') {
-        if (empty($automation['offer_viewed'])) {
-            return false;
-        }
-
-        if (!empty($automation['meeting_booked'])) {
-            return false;
-        }
+    $step = crm_get_step($lead, $stepId);
+    if ($step === null) {
+        return false;
     }
 
+    $queue[] = [
+        'id' => bin2hex(random_bytes(8)),
+        'lead_id' => $lead['id'],
+        'step_id' => $stepId,
+        'status' => 'pending',
+        'due_at' => $now->format('c'),
+        'created_at' => $now->format('c'),
+        'sent_at' => null,
+        'error' => null,
+    ];
+
+    crm_mark_step_queued($lead, $stepId, $now->format('c'));
     return true;
 }
 
 /**
- * @return array{queued:int, skipped:int}
+ * @return array<string, int>
  */
-function crm_enqueue_due_sequence_emails(): array
+function crm_schedule_email_jobs(): array
 {
     $leads = crm_get_leads();
-    $queue = crm_load_json(CRM_EMAIL_QUEUE_FILE);
+    $queue = crm_get_email_queue();
     $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
-    $queued = 0;
-    $skipped = 0;
 
-    $allowedStatuses = [
-        'nouveau',
-        'video_non_vue',
-        'video_vue',
-        'offre_vue',
-        'rdv_pris',
-        'rdv_realise',
-        'qualifie',
-        'paiement_envoye',
-        'client',
-    ];
+    $scheduled = 0;
+    $stopped = 0;
 
-    return array_map(static function (array $lead) use ($defaults, $allowedStatuses): array {
-        $normalized = array_merge($defaults, $lead);
-        if (!in_array($normalized['status'], $allowedStatuses, true)) {
-            $normalized['status'] = 'nouveau';
+    foreach ($leads as &$lead) {
+        $automation = $lead['automation'] ?? [];
+        $rdvTaken = !empty($automation['rdv_taken_at']) || in_array($lead['status'] ?? '', ['rdv_planifie', 'close'], true);
+
+        if ($rdvTaken) {
+            $lead['automation']['stopped_at'] = $lead['automation']['stopped_at'] ?? $now->format('c');
+            $stopped++;
+            continue;
         }
 
-        return $normalized;
-    }, crm_get_leads());
-}
-
-function crm_render_template(string $text, array $lead): string
-{
-    $allowedStatuses = ['nouveau', 'contacte', 'qualifie', 'proposition', 'negociation', 'converti', 'perdu'];
-    $fields = [];
-    $params = [':id' => $id];
-
-            if (!crm_should_send_step($lead, $step)) {
-                $step['status'] = 'skipped';
-                $step['sent_at'] = gmdate('c');
-                $skipped++;
-                continue;
+        $email1 = crm_get_step($lead, 'email_1_video_access');
+        if ($email1 !== null && ($email1['status'] ?? 'pending') === 'pending') {
+            if (crm_enqueue_step($lead, $queue, 'email_1_video_access', $now)) {
+                $scheduled++;
             }
-
-            $step['status'] = 'queued';
-            $queue[] = [
-                'queue_id' => bin2hex(random_bytes(6)),
-                'lead_id' => $lead['id'],
-                'step_id' => $step['id'],
-                'queued_at' => gmdate('c'),
-                'status' => 'queued',
-            ];
-            $queued++;
+            continue;
         }
-        unset($step);
+
+        $email1SentAt = !empty($email1['sent_at']) ? new DateTimeImmutable((string) $email1['sent_at']) : null;
+        $videoViewedAt = !empty($automation['video_viewed_at']) ? new DateTimeImmutable((string) $automation['video_viewed_at']) : null;
+
+        if ($videoViewedAt === null && $email1SentAt !== null && $now >= $email1SentAt->modify('+1 day')) {
+            if (crm_enqueue_step($lead, $queue, 'email_2_video_reminder', $now)) {
+                $scheduled++;
+            }
+        }
+
+        $email3 = crm_get_step($lead, 'email_3_offer');
+        $email2 = crm_get_step($lead, 'email_2_video_reminder');
+        $referenceForOffer = null;
+        if (!empty($email2['sent_at'])) {
+            $referenceForOffer = new DateTimeImmutable((string) $email2['sent_at']);
+        } elseif ($email1SentAt !== null) {
+            $referenceForOffer = $email1SentAt;
+        }
+
+        if ($referenceForOffer !== null && $now >= $referenceForOffer->modify('+2 days')) {
+            if (crm_enqueue_step($lead, $queue, 'email_3_offer', $now)) {
+                $scheduled++;
+            }
+        }
+
+        $offerViewedAt = !empty($automation['offer_viewed_at']) ? new DateTimeImmutable((string) $automation['offer_viewed_at']) : null;
+        if ($offerViewedAt !== null && $now >= $offerViewedAt->modify('+1 day')) {
+            if (crm_enqueue_step($lead, $queue, 'email_4_urgency', $now)) {
+                $scheduled++;
+            }
+        }
     }
     unset($lead);
 
     crm_save_json(CRM_LEADS_FILE, $leads);
     crm_save_json(CRM_EMAIL_QUEUE_FILE, $queue);
 
-    return ['queued' => $queued, 'skipped' => $skipped];
+    return [
+        'scheduled' => $scheduled,
+        'stopped' => $stopped,
+    ];
 }
 
 /**
- * @return array{sent:int,errors:array<int,string>}
+ * @return array<string, mixed>
  */
-function crm_process_email_queue(int $batchSize = 50): array
+function crm_process_email_queue(): array
 {
-    $queue = crm_load_json(CRM_EMAIL_QUEUE_FILE);
+    $queue = crm_get_email_queue();
     $leads = crm_get_leads();
     $emailLog = crm_load_json(CRM_EMAIL_LOG_FILE);
+    $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+
     $sentCount = 0;
     $errors = [];
 
-    $leadIndex = [];
-    foreach ($leads as $index => $lead) {
-        $leadIndex[(string) $lead['id']] = $index;
-    }
-
     foreach ($queue as &$job) {
-        if (($job['status'] ?? '') !== 'queued') {
+        if (($job['status'] ?? 'pending') !== 'pending') {
             continue;
         }
 
-        if ($sentCount >= $batchSize) {
-            break;
+        $dueAt = new DateTimeImmutable((string) ($job['due_at'] ?? $now->format('c')));
+        if ($dueAt > $now) {
+            continue;
         }
 
         $leadId = (string) ($job['lead_id'] ?? '');
         $stepId = (string) ($job['step_id'] ?? '');
 
-        if (!isset($leadIndex[$leadId])) {
-            $job['status'] = 'error';
-            $job['error'] = 'lead introuvable';
-            continue;
-        }
-
-        $leadRef = &$leads[$leadIndex[$leadId]];
-        $stepRef = null;
-        foreach ($leadRef['email_sequence'] as &$step) {
-            if (($step['id'] ?? '') === $stepId) {
-                $stepRef = &$step;
-                break;
-            }
-        }
-
-        if ($stepRef === null) {
-            $job['status'] = 'error';
-            $job['error'] = 'étape introuvable';
-            continue;
-        }
-
-        $subject = crm_render_template((string) $stepRef['subject'], $leadRef, $stepId);
-        $plainBody = crm_render_template((string) $stepRef['body'], $leadRef, $stepId);
-        $email = (string) ($leadRef['email'] ?? '');
-        $baseUrl = crm_build_public_base_url();
-        $pixelUrl = $baseUrl . '/api/crm.php?action=track-open&lead_id=' . urlencode($leadId) . '&step_id=' . urlencode($stepId);
-
-        $htmlBody = nl2br(htmlspecialchars($plainBody, ENT_QUOTES, 'UTF-8'))
-            . '<img src="' . htmlspecialchars($pixelUrl, ENT_QUOTES, 'UTF-8') . '" alt="" width="1" height="1" style="display:block;border:0;" />';
-
-        $headers = "MIME-Version: 1.0\r\n"
-            . "Content-type:text/html;charset=UTF-8\r\n"
-            . "From: noreply@ecosystemeimmo.fr\r\n"
-            . "Reply-To: contact@ecosystemeimmo.fr\r\n"
-            . 'X-Mailer: PHP/' . phpversion();
-
-        $sent = filter_var($email, FILTER_VALIDATE_EMAIL) ? mail($email, $subject, $htmlBody, $headers) : false;
-
-        if ($sent) {
-            $stepRef['status'] = 'sent';
-            $stepRef['sent_at'] = gmdate('c');
-            $job['status'] = 'sent';
-            $job['sent_at'] = $stepRef['sent_at'];
-            $sentCount++;
-            $emailLog[] = [
-                'lead_id' => $leadId,
-                'step_id' => $stepId,
-                'email' => $email,
-                'subject' => $subject,
-                'sent_at' => $stepRef['sent_at'],
-            ];
-        } else {
-            $stepRef['status'] = 'error';
-            $job['status'] = 'error';
-            $job['error'] = 'Échec envoi';
-            $errors[] = 'Échec envoi pour ' . $email . ' / étape ' . $stepId;
-        }
-        unset($step);
-    }
-    unset($job);
-
-    crm_save_json(CRM_LEADS_FILE, $leads);
-    crm_save_json(CRM_EMAIL_QUEUE_FILE, $queue);
-    crm_save_json(CRM_EMAIL_LOG_FILE, $emailLog);
-
-    return ['sent' => $sentCount, 'errors' => $errors];
-}
-
-/**
- * @return array{queued:int, skipped:int, sent:int, errors:array<int,string>}
- */
-function crm_send_due_sequence_emails(): array
-{
-    $queued = crm_enqueue_due_sequence_emails();
-    $sent = crm_process_email_queue();
-
-    return [
-        'queued' => $queued['queued'],
-        'skipped' => $queued['skipped'],
-        'sent' => $sent['sent'],
-        'errors' => $sent['errors'],
-    ];
-}
-
-function crm_track_open(string $leadId, string $stepId): bool
-{
-    $leads = crm_get_leads();
-    $tracked = false;
-
-    foreach ($leads as &$lead) {
-        if (($lead['id'] ?? '') !== $leadId) {
-            continue;
-        }
-
-        foreach ($lead['email_sequence'] as &$step) {
-            if (($step['id'] ?? '') !== $stepId) {
+        foreach ($leads as &$lead) {
+            if (($lead['id'] ?? '') !== $leadId) {
                 continue;
             }
 
-            $step['open_count'] = (int) ($step['open_count'] ?? 0) + 1;
-            $step['last_open_at'] = gmdate('c');
-            $tracked = true;
-            break;
-        }
-        unset($step);
+            $step = crm_get_step($lead, $stepId);
+            if ($step === null) {
+                $job['status'] = 'error';
+                $job['error'] = 'Étape introuvable';
+                $errors[] = 'Étape introuvable pour lead ' . $leadId;
+                break;
+            }
 
-        if ($tracked) {
-            break;
-        }
-    }
-    unset($lead);
+            $subject = crm_render_template((string) $step['subject'], $lead, $stepId);
+            $body = crm_render_template((string) $step['body'], $lead, $stepId);
+            $trackPixel = CRM_EMAIL_TEMPLATE_ORIGIN . '/api/email-track.php?action=open&lead=' . urlencode($leadId) . '&step=' . urlencode($stepId);
+            $body .= "\n\n<img src=\"{$trackPixel}\" width=\"1\" height=\"1\" alt=\"\" />";
 
-    if ($tracked) {
-        crm_save_json(CRM_LEADS_FILE, $leads);
-    }
-
-    return $tracked;
-}
+            $email = (string) ($lead['email'] ?? '');
+            $headers = "From: noreply@ecosystemeimmo.fr\r\n"
+                . "Reply-To: contact@ecosystemeimmo.fr\r\n"
+                . "Content-Type: text/plain; charset=UTF-8\r\n"
+                . 'X-Mailer: PHP/' . phpversion();
 
 function crm_track_click(string $leadId, string $stepId, string $type): bool
 {
     $leads = crm_get_leads();
     $tracked = false;
 
+            if ($sent) {
+                $sentAt = gmdate('c');
+                $job['status'] = 'sent';
+                $job['sent_at'] = $sentAt;
+                $sentCount++;
+
+                foreach ($lead['email_sequence'] as &$sequenceStep) {
+                    if (($sequenceStep['id'] ?? '') === $stepId) {
+                        $sequenceStep['status'] = 'sent';
+                        $sequenceStep['sent_at'] = $sentAt;
+                        break;
+                    }
+                }
+                unset($sequenceStep);
+
+                $emailLog[] = [
+                    'lead_id' => $leadId,
+                    'email' => $email,
+                    'step_id' => $stepId,
+                    'subject' => $subject,
+                    'sent_at' => $sentAt,
+                ];
+            } else {
+                $job['status'] = 'error';
+                $job['error'] = 'Échec envoi';
+                foreach ($lead['email_sequence'] as &$sequenceStep) {
+                    if (($sequenceStep['id'] ?? '') === $stepId) {
+                        $sequenceStep['status'] = 'error';
+                        break;
+                    }
+                }
+                unset($sequenceStep);
+                $errors[] = 'Échec envoi pour ' . $email;
+            }
+
+            break;
+        }
+        unset($lead);
+    }
+    unset($job);
+
+    crm_save_json(CRM_EMAIL_QUEUE_FILE, $queue);
+    crm_save_json(CRM_LEADS_FILE, $leads);
+    crm_save_json(CRM_EMAIL_LOG_FILE, $emailLog);
+
+    return [
+        'sent' => $sentCount,
+        'errors' => $errors,
+        'queue_pending' => count(array_filter($queue, static fn(array $job): bool => ($job['status'] ?? '') === 'pending')),
+    ];
+}
+
+function crm_send_due_sequence_emails(): array
+{
+    $scheduled = crm_schedule_email_jobs();
+    $processed = crm_process_email_queue();
+
+    return [
+        'scheduled' => $scheduled['scheduled'],
+        'stopped' => $scheduled['stopped'],
+        'sent' => $processed['sent'],
+        'errors' => $processed['errors'],
+        'queue_pending' => $processed['queue_pending'],
+    ];
+}
+
+function crm_register_email_event(string $leadId, string $stepId, string $event): bool
+{
+    $leads = crm_get_leads();
+    $updated = false;
+
     foreach ($leads as &$lead) {
         if (($lead['id'] ?? '') !== $leadId) {
             continue;
@@ -605,69 +640,90 @@ function crm_track_click(string $leadId, string $stepId, string $type): bool
                 continue;
             }
 
-            $step['click_count'] = (int) ($step['click_count'] ?? 0) + 1;
-            $step['last_click_at'] = gmdate('c');
-            $tracked = true;
+            if ($event === 'open') {
+                $step['opened_at'] = $step['opened_at'] ?? gmdate('c');
+            }
+
+            if ($event === 'click') {
+                $step['clicked_at'] = gmdate('c');
+            }
+
+            $updated = true;
             break;
         }
         unset($step);
 
-        if ($type === 'video') {
-            $lead['automation']['video_viewed'] = true;
-        }
-        if ($type === 'offer') {
-            $lead['automation']['offer_viewed'] = true;
-        }
-        if ($type === 'rdv') {
-            $lead['status'] = 'rdv_planifie';
-            crm_mark_meeting_booked($lead);
-        }
-
-        if ($tracked) {
-            $lead['updated_at'] = gmdate('c');
+        if ($updated) {
             break;
         }
     }
     unset($lead);
 
-    if ($tracked) {
+    if ($updated) {
         crm_save_json(CRM_LEADS_FILE, $leads);
     }
 
-    return $tracked;
+    return $updated;
 }
 
-function crm_get_stats(): array
+function crm_register_automation_action(string $leadId, string $target): void
 {
     $leads = crm_get_leads();
-    $totalLeads = count($leads);
-    $totalSent = 0;
-    $totalOpens = 0;
-    $totalClicks = 0;
-    $rdvCount = 0;
 
-    foreach ($leads as $lead) {
-        if (($lead['status'] ?? '') === 'rdv_planifie' || !empty($lead['automation']['meeting_booked'])) {
-            $rdvCount++;
+    foreach ($leads as &$lead) {
+        if (($lead['id'] ?? '') !== $leadId) {
+            continue;
         }
 
+        if ($target === 'video') {
+            $lead['automation']['video_viewed_at'] = $lead['automation']['video_viewed_at'] ?? gmdate('c');
+        } elseif ($target === 'offer') {
+            $lead['automation']['offer_viewed_at'] = gmdate('c');
+        } elseif ($target === 'rdv') {
+            $lead['automation']['rdv_taken_at'] = gmdate('c');
+            $lead['automation']['stopped_at'] = gmdate('c');
+            $lead['status'] = 'rdv_planifie';
+        }
+
+        break;
+    }
+    unset($lead);
+
+    crm_save_json(CRM_LEADS_FILE, $leads);
+}
+
+/**
+ * @return array<string, int>
+ */
+function crm_get_email_stats(): array
+{
+    $leads = crm_get_leads();
+
+    $stats = [
+        'total_leads' => count($leads),
+        'emails_sent' => 0,
+        'emails_opened' => 0,
+        'emails_clicked' => 0,
+        'rdv_taken' => 0,
+    ];
+
+    foreach ($leads as $lead) {
         foreach (($lead['email_sequence'] ?? []) as $step) {
-            if (($step['status'] ?? '') === 'sent') {
-                $totalSent++;
+            if (!empty($step['sent_at'])) {
+                $stats['emails_sent']++;
             }
-            $totalOpens += (int) ($step['open_count'] ?? 0);
-            $totalClicks += (int) ($step['click_count'] ?? 0);
+            if (!empty($step['opened_at'])) {
+                $stats['emails_opened']++;
+            }
+            if (!empty($step['clicked_at'])) {
+                $stats['emails_clicked']++;
+            }
+        }
+
+        if (!empty($lead['automation']['rdv_taken_at'])) {
+            $stats['rdv_taken']++;
         }
     }
 
-    return [
-        'leads' => $totalLeads,
-        'emails_sent' => $totalSent,
-        'opens' => $totalOpens,
-        'clicks' => $totalClicks,
-        'rdv' => $rdvCount,
-        'open_rate' => $totalSent > 0 ? round(($totalOpens / $totalSent) * 100, 1) : 0,
-        'click_rate' => $totalSent > 0 ? round(($totalClicks / $totalSent) * 100, 1) : 0,
-        'queue_pending' => count(array_filter(crm_load_json(CRM_EMAIL_QUEUE_FILE), static fn (array $job): bool => ($job['status'] ?? '') === 'queued')),
-    ];
+    return $stats;
 }
