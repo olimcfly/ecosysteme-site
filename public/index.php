@@ -3,788 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ecosystème Immo — Le système d'acquisition local pour conseillers immobiliers indépendants. Site, SEO local, CRM et automatisations. Exclusivité territoriale garantie.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://ecosystemeimmo.fr/">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ecosystème Immo — Attirez des vendeurs qualifiés dans votre secteur">
-  <meta property="og:description" content="Le système complet d'acquisition locale pour conseillers immobiliers indépendants. Exclusivité territoriale. 1 ville = 1 seul conseiller.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:url" content="https://ecosystemeimmo.fr/">
-  <meta property="og:image" content="https://ecosystemeimmo.fr/assets/img/og-cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <title>Ecosystème Immo — Attirez des vendeurs qualifiés dans votre secteur</title>
-
-  <!-- Preconnect fonts -->
+  <meta name="description" content="ECOSYSTEMEIMMO : système pour devenir visible localement, capter des leads vendeurs, les suivre dans un CRM et automatiser vos séquences email.">
+  <title>ECOSYSTEMEIMMO — Tunnel de vente conseillers immobiliers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-
-<!-- =============================================
-     NAVBAR
-     ============================================= -->
-<header class="navbar" role="banner">
+<header class="navbar">
   <div class="navbar__inner">
-    <a href="/" class="navbar__logo" aria-label="Ecosystème Immo — accueil">
-      Ecosystème<span>Immo</span>
-    </a>
-
-    <nav class="navbar__links" aria-label="Navigation principale">
-      <a href="#solution">Le système</a>
-      <a href="#fonctionnalites">Fonctionnalités</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#faq">FAQ</a>
+    <a href="/" class="navbar__logo">Ecosystème<span>Immo</span></a>
+    <nav class="navbar__links">
+      <a href="#probleme">Problème</a>
+      <a href="#solution">Solution</a>
+      <a href="#offre">Offre</a>
+      <a href="#cta-final">Rendez-vous</a>
+      <a href="/admin/">Admin CRM</a>
     </nav>
-
-    <div class="navbar__cta">
-      <a href="#verifier" class="btn btn-primary open-modal">
-        Vérifier ma ville
-      </a>
-    </div>
-
-    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <a href="#cta-final" class="btn btn-primary open-modal">Réserver un appel</a>
   </div>
 </header>
 
-<!-- Menu mobile -->
-<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-  <nav aria-label="Navigation mobile">
-    <a href="#solution" class="mobile-nav__link">Le système</a>
-    <a href="#fonctionnalites" class="mobile-nav__link">Fonctionnalités</a>
-    <a href="#tarifs" class="mobile-nav__link">Tarifs</a>
-    <a href="#faq" class="mobile-nav__link">FAQ</a>
-    <a href="#verifier" class="btn btn-primary btn-full open-modal mobile-nav__cta">
-      Vérifier ma ville
-    </a>
-  </nav>
-</div>
-
-
-<!-- =============================================
-     HERO
-     ============================================= -->
 <main>
-<section class="hero" aria-labelledby="hero-headline">
-  <div class="container">
-    <div class="hero__content">
-      <p class="hero__eyebrow">Système d'acquisition locale</p>
-
-      <h1 id="hero-headline">
-        Attirez des vendeurs qualifiés<br>
-        <em>dans votre secteur, en exclusivité</em>
-      </h1>
-
-      <p class="hero__sub">
-        Le système complet qui positionne votre nom sur Google, automatise votre prospection et génère des contacts vendeurs — sans dépendre de la cooptation ou des plateformes.
-      </p>
-
+  <section class="hero">
+    <div class="container container--mid hero__content">
+      <p class="hero__eyebrow">Objectif : convaincre + préqualifier + augmenter le closing</p>
+      <h1>Pourquoi certains conseillers immobiliers reçoivent des vendeurs…<br>et d'autres passent des semaines sans aucun appel ?</h1>
+      <p class="hero__sub">👉 La différence n'est pas leur niveau. <strong>👉 C'est leur visibilité.</strong></p>
       <div class="hero__actions">
-        <a href="#verifier" class="btn btn-primary btn-lg open-modal">
-          Vérifier si ma ville est disponible
-        </a>
-        <a href="#solution" class="btn btn-outline btn-lg">
-          Voir comment ça marche
-        </a>
-      </div>
-
-      <p class="hero__roi-note">
-        Un seul mandat supplémentaire couvre plus de 5 ans d'abonnement annuel.
-      </p>
-
-      <div class="hero__trust">
-        <div class="hero__trust-dots">
-          <div class="hero__trust-dot">OC</div>
-          <div class="hero__trust-dot">NB</div>
-          <div class="hero__trust-dot">SL</div>
-          <div class="hero__trust-dot">+</div>
-        </div>
-        <span>Déjà actif dans 5 villes — places limitées</span>
-      </div>
-
-      <div class="hero__closed-cities" role="note" aria-label="Villes déjà réservées">
-        <span class="hero__closed-label">Villes fermées</span>
-        <ul class="hero__closed-list" aria-label="Liste des villes réservées">
-          <li><span class="city-tag">Bordeaux</span></li>
-          <li><span class="city-tag">Nantes</span></li>
-          <li><span class="city-tag">Nandy</span></li>
-          <li><span class="city-tag">Aix-en-Provence</span></li>
-          <li><span class="city-tag">Lannion</span></li>
-        </ul>
+        <a href="#cta-final" class="btn btn-primary btn-lg open-modal">Réserver un rendez-vous</a>
+        <a href="#solution" class="btn btn-outline btn-lg">Voir le système</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- =============================================
-     SOCIAL PROOF BAR
-     ============================================= -->
-<div class="proof-bar" aria-label="Chiffres clés">
-  <div class="container">
-    <div class="proof-bar__grid">
-      <div class="proof-stat reveal">
-        <div class="proof-stat__number">1</div>
-        <div class="proof-stat__label">seul conseiller<br>par ville</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="proof-stat__number">72h</div>
-        <div class="proof-stat__label">pour être en ligne<br>et indexé</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="proof-stat__number">100%</div>
-        <div class="proof-stat__label">paramétré,<br>sans compétences techniques</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="proof-stat__number">5+</div>
-        <div class="proof-stat__label">villes déjà<br>réservées</div>
+  <section id="probleme" class="section-problem">
+    <div class="container container--mid">
+      <h2 class="section-title">Aujourd'hui, le marché est saturé.</h2>
+      <p class="section-sub">Des milliers de conseillers utilisent les mêmes outils, publient les mêmes contenus et travaillent dans les mêmes réseaux.</p>
+      <div class="problem-grid mt-8">
+        <div class="problem-item"><div class="problem-item__text"><h4>Peu de visibilité</h4></div></div>
+        <div class="problem-item"><div class="problem-item__text"><h4>Peu d'appels</h4></div></div>
+        <div class="problem-item"><div class="problem-item__text"><h4>Dépendance totale</h4></div></div>
+        <div class="problem-item"><div class="problem-item__text"><h4>Sans preuve sociale, personne ne vous appelle.</h4></div></div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-
-<!-- =============================================
-     PROBLÈME
-     ============================================= -->
-<section class="section-problem" aria-labelledby="problem-title">
-  <div class="container container--mid">
-    <div class="text-center">
-      <p class="section-label">Le problème</p>
-      <h2 id="problem-title" class="section-title">
-        Ce que vit la plupart des conseillers<br>indépendants aujourd'hui
-      </h2>
-      <p class="section-sub" style="margin: 0 auto;">
-        Sans système d'acquisition structuré, vous dépendez du bouche-à-oreille, des leads froids ou des plateformes qui revendent le même contact à 5 concurrents.
-      </p>
+  <section class="section-solution" id="solution">
+    <div class="container container--mid solution-card">
+      <h2 class="solution-card__headline">Le problème, ce n'est ni votre compétence, ni votre motivation, ni votre réseau.</h2>
+      <p class="solution-card__sub">👉 Le problème, c'est que vous n'avez pas de système.</p>
+      <p class="solution-card__sub">ECOSYSTEMEIMMO vous permet de construire votre propre écosystème immobilier local.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">vous rend visible sur votre secteur</li>
+        <li class="pricing-feature">attire vendeurs et acheteurs</li>
+        <li class="pricing-feature">centralise vos contacts</li>
+        <li class="pricing-feature">automatise votre communication</li>
+      </ul>
     </div>
+  </section>
 
-    <div class="problem-grid mt-8">
-      <div class="problem-item reveal">
-        <div class="problem-item__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
-        </div>
-        <div class="problem-item__text">
-          <h4>Aucune visibilité locale sur Google</h4>
-          <p>Quand un vendeur cherche "agent immobilier + votre ville", votre nom n'apparaît pas. Vos concurrents captent ces contacts à votre place.</p>
-        </div>
-      </div>
-      <div class="problem-item reveal">
-        <div class="problem-item__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
-        </div>
-        <div class="problem-item__text">
-          <h4>Dépendance aux plateformes et leads payants</h4>
-          <p>Les leads achetés sont souvent revendus, peu qualifiés et chronophages. Le coût par mandat réel est rarement calculé.</p>
-        </div>
-      </div>
-      <div class="problem-item reveal">
-        <div class="problem-item__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
-        </div>
-        <div class="problem-item__text">
-          <h4>Présence digitale fragmentée et non pilotée</h4>
-          <p>Site générique de réseau, profils réseaux sociaux sans cohérence, aucune automatisation de suivi. Le prospect disparaît dans la nature.</p>
-        </div>
-      </div>
-      <div class="problem-item reveal">
-        <div class="problem-item__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#D9534F" stroke-width="1.5"/><path d="M9 5.5v4.5" stroke="#D9534F" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="13" r="0.9" fill="#D9534F"/></svg>
-        </div>
-        <div class="problem-item__text">
-          <h4>Temps perdu en prospection non qualifiée</h4>
-          <p>Flyers, piges, relances manuelles — beaucoup d'énergie pour un résultat imprévisible et non reproductible.</p>
-        </div>
+  <section class="section-features" id="fonctionnalites">
+    <div class="container container--mid">
+      <h2 class="section-title">⚙️ Ce que vous obtenez</h2>
+      <ul class="pricing-features">
+        <li class="pricing-feature">stratégie de contenu local (SEO + silo)</li>
+        <li class="pricing-feature">contenu basé sur 8 personas</li>
+        <li class="pricing-feature">pages de capture + tunnel simple</li>
+        <li class="pricing-feature">CRM avec suivi des contacts</li>
+        <li class="pricing-feature">automatisation email</li>
+        <li class="pricing-feature">présence régulière sans effort</li>
+      </ul>
+
+      <h3 style="margin-top:30px;">🧨 Différenciation forte</h3>
+      <p>Les réseaux vous donnent des outils, vous mettent en concurrence et ne garantissent aucun résultat.</p>
+      <p><strong>ECOSYSTEMEIMMO</strong> vous donne votre propre système, vous rend indépendant et vous positionne localement. 👉 Vous construisez un actif.</p>
+    </div>
+  </section>
+
+  <section id="offre" class="section-pricing">
+    <div class="container container--mid text-center">
+      <h2 class="section-title">💰 Offre de lancement : 997€</h2>
+      <p class="section-sub">Je lance actuellement ECOSYSTEMEIMMO avec un nombre limité de conseillers pour valider et optimiser le système.</p>
+      <p><strong>⚠️ Ce tarif ne sera plus disponible ensuite.</strong></p>
+      <p>🔥 <strong>1 seul conseiller par zone.</strong> Une fois la zone prise → fermé.</p>
+      <a href="#cta-final" class="btn btn-primary btn-lg open-modal">Vérifier la disponibilité de ma zone</a>
+    </div>
+  </section>
+
+  <section id="cta-final" class="section-final-cta">
+    <div class="container">
+      <div class="final-cta-box">
+        <h2>👉 Réservez un rendez-vous pour voir si votre zone est disponible</h2>
+        <p>Pendant cet appel : on analyse votre situation, on valide votre zone et on voit si le système est adapté pour vous.</p>
+        <a href="#" class="btn btn-primary btn-lg open-modal">Réserver mon rendez-vous</a>
       </div>
     </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     SOLUTION
-     ============================================= -->
-<section class="section-solution" id="solution" aria-labelledby="solution-title">
-  <div class="container container--mid">
-    <div class="solution-card reveal">
-      <p class="section-label" style="margin-bottom:16px">La solution</p>
-      <h2 id="solution-title" class="solution-card__headline">
-        Un système d'acquisition locale<br>
-        <em>clé en main, exclusif à votre ville</em>
-      </h2>
-      <p class="solution-card__sub">
-        Ecosystème Immo n'est pas un outil de plus à gérer. C'est un système complet, activé pour vous, qui travaille en continu pour positionner votre nom et générer des contacts vendeurs qualifiés dans votre secteur.
-      </p>
-
-      <div class="solution-pillars">
-        <div class="pillar reveal">
-          <div class="pillar__num">1</div>
-          <div class="pillar__content">
-            <h4>Votre site d'autorité locale</h4>
-            <p>Conçu pour ranker sur "agent immobilier + votre ville" et convertir les visiteurs en contacts.</p>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar__num">2</div>
-          <div class="pillar__content">
-            <h4>SEO local structuré</h4>
-            <p>Pages de quartier, fiche Google Business, balisage Schema — votre nom s'ancre dans la géographie locale.</p>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar__num">3</div>
-          <div class="pillar__content">
-            <h4>CRM et automatisations intégrés</h4>
-            <p>Chaque prospect est capturé, nourri et relancé automatiquement. Rien ne passe entre les mailles.</p>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar__num">4</div>
-          <div class="pillar__content">
-            <h4>IA et outils de productivité</h4>
-            <p>Estimation automatisée, génération d'annonces, rapport de marché — moins de travail administratif, plus de temps terrain.</p>
-          </div>
-        </div>
-      </div>
-
-      <a href="#verifier" class="btn btn-primary btn-lg open-modal">
-        Vérifier si ma ville est disponible
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     COMMENT CA MARCHE
-     ============================================= -->
-<section class="section-how" aria-labelledby="how-title">
-  <div class="container container--mid">
-    <div class="text-center">
-      <p class="section-label">Mise en route</p>
-      <h2 id="how-title" class="section-title">Opérationnel en 3 étapes</h2>
-      <p class="section-sub" style="margin: 0 auto;">
-        Pas de formation interminable. Pas de configuration technique. Vous choisissez votre ville — on s'occupe du reste.
-      </p>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step__num">1</div>
-        <div class="step__content">
-          <h3>Vous réservez votre ville</h3>
-          <p>Vérifiez la disponibilité, choisissez votre offre et verrouillez l'exclusivité territoriale. Aucun concurrent ne peut vous y rejoindre.</p>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step__num">2</div>
-        <div class="step__content">
-          <h3>On configure votre système</h3>
-          <p>Votre site, votre CRM, vos automatisations et votre profil SEO sont paramétrés sous 72h. Vous validez, c'est en ligne.</p>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step__num">3</div>
-        <div class="step__content">
-          <h3>Le système travaille pour vous</h3>
-          <p>Les vendeurs vous trouvent sur Google, remplissent le formulaire, sont qualifiés automatiquement. Vous n'intervenez que sur les contacts chauds.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     FONCTIONNALITÉS
-     ============================================= -->
-<section class="section-features" id="fonctionnalites" aria-labelledby="features-title">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">Ce que comprend le système</p>
-      <h2 id="features-title" class="section-title">Tout ce dont vous avez besoin.<br>Rien de superflu.</h2>
-      <div class="divider divider--center"></div>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="3" width="18" height="13" rx="2" stroke="#C8923A" stroke-width="1.6"/><path d="M7 19h8M11 16v3" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </div>
-        <h4>Site d'autorité locale</h4>
-        <p>Design premium, pages optimisées par quartier, formulaires de capture, compatible mobile et rapide.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#C8923A" stroke-width="1.6"/><path d="M11 7v4l3 2" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/><path d="M4.5 4.5l1.5 1.5M16 4.5l-1.5 1.5" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </div>
-        <h4>SEO local structuré</h4>
-        <p>Optimisation pour "agent immobilier + ville", balisage Schema, fiche Google Business, backlinks locaux.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18V9l7-5 7 5v9" stroke="#C8923A" stroke-width="1.6" stroke-linejoin="round"/><rect x="8" y="13" width="6" height="5" rx="1" stroke="#C8923A" stroke-width="1.4"/></svg>
-        </div>
-        <h4>Estimateur de bien intégré</h4>
-        <p>Outil d'estimation en ligne pour capturer les vendeurs qui testent le marché. Chaque estimation devient un contact qualifié.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="#C8923A" stroke-width="1.6"/><path d="M7 9h8M7 13h5" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </div>
-        <h4>CRM centralisé</h4>
-        <p>Pipeline vendeurs, historique des échanges, statuts et rappels. Vous savez en permanence où en est chaque contact.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11a6 6 0 1 1 12 0" stroke="#C8923A" stroke-width="1.6" stroke-linecap="round"/><path d="M11 17v-4M8 14l3 3 3-3" stroke="#C8923A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h4>Séquences d'automatisation</h4>
-        <p>Emails et SMS automatisés selon le comportement du prospect. Relance, nurturing, prise de rendez-vous — sans action manuelle.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4l1.8 3.6L17 8.5l-3 2.9.7 4.1L11 13.4 7.3 15.5l.7-4.1-3-2.9 4.2-.9L11 4z" stroke="#C8923A" stroke-width="1.5" stroke-linejoin="round"/></svg>
-        </div>
-        <h4>Outils IA intégrés</h4>
-        <p>Rédaction d'annonces, rapport de marché, scripts de prospection — l'IA vous fait gagner plusieurs heures par semaine.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     TARIFS
-     ============================================= -->
-<section class="section-pricing" id="tarifs" aria-labelledby="pricing-title">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">Tarifs</p>
-      <h2 id="pricing-title" class="section-title">Un investissement, pas une dépense</h2>
-      <p class="section-sub" style="margin: 0 auto;">
-        Un seul mandat supplémentaire par an couvre largement l'investissement annuel. Le reste, c'est du retour sur investissement.
-      </p>
-    </div>
-
-    <div class="pricing-grid mt-8">
-
-      <!-- Estimateur seul -->
-      <div class="pricing-card reveal">
-        <p class="pricing-card__name">Estimateur</p>
-        <div class="pricing-card__price">
-          <span class="pricing-price-main">27&nbsp;&euro;</span>
-          <span class="pricing-price-period">/mois</span>
-        </div>
-        <p class="pricing-card__setup">+ 197&nbsp;&euro; de frais de setup (une fois)</p>
-        <p class="pricing-card__desc">
-          Commencez à capturer des contacts vendeurs avec l'estimateur en ligne intégré à votre présence existante.
-        </p>
-        <ul class="pricing-features">
-          <li class="pricing-feature">Estimateur de bien en ligne</li>
-          <li class="pricing-feature">Formulaire de capture optimisé</li>
-          <li class="pricing-feature">Notifications en temps réel</li>
-          <li class="pricing-feature">Intégration à votre site existant</li>
-        </ul>
-        <a href="#verifier" class="btn btn-outline btn-full open-modal">Vérifier ma ville</a>
-      </div>
-
-      <!-- Mensuel standard — recommandé -->
-      <div class="pricing-card pricing-card--featured reveal">
-        <p class="pricing-card__name">Système complet</p>
-        <div class="pricing-card__price">
-          <span class="pricing-price-main">97&nbsp;&euro;</span>
-          <span class="pricing-price-period">/mois</span>
-        </div>
-        <div class="pricing-launch-cost">
-          <span class="pricing-launch-cost__label">Lancement</span>
-          <span class="pricing-launch-cost__amount">788&nbsp;&euro; TTC</span>
-          <span class="pricing-launch-cost__detail">(setup 497&nbsp;&euro; + 3&nbsp;mois prépayés 291&nbsp;&euro;)</span>
-        </div>
-        <p class="pricing-card__desc">
-          Le système complet actif dans votre ville. Site, SEO local, CRM, automatisations et IA — tout est inclus et maintenu.
-        </p>
-        <ul class="pricing-features">
-          <li class="pricing-feature">Site d'autorité locale sur-mesure</li>
-          <li class="pricing-feature">SEO local (pages quartiers, Schema, GMB)</li>
-          <li class="pricing-feature">Estimateur de bien intégré</li>
-          <li class="pricing-feature">CRM centralisé</li>
-          <li class="pricing-feature">Automatisations email &amp; SMS</li>
-          <li class="pricing-feature">Outils IA (annonces, scripts, rapports)</li>
-          <li class="pricing-feature">Exclusivité territoriale incluse</li>
-          <li class="pricing-feature">Support et mises à jour inclus</li>
-        </ul>
-        <a href="#verifier" class="btn btn-primary btn-full open-modal">Réserver ma ville</a>
-      </div>
-
-      <!-- Annuel -->
-      <div class="pricing-card reveal">
-        <p class="pricing-card__name">Annuel</p>
-        <div class="pricing-card__price">
-          <span class="pricing-price-main">897&nbsp;&euro;</span>
-          <span class="pricing-price-period">/an</span>
-        </div>
-        <p class="pricing-card__setup">Frais de setup offerts — soit 74,75&nbsp;&euro;/mois</p>
-        <p class="pricing-card__desc">
-          Le système complet avec setup offert et exclusivité verrouillée pour 12 mois. Meilleur rapport qualité/prix.
-        </p>
-        <ul class="pricing-features">
-          <li class="pricing-feature">Tout le système complet</li>
-          <li class="pricing-feature">Setup offert (économie de 497&nbsp;&euro;)</li>
-          <li class="pricing-feature">Exclusivité territoriale 12 mois</li>
-          <li class="pricing-feature">Priorité d'accès aux nouvelles fonctionnalités</li>
-          <li class="pricing-feature">Support prioritaire</li>
-        </ul>
-        <a href="#verifier" class="btn btn-navy btn-full open-modal">Choisir l'annuel</a>
-      </div>
-
-    </div>
-
-    <!-- Options complémentaires -->
-    <div class="container--narrow" style="margin-top: 24px;">
-
-      <!-- Exclusivité verrouillée -->
-      <div class="founder-box reveal">
-        <p class="founder-box__label">Option — Exclusivité verrouillée</p>
-        <p class="founder-box__text">
-          <strong style="color: var(--gold-light);">900&nbsp;&euro; paiement unique</strong> — Sécurisez votre ville de façon permanente, indépendamment de l'abonnement. En cas de résiliation, votre exclusivité territoriale reste acquise. Disponible uniquement pour les villes encore libres.
-          <br><br>
-          <a href="#verifier" class="open-modal" style="color: var(--gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">Vérifier la disponibilité de ma ville</a>
-        </p>
-      </div>
-
-      <!-- Programme fondateur -->
-      <div class="founder-program-box reveal">
-        <p class="founder-program-box__label">Programme fondateur — fermé</p>
-        <p class="founder-program-box__text">
-          Le programme d'accès anticipé à 47&nbsp;&euro;/mois est désormais fermé aux nouvelles inscriptions. Les conseillers fondateurs actifs conservent leurs conditions d'origine.<br><br>
-          Si vous avez entendu parler de ce programme, contactez-nous directement — nous étudions les demandes au cas par cas pour les profils qui correspondent à notre critère de sélection.
-          <br><br>
-          <a href="mailto:contact@ecosystemeimmo.fr" style="color: var(--gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">Nous contacter</a>
-        </p>
-      </div>
-
-    </div>
-
-    <p class="pricing-note">
-      Pas d'engagement longue durée sur les offres mensuelles. Résiliation à tout moment avec préavis de 30 jours.<br>
-      Toutes les offres incluent l'exclusivité territoriale tant que l'abonnement est actif.
-    </p>
-  </div>
-</section>
-
-
-<!-- =============================================
-     VÉRIFIER SA VILLE (CTA central)
-     ============================================= -->
-<section class="section-checker" id="verifier" aria-labelledby="checker-title">
-  <div class="container">
-    <div class="checker-card reveal">
-      <p class="section-label" style="text-align:center; margin-bottom: 8px;">Disponibilité</p>
-      <h2 id="checker-title">Votre ville est-elle encore disponible&nbsp;?</h2>
-      <p>
-        L'exclusivité territoriale signifie qu'une seule place existe par ville. Vérifiez maintenant si la vôtre est encore libre.
-      </p>
-
-      <form class="checker-form" id="checker-form" role="search" aria-label="Vérifier la disponibilité d'une ville">
-        <label for="checker-input" class="visually-hidden">Entrez le nom de votre ville</label>
-        <input
-          type="text"
-          id="checker-input"
-          name="city"
-          placeholder="Entrez votre ville..."
-          autocomplete="off"
-          spellcheck="false"
-          required
-          aria-label="Nom de votre ville"
-        >
-        <button type="submit" class="btn btn-primary">Vérifier</button>
-      </form>
-
-      <div class="checker-result" id="checker-result" role="status" aria-live="polite"></div>
-
-      <div class="closed-cities-list" aria-label="Villes déjà réservées">
-        <span style="font-size:0.75rem; color: var(--gray-400); width:100%; text-align:center; margin-bottom:4px;">Villes déjà réservées :</span>
-        <span class="city-tag">Bordeaux</span>
-        <span class="city-tag">Nantes</span>
-        <span class="city-tag">Nandy</span>
-        <span class="city-tag">Aix-en-Provence</span>
-        <span class="city-tag">Lannion</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     TÉMOIGNAGES / PREUVE SOCIALE
-     ============================================= -->
-<section class="section-proof" aria-labelledby="proof-title">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">Ils utilisent le système</p>
-      <h2 id="proof-title" class="section-title">Ce que disent les premiers conseillers</h2>
-      <div class="divider divider--center"></div>
-    </div>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-card__quote">
-          En trois semaines, j'avais reçu 4 demandes d'estimation via le site. Les vendeurs arrivent qualifiés, sans que j'aie rien fait de particulier. Dès le 2e mois, j'avais signé un mandat directement issu du système.
-        </p>
-        <div class="testimonial-card__author">
-          <div class="author-avatar">NB</div>
-          <div class="author-info">
-            <strong>Nicolas B.</strong>
-            <span>Conseiller IAD France — Nantes</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-card__quote">
-          Ce qui m'a convaincu, c'est l'exclusivité. Je sais qu'aucun autre conseiller sur mon secteur n'a le même système. C'est un avantage concurrentiel réel — et durable.
-        </p>
-        <div class="testimonial-card__author">
-          <div class="author-avatar">SL</div>
-          <div class="author-info">
-            <strong>Sophie L.</strong>
-            <span>Conseillère Megagence — Lannion</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-card__quote">
-          La mise en route a pris 48h. J'avais un vrai site pro à mon nom, pas un template de réseau. Le SEO a commencé à fonctionner au bout de 6 semaines — les contacts vendeurs suivent.
-        </p>
-        <div class="testimonial-card__author">
-          <div class="author-avatar">OC</div>
-          <div class="author-info">
-            <strong>Olivier C.</strong>
-            <span>Conseiller Propriétés-Privées — Bordeaux</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     FAQ
-     ============================================= -->
-<section class="section-faq" id="faq" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">Questions fréquentes</p>
-      <h2 id="faq-title" class="section-title">Ce que vous vous demandez sûrement</h2>
-    </div>
-
-    <div class="faq-list" role="list">
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Que signifie exactement l'exclusivité territoriale ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Une seule personne peut activer le système sur chaque ville. Si vous réservez Bordeaux, aucun autre conseiller ne peut accéder au même système pour Bordeaux. L'exclusivité est maintenue tant que votre abonnement est actif. L'option "exclusivité verrouillée" à 900&nbsp;&euro; la fixe de façon permanente.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Est-ce compatible avec mon réseau immobilier actuel ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Oui. Le système est indépendant de votre réseau. Il vient compléter votre présence sans entrer en conflit avec les outils de votre réseau. Vous bénéficiez d'un site propre, à votre nom, en dehors de l'identité visuelle du réseau.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Combien de temps avant de voir des résultats ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Le site est en ligne sous 72h. Les premières remontées SEO locales apparaissent généralement entre 4 et 8 semaines selon la concurrence dans votre ville. L'estimateur commence à générer des contacts dès que votre trafic augmente. Les automatisations fonctionnent dès le jour 1.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Je ne suis pas technique. Est-ce que je peux gérer ça ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Le système est entièrement configuré pour vous. Vous n'avez rien à paramétrer techniquement. Vous accédez à un tableau de bord simple pour consulter vos contacts, vos estimations et vos statistiques. En cas de question, le support est inclus.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Quelle est la différence avec un site vitrine classique ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Un site vitrine classique vous représente. Ce système travaille pour vous. Il est optimisé pour ranker localement, capturer des contacts, les qualifier automatiquement et vous alerter uniquement sur les prospects les plus chauds. Ce n'est pas une plaquette numérique — c'est une machine d'acquisition.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Puis-je changer de ville ou ajouter une ville ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          La zone couverte est définie à l'activation. Il est possible d'ajouter des villes adjacentes (selon disponibilité) avec un abonnement supplémentaire. Le changement de ville est possible sous conditions — contactez-nous pour en discuter.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Y a-t-il un engagement de durée ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Les offres mensuelles n'ont pas d'engagement long terme. Un préavis de 30 jours est requis pour résilier. L'offre annuelle est engagée pour 12 mois. À noter : en cas de résiliation, votre exclusivité territoriale est libérée et peut être reprise par un autre conseiller.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Que comprend exactement le setup ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Le setup (497&nbsp;&euro;, offert en formule annuelle) couvre la configuration complète de votre système : création et personnalisation de votre site d'autorité locale, paramétrage SEO initial (pages de quartier, balisage Schema, fiche Google Business), intégration de l'estimateur de bien, configuration du CRM et des premières séquences d'automatisation email et SMS. C'est un travail sur-mesure réalisé une seule fois à l'activation — vous n'avez rien à paramétrer vous-même.
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          Pourquoi 3 mois prépayés sur l'offre mensuelle ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer">
-          Les 3 mois prépayés (291&nbsp;&euro;) correspondent au temps minimum nécessaire pour que le référencement local commence à produire des résultats mesurables. Le SEO local prend généralement entre 4 et 8 semaines pour s'activer. C'est une garantie dans les deux sens : vous ne partez pas avant d'avoir vu le système fonctionner, et nous nous engageons à livrer un travail de fond qui ne porte ses fruits qu'avec un peu de recul.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     CTA FINAL
-     ============================================= -->
-<section class="section-final-cta" aria-labelledby="final-cta-title">
-  <div class="container">
-    <div class="final-cta-box reveal">
-      <h2 id="final-cta-title">
-        Votre ville est peut-être<br><em>encore disponible</em>
-      </h2>
-      <p>
-        Chaque jour, de nouvelles villes sont réservées. Vérifiez maintenant si la vôtre est encore libre — avant qu'un concurrent vous devance.
-      </p>
-      <div class="final-cta-actions">
-        <a href="#verifier" class="btn btn-primary btn-lg open-modal">
-          Vérifier ma ville maintenant
-        </a>
-        <a href="mailto:contact@ecosystemeimmo.fr" class="btn btn-outline btn-lg">
-          Poser une question
-        </a>
-      </div>
-      <p class="final-cta-note">
-        Réponse sous 24h &middot; Aucun engagement pour la vérification
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 </main>
 
-
-<!-- =============================================
-     FOOTER
-     ============================================= -->
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer__inner">
-      <div class="footer__logo">
-        Ecosystème<span>Immo</span>
-      </div>
-      <nav class="footer__links" aria-label="Liens footer">
-        <a href="mailto:contact@ecosystemeimmo.fr">Contact</a>
-        <a href="#tarifs">Tarifs</a>
-        <a href="#faq">FAQ</a>
-        <a href="/mentions-legales">Mentions légales</a>
-        <a href="/politique-de-confidentialite">Politique de confidentialité</a>
-      </nav>
-      <p class="footer__copy">
-        &copy; <?php echo date('Y'); ?> Ecosystème Immo &mdash; Tous droits réservés.<br>
-        Système d'acquisition locale pour conseillers immobiliers indépendants.
-      </p>
-    </div>
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__logo">Ecosystème<span>Immo</span></div>
+    <p class="footer__copy">&copy; <?php echo date('Y'); ?> ECOSYSTEMEIMMO — Funnel + CRM.</p>
   </div>
 </footer>
 
-
-<!-- =============================================
-     MODAL — Demande de réservation
-     ============================================= -->
 <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
     <button class="modal__close" id="modal-close" aria-label="Fermer">&times;</button>
-
-    <h3 id="modal-title">Réserver ma ville</h3>
-    <p>Laissez vos coordonnées — nous confirmons la disponibilité et revenons vers vous sous 24h pour démarrer.</p>
-
+    <h3 id="modal-title">Réserver ma zone & mon appel</h3>
+    <p>Complétez ce formulaire pour être rappelé et entrer dans la séquence d'accompagnement.</p>
     <form id="modal-form" novalidate>
-      <div class="form-group">
-        <label class="form-label" for="modal-nom">Nom complet <span aria-hidden="true">*</span></label>
-        <input class="form-input" type="text" id="modal-nom" name="nom" placeholder="Jean Martin" required autocomplete="name">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="modal-email">Adresse email <span aria-hidden="true">*</span></label>
-        <input class="form-input" type="email" id="modal-email" name="email" placeholder="jean@example.com" required autocomplete="email">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="modal-phone">T&eacute;l&eacute;phone</label>
-        <input class="form-input" type="tel" id="modal-phone" name="phone" placeholder="06 00 00 00 00" autocomplete="tel">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="modal-city">Votre ville <span aria-hidden="true">*</span></label>
-        <input class="form-input" type="text" id="modal-city" name="city" placeholder="Ex : Lyon" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">
-        Envoyer ma demande
-      </button>
-
-      <p class="form-note">
-        Vos donn&eacute;es sont confidentielles et ne sont jamais revendues. Nous revenons vers vous sous 24h.
-      </p>
+      <div class="form-group"><label class="form-label" for="modal-nom">Nom complet *</label><input class="form-input" type="text" id="modal-nom" name="nom" required></div>
+      <div class="form-group"><label class="form-label" for="modal-email">Adresse email *</label><input class="form-input" type="email" id="modal-email" name="email" required></div>
+      <div class="form-group"><label class="form-label" for="modal-phone">Téléphone</label><input class="form-input" type="tel" id="modal-phone" name="phone"></div>
+      <div class="form-group"><label class="form-label" for="modal-city">Votre zone / ville *</label><input class="form-input" type="text" id="modal-city" name="city" required></div>
+      <button type="submit" class="btn btn-primary btn-full">Envoyer ma demande</button>
     </form>
   </div>
 </div>
-
 
 <script src="/assets/js/main.js"></script>
 </body>
