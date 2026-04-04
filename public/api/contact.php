@@ -34,7 +34,7 @@ $phone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
 $city = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
 $visitorId = isset($data['visitor_id']) ? trim(strip_tags((string) $data['visitor_id'])) : '';
 
-if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$city) {
+if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$ville) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'error' => 'Champs requis manquants ou invalides']);
     exit;
@@ -60,14 +60,14 @@ crm_track_event('rdv_pris', 'RDV pris', [
     'page' => '/#cta-final',
 ]);
 
-$subject = SUBJECT_PREFIX . $city;
+$subject = SUBJECT_PREFIX . $ville;
 $body = "Nouveau lead capté depuis la landing page\n\n"
-    . "Nom    : {$nom}\n"
-    . "Email  : {$email}\n"
-    . 'Tél    : ' . ($phone ?: '—') . "\n"
-    . "Ville  : {$city}\n"
-    . 'Score  : ' . $lead['score'] . "/100\n"
-    . "ID lead: {$lead['id']}\n\n"
+    . "Nom       : {$nom}\n"
+    . "Email     : {$email}\n"
+    . 'Téléphone : ' . ($telephone ?: '—') . "\n"
+    . "Ville     : {$ville}\n"
+    . "Source    : {$source}\n"
+    . 'ID lead   : ' . ($lead['id'] ?? 'inconnu') . "\n\n"
     . 'Reçu le : ' . date('d/m/Y à H:i') . "\n";
 
 $headers = "From: noreply@ecosystemeimmo.fr\r\n"
@@ -77,11 +77,10 @@ $headers = "From: noreply@ecosystemeimmo.fr\r\n"
 $mailSent = mail(NOTIFY_EMAIL, $subject, $body, $headers);
 
 if (!$mailSent) {
-    error_log('[EcosystemeImmo] Échec envoi notification interne pour lead ' . $lead['id']);
+    error_log('[EcosystemeImmo] Échec envoi notification interne pour lead ' . ($lead['id'] ?? 'unknown'));
 }
 
 echo json_encode([
     'ok' => true,
-    'lead_id' => $lead['id'],
-    'score' => $lead['score'],
+    'lead_id' => $lead['id'] ?? null,
 ]);
