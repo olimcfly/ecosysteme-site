@@ -30,9 +30,9 @@ if (!$data) {
 
 $nom = isset($data['nom']) ? trim(strip_tags((string) $data['nom'])) : '';
 $email = isset($data['email']) ? trim(strip_tags((string) $data['email'])) : '';
-$telephone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
-$ville = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
-$source = isset($data['source']) ? trim(strip_tags((string) $data['source'])) : 'landing_ecosystemeimmo';
+$phone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
+$city = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
+$visitorId = isset($data['visitor_id']) ? trim(strip_tags((string) $data['visitor_id'])) : '';
 
 if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$ville) {
     http_response_code(422);
@@ -43,9 +43,21 @@ if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$ville) {
 $lead = crm_create_lead([
     'nom' => $nom,
     'email' => $email,
-    'telephone' => $telephone,
-    'ville' => $ville,
-    'source' => $source,
+    'phone' => $phone,
+    'city' => $city,
+    'visitor_id' => $visitorId,
+]);
+
+crm_attach_visitor_events_to_lead($visitorId, (string) $lead['id']);
+crm_track_event('formulaire_rempli', 'Formulaire rempli', [
+    'lead_id' => (string) $lead['id'],
+    'visitor_id' => $visitorId,
+    'page' => '/#modal-form',
+]);
+crm_track_event('rdv_pris', 'RDV pris', [
+    'lead_id' => (string) $lead['id'],
+    'visitor_id' => $visitorId,
+    'page' => '/#cta-final',
 ]);
 
 $subject = SUBJECT_PREFIX . $ville;
