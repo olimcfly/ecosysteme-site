@@ -4,6 +4,35 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/crm.php';
 
+$action = $_GET['action'] ?? 'list';
+
+if ($action === 'track-open') {
+    $leadId = (string) ($_GET['lead_id'] ?? '');
+    $stepId = (string) ($_GET['step_id'] ?? '');
+
+    if ($leadId !== '' && $stepId !== '') {
+        crm_track_open($leadId, $stepId);
+    }
+
+    header('Content-Type: image/gif');
+    echo base64_decode('R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+    exit;
+}
+
+if ($action === 'track-click') {
+    $leadId = (string) ($_GET['lead_id'] ?? '');
+    $stepId = (string) ($_GET['step_id'] ?? '');
+    $type = (string) ($_GET['type'] ?? '');
+    $redirect = (string) ($_GET['redirect'] ?? '/');
+
+    if ($leadId !== '' && $stepId !== '') {
+        crm_track_click($leadId, $stepId, $type);
+    }
+
+    header('Location: ' . $redirect);
+    exit;
+}
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -14,14 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$action = $_GET['action'] ?? 'list';
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($action === 'list') {
         echo json_encode([
             'ok' => true,
-            'leads' => crm_get_leads_with_defaults(),
+            'leads' => crm_get_leads(),
+            'stats' => crm_get_stats(),
         ]);
+        exit;
+    }
+
+    if ($action === 'stats') {
+        echo json_encode(['ok' => true, 'stats' => crm_get_stats()]);
         exit;
     }
 
@@ -53,6 +86,12 @@ if ($action === 'update') {
     }
 
     echo json_encode(['ok' => true]);
+    exit;
+}
+
+if ($action === 'send-sequence') {
+    $result = crm_send_due_sequence_emails();
+    echo json_encode(['ok' => true, 'result' => $result, 'stats' => crm_get_stats()]);
     exit;
 }
 
