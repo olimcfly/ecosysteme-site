@@ -30,10 +30,11 @@ if (!$data) {
 
 $nom = isset($data['nom']) ? trim(strip_tags((string) $data['nom'])) : '';
 $email = isset($data['email']) ? trim(strip_tags((string) $data['email'])) : '';
-$phone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
-$city = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
+$telephone = isset($data['phone']) ? trim(strip_tags((string) $data['phone'])) : '';
+$ville = isset($data['city']) ? trim(strip_tags((string) $data['city'])) : '';
+$source = isset($data['source']) ? trim(strip_tags((string) $data['source'])) : 'landing_ecosystemeimmo';
 
-if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$city) {
+if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$ville) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'error' => 'Champs requis manquants ou invalides']);
     exit;
@@ -42,18 +43,19 @@ if (!$nom || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$city) {
 $lead = crm_create_lead([
     'nom' => $nom,
     'email' => $email,
-    'phone' => $phone,
-    'city' => $city,
+    'telephone' => $telephone,
+    'ville' => $ville,
+    'source' => $source,
 ]);
 
-$subject = SUBJECT_PREFIX . $city;
+$subject = SUBJECT_PREFIX . $ville;
 $body = "Nouveau lead capté depuis la landing page\n\n"
-    . "Nom    : {$nom}\n"
-    . "Email  : {$email}\n"
-    . 'Tél    : ' . ($phone ?: '—') . "\n"
-    . "Ville  : {$city}\n"
-    . 'Score  : ' . $lead['score'] . "/100\n"
-    . "ID lead: {$lead['id']}\n\n"
+    . "Nom       : {$nom}\n"
+    . "Email     : {$email}\n"
+    . 'Téléphone : ' . ($telephone ?: '—') . "\n"
+    . "Ville     : {$ville}\n"
+    . "Source    : {$source}\n"
+    . 'ID lead   : ' . ($lead['id'] ?? 'inconnu') . "\n\n"
     . 'Reçu le : ' . date('d/m/Y à H:i') . "\n";
 
 $headers = "From: noreply@ecosystemeimmo.fr\r\n"
@@ -63,11 +65,10 @@ $headers = "From: noreply@ecosystemeimmo.fr\r\n"
 $mailSent = mail(NOTIFY_EMAIL, $subject, $body, $headers);
 
 if (!$mailSent) {
-    error_log('[EcosystemeImmo] Échec envoi notification interne pour lead ' . $lead['id']);
+    error_log('[EcosystemeImmo] Échec envoi notification interne pour lead ' . ($lead['id'] ?? 'unknown'));
 }
 
 echo json_encode([
     'ok' => true,
-    'lead_id' => $lead['id'],
-    'score' => $lead['score'],
+    'lead_id' => $lead['id'] ?? null,
 ]);

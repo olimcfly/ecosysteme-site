@@ -2,63 +2,52 @@
 
 declare(strict_types=1);
 
-const CRM_STORAGE_DIR = __DIR__ . '/../storage';
-const CRM_LEADS_FILE = CRM_STORAGE_DIR . '/leads.json';
-const CRM_EMAIL_LOG_FILE = CRM_STORAGE_DIR . '/email_log.json';
-
 /**
- * @return array<int, array<string, mixed>>
+ * Connexion PDO MySQL pour le CRM.
  */
-function crm_load_json(string $path): array
+function crm_db(): PDO
 {
-    if (!file_exists($path)) {
-        return [];
+    static $pdo = null;
+
+    if ($pdo instanceof PDO) {
+        return $pdo;
     }
 
-    $raw = file_get_contents($path);
-    if ($raw === false || $raw === '') {
-        return [];
-    }
+    $host = getenv('DB_HOST') ?: '127.0.0.1';
+    $port = getenv('DB_PORT') ?: '3306';
+    $name = getenv('DB_NAME') ?: 'ecosystemeimmo';
+    $user = getenv('DB_USER') ?: 'root';
+    $pass = getenv('DB_PASS') ?: '';
 
-    $decoded = json_decode($raw, true);
-    return is_array($decoded) ? $decoded : [];
+    $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $name);
+
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+
+    crm_ensure_schema($pdo);
+
+    return $pdo;
 }
 
-/**
- * @param array<int, array<string, mixed>> $payload
- */
-function crm_save_json(string $path, array $payload): void
+function crm_ensure_schema(PDO $pdo): void
 {
-    if (!is_dir(CRM_STORAGE_DIR)) {
-        mkdir(CRM_STORAGE_DIR, 0775, true);
-    }
-
-    file_put_contents($path, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
-
-/**
- * @return array<int, array<string, mixed>>
- */
-function crm_get_leads(): array
-{
-    $leads = crm_load_json(CRM_LEADS_FILE);
-
-    usort($leads, static function (array $a, array $b): int {
-        return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
-    });
-
-    return $leads;
-}
-
-function crm_find_lead(string $leadId): ?array
-{
-    foreach (crm_get_leads() as $lead) {
-        if (($lead['id'] ?? '') === $leadId) {
-            return $lead;
-        }
-    }
-
-    return null;
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS contacts (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            nom VARCHAR(150) NOT NULL,
+            email VARCHAR(190) NOT NULL,
+            telephone VARCHAR(40) DEFAULT NULL,
+            ville VARCHAR(120) NOT NULL,
+            source VARCHAR(120) DEFAULT NULL,
+            statut_tunnel VARCHAR(50) NOT NULL DEFAULT "nouveau",
+            date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            INDEX idx_ville (ville),
+            INDEX idx_statut_tunnel (statut_tunnel),
+            INDEX idx_date_creation (date_creation)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci'
+    );
 }
 
 function crm_create_lead(array $payload): array
@@ -79,72 +68,34 @@ function crm_create_lead(array $payload): array
         'email_sequence' => crm_build_email_sequence(),
     ];
 
-    $leads[] = $lead;
-    crm_save_json(CRM_LEADS_FILE, $leads);
+    $id = (int) $pdo->lastInsertId();
 
-    return $lead;
+    return crm_find_contact($id) ?? [];
 }
 
-function crm_compute_score(array $payload): int
+function crm_find_contact(int $id): ?array
 {
-    $score = 35;
-    if (!empty($payload['phone'])) {
-        $score += 20;
-    }
+    $pdo = crm_db();
+    $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id = :id LIMIT 1');
+    $stmt->execute([':id' => $id]);
 
-    if (!empty($payload['city']) && mb_strlen(trim((string) $payload['city'])) >= 4) {
-        $score += 20;
-    }
-
-    if (!empty($payload['nom']) && str_word_count((string) $payload['nom']) >= 2) {
-        $score += 25;
-    }
-
-    return min($score, 100);
+    $row = $stmt->fetch();
+    return is_array($row) ? $row : null;
 }
 
 /**
  * @return array<int, array<string, mixed>>
  */
-function crm_build_email_sequence(): array
+function crm_get_contacts(array $filters = []): array
 {
-    $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
-    $steps = [
-        [
-            'delay_days' => 0,
-            'subject' => 'Bienvenue dans ECOSYSTEMEIMMO — Vérification de votre zone',
-            'body' => "Bonjour {{nom}},\n\nMerci pour votre demande. Nous vérifions la disponibilité de votre zone ({{city}}).\n\nDans les prochaines heures, vous recevrez un plan d'action clair pour gagner en visibilité locale et capter des vendeurs qualifiés.",
-        ],
-        [
-            'delay_days' => 1,
-            'subject' => 'Pourquoi les conseillers visibles signent plus vite',
-            'body' => "Bonjour {{nom}},\n\nRappel clé : ce n'est pas le niveau qui fait la différence, c'est la visibilité.\n\nSans preuve sociale locale, même un excellent conseiller reste invisible.\n\nNous vous montrons comment corriger cela sur votre secteur.",
-        ],
-        [
-            'delay_days' => 3,
-            'subject' => 'Votre plan local en 3 étapes (SEO + CRM + automatisation)',
-            'body' => "Bonjour {{nom}},\n\nVoici le plan recommandé :\n1) Positionnement local\n2) Capture des leads\n3) Suivi automatisé\n\nCe système vous permet de ne plus dépendre des plateformes et de construire un actif durable.",
-        ],
-        [
-            'delay_days' => 5,
-            'subject' => 'Dernier rappel — valider votre zone avant fermeture',
-            'body' => "Bonjour {{nom}},\n\nNous finalisons les zones en cours.\n\nSi vous souhaitez réserver {{city}}, répondez à cet email pour bloquer votre créneau d'appel stratégique.",
-        ],
-    ];
+    $pdo = crm_db();
+    $where = [];
+    $params = [];
 
-    return array_map(static function (array $step) use ($now): array {
-        $dueAt = $now->modify('+' . (int) $step['delay_days'] . ' days')->format('c');
-
-        return [
-            'id' => bin2hex(random_bytes(6)),
-            'subject' => $step['subject'],
-            'body' => $step['body'],
-            'due_at' => $dueAt,
-            'sent_at' => null,
-            'status' => 'pending',
-        ];
-    }, $steps);
-}
+    if (!empty($filters['ville'])) {
+        $where[] = 'ville = :ville';
+        $params[':ville'] = $filters['ville'];
+    }
 
 function crm_update_lead(string $leadId, array $updates): bool
 {
@@ -187,11 +138,23 @@ function crm_update_lead(string $leadId, array $updates): bool
         break;
     }
 
-    if ($updated) {
-        crm_save_json(CRM_LEADS_FILE, $leads);
+    if (!empty($filters['q'])) {
+        $where[] = '(nom LIKE :q OR email LIKE :q OR telephone LIKE :q OR ville LIKE :q OR source LIKE :q)';
+        $params[':q'] = '%' . $filters['q'] . '%';
     }
 
-    return $updated;
+    $sort = strtoupper((string) ($filters['sort'] ?? 'DESC')) === 'ASC' ? 'ASC' : 'DESC';
+
+    $sql = 'SELECT * FROM contacts';
+    if ($where !== []) {
+        $sql .= ' WHERE ' . implode(' AND ', $where);
+    }
+    $sql .= ' ORDER BY ville ASC, date_creation ' . $sort;
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
 }
 
 /**
@@ -229,69 +192,42 @@ function crm_get_leads_with_defaults(): array
 
 function crm_render_template(string $text, array $lead): string
 {
-    return strtr($text, [
-        '{{nom}}' => (string) ($lead['nom'] ?? ''),
-        '{{city}}' => (string) ($lead['city'] ?? ''),
-    ]);
+    $allowedStatuses = ['nouveau', 'contacte', 'qualifie', 'proposition', 'negociation', 'converti', 'perdu'];
+    $fields = [];
+    $params = [':id' => $id];
+
+    if (isset($updates['statut_tunnel']) && in_array($updates['statut_tunnel'], $allowedStatuses, true)) {
+        $fields[] = 'statut_tunnel = :statut_tunnel';
+        $params[':statut_tunnel'] = $updates['statut_tunnel'];
+    }
+
+    if ($fields === []) {
+        return false;
+    }
+
+    $pdo = crm_db();
+    $stmt = $pdo->prepare('UPDATE contacts SET ' . implode(', ', $fields) . ' WHERE id = :id');
+
+    return $stmt->execute($params);
 }
 
-function crm_send_due_sequence_emails(): array
+/**
+ * @return array<string, mixed>
+ */
+function crm_dashboard_stats(): array
 {
-    $leads = crm_get_leads();
-    $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
-    $sentCount = 0;
-    $errors = [];
-    $emailLog = crm_load_json(CRM_EMAIL_LOG_FILE);
+    $pdo = crm_db();
 
-    foreach ($leads as &$lead) {
-        if (empty($lead['email_sequence']) || !is_array($lead['email_sequence'])) {
-            continue;
-        }
+    $total = (int) $pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn();
+    $today = (int) $pdo->query('SELECT COUNT(*) FROM contacts WHERE DATE(date_creation) = CURRENT_DATE()')->fetchColumn();
+    $converted = (int) $pdo->query("SELECT COUNT(*) FROM contacts WHERE statut_tunnel = 'converti'")->fetchColumn();
 
-        foreach ($lead['email_sequence'] as &$step) {
-            if (($step['status'] ?? 'pending') !== 'pending') {
-                continue;
-            }
-
-            $dueAt = new DateTimeImmutable((string) $step['due_at']);
-            if ($dueAt > $now) {
-                continue;
-            }
-
-            $subject = crm_render_template((string) $step['subject'], $lead);
-            $body = crm_render_template((string) $step['body'], $lead);
-            $email = (string) ($lead['email'] ?? '');
-
-            $headers = "From: noreply@ecosystemeimmo.fr\r\n"
-                . "Reply-To: contact@ecosystemeimmo.fr\r\n"
-                . 'X-Mailer: PHP/' . phpversion();
-
-            $sent = filter_var($email, FILTER_VALIDATE_EMAIL) ? mail($email, $subject, $body, $headers) : false;
-
-            if ($sent) {
-                $step['status'] = 'sent';
-                $step['sent_at'] = gmdate('c');
-                $sentCount++;
-                $emailLog[] = [
-                    'lead_id' => $lead['id'],
-                    'email' => $email,
-                    'subject' => $subject,
-                    'sent_at' => $step['sent_at'],
-                ];
-            } else {
-                $step['status'] = 'error';
-                $errors[] = 'Échec envoi pour ' . $email . ' / étape ' . ($step['id'] ?? '');
-            }
-        }
-        unset($step);
-    }
-    unset($lead);
-
-    crm_save_json(CRM_LEADS_FILE, $leads);
-    crm_save_json(CRM_EMAIL_LOG_FILE, $emailLog);
+    $villes = $pdo->query('SELECT ville, COUNT(*) AS total FROM contacts GROUP BY ville ORDER BY ville ASC')->fetchAll();
 
     return [
-        'sent' => $sentCount,
-        'errors' => $errors,
+        'total' => $total,
+        'today' => $today,
+        'converted' => $converted,
+        'cities' => $villes,
     ];
 }

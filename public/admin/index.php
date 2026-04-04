@@ -29,7 +29,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin CRM — ECOSYSTEMEIMMO</title>
+  <title>CRM ECOSYSTEMEIMMO</title>
   <style>
     :root{color-scheme:dark}
     body{font-family:Inter,system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0}
@@ -91,7 +91,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
   </div>
   <?php endif; ?>
 </div>
-<?php if ($loggedIn): ?>
+
 <script>
 const feedback = document.getElementById('feedback');
 const pipeline = document.getElementById('pipeline');
@@ -250,6 +250,17 @@ document.getElementById('send-sequence').addEventListener('click', async () => {
   feedback.className = errors ? 'err' : 'ok';
   await loadLeads();
 });
+
+let timer;
+function debounceReload(){
+  clearTimeout(timer);
+  timer = setTimeout(loadLeads, 250);
+}
+
+searchInput.addEventListener('input', debounceReload);
+cityFilter.addEventListener('change', loadLeads);
+statusFilter.addEventListener('change', loadLeads);
+sortFilter.addEventListener('change', loadLeads);
 
 loadLeads();
 </script>
