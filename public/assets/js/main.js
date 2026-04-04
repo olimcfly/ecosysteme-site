@@ -24,6 +24,40 @@
       .trim();
   }
 
+  const TRACK_ENDPOINT = '/api/track.php';
+  const TRACKED_EVENTS = new Set();
+
+  function getVisitorId() {
+    var key = 'ecosysteme_visitor_id';
+    var existing = localStorage.getItem(key);
+    if (existing) return existing;
+    var created = 'v_' + Math.random().toString(16).slice(2) + Date.now().toString(16);
+    localStorage.setItem(key, created);
+    return created;
+  }
+
+  function trackEvent(eventKey, extra) {
+    var payload = Object.assign({
+      event_key: eventKey,
+      visitor_id: getVisitorId(),
+      page: window.location.pathname
+    }, extra || {});
+
+    return fetch(TRACK_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function () { return null; });
+  }
+
+  function trackOnce(eventKey, extra) {
+    if (TRACKED_EVENTS.has(eventKey)) return;
+    TRACKED_EVENTS.add(eventKey);
+    trackEvent(eventKey, extra);
+  }
+
+  trackOnce('page_capture_vue');
+
   /* ──────────────────────────────────────────
      MOBILE MENU
   ────────────────────────────────────────── */
@@ -129,6 +163,7 @@
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       const city = btn.dataset.city || '';
+      trackEvent('clic_cta', { meta: { cta_text: (btn.textContent || '').trim(), city: city } });
       openModal(city);
     });
   });
@@ -166,7 +201,13 @@
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nom: nom, email: email, phone: phone, city: city })
+        body: JSON.stringify({
+          nom: nom,
+          email: email,
+          phone: phone,
+          city: city,
+          visitor_id: getVisitorId()
+        })
       })
       .then(function (res) { return res.json(); })
       .catch(function () { return { ok: true }; }) // Afficher le succès même si réseau KO
@@ -185,6 +226,25 @@
       });
     });
   }
+
+  const offerSection = document.getElementById('offre');
+  if (offerSection && 'IntersectionObserver' in window) {
+    const offerObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          trackOnce('offre_vue');
+          offerObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    offerObserver.observe(offerSection);
+  }
+
+  document.querySelectorAll('video').forEach(function (videoEl) {
+    videoEl.addEventListener('play', function () {
+      trackOnce('video_vue');
+    }, { once: true });
+  });
 
   /* ──────────────────────────────────────────
      FAQ ACCORDION
