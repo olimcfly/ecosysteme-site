@@ -66,21 +66,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
 
 if ($action === 'update') {
-    $leadId = (string) ($input['lead_id'] ?? '');
-    if ($leadId === '') {
+    $id = (int) ($input['id'] ?? 0);
+    if ($id <= 0) {
         http_response_code(422);
-        echo json_encode(['ok' => false, 'error' => 'lead_id manquant']);
+        echo json_encode(['ok' => false, 'error' => 'id manquant']);
         exit;
     }
 
     $updated = crm_update_lead($leadId, [
         'status' => $input['status'] ?? null,
         'notes' => $input['notes'] ?? null,
+        'estimated_amount' => $input['estimated_amount'] ?? null,
     ]);
 
     if (!$updated) {
-        http_response_code(404);
-        echo json_encode(['ok' => false, 'error' => 'Lead introuvable']);
+        http_response_code(422);
+        echo json_encode(['ok' => false, 'error' => 'Aucune mise à jour']);
         exit;
     }
 

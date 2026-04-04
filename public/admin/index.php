@@ -29,8 +29,9 @@ $loggedIn = !empty($_SESSION['crm_admin']);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin CRM — ECOSYSTEMEIMMO</title>
+  <title>CRM ECOSYSTEMEIMMO</title>
   <style>
+    :root{color-scheme:dark}
     body{font-family:Inter,system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0}
     .wrap{max-width:1220px;margin:0 auto;padding:24px}
     .card{background:#111827;border:1px solid #334155;border-radius:14px;padding:20px}
@@ -85,9 +86,8 @@ $loggedIn = !empty($_SESSION['crm_admin']);
   </div>
   <?php endif; ?>
 </div>
-<?php if ($loggedIn): ?>
+
 <script>
-const body = document.getElementById('lead-body');
 const feedback = document.getElementById('feedback');
 const statsBox = document.getElementById('stats');
 const statuses = ['nouveau','qualifie','rdv_planifie','close','perdu'];
@@ -136,6 +136,7 @@ async function loadLeads(){
         <select data-id="${esc(lead.id)}" data-field="status">
           ${statuses.map(s => `<option ${lead.status===s?'selected':''}>${s}</option>`).join('')}
         </select>
+        <div class="small">${esc(autoStatus)}</div>
       </td>
       <td>${esc(lead.score)}/100</td>
       <td>${renderSequence(lead)}</td>
@@ -145,16 +146,15 @@ async function loadLeads(){
     </tr>`).join('');
 }
 
-body.addEventListener('click', async (e) => {
-  if (!e.target.classList.contains('save')) return;
-  const id = e.target.dataset.id;
-  const status = document.querySelector(`[data-id="${id}"][data-field="status"]`).value;
-  const notes = document.querySelector(`[data-id="${id}"][data-field="notes"]`).value;
+function money(value) {
+  return new Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'EUR'}).format(Number(value || 0));
+}
 
+async function updateLead(id, payload) {
   const res = await fetch('/api/crm.php?action=update', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({lead_id: id, status, notes})
+    body: JSON.stringify({lead_id: id, ...payload}),
   });
 
   feedback.textContent = res.ok ? 'Lead mis à jour.' : 'Erreur de sauvegarde.';
@@ -174,6 +174,17 @@ document.getElementById('send-sequence').addEventListener('click', async () => {
   renderStats(data.stats || {});
   await loadLeads();
 });
+
+let timer;
+function debounceReload(){
+  clearTimeout(timer);
+  timer = setTimeout(loadLeads, 250);
+}
+
+searchInput.addEventListener('input', debounceReload);
+cityFilter.addEventListener('change', loadLeads);
+statusFilter.addEventListener('change', loadLeads);
+sortFilter.addEventListener('change', loadLeads);
 
 loadLeads();
 </script>

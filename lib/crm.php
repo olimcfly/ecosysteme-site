@@ -8,34 +8,23 @@ const CRM_EMAIL_LOG_FILE = CRM_STORAGE_DIR . '/email_log.json';
 const CRM_EMAIL_QUEUE_FILE = CRM_STORAGE_DIR . '/email_queue.json';
 
 /**
- * @return array<int, array<string, mixed>>
+ * Connexion PDO MySQL pour le CRM.
  */
-function crm_load_json(string $path): array
+function crm_db(): PDO
 {
-    if (!file_exists($path)) {
-        return [];
+    static $pdo = null;
+
+    if ($pdo instanceof PDO) {
+        return $pdo;
     }
 
-    $raw = file_get_contents($path);
-    if ($raw === false || $raw === '') {
-        return [];
-    }
+    $host = getenv('DB_HOST') ?: '127.0.0.1';
+    $port = getenv('DB_PORT') ?: '3306';
+    $name = getenv('DB_NAME') ?: 'ecosystemeimmo';
+    $user = getenv('DB_USER') ?: 'root';
+    $pass = getenv('DB_PASS') ?: '';
 
-    $decoded = json_decode($raw, true);
-    return is_array($decoded) ? $decoded : [];
-}
-
-/**
- * @param array<int, array<string, mixed>> $payload
- */
-function crm_save_json(string $path, array $payload): void
-{
-    if (!is_dir(CRM_STORAGE_DIR)) {
-        mkdir(CRM_STORAGE_DIR, 0775, true);
-    }
-
-    file_put_contents($path, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
+    $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $name);
 
 /**
  * @return array<int, array<string, mixed>>
@@ -43,23 +32,41 @@ function crm_save_json(string $path, array $payload): void
 function crm_get_leads(): array
 {
     $leads = crm_load_json(CRM_LEADS_FILE);
+    $events = crm_get_events();
 
-    usort($leads, static function (array $a, array $b): int {
-        return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
-    });
+    crm_ensure_schema($pdo);
+
+    foreach ($leads as &$lead) {
+        $leadEvents = [];
+        foreach ($events as $event) {
+            if (($event['lead_id'] ?? '') === ($lead['id'] ?? '')) {
+                $leadEvents[] = $event;
+            }
+        }
+        $lead['timeline'] = $leadEvents;
+    }
+    unset($lead);
 
     return $leads;
 }
 
-function crm_find_lead(string $leadId): ?array
+function crm_ensure_schema(PDO $pdo): void
 {
-    foreach (crm_get_leads() as $lead) {
-        if (($lead['id'] ?? '') === $leadId) {
-            return $lead;
-        }
-    }
-
-    return null;
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS contacts (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            nom VARCHAR(150) NOT NULL,
+            email VARCHAR(190) NOT NULL,
+            telephone VARCHAR(40) DEFAULT NULL,
+            ville VARCHAR(120) NOT NULL,
+            source VARCHAR(120) DEFAULT NULL,
+            statut_tunnel VARCHAR(50) NOT NULL DEFAULT "nouveau",
+            date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            INDEX idx_ville (ville),
+            INDEX idx_statut_tunnel (statut_tunnel),
+            INDEX idx_date_creation (date_creation)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci'
+    );
 }
 
 function crm_create_lead(array $payload): array
@@ -74,7 +81,9 @@ function crm_create_lead(array $payload): array
         'status' => 'nouveau',
         'score' => crm_compute_score($payload),
         'source' => 'landing_ecosystemeimmo',
+        'visitor_id' => $payload['visitor_id'] ?? null,
         'notes' => '',
+        'estimated_amount' => 0,
         'created_at' => gmdate('c'),
         'automation' => [
             'video_viewed' => false,
@@ -85,34 +94,132 @@ function crm_create_lead(array $payload): array
         'email_sequence' => crm_build_email_sequence(),
     ];
 
-    $leads[] = $lead;
-    crm_save_json(CRM_LEADS_FILE, $leads);
+    $id = (int) $pdo->lastInsertId();
 
-    return $lead;
-}
-
-function crm_compute_score(array $payload): int
-{
-    $score = 35;
-    if (!empty($payload['phone'])) {
-        $score += 20;
-    }
-
-    if (!empty($payload['city']) && mb_strlen(trim((string) $payload['city'])) >= 4) {
-        $score += 20;
-    }
-
-    if (!empty($payload['nom']) && str_word_count((string) $payload['nom']) >= 2) {
-        $score += 25;
-    }
-
-    return min($score, 100);
+    return crm_find_contact($id) ?? [];
 }
 
 /**
  * @return array<int, array<string, mixed>>
  */
-function crm_build_email_sequence(): array
+function crm_get_events(): array
+{
+    $events = crm_load_json(CRM_EVENTS_FILE);
+
+    usort($events, static function (array $a, array $b): int {
+        return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
+    });
+
+    return $events;
+}
+
+function crm_compute_status_from_event(string $currentStatus, string $eventKey): string
+{
+    $allowed = ['nouveau', 'qualifie', 'rdv_planifie', 'close', 'perdu'];
+    if (!in_array($currentStatus, $allowed, true)) {
+        $currentStatus = 'nouveau';
+    }
+
+    if ($eventKey === 'rdv_pris') {
+        return 'rdv_planifie';
+    }
+
+    if ($eventKey === 'formulaire_rempli' && $currentStatus === 'nouveau') {
+        return 'qualifie';
+    }
+
+    return $currentStatus;
+}
+
+function crm_update_status_from_event(string $leadId, string $eventKey): void
+{
+    $leads = crm_get_leads();
+    $updated = false;
+
+    foreach ($leads as &$lead) {
+        if (($lead['id'] ?? '') !== $leadId) {
+            continue;
+        }
+
+        $newStatus = crm_compute_status_from_event((string) ($lead['status'] ?? 'nouveau'), $eventKey);
+        if ($newStatus !== ($lead['status'] ?? '')) {
+            $lead['status'] = $newStatus;
+            $lead['updated_at'] = gmdate('c');
+            $updated = true;
+        }
+        break;
+    }
+    unset($lead);
+
+    if ($updated) {
+        crm_save_json(CRM_LEADS_FILE, $leads);
+    }
+}
+
+function crm_track_event(string $eventKey, string $eventLabel, array $payload = []): array
+{
+    $events = crm_get_events();
+    $event = [
+        'id' => bin2hex(random_bytes(8)),
+        'event_key' => $eventKey,
+        'event_label' => $eventLabel,
+        'lead_id' => $payload['lead_id'] ?? null,
+        'visitor_id' => $payload['visitor_id'] ?? null,
+        'page' => $payload['page'] ?? null,
+        'meta' => is_array($payload['meta'] ?? null) ? $payload['meta'] : [],
+        'created_at' => gmdate('c'),
+    ];
+
+    $events[] = $event;
+    crm_save_json(CRM_EVENTS_FILE, $events);
+
+    if (!empty($event['lead_id'])) {
+        crm_update_status_from_event((string) $event['lead_id'], $eventKey);
+    }
+
+    return $event;
+}
+
+function crm_attach_visitor_events_to_lead(string $visitorId, string $leadId): int
+{
+    if ($visitorId === '' || $leadId === '') {
+        return 0;
+    }
+
+    $events = crm_get_events();
+    $updatedCount = 0;
+
+    foreach ($events as &$event) {
+        if (($event['visitor_id'] ?? '') !== $visitorId || !empty($event['lead_id'])) {
+            continue;
+        }
+
+        $event['lead_id'] = $leadId;
+        $updatedCount++;
+    }
+    unset($event);
+
+    if ($updatedCount > 0) {
+        crm_save_json(CRM_EVENTS_FILE, $events);
+    }
+
+    return $updatedCount;
+}
+
+function crm_compute_score(array $payload): int
+{
+    $pdo = crm_db();
+    $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id = :id LIMIT 1');
+    $stmt->execute([':id' => $id]);
+
+    $row = $stmt->fetch();
+    return is_array($row) ? $row : null;
+}
+
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_contacts(array $filters = []): array
 {
     $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
     $steps = [
@@ -170,7 +277,17 @@ function crm_update_lead(string $leadId, array $updates): bool
         }
 
         if (isset($updates['status'])) {
-            $allowed = ['nouveau', 'qualifie', 'rdv_planifie', 'close', 'perdu'];
+            $allowed = [
+                'nouveau',
+                'video_non_vue',
+                'video_vue',
+                'offre_vue',
+                'rdv_pris',
+                'rdv_realise',
+                'qualifie',
+                'paiement_envoye',
+                'client',
+            ];
             if (in_array($updates['status'], $allowed, true)) {
                 $lead['status'] = $updates['status'];
             }
@@ -189,12 +306,12 @@ function crm_update_lead(string $leadId, array $updates): bool
         break;
     }
 
-    if ($updated) {
-        crm_save_json(CRM_LEADS_FILE, $leads);
+    if (!empty($filters['q'])) {
+        $where[] = '(nom LIKE :q OR email LIKE :q OR telephone LIKE :q OR ville LIKE :q OR source LIKE :q)';
+        $params[':q'] = '%' . $filters['q'] . '%';
     }
 
-    return $updated;
-}
+    $sort = strtoupper((string) ($filters['sort'] ?? 'DESC')) === 'ASC' ? 'ASC' : 'DESC';
 
 function crm_mark_meeting_booked(array &$lead): void
 {
@@ -271,20 +388,33 @@ function crm_enqueue_due_sequence_emails(): array
     $queued = 0;
     $skipped = 0;
 
-    foreach ($leads as &$lead) {
-        if (empty($lead['email_sequence']) || !is_array($lead['email_sequence'])) {
-            continue;
+    $allowedStatuses = [
+        'nouveau',
+        'video_non_vue',
+        'video_vue',
+        'offre_vue',
+        'rdv_pris',
+        'rdv_realise',
+        'qualifie',
+        'paiement_envoye',
+        'client',
+    ];
+
+    return array_map(static function (array $lead) use ($defaults, $allowedStatuses): array {
+        $normalized = array_merge($defaults, $lead);
+        if (!in_array($normalized['status'], $allowedStatuses, true)) {
+            $normalized['status'] = 'nouveau';
         }
 
-        foreach ($lead['email_sequence'] as &$step) {
-            if (($step['status'] ?? 'pending') !== 'pending') {
-                continue;
-            }
+        return $normalized;
+    }, crm_get_leads());
+}
 
-            $dueAt = new DateTimeImmutable((string) $step['due_at']);
-            if ($dueAt > $now) {
-                continue;
-            }
+function crm_render_template(string $text, array $lead): string
+{
+    $allowedStatuses = ['nouveau', 'contacte', 'qualifie', 'proposition', 'negociation', 'converti', 'perdu'];
+    $fields = [];
+    $params = [':id' => $id];
 
             if (!crm_should_send_step($lead, $step)) {
                 $step['status'] = 'skipped';

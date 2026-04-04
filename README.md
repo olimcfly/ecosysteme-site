@@ -1,6 +1,6 @@
 # ecosysteme-site
 
-Landing page + tunnel de vente ECOSYSTEMEIMMO avec capture de leads, CRM admin et séquence email automatisée.
+CRM simple ECOSYSTEMEIMMO en PHP + MySQL pour capturer et piloter les leads.
 
 ## Structure
 
@@ -11,13 +11,19 @@ Landing page + tunnel de vente ECOSYSTEMEIMMO avec capture de leads, CRM admin e
 - `lib/crm.php` : logique métier CRM (stockage JSON, file d'attente, scoring, automatisation).
 - `storage/` : persistance locale des leads, queue et logs email.
 
-## Accès admin
+- Stockage des leads dans MySQL (`contacts`).
+- Organisation/tri par ville.
+- Filtre par statut du tunnel.
+- Recherche multi-champs (nom, email, téléphone, ville, source).
+- Dashboard rapide (total, aujourd'hui, convertis).
+- Sidebar avec : Dashboard, Contacts, Pipeline, Emails, Automations.
 
-- URL : `/admin/`
-- Mot de passe par défaut : `ecosystemeimmo2026`
-- À personnaliser dans `public/admin/index.php`.
+## Structure
 
-## Automatisation email
+- `public/admin/index.php` : interface CRM mobile friendly.
+- `public/api/contact.php` : création de leads.
+- `public/api/crm.php` : liste + filtres + mise à jour du statut tunnel.
+- `lib/crm.php` : accès MySQL + logique CRM.
 
 Déclencheur: formulaire rempli (`/api/contact.php`).
 
@@ -39,10 +45,17 @@ Technique:
 
 Exemple cron (toutes les 30 min):
 
-```bash
-*/30 * * * * curl -s -X POST "https://votre-domaine.fr/api/crm.php?action=send-sequence" >/dev/null 2>&1
-```
+- `id`
+- `nom`
+- `email`
+- `telephone`
+- `ville`
+- `source`
+- `statut_tunnel`
+- `date_creation`
 
-## Notes
+## Accès admin
 
-Le projet utilise `mail()` PHP pour l'envoi. En production, remplacez par un SMTP transactionnel (Brevo, Mailgun, Sendgrid).
+- URL : `/admin/`
+- Mot de passe par défaut : `ecosystemeimmo2026`
+- À personnaliser dans `public/admin/index.php`.
