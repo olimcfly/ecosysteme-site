@@ -52,21 +52,21 @@ function crm_ensure_schema(PDO $pdo): void
 
 function crm_create_lead(array $payload): array
 {
-    $pdo = crm_db();
-
-    $stmt = $pdo->prepare(
-        'INSERT INTO contacts (nom, email, telephone, ville, source, statut_tunnel)
-         VALUES (:nom, :email, :telephone, :ville, :source, :statut_tunnel)'
-    );
-
-    $stmt->execute([
-        ':nom' => $payload['nom'],
-        ':email' => $payload['email'],
-        ':telephone' => $payload['telephone'] ?? null,
-        ':ville' => $payload['ville'],
-        ':source' => $payload['source'] ?? 'landing_ecosystemeimmo',
-        ':statut_tunnel' => $payload['statut_tunnel'] ?? 'nouveau',
-    ]);
+    $leads = crm_get_leads();
+    $lead = [
+        'id' => bin2hex(random_bytes(8)),
+        'nom' => $payload['nom'],
+        'email' => $payload['email'],
+        'phone' => $payload['phone'] ?? '',
+        'city' => $payload['city'],
+        'status' => 'nouveau',
+        'score' => crm_compute_score($payload),
+        'source' => 'landing_ecosystemeimmo',
+        'notes' => '',
+        'estimated_amount' => 0,
+        'created_at' => gmdate('c'),
+        'email_sequence' => crm_build_email_sequence(),
+    ];
 
     $id = (int) $pdo->lastInsertId();
 
@@ -97,9 +97,45 @@ function crm_get_contacts(array $filters = []): array
         $params[':ville'] = $filters['ville'];
     }
 
-    if (!empty($filters['statut_tunnel'])) {
-        $where[] = 'statut_tunnel = :statut_tunnel';
-        $params[':statut_tunnel'] = $filters['statut_tunnel'];
+function crm_update_lead(string $leadId, array $updates): bool
+{
+    $leads = crm_get_leads();
+    $updated = false;
+
+    foreach ($leads as &$lead) {
+        if (($lead['id'] ?? '') !== $leadId) {
+            continue;
+        }
+
+        if (isset($updates['status'])) {
+            $allowed = [
+                'nouveau',
+                'video_non_vue',
+                'video_vue',
+                'offre_vue',
+                'rdv_pris',
+                'rdv_realise',
+                'qualifie',
+                'paiement_envoye',
+                'client',
+            ];
+            if (in_array($updates['status'], $allowed, true)) {
+                $lead['status'] = $updates['status'];
+            }
+        }
+
+        if (isset($updates['notes'])) {
+            $lead['notes'] = trim((string) $updates['notes']);
+        }
+
+        if (array_key_exists('estimated_amount', $updates)) {
+            $amount = is_numeric($updates['estimated_amount']) ? (float) $updates['estimated_amount'] : 0.0;
+            $lead['estimated_amount'] = max(0, round($amount, 2));
+        }
+
+        $lead['updated_at'] = gmdate('c');
+        $updated = true;
+        break;
     }
 
     if (!empty($filters['q'])) {
@@ -121,7 +157,40 @@ function crm_get_contacts(array $filters = []): array
     return $stmt->fetchAll();
 }
 
-function crm_update_contact(int $id, array $updates): bool
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_leads_with_defaults(): array
+{
+    $defaults = [
+        'status' => 'nouveau',
+        'notes' => '',
+        'estimated_amount' => 0,
+    ];
+
+    $allowedStatuses = [
+        'nouveau',
+        'video_non_vue',
+        'video_vue',
+        'offre_vue',
+        'rdv_pris',
+        'rdv_realise',
+        'qualifie',
+        'paiement_envoye',
+        'client',
+    ];
+
+    return array_map(static function (array $lead) use ($defaults, $allowedStatuses): array {
+        $normalized = array_merge($defaults, $lead);
+        if (!in_array($normalized['status'], $allowedStatuses, true)) {
+            $normalized['status'] = 'nouveau';
+        }
+
+        return $normalized;
+    }, crm_get_leads());
+}
+
+function crm_render_template(string $text, array $lead): string
 {
     $allowedStatuses = ['nouveau', 'contacte', 'qualifie', 'proposition', 'negociation', 'converti', 'perdu'];
     $fields = [];

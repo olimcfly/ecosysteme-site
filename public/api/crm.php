@@ -20,13 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($action === 'list') {
         echo json_encode([
             'ok' => true,
-            'leads' => crm_get_contacts([
-                'ville' => $_GET['ville'] ?? '',
-                'statut_tunnel' => $_GET['statut'] ?? '',
-                'q' => $_GET['q'] ?? '',
-                'sort' => $_GET['sort'] ?? 'DESC',
-            ]),
-            'stats' => crm_dashboard_stats(),
+            'leads' => crm_get_leads_with_defaults(),
         ]);
         exit;
     }
@@ -46,8 +40,10 @@ if ($action === 'update') {
         exit;
     }
 
-    $updated = crm_update_contact($id, [
-        'statut_tunnel' => $input['statut_tunnel'] ?? null,
+    $updated = crm_update_lead($leadId, [
+        'status' => $input['status'] ?? null,
+        'notes' => $input['notes'] ?? null,
+        'estimated_amount' => $input['estimated_amount'] ?? null,
     ]);
 
     if (!$updated) {
