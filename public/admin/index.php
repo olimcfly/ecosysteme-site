@@ -40,6 +40,8 @@ $loggedIn = !empty($_SESSION['crm_admin']);
     .btn{cursor:pointer;background:#0ea5e9;border-color:#0284c7;color:#fff}
     .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .small{font-size:.8rem;color:#94a3b8}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:10px 0 18px}
+    .stats .card{padding:12px}
     .ok{color:#22c55e}.err{color:#ef4444}
     .top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}
   </style>
@@ -67,6 +69,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
       <a href="/admin/?logout=1" class="btn" style="text-decoration:none;background:#475569;border-color:#334155">Déconnexion</a>
     </div>
   </div>
+  <div class="stats" id="stats"></div>
   <div class="card">
     <p id="feedback" class="small"></p>
     <table>
@@ -84,6 +87,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
 <script>
 const body = document.getElementById('lead-body');
 const feedback = document.getElementById('feedback');
+const statsNode = document.getElementById('stats');
 const statuses = ['nouveau','qualifie','rdv_planifie','close','perdu'];
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
@@ -92,10 +96,22 @@ async function loadLeads(){
   const res = await fetch('/api/crm.php?action=list');
   const data = await res.json();
   const leads = data.leads || [];
+  const globalStats = data.stats || {};
+
+  statsNode.innerHTML = [
+    ['Leads', globalStats.total_leads || 0],
+    ['Emails envoyés', globalStats.emails_sent || 0],
+    ['Ouvertures', globalStats.emails_opened || 0],
+    ['Clics', globalStats.emails_clicked || 0],
+    ['RDV pris', globalStats.rdv_taken || 0],
+  ].map(([label, value]) => `<div class="card"><div class="small">${esc(label)}</div><strong>${esc(value)}</strong></div>`).join('');
 
   body.innerHTML = leads.map(lead => {
-    const pending = (lead.email_sequence || []).filter(s => s.status === 'pending').length;
-    const sent = (lead.email_sequence || []).filter(s => s.status === 'sent').length;
+    const sequence = (lead.email_sequence || []).map(step => {
+      const opened = step.opened_at ? 'oui' : 'non';
+      const clicked = step.clicked_at ? 'oui' : 'non';
+      return `<li>${esc(step.name || step.id)} — ${esc(step.status || 'pending')} (open: ${opened}, click: ${clicked})</li>`;
+    }).join('');
 
     return `<tr>
       <td><strong>${esc(lead.nom)}</strong><div class="small">${esc(lead.city)}<br>${esc(lead.created_at)}</div></td>
@@ -106,7 +122,7 @@ async function loadLeads(){
         </select>
       </td>
       <td>${esc(lead.score)}/100</td>
-      <td><span class="small">Envoyés: ${sent}<br>En attente: ${pending}</span></td>
+      <td><ul class="small" style="margin:0;padding-left:18px">${sequence}</ul></td>
       <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2" style="min-width:180px">${esc(lead.notes || '')}</textarea></td>
       <td><button class="btn save" data-id="${esc(lead.id)}">Sauver</button></td>
     </tr>`;

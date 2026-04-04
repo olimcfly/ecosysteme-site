@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode([
             'ok' => true,
             'leads' => crm_get_leads(),
+            'stats' => crm_get_email_stats(),
+            'queue' => crm_get_email_queue(),
         ]);
         exit;
     }

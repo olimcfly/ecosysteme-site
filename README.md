@@ -1,6 +1,6 @@
 # ecosysteme-site
 
-Landing page + tunnel de vente ECOSYSTEMEIMMO avec capture de leads, CRM admin et séquence email automatisée.
+Landing page + tunnel de vente ECOSYSTEMEIMMO avec capture de leads, CRM admin et séquence email automatisée (queue + tracking + conditions).
 
 ## Structure
 
@@ -19,21 +19,39 @@ Landing page + tunnel de vente ECOSYSTEMEIMMO avec capture de leads, CRM admin e
 
 ## Automatisation email
 
-Chaque lead reçoit automatiquement une séquence de 4 emails (J0, J1, J3, J5), générée à la capture.
+Le système envoie une séquence de 4 emails :
+
+1. Email 1: accès vidéo
+2. Email 2: rappel vidéo (uniquement si vidéo non vue)
+3. Email 3: offre
+4. Email 4: urgence/rareté (si offre vue mais sans RDV)
+
+Condition d'arrêt: si le lead prend un RDV (`rdv_planifie`), la séquence est stoppée.
+
+Technique incluse :
+- Queue email persistée (`storage/email_queue.json`)
+- Worker cron pour planifier + envoyer
+- Tracking ouverture/clic via `/api/email-track.php`
 
 Pour déclencher les envois :
 
 1. Soit depuis l'admin (`Envoyer emails dus`).
-2. Soit via cron en appelant l'API:
+2. Soit via cron API :
 
 ```bash
 curl -X POST "https://votre-domaine.fr/api/crm.php?action=send-sequence"
 ```
 
-Exemple cron (toutes les 30 min) :
+3. Soit via cron CLI :
 
 ```bash
-*/30 * * * * curl -s -X POST "https://votre-domaine.fr/api/crm.php?action=send-sequence" >/dev/null 2>&1
+php scripts/email_cron.php
+```
+
+Exemple cron (toutes les 15 min) :
+
+```bash
+*/15 * * * * php /chemin/vers/ecosysteme-site/scripts/email_cron.php >/dev/null 2>&1
 ```
 
 ## Notes
