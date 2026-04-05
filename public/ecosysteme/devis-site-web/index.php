@@ -62,65 +62,98 @@
         <form id="devis-form" class="devis-form" novalidate>
           <input type="hidden" name="langue" id="langue" value="fr">
 
-          <label for="nom" data-i18n="fullName">Nom / Full name</label>
-          <input id="nom" name="nom" required>
+          <div class="form-step funnel-step" data-step="0">
+            <div class="form-group">
+              <label for="nom" data-i18n="fullName">Nom / Full name</label>
+              <input id="nom" name="nom" required>
+            </div>
 
-          <label for="activite" data-i18n="business">Votre activité / Your business</label>
-          <select id="activite" name="activite" required>
-            <option value="" data-i18n="chooseOption">Choisissez une option</option>
-            <option value="Conseiller immobilier">Conseiller immobilier</option>
-            <option value="Agence">Agence</option>
-            <option value="Artisan / Habitat">Artisan / Habitat</option>
-            <option value="Autre" data-i18n="other">Autre</option>
-          </select>
+            <div class="form-group">
+              <label for="activite" data-i18n="business">Votre activité / Your business</label>
+              <select id="activite" name="activite" required>
+                <option value="" data-i18n="chooseOption">Choisissez une option</option>
+                <option value="Conseiller immobilier">Conseiller immobilier</option>
+                <option value="Agence">Agence</option>
+                <option value="Artisan / Habitat">Artisan / Habitat</option>
+                <option value="Autre" data-i18n="other">Autre</option>
+              </select>
+            </div>
 
-          <label for="ville" data-i18n="city">Ville ou zone d'activité / City or service area</label>
-          <input id="ville" name="ville" required autocomplete="off" data-google-places="true">
-          <small class="form-hint" data-i18n="placesHint">Google Places peut être activé en ajoutant votre clé API Maps JavaScript.</small>
+            <div class="form-group">
+              <label for="ville" data-i18n="city">Ville ou zone d'activité / City or service area</label>
+              <input id="ville" name="ville" required autocomplete="off" data-google-places="true">
+              <small class="form-hint" data-i18n="placesHint">Google Places peut être activé en ajoutant votre clé API Maps JavaScript.</small>
+            </div>
 
-          <label for="type_site" data-i18n="siteType">Type de site souhaité / Type of website</label>
-          <select id="type_site" name="type_site" required>
-            <option value="" data-i18n="chooseOption">Choisissez une option</option>
-            <option value="Site vitrine" data-i18n="typeShowcase">Site vitrine</option>
-            <option value="Site immobilier" data-i18n="typeRealEstate">Site immobilier</option>
-            <option value="Site avec génération de leads" data-i18n="typeLeads">Site avec génération de leads</option>
-            <option value="Site SEO / blog" data-i18n="typeSeo">Site SEO / blog</option>
-            <option value="Je ne sais pas" data-i18n="dontKnow">Je ne sais pas</option>
-          </select>
+            <button type="button" class="btn btn-navy btn-full btn-cta btn-next">Continuer</button>
+          </div>
 
-          <label for="objectif" data-i18n="mainGoal">Votre objectif principal / Main goal</label>
-          <select id="objectif" name="objectif" required>
-            <option value="" data-i18n="chooseOption">Choisissez une option</option>
-            <option value="Avoir plus de prospects" data-i18n="goalLeads">Avoir plus de prospects</option>
-            <option value="Être visible localement" data-i18n="goalLocal">Être visible localement</option>
-            <option value="Lancer mon activité" data-i18n="goalLaunch">Lancer mon activité</option>
-            <option value="Moderniser mon site" data-i18n="goalModernize">Moderniser mon site</option>
-            <option value="Automatiser mes demandes" data-i18n="goalAutomate">Automatiser mes demandes</option>
-          </select>
+          <div class="form-step funnel-step" data-step="1">
+            <div class="form-group">
+              <label for="type_site" data-i18n="siteType">Type de site souhaité / Type of website</label>
+              <select id="type_site" name="type_site" required>
+                <option value="" data-i18n="chooseOption">Choisissez une option</option>
+                <option value="Site vitrine" data-i18n="typeShowcase">Site vitrine</option>
+                <option value="Site immobilier" data-i18n="typeRealEstate">Site immobilier</option>
+                <option value="Site avec génération de leads" data-i18n="typeLeads">Site avec génération de leads</option>
+                <option value="Site SEO / blog" data-i18n="typeSeo">Site SEO / blog</option>
+                <option value="Je ne sais pas" data-i18n="dontKnow">Je ne sais pas</option>
+              </select>
+            </div>
 
-          <fieldset class="radio-group">
-            <legend data-i18n="currentSite">Avez-vous déjà un site ? / Do you have a website?</legend>
-            <label><input type="radio" name="site_actuel" value="Oui" required> <span data-i18n="yes">Oui</span></label>
-            <label><input type="radio" name="site_actuel" value="Non"> <span data-i18n="no">Non</span></label>
-            <label><input type="radio" name="site_actuel" value="En cours"> <span data-i18n="inProgress">En cours</span></label>
-          </fieldset>
+            <div class="form-group">
+              <label for="objectif" data-i18n="mainGoal">Votre objectif principal / Main goal</label>
+              <select id="objectif" name="objectif" required>
+                <option value="" data-i18n="chooseOption">Choisissez une option</option>
+                <option value="Avoir plus de prospects" data-i18n="goalLeads">Avoir plus de prospects</option>
+                <option value="Être visible localement" data-i18n="goalLocal">Être visible localement</option>
+                <option value="Lancer mon activité" data-i18n="goalLaunch">Lancer mon activité</option>
+                <option value="Moderniser mon site" data-i18n="goalModernize">Moderniser mon site</option>
+                <option value="Automatiser mes demandes" data-i18n="goalAutomate">Automatiser mes demandes</option>
+              </select>
+            </div>
 
-          <label for="message" data-i18n="projectDesc">Décrivez votre besoin / Describe your project</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+            <fieldset class="radio-group form-group">
+              <legend data-i18n="currentSite">Avez-vous déjà un site ? / Do you have a website?</legend>
+              <label><input type="radio" name="site_actuel" value="Oui" required> <span data-i18n="yes">Oui</span></label>
+              <label><input type="radio" name="site_actuel" value="Non"> <span data-i18n="no">Non</span></label>
+              <label><input type="radio" name="site_actuel" value="En cours"> <span data-i18n="inProgress">En cours</span></label>
+            </fieldset>
 
-          <label for="delai" data-i18n="timeline">Délai souhaité / Timeline</label>
-          <select id="delai" name="delai" required>
-            <option value="" data-i18n="chooseOption">Choisissez une option</option>
-            <option value="Urgent" data-i18n="urgent">Urgent</option>
-            <option value="Ce mois-ci" data-i18n="thisMonth">Ce mois-ci</option>
-            <option value="1-3 mois" data-i18n="oneToThree">1–3 mois</option>
-            <option value="Plus tard" data-i18n="later">Plus tard</option>
-          </select>
+            <div class="mobile-step-actions">
+              <button type="button" class="btn btn-outline btn-prev">Précédent</button>
+              <button type="button" class="btn btn-navy btn-next">Continuer</button>
+            </div>
+          </div>
 
-          <button type="submit" class="btn btn-primary btn-full" id="submit-btn" data-i18n="cta">Recevoir ma recommandation</button>
+          <div class="form-step funnel-step" data-step="2">
+            <div class="form-group">
+              <label for="message" data-i18n="projectDesc">Décrivez votre besoin / Describe your project</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="delai" data-i18n="timeline">Délai souhaité / Timeline</label>
+              <select id="delai" name="delai" required>
+                <option value="" data-i18n="chooseOption">Choisissez une option</option>
+                <option value="Urgent" data-i18n="urgent">Urgent</option>
+                <option value="Ce mois-ci" data-i18n="thisMonth">Ce mois-ci</option>
+                <option value="1-3 mois" data-i18n="oneToThree">1–3 mois</option>
+                <option value="Plus tard" data-i18n="later">Plus tard</option>
+              </select>
+            </div>
+
+            <div class="mobile-step-actions">
+              <button type="button" class="btn btn-outline btn-prev">Précédent</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-cta" id="submit-btn" data-i18n="cta">Recevoir ma recommandation</button>
           <p class="devis-microcopy" data-i18n="microcopy">Réponse rapide et adaptée à votre activité. Sans engagement.</p>
           <p id="form-feedback" class="form-feedback" role="status" aria-live="polite"></p>
         </form>
+
+        <div class="progress-indicator" aria-live="polite"></div>
 
         <section id="success-box" class="success-box" hidden>
           <h3 data-i18n="successTitle">Merci, votre demande a bien été envoyée.</h3>

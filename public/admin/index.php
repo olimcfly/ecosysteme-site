@@ -2,27 +2,14 @@
 
 declare(strict_types=1);
 
-const ADMIN_PASSWORD = 'ecosystemeimmo2026';
+require_once __DIR__ . '/auth.php';
 
-session_start();
+$loggedIn = Auth::check();
 
-if (isset($_POST['password'])) {
-    if (hash_equals(ADMIN_PASSWORD, (string) $_POST['password'])) {
-        $_SESSION['crm_admin'] = true;
-        header('Location: /admin/');
-        exit;
-    }
-
-    $error = 'Mot de passe incorrect.';
-}
-
-if (isset($_GET['logout'])) {
-    unset($_SESSION['crm_admin']);
-    header('Location: /admin/');
+if (!$loggedIn) {
+    header('Location: /admin/login.php');
     exit;
 }
-
-$loggedIn = !empty($_SESSION['crm_admin']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,16 +62,63 @@ $loggedIn = !empty($_SESSION['crm_admin']);
   </style>
 </head>
 <body>
-<div class="wrap">
-  <?php if (!$loggedIn): ?>
-  <div class="card" style="max-width:420px;margin:10vh auto 0;">
-    <h1>Connexion CRM</h1>
-    <p class="small">Mot de passe par défaut: <strong>ecosystemeimmo2026</strong> (à changer dans <code>public/admin/index.php</code>).</p>
-    <?php if (!empty($error)): ?><p class="err"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p><?php endif; ?>
-    <form method="post">
-      <input type="password" name="password" placeholder="Mot de passe" required>
-      <button class="btn" type="submit">Se connecter</button>
-    </form>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">ECOSYSTEME<span>CRM</span></div>
+      <p class="small">Vue simple pour piloter les leads sans complexité.</p>
+      <nav class="menu">
+        <a class="active" href="#dashboard">Dashboard</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#leads">Leads</a>
+      </nav>
+      <div class="sidebar-foot">
+        <a href="/admin/logout.php" class="btn btn-ghost" style="display:block;text-align:center;text-decoration:none;">Déconnexion</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar" id="dashboard">
+        <div>
+          <h1 class="title">CRM Leads — Dashboard</h1>
+          <p class="small">Suivi, qualification et relances email.</p>
+        </div>
+        <div class="actions">
+          <button class="btn" id="send-sequence">Envoyer emails dus</button>
+        </div>
+      </header>
+
+      <section class="grid-kpi" aria-label="KPI CRM">
+        <article class="kpi"><div class="small">Total leads</div><div class="value" id="kpi-total">0</div></article>
+        <article class="kpi"><div class="small">Nouveaux</div><div class="value" id="kpi-new">0</div></article>
+        <article class="kpi"><div class="small">RDV planifiés</div><div class="value" id="kpi-rdv">0</div></article>
+        <article class="kpi"><div class="small">Emails en attente</div><div class="value" id="kpi-pending">0</div></article>
+      </section>
+
+      <section class="split">
+        <div class="surface surface-pad" id="pipeline">
+          <h2 style="margin:0 0 10px;font-size:1rem">Pipeline visuel</h2>
+          <div id="pipeline-board" class="pipeline"></div>
+        </div>
+        <div class="surface surface-pad">
+          <h2 style="margin:0 0 8px;font-size:1rem">Feedback système</h2>
+          <p id="feedback" class="small feedback"></p>
+          <p class="small">Astuce UX: mettez à jour uniquement les champs utiles, puis cliquez <strong>Sauver</strong>.</p>
+        </div>
+      </section>
+
+      <section class="surface" id="leads">
+        <div class="surface-pad table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Lead</th><th>Contact</th><th>Statut</th><th>Score</th><th>Séquence email</th><th>Notes</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="lead-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
   </div>
   <?php else: ?>
   <div class="top">
@@ -148,7 +182,6 @@ $loggedIn = !empty($_SESSION['crm_admin']);
 </div>
 <?php if ($loggedIn): ?>
 <script>
-const body = document.getElementById('lead-body');
 const feedback = document.getElementById('feedback');
 const periodFilter = document.getElementById('period-filter');
 const cityChart = document.getElementById('city-chart');
@@ -235,20 +268,24 @@ async function loadLeads(){
   const leads = getFilteredLeads();
 
   body.innerHTML = leads.map(lead => {
-    const pending = (lead.email_sequence || []).filter(s => s.status === 'pending').length;
-    const sent = (lead.email_sequence || []).filter(s => s.status === 'sent').length;
+    const sequence = (lead.email_sequence || []).map(step => {
+      const opened = step.opened_at ? 'oui' : 'non';
+      const clicked = step.clicked_at ? 'oui' : 'non';
+      return `<li>${esc(step.name || step.id)} — ${esc(step.status || 'pending')} (open: ${opened}, click: ${clicked})</li>`;
+    }).join('');
 
     return `<tr>
       <td><strong>${esc(lead.nom)}</strong><div class="small">${esc(lead.city)}<br>${esc(lead.created_at)}</div></td>
       <td>${esc(lead.email)}<br>${esc(lead.phone || '—')}</td>
       <td>
         <select data-id="${esc(lead.id)}" data-field="status">
-          ${statuses.map(s => `<option ${lead.status===s?'selected':''}>${s}</option>`).join('')}
+          ${statuses.map(s => `<option value="${s}" ${lead.status===s?'selected':''}>${labels[s]}</option>`).join('')}
         </select>
+        <div class="small">${esc(autoStatus)}</div>
       </td>
       <td>${esc(lead.score)}/100</td>
       <td><span class="small">Envoyés: ${sent}<br>En attente: ${pending}</span></td>
-      <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2" style="min-width:180px">${esc(lead.notes || '')}</textarea></td>
+      <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2">${esc(lead.notes || '')}</textarea></td>
       <td><button class="btn save" data-id="${esc(lead.id)}">Sauver</button></td>
     </tr>`;
   }).join('');
@@ -256,29 +293,34 @@ async function loadLeads(){
   renderDashboard(leads);
 }
 
-body.addEventListener('click', async (e) => {
-  if (!e.target.classList.contains('save')) return;
-  const id = e.target.dataset.id;
-  const status = document.querySelector(`[data-id="${id}"][data-field="status"]`).value;
-  const notes = document.querySelector(`[data-id="${id}"][data-field="notes"]`).value;
+function money(value) {
+  return new Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'EUR'}).format(Number(value || 0));
+}
 
+async function updateLead(id, payload) {
   const res = await fetch('/api/crm.php?action=update', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({lead_id: id, status, notes})
+    body: JSON.stringify({lead_id: id, ...payload}),
   });
 
   feedback.textContent = res.ok ? 'Lead mis à jour.' : 'Erreur de sauvegarde.';
-  feedback.className = res.ok ? 'ok' : 'err';
+  feedback.className = res.ok ? 'feedback ok' : 'feedback err';
+
+  if (res.ok) {
+    await loadLeads();
+  }
 });
 
 document.getElementById('send-sequence').addEventListener('click', async () => {
   const res = await fetch('/api/crm.php?action=send-sequence', {method: 'POST'});
   const data = await res.json();
   const sent = data.result?.sent || 0;
+  const queued = data.result?.queued || 0;
+  const skipped = data.result?.skipped || 0;
   const errors = (data.result?.errors || []).length;
   feedback.textContent = `Envoi terminé: ${sent} email(s) envoyé(s), ${errors} erreur(s).`;
-  feedback.className = errors ? 'err' : 'ok';
+  feedback.className = errors ? 'feedback err' : 'feedback ok';
   await loadLeads();
 });
 
@@ -286,6 +328,5 @@ periodFilter.addEventListener('change', loadLeads);
 
 loadLeads();
 </script>
-<?php endif; ?>
 </body>
 </html>
