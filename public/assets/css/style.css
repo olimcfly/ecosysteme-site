@@ -1426,6 +1426,20 @@ section { padding: 80px 0; }
   gap: 12px;
 }
 
+.form-step {
+  display: grid;
+  gap: 12px;
+}
+
+.mobile-step-actions {
+  display: none;
+}
+
+.form-group {
+  display: grid;
+  gap: 8px;
+}
+
 .devis-form input,
 .devis-form select,
 .devis-form textarea {
@@ -1478,4 +1492,52 @@ section { padding: 80px 0; }
 .lead-score {
   font-weight: 700;
   color: var(--green);
+}
+
+.progress-indicator {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .funnel-step {
+    padding: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .btn-cta {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .mobile-step-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .mobile-step-actions .btn {
+    flex: 1;
+  }
+
+  .progress-indicator {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+  }
+
+  .devis-main {
+    padding-bottom: 130px;
+  }
 }
