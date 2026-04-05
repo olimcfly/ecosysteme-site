@@ -14,11 +14,52 @@ if (!$loggedIn) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin CRM - Ecosystème Immo</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="/admin/css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CRM — ECOSYSTEMEIMMO</title>
+  <style>
+    :root{
+      --bg:#f1f5f9;
+      --surface:#ffffff;
+      --border:#dbe3ef;
+      --text:#0f172a;
+      --muted:#64748b;
+      --accent:#2563eb;
+      --accent-soft:#dbeafe;
+      --ok:#16a34a;
+      --err:#dc2626;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0}
+    .wrap{max-width:1200px;margin:0 auto;padding:18px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+    table{width:100%;border-collapse:collapse;font-size:.9rem}
+    th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+    select,textarea,input,button{font:inherit;border-radius:10px;border:1px solid #c5d1e1;padding:8px;background:#fff;color:var(--text)}
+    .btn{cursor:pointer;background:var(--accent);border-color:#1d4ed8;color:#fff}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .small{font-size:.82rem;color:var(--muted)}
+    .ok{color:var(--ok)}.err{color:var(--err)}
+    .top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}
+    .dashboard{display:grid;gap:12px}
+    .kpis{display:grid;grid-template-columns:repeat(6,minmax(130px,1fr));gap:10px}
+    .kpi{padding:12px;border-radius:12px;border:1px solid var(--border);background:#f8fafc}
+    .kpi .label{font-size:.78rem;color:var(--muted);display:block}
+    .kpi .value{font-size:1.2rem;font-weight:700}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .chart-list{display:grid;gap:8px;margin-top:6px}
+    .bar-row{display:grid;grid-template-columns:90px 1fr 48px;gap:8px;align-items:center}
+    .bar{height:10px;border-radius:999px;background:var(--accent-soft);overflow:hidden}
+    .bar span{display:block;height:100%;background:var(--accent)}
+    .quick-list{display:grid;gap:6px;padding:0;margin:0;list-style:none}
+    .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#eef2ff;color:#3730a3;font-size:.75rem}
+    .table-wrap{overflow:auto}
+    @media (max-width:980px){
+      .kpis{grid-template-columns:repeat(2,minmax(140px,1fr))}
+      .grid-2{grid-template-columns:1fr}
+      .top{flex-direction:column;align-items:flex-start}
+    }
+  </style>
 </head>
 <body>
   <div class="layout">
@@ -79,100 +120,152 @@ if (!$loggedIn) {
       </section>
     </main>
   </div>
+  <?php else: ?>
+  <div class="top">
+    <div>
+      <h1 style="margin:0">CRM Leads — ECOSYSTEMEIMMO</h1>
+      <p class="small">Capture, qualification et séquence email automatisée.</p>
+    </div>
+    <div class="row">
+      <button class="btn" id="send-sequence">Envoyer emails dus</button>
+      <a href="/admin/?logout=1" class="btn" style="text-decoration:none;background:#475569;border-color:#334155">Déconnexion</a>
+    </div>
+  </div>
+  <div class="dashboard" style="margin-bottom:12px">
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <h2 style="margin:0 0 4px 0">Dashboard CRM</h2>
+          <p class="small" style="margin:0">Vue rapide avec filtres par période, indicateurs clés et graphiques.</p>
+        </div>
+        <div class="row">
+          <label class="small" for="period-filter">Période</label>
+          <select id="period-filter">
+            <option value="7">7 derniers jours</option>
+            <option value="30" selected>30 derniers jours</option>
+            <option value="90">90 derniers jours</option>
+            <option value="all">Toutes les données</option>
+          </select>
+        </div>
+      </div>
+      <div class="kpis" id="kpi-grid" style="margin-top:12px"></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="margin-top:0">Graphique — Leads par ville</h3>
+        <div id="city-chart" class="chart-list"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Graphique — Leads par statut</h3>
+        <div id="status-chart" class="chart-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Vue rapide</h3>
+      <ul id="quick-view" class="quick-list"></ul>
+    </div>
+  </div>
+  <div class="card">
+    <p id="feedback" class="small"></p>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Lead</th><th>Contact</th><th>Statut</th><th>Score</th><th>Séquence email</th><th>Notes</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="lead-body"></tbody>
+    </table>
+    </div>
+  </div>
+  <?php endif; ?>
+</div>
+<?php if ($loggedIn): ?>
 <script>
 const feedback = document.getElementById('feedback');
-const statsNode = document.getElementById('stats');
+const periodFilter = document.getElementById('period-filter');
+const cityChart = document.getElementById('city-chart');
+const statusChart = document.getElementById('status-chart');
+const kpiGrid = document.getElementById('kpi-grid');
+const quickView = document.getElementById('quick-view');
 const statuses = ['nouveau','qualifie','rdv_planifie','close','perdu'];
-const labels = {
-  nouveau: 'Nouveau',
-  qualifie: 'Qualifié',
-  rdv_planifie: 'RDV planifié',
-  close: 'Clos',
-  perdu: 'Perdu'
-};
+let allLeads = [];
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
-function badge(txt){return `<span class="badge">${esc(txt)}</span>`;}
+function fmt(n){return new Intl.NumberFormat('fr-FR').format(Number(n || 0));}
+function money(n){return new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n||0));}
 
-function renderStats(stats={}){
-  const cards = [
-    ['Leads', stats.leads || 0],
-    ['Emails envoyés', stats.emails_sent || 0],
-    ['File d\'attente', stats.queue_pending || 0],
-    ['Ouvertures', `${stats.opens || 0} (${stats.open_rate || 0}%)`],
-    ['Clics', `${stats.clicks || 0} (${stats.click_rate || 0}%)`],
-    ['RDV', stats.rdv || 0],
-  ];
-
-  statsBox.innerHTML = cards.map(([label,val]) => `<div class="stat"><span class="small">${esc(label)}</span><strong>${esc(val)}</strong></div>`).join('');
+function getFilteredLeads(){
+  const p = periodFilter.value;
+  if (p === 'all') return allLeads;
+  const days = Number(p);
+  const cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
+  return allLeads.filter(lead => {
+    const created = Date.parse(lead.created_at || '');
+    return !Number.isNaN(created) && created >= cutoff;
+  });
 }
 
-function renderSequence(lead){
-  return (lead.email_sequence || []).map((step, index) => {
-    const key = step.key || `email_${index+1}`;
-    return `${badge(`#${index+1} ${key}`)} ${esc(step.status || 'pending')}<br><span class="small">${esc(step.sent_at || step.due_at || '')}</span>`;
-  }).join('<hr style="border-color:#1f2937">');
-}
-
-function renderEmailStats(lead){
-  const opens = (lead.email_sequence || []).reduce((a,s)=>a + (Number(s.open_count)||0),0);
-  const clicks = (lead.email_sequence || []).reduce((a,s)=>a + (Number(s.click_count)||0),0);
-  const auto = lead.automation || {};
-  return `<span class="small">Ouvertures: ${opens}<br>Clics: ${clicks}<br>Vidéo vue: ${auto.video_viewed ? 'oui' : 'non'}<br>Offre vue: ${auto.offer_viewed ? 'oui' : 'non'}<br>RDV: ${auto.meeting_booked ? 'pris' : 'non pris'}</span>`;
-}
-
-function setKpi(id, value){
-  const el = document.getElementById(id);
-  if (el) el.textContent = value;
-}
-
-function renderPipeline(leads){
-  const board = document.getElementById('pipeline-board');
-  if (!board) return;
-
-  const grouped = statuses.reduce((acc, s) => {
-    acc[s] = leads.filter(lead => lead.status === s);
+function countBy(leads, key){
+  return leads.reduce((acc, lead) => {
+    const raw = (lead[key] || 'Non renseigné').toString().trim();
+    const value = raw || 'Non renseigné';
+    acc[value] = (acc[value] || 0) + 1;
     return acc;
   }, {});
-
-  board.innerHTML = statuses.map(stage => `
-    <article class="stage">
-      <h3>${labels[stage]} (${grouped[stage].length})</h3>
-      <div>
-        ${grouped[stage].slice(0, 6).map(lead => `<span class="chip">${esc(lead.nom || 'Lead')}</span>`).join('') || '<span class="small">Aucun lead</span>'}
-      </div>
-    </article>
-  `).join('');
 }
 
-function renderKpi(leads){
-  const total = leads.length;
-  const newCount = leads.filter(l => l.status === 'nouveau').length;
-  const rdvCount = leads.filter(l => l.status === 'rdv_planifie').length;
-  const pending = leads.reduce((sum, lead) => sum + (lead.email_sequence || []).filter(s => s.status === 'pending').length, 0);
+function renderBars(el, source){
+  const entries = Object.entries(source).sort((a,b) => b[1]-a[1]).slice(0,8);
+  const max = entries.length ? entries[0][1] : 1;
+  el.innerHTML = entries.length ? entries.map(([label, value]) => `
+    <div class="bar-row">
+      <span class="small">${esc(label)}</span>
+      <div class="bar"><span style="width:${Math.max(8,(value/max)*100)}%"></span></div>
+      <strong>${value}</strong>
+    </div>
+  `).join('') : '<p class="small">Aucune donnée pour cette période.</p>';
+}
 
-  setKpi('kpi-total', total);
-  setKpi('kpi-new', newCount);
-  setKpi('kpi-rdv', rdvCount);
-  setKpi('kpi-pending', pending);
+function computePotentialRevenue(leads){
+  const weights = {nouveau: 1200, qualifie: 3500, rdv_planifie: 7000, close: 12000, perdu: 0};
+  return leads.reduce((sum, lead) => sum + (weights[lead.status] || 0), 0);
+}
+
+function renderDashboard(leads){
+  const byStatus = countBy(leads, 'status');
+  const byCity = countBy(leads, 'city');
+  const rdvCount = (byStatus.rdv_planifie || 0) + (byStatus.close || 0);
+  const conversion = leads.length ? (((byStatus.close || 0) / leads.length) * 100) : 0;
+  const potentialRevenue = computePotentialRevenue(leads);
+
+  kpiGrid.innerHTML = [
+    ['Leads totaux', fmt(leads.length)],
+    ['Leads qualifiés', fmt(byStatus.qualifie || 0)],
+    ['Nombre de RDV pris', fmt(rdvCount)],
+    ['Taux de conversion', `${conversion.toFixed(1)}%`],
+    ['CA potentiel', money(potentialRevenue)],
+    ['Villes actives', fmt(Object.keys(byCity).length)],
+  ].map(([label, value]) => `<div class="kpi"><span class="label">${label}</span><span class="value">${value}</span></div>`).join('');
+
+  renderBars(cityChart, byCity);
+  renderBars(statusChart, byStatus);
+
+  const topCity = Object.entries(byCity).sort((a,b) => b[1]-a[1])[0];
+  const lastLead = [...leads].sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')))[0];
+  quickView.innerHTML = `
+    <li><strong>Ville dominante :</strong> ${topCity ? `${esc(topCity[0])} <span class="pill">${topCity[1]} lead(s)</span>` : '—'}</li>
+    <li><strong>Statut dominant :</strong> ${Object.entries(byStatus).sort((a,b) => b[1]-a[1])[0]?.[0] || '—'}</li>
+    <li><strong>Dernier lead :</strong> ${lastLead ? `${esc(lastLead.nom || 'Sans nom')} (${esc(lastLead.city || 'Ville inconnue')})` : '—'}</li>
+    <li><strong>Période active :</strong> ${periodFilter.options[periodFilter.selectedIndex].text}</li>
+  `;
 }
 
 async function loadLeads(){
   const res = await fetch('/api/crm.php?action=list');
   const data = await res.json();
-  const leads = data.leads || [];
-  const globalStats = data.stats || {};
-
-  statsNode.innerHTML = [
-    ['Leads', globalStats.total_leads || 0],
-    ['Emails envoyés', globalStats.emails_sent || 0],
-    ['Ouvertures', globalStats.emails_opened || 0],
-    ['Clics', globalStats.emails_clicked || 0],
-    ['RDV pris', globalStats.rdv_taken || 0],
-  ].map(([label, value]) => `<div class="card"><div class="small">${esc(label)}</div><strong>${esc(value)}</strong></div>`).join('');
-
-  renderKpi(leads);
-  renderPipeline(leads);
+  allLeads = data.leads || [];
+  const leads = getFilteredLeads();
 
   body.innerHTML = leads.map(lead => {
     const sequence = (lead.email_sequence || []).map(step => {
@@ -194,7 +287,10 @@ async function loadLeads(){
       <td><span class="small">Envoyés: ${sent}<br>En attente: ${pending}</span></td>
       <td><textarea data-id="${esc(lead.id)}" data-field="notes" rows="2">${esc(lead.notes || '')}</textarea></td>
       <td><button class="btn save" data-id="${esc(lead.id)}">Sauver</button></td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
+
+  renderDashboard(leads);
 }
 
 function money(value) {
@@ -228,16 +324,7 @@ document.getElementById('send-sequence').addEventListener('click', async () => {
   await loadLeads();
 });
 
-let timer;
-function debounceReload(){
-  clearTimeout(timer);
-  timer = setTimeout(loadLeads, 250);
-}
-
-searchInput.addEventListener('input', debounceReload);
-cityFilter.addEventListener('change', loadLeads);
-statusFilter.addEventListener('change', loadLeads);
-sortFilter.addEventListener('change', loadLeads);
+periodFilter.addEventListener('change', loadLeads);
 
 loadLeads();
 </script>
