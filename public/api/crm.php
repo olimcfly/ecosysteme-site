@@ -69,13 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $jsonInput = json_decode(file_get_contents('php://input'), true) ?: [];
 
 if ($action === 'update') {
-    $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-    if ($id === null || $id === false) {
-        $id = isset($jsonInput['id']) ? filter_var($jsonInput['id'], FILTER_VALIDATE_INT) : false;
-    }
-
-    if (!is_int($id) || $id <= 0) {
-        api_error('missing_id', 422);
+    $leadId = (string) ($input['lead_id'] ?? $input['id'] ?? '');
+    if ($leadId === '') {
+        http_response_code(422);
+        echo json_encode(['ok' => false, 'error' => 'lead_id manquant']);
         exit;
     }
 
