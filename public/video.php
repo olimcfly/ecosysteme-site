@@ -79,6 +79,49 @@ if (empty($_SESSION['csrf_token'])) {
     .privacy-link:hover { color: #cbd5e0; }
     .error-message { color: #f56565; font-size: 14px; margin-top: 5px; display: none; }
     .info-message { margin-bottom: 16px; font-size: 14px; color: #bfdbfe; }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 200;
+    }
+    .popup-overlay.is-open { display: flex; }
+    .popup-card {
+      width: min(640px, 100%);
+      background: #111827;
+      border: 1px solid rgba(147, 197, 253, 0.45);
+      border-radius: 14px;
+      padding: 28px;
+      text-align: left;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+    .popup-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .popup-card p { font-size: 0.95rem; margin-bottom: 14px; max-width: none; }
+    .popup-summary {
+      margin: 16px 0;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(148, 163, 184, 0.15);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .popup-summary strong { color: #bfdbfe; }
+    .popup-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .popup-actions .cta-offer {
+      background: #4a90e2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    .popup-actions .cta-offer:hover { background: #357abd; }
     @media (max-width: 768px) {
       .slide { padding: 16vw 8vw; }
       .controls { flex-wrap: wrap; bottom: 20px; }
@@ -148,6 +191,23 @@ if (empty($_SESSION['csrf_token'])) {
   </div>
 </div>
 
+
+<div class="popup-overlay" id="offerPopup" role="dialog" aria-modal="true" aria-labelledby="offerPopupTitle">
+  <div class="popup-card">
+    <h3 id="offerPopupTitle">Merci, votre demande est bien enregistrée ✅</h3>
+    <p>Voici le récapitulatif de votre formulaire :</p>
+    <div class="popup-summary" id="popupSummary"></div>
+    <p>
+      Astuce visibilité locale : tapez <strong>"vendre maison + votre ville"</strong> sur Google pour vérifier
+      si un propriétaire peut réellement vous trouver sur internet.
+    </p>
+    <div class="popup-actions">
+      <a href="#" id="offerCta" class="cta-offer">Consulter l'offre</a>
+      <button type="button" class="secondary" id="closePopup">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const slides = document.querySelectorAll('.slide');
   const progressBar = document.getElementById('progressBar');
@@ -155,6 +215,10 @@ if (empty($_SESSION['csrf_token'])) {
   const prevBtn = document.getElementById('prevBtn');
   const formSection = document.getElementById('formSection');
   const form = document.getElementById('leadForm');
+  const offerPopup = document.getElementById('offerPopup');
+  const popupSummary = document.getElementById('popupSummary');
+  const offerCta = document.getElementById('offerCta');
+  const closePopup = document.getElementById('closePopup');
 
   let current = 0;
 
@@ -199,6 +263,8 @@ if (empty($_SESSION['csrf_token'])) {
   });
 
   form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
     let isValid = true;
 
     const name = document.getElementById('name');
@@ -230,7 +296,49 @@ if (empty($_SESSION['csrf_token'])) {
     }
 
     if (!isValid) {
-      e.preventDefault();
+      return;
+    }
+
+    const submitBtn = form.querySelector('.submit-btn');
+    const initialText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours...';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (!data.success || !data.offer_url) {
+          throw new Error(data.message || 'Une erreur est survenue.');
+        }
+
+        popupSummary.innerHTML = '<strong>Nom :</strong> ' + name.value + '<br>'
+          + '<strong>Email :</strong> ' + email.value + '<br>'
+          + '<strong>Ville / Zone :</strong> ' + city.value;
+        offerCta.href = data.offer_url;
+        offerPopup.classList.add('is-open');
+      })
+      .catch(error => {
+        alert(error.message || "Impossible d'envoyer le formulaire pour le moment.");
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = initialText;
+      });
+  });
+
+  closePopup.addEventListener('click', () => {
+    offerPopup.classList.remove('is-open');
+  });
+
+  offerPopup.addEventListener('click', (event) => {
+    if (event.target === offerPopup) {
+      offerPopup.classList.remove('is-open');
     }
   });
 </script>

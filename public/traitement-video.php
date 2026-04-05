@@ -7,6 +7,8 @@ require_once __DIR__ . '/tracking.php';
 
 session_start();
 
+$wantsJson = str_contains(strtolower((string) ($_SERVER['HTTP_ACCEPT'] ?? '')), 'application/json');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: /video.php');
     exit;
@@ -16,6 +18,13 @@ $csrfToken = (string) ($_POST['csrf_token'] ?? '');
 $sessionCsrfToken = (string) ($_SESSION['csrf_token'] ?? '');
 
 if ($csrfToken === '' || $sessionCsrfToken === '' || !hash_equals($sessionCsrfToken, $csrfToken)) {
+    if ($wantsJson) {
+        header('Content-Type: application/json; charset=UTF-8');
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Session expirée, merci de recharger la page.']);
+        exit;
+    }
+
     header('Location: /video.php?error=csrf');
     exit;
 }
@@ -28,6 +37,13 @@ $website = trim((string) ($_POST['website'] ?? ''));
 $message = trim((string) ($_POST['message'] ?? ''));
 
 if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $city === '') {
+    if ($wantsJson) {
+        header('Content-Type: application/json; charset=UTF-8');
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Veuillez compléter les champs obligatoires.']);
+        exit;
+    }
+
     header('Location: /video.php?error=validation');
     exit;
 }
@@ -64,5 +80,16 @@ if ($website !== '' || $message !== '') {
     }
 }
 
-header('Location: /confirmation.php');
+$offerUrl = '/offre.php?lead=' . urlencode((string) ($lead['id'] ?? ''));
+
+if ($wantsJson) {
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode([
+        'success' => true,
+        'offer_url' => $offerUrl,
+    ]);
+    exit;
+}
+
+header('Location: ' . $offerUrl);
 exit;
