@@ -76,3 +76,22 @@ Exemple cron (toutes les 15 min) :
 ADMIN_EMAIL=admin@ecosystemeimmo.com
 ADMIN_PASSWORD=$argon2id$...
 ```
+
+## API : automatisation demande logement
+
+Endpoint ajouté pour automatiser l'envoi d'une demande vers `contact@ecosystemeimmo.fr` avec génération d'un code dossier.
+
+- URL : `POST /api/logement-automation.php`
+- Payload JSON minimum :
+
+```json
+{
+  "nom": "Votre nom",
+  "email": "vous@example.com",
+  "ville": "Lyon"
+}
+```
+
+Champs optionnels : `telephone`, `budget`, `message`, `source`.
+
+Réponse : `lead_id`, `request_code`, `mail_sent`.
