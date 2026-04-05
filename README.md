@@ -67,6 +67,12 @@ Exemple cron (toutes les 15 min) :
 
 ## Accès admin
 
-- URL : `/admin/`
-- Mot de passe par défaut : `ecosystemeimmo2026`
-- À personnaliser dans `public/admin/index.php`.
+- URL : `/admin/login.php`
+- Variables d'environnement requises : `ADMIN_EMAIL` et `ADMIN_PASSWORD` (hash Argon2id).
+- Générer un hash : `php -r "echo password_hash('votre_mot_de_passe', PASSWORD_ARGON2ID), PHP_EOL;"`
+- Exemple `.env` :
+
+```env
+ADMIN_EMAIL=admin@ecosystemeimmo.com
+ADMIN_PASSWORD=$argon2id$...
+```

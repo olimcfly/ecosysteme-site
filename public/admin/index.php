@@ -2,27 +2,14 @@
 
 declare(strict_types=1);
 
-const ADMIN_PASSWORD = 'ecosystemeimmo2026';
+require_once __DIR__ . '/auth.php';
 
-session_start();
+$loggedIn = Auth::check();
 
-if (isset($_POST['password'])) {
-    if (hash_equals(ADMIN_PASSWORD, (string) $_POST['password'])) {
-        $_SESSION['crm_admin'] = true;
-        header('Location: /admin/');
-        exit;
-    }
-
-    $error = 'Mot de passe incorrect.';
-}
-
-if (isset($_GET['logout'])) {
-    unset($_SESSION['crm_admin']);
-    header('Location: /admin/');
+if (!$loggedIn) {
+    header('Location: /admin/login.php');
     exit;
 }
-
-$loggedIn = !empty($_SESSION['crm_admin']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -112,17 +99,6 @@ $loggedIn = !empty($_SESSION['crm_admin']);
   </style>
 </head>
 <body>
-  <?php if (!$loggedIn): ?>
-  <div class="login-card">
-    <h1 style="margin-top:0">Connexion CRM</h1>
-    <p class="small" style="margin:0 0 14px">Mot de passe par défaut: <strong>ecosystemeimmo2026</strong> (à changer dans <code>public/admin/index.php</code>).</p>
-    <?php if (!empty($error)): ?><p class="err"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p><?php endif; ?>
-    <form method="post" class="login-form">
-      <input type="password" name="password" placeholder="Mot de passe" required>
-      <button class="btn" type="submit">Se connecter</button>
-    </form>
-  </div>
-  <?php else: ?>
   <div class="layout">
     <aside class="sidebar">
       <div class="brand">ECOSYSTEME<span>CRM</span></div>
@@ -133,7 +109,7 @@ $loggedIn = !empty($_SESSION['crm_admin']);
         <a href="#leads">Leads</a>
       </nav>
       <div class="sidebar-foot">
-        <a href="/admin/?logout=1" class="btn btn-ghost" style="display:block;text-align:center;text-decoration:none;">Déconnexion</a>
+        <a href="/admin/logout.php" class="btn btn-ghost" style="display:block;text-align:center;text-decoration:none;">Déconnexion</a>
       </div>
     </aside>
 
@@ -181,9 +157,6 @@ $loggedIn = !empty($_SESSION['crm_admin']);
       </section>
     </main>
   </div>
-  <?php endif; ?>
-
-<?php if ($loggedIn): ?>
 <script>
 const feedback = document.getElementById('feedback');
 const statsNode = document.getElementById('stats');
@@ -346,6 +319,5 @@ sortFilter.addEventListener('change', loadLeads);
 
 loadLeads();
 </script>
-<?php endif; ?>
 </body>
 </html>
