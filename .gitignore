@@ -1,6 +1,14 @@
-/vendor/
-composer.lock
-
-/storage/*.json
-
+# Fichiers sensibles
 .env
+/storage/
+/public/config/config.php
+
+# Dépendances PHP
+/vendor/
+/composer.lock  # ← À retirer (voir note ci-dessous)
+
+# Logs et données
+*.log
+*.json
+!public/pages/ressources/guide-mots-cles.pdf  # Si tu veux versionner ce PDF
+

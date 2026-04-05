@@ -1,0 +1,9 @@
+# Bloquer TOUT accès à ce dossier
+Order Allow,Deny
+Deny from all
+
+# Désactiver l'exécution de PHP
+php_flag engine off
+
+# Empêcher le listing des fichiers
+Options -Indexes

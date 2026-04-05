@@ -1,0 +1,192 @@
+# =============================================
+# 🚀 CONFIGURATION DE BASE
+# =============================================
+
+# Activer le moteur de réécriture (obligatoire pour les redirections)
+RewriteEngine On
+
+# Désactiver l'affichage des fichiers dans les dossiers (sécurité)
+Options -Indexes
+
+# Définir le fuseau horaire pour les logs (optionnel)
+SetEnv TZ Europe/Paris
+
+# =============================================
+# 🔒 SÉCURITÉ AVANCÉE
+# =============================================
+
+# Bloquer l'accès aux fichiers sensibles
+<FilesMatch "\.(htaccess|ini|log|sh|inc|bak|sql|php~|php\.bak|config\.php|env|gitignore|gitattributes)$">
+    Require all denied
+</FilesMatch>
+
+# Protection contre les attaques courantes
+<IfModule mod_headers.c>
+    # Protection XSS
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Empêcher le sniffing MIME
+    Header set X-Content-Type-Options "nosniff"
+
+    # Empêcher le clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Politique de référencement
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Politique de sécurité du contenu (CSP)
+    Header set Content-Security-Policy "\
+        default-src 'self' https:; \
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://connect.facebook.net; \
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; \
+        img-src 'self' data: https://* https://www.google-analytics.com; \
+        font-src 'self' https://fonts.gstatic.com; \
+        frame-src https://calendly.com https://www.youtube.com; \
+        connect-src 'self' https://www.google-analytics.com; \
+        object-src 'none'; \
+        base-uri 'self'; \
+        form-action 'self' https://calendly.com; \
+        frame-ancestors 'none'"
+
+    # HSTS (HTTP Strict Transport Security)
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+</IfModule>
+
+# =============================================
+# 🔄 REDIRECTIONS & SEO
+# =============================================
+
+# Forcer HTTPS (obligatoire pour les tunnels de conversion)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
+
+# Rediriger la racine vers la page de capture
+RewriteRule ^$ /pages/capture/ [L]
+
+# Supprimer les extensions .php (SEO-friendly)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Rediriger les anciennes URLs vers les nouvelles (exemple)
+# RewriteRule ^ancienne-page$ /pages/nouvelle-page/ [R=301,L]
+
+# =============================================
+# ⚡ PERFORMANCE & CACHE
+# =============================================
+
+# Compression Gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE \
+        text/html text/plain text/xml text/css text/javascript \
+        application/javascript application/x-javascript application/json \
+        application/xml application/xhtml+xml \
+        image/svg+xml font/woff font/woff2
+</IfModule>
+
+# Cache navigateur (optimisé pour les tunnels de conversion)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # Images (1 an)
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # CSS & JS (1 an)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+
+    # Polices (1 an)
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+
+    # Favicon (1 an)
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # Pages HTML (1 heure - pour les mises à jour fréquentes)
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# =============================================
+# 🛡️ PROTECTION CONTRE LES ATTAQUES
+# =============================================
+
+# Protection contre les bots malveillants
+SetEnvIfNoCase User-Agent "libwww-perl" bad_bot
+SetEnvIfNoCase User-Agent "GetRight" bad_bot
+SetEnvIfNoCase User-Agent "GetWeb!" bad_bot
+SetEnvIfNoCase User-Agent "Go!Zilla" bad_bot
+SetEnvIfNoCase User-Agent "Download Demon" bad_bot
+SetEnvIfNoCase User-Agent "Go-Ahead-Got-It" bad_bot
+SetEnvIfNoCase User-Agent "TurnitinBot" bad_bot
+SetEnvIfNoCase User-Agent "GrabNet" bad_bot
+SetEnvIfNoCase User-Agent "SemrushBot" bad_bot
+SetEnvIfNoCase User-Agent "AhrefsBot" bad_bot
+SetEnvIfNoCase User-Agent "MJ12bot" bad_bot
+Deny from env=bad_bot
+
+# Bloquer le hotlinking des images
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?votredomaine\.com/ [NC]
+RewriteCond %{HTTP_REFERER} !^$
+RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [NC,F,L]
+
+# Limiter les requêtes par IP (protection DDoS)
+<IfModule mod_evasive24.c>
+    DOSHashTableSize 3097
+    DOSPageCount 2
+    DOSSiteCount 50
+    DOSPageInterval 1
+    DOSSiteInterval 1
+    DOSBlockingPeriod 300
+    DOSEmailNotify votre@email.com
+</IfModule>
+
+# =============================================
+# ⚠️ GESTION DES ERREURS
+# =============================================
+
+# Pages d'erreur personnalisées
+ErrorDocument 400 /pages/erreurs/400.php
+ErrorDocument 401 /pages/erreurs/401.php
+ErrorDocument 403 /pages/erreurs/403.php
+ErrorDocument 404 /pages/erreurs/404.php
+ErrorDocument 500 /pages/erreurs/500.php
+
+# Rediriger les erreurs vers une page générique
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /pages/erreurs/404.php [L]
+
+# =============================================
+# 🐘 PARAMÈTRES PHP (si autorisés par l'hébergeur)
+# =============================================
+
+<IfModule mod_php7.c>
+    # Limites pour les formulaires
+    php_value memory_limit 256M
+    php_value upload_max_filesize 64M
+    php_value post_max_size 64M
+
+    # Temps d'exécution
+    php_value max_execution_time 300
+    php_value max_input_time 300
+
+    # Sécurité
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log "/var/log/php_errors.log"
+
+    # Sessions
+    php_value session.cookie_httponly On
+    php_value session.cookie_secure On
+    php_value session.use_strict_mode On
+</IfModule>

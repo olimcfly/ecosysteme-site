@@ -1,0 +1,34 @@
+# Désactiver l'exécution de PHP dans le dossier assets
+php_flag engine off
+
+# Bloquer l'accès direct aux fichiers sensibles
+<FilesMatch "\.(psd|log|sh|bak|sql|inc|tpl)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Cache agressif pour les assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # CSS, JS
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+
+    # Polices
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# Désactiver le listing des dossiers
+Options -Indexes
