@@ -30,17 +30,27 @@ $hasErrors = false;
 
 // Traitement des erreurs et anciennes valeurs
 if (isset($_GET['errors'])) {
-    $decodedErrors = json_decode((string) $_GET['errors'], true, 512, JSON_THROW_ON_ERROR);
-    $decodedOld = json_decode((string) ($_GET['old'] ?? ''), true, 512, JSON_THROW_ON_ERROR);
+    $decodedErrors = json_decode((string) $_GET['errors'], true);
+    $decodedOld = json_decode((string) ($_GET['old'] ?? ''), true);
 
     if (is_array($decodedErrors)) {
-        $errors = array_map('htmlspecialchars', $decodedErrors);
+        $errors = array_map(static fn ($error): string => htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8'), $decodedErrors);
         $hasErrors = true;
     }
 
     if (is_array($decodedOld)) {
-        $old = array_merge($old, array_map('htmlspecialchars', $decodedOld));
+        foreach ($decodedOld as $field => $value) {
+            if (!array_key_exists($field, $old)) {
+                continue;
+            }
+            $old[$field] = htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+        }
     }
+}
+
+if (isset($_GET['error']) && is_string($_GET['error']) && $_GET['error'] !== '') {
+    $errors[] = htmlspecialchars($_GET['error'], ENT_QUOTES, 'UTF-8');
+    $hasErrors = true;
 }
 
 // Génération du token CSRF
