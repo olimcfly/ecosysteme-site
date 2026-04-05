@@ -43,6 +43,9 @@ for ($i = 1; $i <= 7; $i++) {
 // Enregistrement en base de données
 try {
     $reponsesJson = json_encode($reponses, JSON_UNESCAPED_UNICODE);
+    if ($reponsesJson === false) {
+        throw new RuntimeException('Impossible de sérialiser les réponses.');
+    }
 
     $stmt = $pdo->prepare("
         INSERT INTO leads (nom, email, telephone, ville, reponse_epee, source, ip_address)
@@ -62,7 +65,7 @@ try {
 
     // Redirection vers la page vidéo
     redirectWithSuccess(
-        BASE_URL . 'pages/video/video.php?lead_id=' . $idLead,
+        '/pages/video/video.php?lead_id=' . $idLead,
         "Merci ! Votre analyse est en cours de préparation."
     );
 
