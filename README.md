@@ -70,3 +70,15 @@ Exemple cron (toutes les 15 min) :
 - URL : `/admin/`
 - Mot de passe par défaut : `ecosystemeimmo2026`
 - À personnaliser dans `public/admin/index.php`.
+
+## Webhook Calendly
+
+Un endpoint est disponible sur `POST /api/calendly.php` pour synchroniser les événements Calendly avec le statut des leads.
+
+Configuration attendue côté Calendly :
+- URL : `https://votre-domaine.com/api/calendly.php`
+- Événements : `invitee.created`, `invitee.canceled`
+- Header de signature : `Calendly-Webhook-Signature`
+
+Variable d'environnement requise :
+- `CALENDLY_WEBHOOK_SIGNING_KEY` (clé de signature du webhook Calendly)
