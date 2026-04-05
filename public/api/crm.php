@@ -69,7 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $jsonInput = json_decode(file_get_contents('php://input'), true) ?: [];
 
 if ($action === 'update') {
-    $leadId = (string) ($input['lead_id'] ?? $input['id'] ?? '');
+    $leadId = api_sanitize_string(filter_input(INPUT_POST, 'lead_id', FILTER_UNSAFE_RAW));
+    if ($leadId === '' && isset($jsonInput['lead_id'])) {
+        $leadId = api_sanitize_string((string) $jsonInput['lead_id']);
+    }
+    if ($leadId === '' && isset($jsonInput['id'])) {
+        $leadId = api_sanitize_string((string) $jsonInput['id']);
+    }
     if ($leadId === '') {
         http_response_code(422);
         echo json_encode(['ok' => false, 'error' => 'lead_id manquant']);
@@ -90,7 +96,7 @@ if ($action === 'update') {
         $estimatedAmount = (string) $jsonInput['estimated_amount'];
     }
 
-    $updated = crm_update_lead($id, [
+    $updated = crm_update_lead($leadId, [
         'status' => api_sanitize_string(is_string($status) ? $status : null) ?: null,
         'notes' => api_sanitize_string(is_string($notes) ? $notes : null) ?: null,
         'estimated_amount' => is_scalar($estimatedAmount) ? (string) $estimatedAmount : null,
