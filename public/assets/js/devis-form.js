@@ -8,6 +8,10 @@
   const langField = document.getElementById('langue');
   const progressFill = document.getElementById('progress-fill');
   const stepLabels = document.querySelectorAll('.progress-steps span');
+  const progressIndicator = document.querySelector('.progress-indicator');
+  const steps = document.querySelectorAll('.form-step');
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+  let currentStep = 0;
 
   const I18N = {
     fr: {
@@ -167,7 +171,9 @@
     if (isComplete(step2Fields)) completed += 1;
     if (isComplete(step3Fields)) completed += 1;
 
-    progressFill.style.width = `${(completed / 3) * 100}%`;
+    if (progressFill) {
+      progressFill.style.width = `${(completed / 3) * 100}%`;
+    }
     stepLabels.forEach((label) => {
       const step = Number(label.dataset.step);
       label.classList.toggle('active', step <= Math.max(1, completed));
@@ -175,7 +181,74 @@
     });
   }
 
+  function showStep(step) {
+    if (!steps.length) {
+      return;
+    }
+
+    steps.forEach((section, index) => {
+      if (!isMobile()) {
+        section.style.display = 'grid';
+        return;
+      }
+
+      section.style.display = index === step ? 'grid' : 'none';
+    });
+
+    if (progressIndicator) {
+      progressIndicator.textContent = `Étape ${step + 1} sur ${steps.length}`;
+      progressIndicator.style.display = isMobile() ? 'block' : 'none';
+    }
+  }
+
+  function validateStep(step) {
+    const section = steps[step];
+    if (!section) {
+      return true;
+    }
+
+    const fields = section.querySelectorAll('input, select, textarea');
+    for (const field of fields) {
+      if (field.hasAttribute('required') && !field.checkValidity()) {
+        field.reportValidity();
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   if (form) {
+    showStep(currentStep);
+
+    document.querySelectorAll('.btn-next').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!isMobile()) {
+          return;
+        }
+
+        if (!validateStep(currentStep)) {
+          return;
+        }
+
+        currentStep = Math.min(currentStep + 1, steps.length - 1);
+        showStep(currentStep);
+        updateProgress();
+      });
+    });
+
+    document.querySelectorAll('.btn-prev').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!isMobile()) {
+          return;
+        }
+
+        currentStep = Math.max(currentStep - 1, 0);
+        showStep(currentStep);
+        updateProgress();
+      });
+    });
+
     form.addEventListener('input', updateProgress);
     form.addEventListener('change', updateProgress);
 
@@ -248,5 +321,6 @@
   };
 
   applyTranslations('fr');
+  window.addEventListener('resize', () => showStep(currentStep));
   updateProgress();
 })();
