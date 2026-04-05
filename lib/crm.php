@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 const CRM_STORAGE_DIR = __DIR__ . '/../storage';
 const CRM_LEADS_FILE = CRM_STORAGE_DIR . '/leads.json';
+const CRM_EVENTS_FILE = CRM_STORAGE_DIR . '/events.json';
 const CRM_EMAIL_LOG_FILE = CRM_STORAGE_DIR . '/email_log.json';
 const CRM_EMAIL_QUEUE_FILE = CRM_STORAGE_DIR . '/email_queue.json';
 const CRM_EMAIL_TEMPLATE_ORIGIN = 'https://ecosystemeimmo.fr';
@@ -11,221 +12,46 @@ const CRM_VIDEO_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/video-presentation';
 const CRM_OFFER_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/offre';
 const CRM_CALENDAR_URL = CRM_EMAIL_TEMPLATE_ORIGIN . '/rdv';
 
-/**
- * Connexion PDO MySQL pour le CRM.
- */
-function crm_db(): PDO
+function crm_ensure_storage_dir(): void
 {
-    static $pdo = null;
-
-    if ($pdo instanceof PDO) {
-        return $pdo;
+    if (!is_dir(CRM_STORAGE_DIR)) {
+        mkdir(CRM_STORAGE_DIR, 0775, true);
     }
-
-    $host = getenv('DB_HOST') ?: '127.0.0.1';
-    $port = getenv('DB_PORT') ?: '3306';
-    $name = getenv('DB_NAME') ?: 'ecosystemeimmo';
-    $user = getenv('DB_USER') ?: 'root';
-    $pass = getenv('DB_PASS') ?: '';
-
-    $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $name);
-
-/**
- * @return array<int, array<string, mixed>>
- */
-function crm_get_leads(): array
-{
-    $leads = crm_load_json(CRM_LEADS_FILE);
-    $events = crm_get_events();
-
-    crm_ensure_schema($pdo);
-
-    foreach ($leads as &$lead) {
-        $leadEvents = [];
-        foreach ($events as $event) {
-            if (($event['lead_id'] ?? '') === ($lead['id'] ?? '')) {
-                $leadEvents[] = $event;
-            }
-        }
-        $lead['timeline'] = $leadEvents;
-    }
-    unset($lead);
-
-    return $leads;
-}
-
-function crm_ensure_schema(PDO $pdo): void
-{
-    $pdo->exec(
-        'CREATE TABLE IF NOT EXISTS contacts (
-            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            nom VARCHAR(150) NOT NULL,
-            email VARCHAR(190) NOT NULL,
-            telephone VARCHAR(40) DEFAULT NULL,
-            ville VARCHAR(120) NOT NULL,
-            source VARCHAR(120) DEFAULT NULL,
-            statut_tunnel VARCHAR(50) NOT NULL DEFAULT "nouveau",
-            date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            INDEX idx_ville (ville),
-            INDEX idx_statut_tunnel (statut_tunnel),
-            INDEX idx_date_creation (date_creation)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci'
-    );
-}
-
-function crm_create_lead(array $payload): array
-{
-    $leads = crm_get_leads();
-    $lead = [
-        'id' => bin2hex(random_bytes(8)),
-        'nom' => $payload['nom'],
-        'email' => $payload['email'],
-        'phone' => $payload['phone'] ?? '',
-        'city' => $payload['city'],
-        'status' => 'nouveau',
-        'score' => crm_compute_score($payload),
-        'source' => 'landing_ecosystemeimmo',
-        'visitor_id' => $payload['visitor_id'] ?? null,
-        'notes' => '',
-        'estimated_amount' => 0,
-        'created_at' => gmdate('c'),
-        'automation' => [
-            'video_viewed_at' => null,
-            'offer_viewed_at' => null,
-            'rdv_taken_at' => null,
-            'stopped_at' => null,
-        ],
-        'email_sequence' => crm_build_email_sequence(),
-    ];
-
-    $id = (int) $pdo->lastInsertId();
-
-    crm_schedule_email_jobs();
-
-    return $lead;
 }
 
 /**
  * @return array<int, array<string, mixed>>
  */
-function crm_get_events(): array
+function crm_load_json(string $file): array
 {
-    $events = crm_load_json(CRM_EVENTS_FILE);
+    crm_ensure_storage_dir();
 
-    usort($events, static function (array $a, array $b): int {
-        return strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? ''));
-    });
+    if (!file_exists($file)) {
+        return [];
+    }
 
-    return $events;
+    $raw = file_get_contents($file);
+    if ($raw === false || trim($raw) === '') {
+        return [];
+    }
+
+    $decoded = json_decode($raw, true);
+    return is_array($decoded) ? $decoded : [];
 }
 
-function crm_compute_status_from_event(string $currentStatus, string $eventKey): string
+/**
+ * @param array<int, array<string, mixed>> $data
+ */
+function crm_save_json(string $file, array $data): void
 {
-    $allowed = ['nouveau', 'qualifie', 'rdv_planifie', 'close', 'perdu'];
-    if (!in_array($currentStatus, $allowed, true)) {
-        $currentStatus = 'nouveau';
-    }
-
-    if ($eventKey === 'rdv_pris') {
-        return 'rdv_planifie';
-    }
-
-    if ($eventKey === 'formulaire_rempli' && $currentStatus === 'nouveau') {
-        return 'qualifie';
-    }
-
-    return $currentStatus;
-}
-
-function crm_update_status_from_event(string $leadId, string $eventKey): void
-{
-    $leads = crm_get_leads();
-    $updated = false;
-
-    foreach ($leads as &$lead) {
-        if (($lead['id'] ?? '') !== $leadId) {
-            continue;
-        }
-
-        $newStatus = crm_compute_status_from_event((string) ($lead['status'] ?? 'nouveau'), $eventKey);
-        if ($newStatus !== ($lead['status'] ?? '')) {
-            $lead['status'] = $newStatus;
-            $lead['updated_at'] = gmdate('c');
-            $updated = true;
-        }
-        break;
-    }
-    unset($lead);
-
-    if ($updated) {
-        crm_save_json(CRM_LEADS_FILE, $leads);
-    }
-}
-
-function crm_track_event(string $eventKey, string $eventLabel, array $payload = []): array
-{
-    $events = crm_get_events();
-    $event = [
-        'id' => bin2hex(random_bytes(8)),
-        'event_key' => $eventKey,
-        'event_label' => $eventLabel,
-        'lead_id' => $payload['lead_id'] ?? null,
-        'visitor_id' => $payload['visitor_id'] ?? null,
-        'page' => $payload['page'] ?? null,
-        'meta' => is_array($payload['meta'] ?? null) ? $payload['meta'] : [],
-        'created_at' => gmdate('c'),
-    ];
-
-    $events[] = $event;
-    crm_save_json(CRM_EVENTS_FILE, $events);
-
-    if (!empty($event['lead_id'])) {
-        crm_update_status_from_event((string) $event['lead_id'], $eventKey);
-    }
-
-    return $event;
-}
-
-function crm_attach_visitor_events_to_lead(string $visitorId, string $leadId): int
-{
-    if ($visitorId === '' || $leadId === '') {
-        return 0;
-    }
-
-    $events = crm_get_events();
-    $updatedCount = 0;
-
-    foreach ($events as &$event) {
-        if (($event['visitor_id'] ?? '') !== $visitorId || !empty($event['lead_id'])) {
-            continue;
-        }
-
-        $event['lead_id'] = $leadId;
-        $updatedCount++;
-    }
-    unset($event);
-
-    if ($updatedCount > 0) {
-        crm_save_json(CRM_EVENTS_FILE, $events);
-    }
-
-    return $updatedCount;
-}
-
-function crm_compute_score(array $payload): int
-{
-    $pdo = crm_db();
-    $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id = :id LIMIT 1');
-    $stmt->execute([':id' => $id]);
-
-    $row = $stmt->fetch();
-    return is_array($row) ? $row : null;
+    crm_ensure_storage_dir();
+    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
 
 /**
  * @return array<int, array<string, mixed>>
  */
-function crm_get_contacts(array $filters = []): array
+function crm_build_email_sequence(): array
 {
     return [
         [
@@ -271,6 +97,165 @@ function crm_get_contacts(array $filters = []): array
     ];
 }
 
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_events(): array
+{
+    $events = crm_load_json(CRM_EVENTS_FILE);
+    usort($events, static fn(array $a, array $b): int => strcmp((string) ($b['created_at'] ?? ''), (string) ($a['created_at'] ?? '')));
+    return $events;
+}
+
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_leads(): array
+{
+    $leads = crm_load_json(CRM_LEADS_FILE);
+    $events = crm_get_events();
+
+    foreach ($leads as &$lead) {
+        $timeline = [];
+        foreach ($events as $event) {
+            if (($event['lead_id'] ?? null) === ($lead['id'] ?? null)) {
+                $timeline[] = $event;
+            }
+        }
+        $lead['timeline'] = $timeline;
+        $lead['email_sequence'] = is_array($lead['email_sequence'] ?? null) ? $lead['email_sequence'] : crm_build_email_sequence();
+        $lead['automation'] = is_array($lead['automation'] ?? null) ? $lead['automation'] : [
+            'video_viewed_at' => null,
+            'offer_viewed_at' => null,
+            'rdv_taken_at' => null,
+            'stopped_at' => null,
+        ];
+    }
+    unset($lead);
+
+    return $leads;
+}
+
+function crm_compute_score(array $payload): int
+{
+    $score = 10;
+    if (!empty($payload['phone'])) {
+        $score += 20;
+    }
+    if (!empty($payload['city'])) {
+        $score += 10;
+    }
+    return $score;
+}
+
+function crm_create_lead(array $payload): array
+{
+    $leads = crm_get_leads();
+
+    $lead = [
+        'id' => bin2hex(random_bytes(8)),
+        'nom' => (string) ($payload['nom'] ?? ''),
+        'email' => (string) ($payload['email'] ?? ''),
+        'phone' => (string) ($payload['phone'] ?? ''),
+        'city' => (string) ($payload['city'] ?? ''),
+        'status' => 'nouveau',
+        'score' => crm_compute_score($payload),
+        'source' => (string) ($payload['source'] ?? 'landing_ecosystemeimmo'),
+        'visitor_id' => $payload['visitor_id'] ?? null,
+        'notes' => '',
+        'estimated_amount' => 0,
+        'created_at' => gmdate('c'),
+        'updated_at' => gmdate('c'),
+        'automation' => [
+            'video_viewed_at' => null,
+            'offer_viewed_at' => null,
+            'rdv_taken_at' => null,
+            'stopped_at' => null,
+        ],
+        'email_sequence' => crm_build_email_sequence(),
+    ];
+
+    $leads[] = $lead;
+    crm_save_json(CRM_LEADS_FILE, $leads);
+    crm_schedule_email_jobs();
+
+    return $lead;
+}
+
+function crm_compute_status_from_event(string $currentStatus, string $eventKey): string
+{
+    if ($eventKey === 'rdv_pris') {
+        return 'rdv_planifie';
+    }
+    if ($eventKey === 'formulaire_rempli' && $currentStatus === 'nouveau') {
+        return 'qualifie';
+    }
+    return $currentStatus;
+}
+
+function crm_update_status_from_event(string $leadId, string $eventKey): void
+{
+    $leads = crm_get_leads();
+    foreach ($leads as &$lead) {
+        if (($lead['id'] ?? '') !== $leadId) {
+            continue;
+        }
+        $lead['status'] = crm_compute_status_from_event((string) ($lead['status'] ?? 'nouveau'), $eventKey);
+        $lead['updated_at'] = gmdate('c');
+        break;
+    }
+    unset($lead);
+    crm_save_json(CRM_LEADS_FILE, $leads);
+}
+
+function crm_track_event(string $eventKey, string $eventLabel, array $payload = []): array
+{
+    $events = crm_get_events();
+    $event = [
+        'id' => bin2hex(random_bytes(8)),
+        'event_key' => $eventKey,
+        'event_label' => $eventLabel,
+        'lead_id' => $payload['lead_id'] ?? null,
+        'visitor_id' => $payload['visitor_id'] ?? null,
+        'page' => $payload['page'] ?? null,
+        'meta' => is_array($payload['meta'] ?? null) ? $payload['meta'] : [],
+        'created_at' => gmdate('c'),
+    ];
+
+    $events[] = $event;
+    crm_save_json(CRM_EVENTS_FILE, $events);
+
+    if (!empty($event['lead_id'])) {
+        crm_update_status_from_event((string) $event['lead_id'], $eventKey);
+    }
+
+    return $event;
+}
+
+function crm_attach_visitor_events_to_lead(string $visitorId, string $leadId): int
+{
+    if ($visitorId === '' || $leadId === '') {
+        return 0;
+    }
+
+    $events = crm_get_events();
+    $updated = 0;
+
+    foreach ($events as &$event) {
+        if (($event['visitor_id'] ?? '') === $visitorId && empty($event['lead_id'])) {
+            $event['lead_id'] = $leadId;
+            $updated++;
+        }
+    }
+    unset($event);
+
+    if ($updated > 0) {
+        crm_save_json(CRM_EVENTS_FILE, $events);
+    }
+
+    return $updated;
+}
+
 function crm_update_lead(string $leadId, array $updates): bool
 {
     $leads = crm_get_leads();
@@ -281,25 +266,14 @@ function crm_update_lead(string $leadId, array $updates): bool
             continue;
         }
 
-        if (isset($updates['status'])) {
-            $allowed = [
-                'nouveau',
-                'video_non_vue',
-                'video_vue',
-                'offre_vue',
-                'rdv_pris',
-                'rdv_realise',
-                'qualifie',
-                'paiement_envoye',
-                'client',
-            ];
-            if (in_array($updates['status'], $allowed, true)) {
-                $lead['status'] = $updates['status'];
-            }
+        if (!empty($updates['status']) && is_string($updates['status'])) {
+            $lead['status'] = $updates['status'];
         }
-
-        if (isset($updates['notes'])) {
-            $lead['notes'] = trim((string) $updates['notes']);
+        if (array_key_exists('notes', $updates) && is_string($updates['notes'])) {
+            $lead['notes'] = trim($updates['notes']);
+        }
+        if (array_key_exists('estimated_amount', $updates) && $updates['estimated_amount'] !== null) {
+            $lead['estimated_amount'] = (float) $updates['estimated_amount'];
         }
 
         if (($lead['status'] ?? '') === 'rdv_planifie') {
@@ -311,39 +285,52 @@ function crm_update_lead(string $leadId, array $updates): bool
         $updated = true;
         break;
     }
+    unset($lead);
 
-    if (!empty($filters['q'])) {
-        $where[] = '(nom LIKE :q OR email LIKE :q OR telephone LIKE :q OR ville LIKE :q OR source LIKE :q)';
-        $params[':q'] = '%' . $filters['q'] . '%';
+    if ($updated) {
+        crm_save_json(CRM_LEADS_FILE, $leads);
     }
 
-    $sort = strtoupper((string) ($filters['sort'] ?? 'DESC')) === 'ASC' ? 'ASC' : 'DESC';
+    return $updated;
+}
 
-function crm_mark_meeting_booked(array &$lead): void
+function crm_get_stats(): array
 {
-    $lead['automation']['meeting_booked'] = true;
-    $lead['automation']['stopped_at'] = gmdate('c');
-    foreach ($lead['email_sequence'] as &$step) {
-        if (($step['status'] ?? 'pending') === 'pending') {
-            $step['status'] = 'cancelled';
+    $leads = crm_get_leads();
+    $today = gmdate('Y-m-d');
+
+    $stats = [
+        'total' => count($leads),
+        'today' => 0,
+        'rdv_planifie' => 0,
+        'qualifie' => 0,
+    ];
+
+    foreach ($leads as $lead) {
+        if (str_starts_with((string) ($lead['created_at'] ?? ''), $today)) {
+            $stats['today']++;
+        }
+        if (($lead['status'] ?? '') === 'rdv_planifie') {
+            $stats['rdv_planifie']++;
+        }
+        if (($lead['status'] ?? '') === 'qualifie') {
+            $stats['qualifie']++;
         }
     }
-    unset($step);
+
+    return $stats;
 }
 
 function crm_render_template(string $text, array $lead, string $stepId): string
 {
     $leadId = (string) ($lead['id'] ?? '');
-    $videoLink = crm_build_tracking_link($leadId, $stepId, 'video');
-    $offerLink = crm_build_tracking_link($leadId, $stepId, 'offer');
-    $rdvLink = crm_build_tracking_link($leadId, $stepId, 'rdv');
 
     return strtr($text, [
         '{{nom}}' => (string) ($lead['nom'] ?? ''),
         '{{city}}' => (string) ($lead['city'] ?? ''),
-        '{{video_link}}' => $videoLink,
-        '{{offer_link}}' => $offerLink,
-        '{{rdv_link}}' => $rdvLink,
+        '{{video_link}}' => crm_build_tracking_link($leadId, $stepId, 'video'),
+        '{{offer_link}}' => crm_build_tracking_link($leadId, $stepId, 'offer'),
+        '{{rdv_link}}' => crm_build_tracking_link($leadId, $stepId, 'rdv'),
     ]);
 }
 
@@ -362,6 +349,16 @@ function crm_get_email_queue(): array
     return crm_load_json(CRM_EMAIL_QUEUE_FILE);
 }
 
+function crm_get_step(array $lead, string $stepId): ?array
+{
+    foreach (($lead['email_sequence'] ?? []) as $step) {
+        if (($step['id'] ?? '') === $stepId) {
+            return $step;
+        }
+    }
+    return null;
+}
+
 function crm_mark_step_queued(array &$lead, string $stepId, string $queuedAt): void
 {
     foreach ($lead['email_sequence'] as &$step) {
@@ -374,36 +371,10 @@ function crm_mark_step_queued(array &$lead, string $stepId, string $queuedAt): v
     unset($step);
 }
 
-function crm_find_sequence_step(array &$lead, string $stepId): ?array
-{
-    foreach ($lead['email_sequence'] as &$step) {
-        if (($step['id'] ?? '') === $stepId) {
-            return $step;
-        }
-    }
-
-    return null;
-}
-
-function crm_get_step(array $lead, string $stepId): ?array
-{
-    foreach (($lead['email_sequence'] ?? []) as $step) {
-        if (($step['id'] ?? '') === $stepId) {
-            return $step;
-        }
-    }
-
-    return null;
-}
-
 function crm_has_step_status(array $lead, string $stepId, array $statuses): bool
 {
     $step = crm_get_step($lead, $stepId);
-    if ($step === null) {
-        return false;
-    }
-
-    return in_array((string) ($step['status'] ?? 'pending'), $statuses, true);
+    return $step !== null && in_array((string) ($step['status'] ?? 'pending'), $statuses, true);
 }
 
 function crm_enqueue_step(array &$lead, array &$queue, string $stepId, DateTimeImmutable $now): bool
@@ -412,8 +383,7 @@ function crm_enqueue_step(array &$lead, array &$queue, string $stepId, DateTimeI
         return false;
     }
 
-    $step = crm_get_step($lead, $stepId);
-    if ($step === null) {
+    if (crm_get_step($lead, $stepId) === null) {
         return false;
     }
 
@@ -432,9 +402,6 @@ function crm_enqueue_step(array &$lead, array &$queue, string $stepId, DateTimeI
     return true;
 }
 
-/**
- * @return array<string, int>
- */
 function crm_schedule_email_jobs(): array
 {
     $leads = crm_get_leads();
@@ -455,42 +422,29 @@ function crm_schedule_email_jobs(): array
         }
 
         $email1 = crm_get_step($lead, 'email_1_video_access');
-        if ($email1 !== null && ($email1['status'] ?? 'pending') === 'pending') {
-            if (crm_enqueue_step($lead, $queue, 'email_1_video_access', $now)) {
-                $scheduled++;
-            }
-            continue;
+        if ($email1 !== null && ($email1['status'] ?? 'pending') === 'pending' && crm_enqueue_step($lead, $queue, 'email_1_video_access', $now)) {
+            $scheduled++;
         }
 
         $email1SentAt = !empty($email1['sent_at']) ? new DateTimeImmutable((string) $email1['sent_at']) : null;
         $videoViewedAt = !empty($automation['video_viewed_at']) ? new DateTimeImmutable((string) $automation['video_viewed_at']) : null;
 
-        if ($videoViewedAt === null && $email1SentAt !== null && $now >= $email1SentAt->modify('+1 day')) {
-            if (crm_enqueue_step($lead, $queue, 'email_2_video_reminder', $now)) {
-                $scheduled++;
-            }
+        if ($videoViewedAt === null && $email1SentAt !== null && $now >= $email1SentAt->modify('+1 day') && crm_enqueue_step($lead, $queue, 'email_2_video_reminder', $now)) {
+            $scheduled++;
         }
 
-        $email3 = crm_get_step($lead, 'email_3_offer');
         $email2 = crm_get_step($lead, 'email_2_video_reminder');
-        $referenceForOffer = null;
-        if (!empty($email2['sent_at'])) {
-            $referenceForOffer = new DateTimeImmutable((string) $email2['sent_at']);
-        } elseif ($email1SentAt !== null) {
-            $referenceForOffer = $email1SentAt;
-        }
+        $referenceForOffer = !empty($email2['sent_at'])
+            ? new DateTimeImmutable((string) $email2['sent_at'])
+            : $email1SentAt;
 
-        if ($referenceForOffer !== null && $now >= $referenceForOffer->modify('+2 days')) {
-            if (crm_enqueue_step($lead, $queue, 'email_3_offer', $now)) {
-                $scheduled++;
-            }
+        if ($referenceForOffer !== null && $now >= $referenceForOffer->modify('+2 days') && crm_enqueue_step($lead, $queue, 'email_3_offer', $now)) {
+            $scheduled++;
         }
 
         $offerViewedAt = !empty($automation['offer_viewed_at']) ? new DateTimeImmutable((string) $automation['offer_viewed_at']) : null;
-        if ($offerViewedAt !== null && $now >= $offerViewedAt->modify('+1 day')) {
-            if (crm_enqueue_step($lead, $queue, 'email_4_urgency', $now)) {
-                $scheduled++;
-            }
+        if ($offerViewedAt !== null && $now >= $offerViewedAt->modify('+1 day') && crm_enqueue_step($lead, $queue, 'email_4_urgency', $now)) {
+            $scheduled++;
         }
     }
     unset($lead);
@@ -498,15 +452,9 @@ function crm_schedule_email_jobs(): array
     crm_save_json(CRM_LEADS_FILE, $leads);
     crm_save_json(CRM_EMAIL_QUEUE_FILE, $queue);
 
-    return [
-        'scheduled' => $scheduled,
-        'stopped' => $stopped,
-    ];
+    return ['scheduled' => $scheduled, 'stopped' => $stopped];
 }
 
-/**
- * @return array<string, mixed>
- */
 function crm_process_email_queue(): array
 {
     $queue = crm_get_email_queue();
@@ -554,10 +502,7 @@ function crm_process_email_queue(): array
                 . "Content-Type: text/plain; charset=UTF-8\r\n"
                 . 'X-Mailer: PHP/' . phpversion();
 
-function crm_track_click(string $leadId, string $stepId, string $type): bool
-{
-    $leads = crm_get_leads();
-    $tracked = false;
+            $sent = mail($email, $subject, $body, $headers);
 
             if ($sent) {
                 $sentAt = gmdate('c');
@@ -666,6 +611,20 @@ function crm_register_email_event(string $leadId, string $stepId, string $event)
     return $updated;
 }
 
+function crm_track_open(string $leadId, string $stepId): bool
+{
+    return crm_register_email_event($leadId, $stepId, 'open');
+}
+
+function crm_track_click(string $leadId, string $stepId, string $type): bool
+{
+    $tracked = crm_register_email_event($leadId, $stepId, 'click');
+    if ($type !== '') {
+        crm_register_automation_action($leadId, $type);
+    }
+    return $tracked;
+}
+
 function crm_register_automation_action(string $leadId, string $target): void
 {
     $leads = crm_get_leads();
@@ -692,9 +651,6 @@ function crm_register_automation_action(string $leadId, string $target): void
     crm_save_json(CRM_LEADS_FILE, $leads);
 }
 
-/**
- * @return array<string, int>
- */
 function crm_get_email_stats(): array
 {
     $leads = crm_get_leads();
@@ -726,4 +682,23 @@ function crm_get_email_stats(): array
     }
 
     return $stats;
+}
+
+/**
+ * @return array<int, array<string, mixed>>
+ */
+function crm_get_contacts(array $filters = []): array
+{
+    $leads = crm_get_leads();
+    if (!empty($filters['q']) && is_string($filters['q'])) {
+        $q = mb_strtolower($filters['q']);
+        $leads = array_values(array_filter($leads, static function (array $lead) use ($q): bool {
+            $haystack = mb_strtolower(
+                (string) ($lead['nom'] ?? '') . ' ' . (string) ($lead['email'] ?? '') . ' ' . (string) ($lead['phone'] ?? '') . ' ' . (string) ($lead['city'] ?? '') . ' ' . (string) ($lead['source'] ?? '')
+            );
+            return str_contains($haystack, $q);
+        }));
+    }
+
+    return $leads;
 }
