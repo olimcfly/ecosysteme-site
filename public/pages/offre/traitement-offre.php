@@ -2,9 +2,19 @@
 require_once '../../config/config.php';
 require_once '../../config/functions.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    redirectWithError(BASE_URL . 'pages/capture/', "Méthode non autorisée.");
+}
+
+if (!isset($_POST['csrf_token']) || !verifyCsrfToken((string) $_POST['csrf_token'])) {
+    http_response_code(403);
+    redirectWithError(BASE_URL . 'pages/capture/', "Token CSRF invalide !");
+}
+
 // Vérification des paramètres
-$leadId = filter_input(INPUT_GET, 'lead_id', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
-$offre = isset($_GET['offre']) ? sanitizeInput($_GET['offre']) : '';
+$leadId = isset($_POST['lead_id']) ? (int) $_POST['lead_id'] : 0;
+$offre = isset($_POST['offre']) ? sanitizeInput((string) $_POST['offre']) : '';
 
 if ($leadId === false || !in_array($offre, ['standard', 'exclusive'], true)) {
     redirectWithError('/pages/capture/', "Paramètres invalides.");
@@ -59,8 +69,8 @@ if ($offre === 'standard') {
 
         // Redirection vers la page de RDV
         redirectWithSuccess(
-            '/pages/rdv/rdv.php?lead_id=' . $leadId . '&offre=exclusive',
-            "Félicitations ! " . htmlspecialchars($lead['ville'], ENT_QUOTES, 'UTF-8') . " est réservée pour vous. Prenez rendez-vous pour finaliser."
+            BASE_URL . 'pages/rdv/rdv.php?lead_id=' . $leadId . '&offre=exclusive',
+            "Félicitations ! " . htmlspecialchars((string) $lead['ville'], ENT_QUOTES, "UTF-8") . " est réservée pour vous. Prenez rendez-vous pour finaliser."
         );
 
     } catch (PDOException $e) {

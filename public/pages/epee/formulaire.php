@@ -1,15 +1,24 @@
 <?php
 $pageTitle = "Analyse des 7 erreurs - Étape 1/2";
 require_once '../../config/config.php';
+require_once '../../config/functions.php';
 require_once '../../includes/header.php';
 
-// Récupération de la ville depuis l'URL ou le formulaire précédent
-$ville = isset($_GET['ville']) ? sanitizeInput($_GET['ville']) : '';
+// Récupération de la ville depuis le formulaire précédent (POST prioritaire)
+$ville = isset($_POST['ville']) ? sanitizeInput((string) $_POST['ville']) : '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || !verifyCsrfToken((string) $_POST['csrf_token'])) {
+        redirectWithError(BASE_URL . 'pages/capture/', "Token CSRF invalide !");
+    }
+}
+
+
 if (empty($ville)) {
     redirectWithError(BASE_URL . 'pages/capture/', "Ville non spécifiée. Veuillez recommencer.");
 }
 
-// Génération du token CSRF
+// Régénération du token CSRF pour l'étape suivante
 $csrfToken = generateCsrfToken();
 ?>
 

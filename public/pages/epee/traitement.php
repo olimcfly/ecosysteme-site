@@ -3,8 +3,12 @@ require_once '../../config/config.php';
 require_once '../../config/functions.php';
 
 // Vérification du token CSRF
-if (!isset($_POST['csrf_token']) || !verifyCsrfToken($_POST['csrf_token'])) {
-    redirectWithError('/pages/capture/', "Erreur de sécurité. Veuillez recommencer.");
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_POST['csrf_token'], $_SESSION['csrf_token']) || !hash_equals((string) $_SESSION['csrf_token'], (string) $_POST['csrf_token'])) {
+    die('Token CSRF invalide !');
 }
 
 // Récupération et sanitization des données
@@ -21,20 +25,21 @@ $reponses = [
 ];
 
 // Validation des données
-if (
-    strlen($ville) < 2 ||
-    strlen($ville) > 120 ||
-    !filter_var($email, FILTER_VALIDATE_EMAIL)
-) {
-    redirectWithError('/pages/epee/formulaire.php?ville=' . urlencode($ville), "Veuillez remplir tous les champs correctement.");
+if (empty($ville) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    redirectWithError(BASE_URL . 'pages/capture/', "Veuillez remplir tous les champs correctement.");
 }
 
-foreach ($reponses as $key => $reponse) {
-    if (strlen($reponse) < 1 || strlen($reponse) > 255) {
-        redirectWithError('/pages/epee/formulaire.php?ville=' . urlencode($ville), "La réponse {$key} est invalide.");
+
+$allowed = ['oui', 'non'];
+for ($i = 1; $i <= 7; $i++) {
+    $key = 'q' . $i;
+    if (!isset($_POST[$key]) || !in_array((string) $_POST[$key], $allowed, true)) {
+        redirectWithError(
+            BASE_URL . 'pages/capture/',
+            'Réponse invalide pour ' . $key
+        );
     }
 }
-
 // Enregistrement en base de données
 try {
     $reponsesJson = json_encode($reponses, JSON_UNESCAPED_UNICODE);
@@ -67,13 +72,7 @@ try {
 } catch (PDOException $e) {
     error_log("Erreur lors de l'enregistrement du lead : " . $e->getMessage());
     redirectWithError(
-        '/pages/epee/formulaire.php?ville=' . urlencode($ville),
-        "Une erreur est survenue. Veuillez réessayer."
-    );
-} catch (RuntimeException $e) {
-    error_log("Erreur de traitement formulaire epee : " . $e->getMessage());
-    redirectWithError(
-        '/pages/epee/formulaire.php?ville=' . urlencode($ville),
+        BASE_URL . 'pages/capture/',
         "Une erreur est survenue. Veuillez réessayer."
     );
 }

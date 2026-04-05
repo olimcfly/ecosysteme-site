@@ -30,5 +30,7 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Rapports de tests temporaires
-/tmp/
+
+/public/sql/schemadb.sql
+/public/logs/
+/public/pages/error_log

@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 require_once '../../config/config.php';
 require_once '../../includes/header.php';
 ?>
@@ -9,6 +17,7 @@ require_once '../../includes/header.php';
         <h2>Découvrez les 7 erreurs qui vous font perdre des ventes</h2>
         <p>Répondez à 7 questions rapides pour recevoir votre analyse personnalisée.</p>
         <form action="<?= BASE_URL ?>pages/epee/formulaire.php" method="post">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
             <input type="text" name="ville" placeholder="Votre ville" required
                    value="<?= isset($_GET['ville']) ? htmlspecialchars($_GET['ville']) : '' ?>">
             <button type="submit" class="btn-primary">Commencer l'analyse</button>

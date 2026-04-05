@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $pageTitle = "Découvrez les 7 erreurs qui tuent vos ventes immobilières";
@@ -27,6 +35,7 @@ require_once '../../includes/header.php';
         <h2>Découvrez les 7 erreurs qui vous font perdre des ventes</h2>
         <p>Répondez à 7 questions rapides pour recevoir votre analyse personnalisée.</p>
         <form action="<?= BASE_URL ?>pages/epee/formulaire.php" method="post">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
             <input type="text" name="ville" id="ville-popup" placeholder="Votre ville" required>
             <button type="submit" class="btn-primary">Commencer l'analyse</button>
         </form>
