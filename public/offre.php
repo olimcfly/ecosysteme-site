@@ -2,6 +2,12 @@
 declare(strict_types=1);
 require_once __DIR__ . '/tracking.php';
 
+session_start();
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Récupération du lead_id depuis l'URL
 $leadId = $_GET['lead'] ?? '';
 $leadData = [];
@@ -228,11 +234,14 @@ $agence = htmlspecialchars($leadData['agence'] ?? '');
                     <input type="hidden" name="lead_id" value="<?= htmlspecialchars($leadId) ?>">
 
                     <button class="btn-primary" type="submit" id="cta-button">
-                        Vérifier la disponibilité de ma zone
+                        Consulter l'offre et prendre RDV
                     </button>
                 </form>
                 <p class="cta-subtext">
                     <i class="fas fa-lock"></i> Vérification gratuite - Réponse sous 24h
+                </p>
+                <p class="cta-subtext">
+                    <i class="fas fa-search"></i> Testez sur Google : <strong>"vendre maison <?= $ville ?>"</strong> pour voir si un propriétaire vous trouve déjà.
                 </p>
             </div>
         </div>
