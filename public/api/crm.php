@@ -67,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
 
 if ($action === 'update') {
-    $id = (int) ($input['id'] ?? 0);
-    if ($id <= 0) {
+    $leadId = (string) ($input['lead_id'] ?? $input['id'] ?? '');
+    if ($leadId === '') {
         http_response_code(422);
-        echo json_encode(['ok' => false, 'error' => 'id manquant']);
+        echo json_encode(['ok' => false, 'error' => 'lead_id manquant']);
         exit;
     }
 
