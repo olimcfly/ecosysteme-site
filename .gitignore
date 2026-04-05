@@ -12,3 +12,7 @@
 *.json
 !public/pages/ressources/guide-mots-cles.pdf  # Si tu veux versionner ce PDF
 
+
+/public/sql/schemadb.sql
+/public/logs/
+/public/pages/error_log

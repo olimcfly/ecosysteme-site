@@ -3,8 +3,12 @@ require_once '../../config/config.php';
 require_once '../../config/functions.php';
 
 // Vérification du token CSRF
-if (!isset($_POST['csrf_token']) || !verifyCsrfToken($_POST['csrf_token'])) {
-    redirectWithError(BASE_URL . 'pages/capture/', "Erreur de sécurité. Veuillez recommencer.");
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_POST['csrf_token'], $_SESSION['csrf_token']) || !hash_equals((string) $_SESSION['csrf_token'], (string) $_POST['csrf_token'])) {
+    die('Token CSRF invalide !');
 }
 
 // Récupération et sanitization des données
@@ -22,9 +26,20 @@ $reponses = [
 
 // Validation des données
 if (empty($ville) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    redirectWithError(BASE_URL . 'pages/epee/formulaire.php?ville=' . urlencode($ville), "Veuillez remplir tous les champs correctement.");
+    redirectWithError(BASE_URL . 'pages/capture/', "Veuillez remplir tous les champs correctement.");
 }
 
+
+$allowed = ['oui', 'non'];
+for ($i = 1; $i <= 7; $i++) {
+    $key = 'q' . $i;
+    if (!isset($_POST[$key]) || !in_array((string) $_POST[$key], $allowed, true)) {
+        redirectWithError(
+            BASE_URL . 'pages/capture/',
+            'Réponse invalide pour ' . $key
+        );
+    }
+}
 // Enregistrement en base de données
 try {
     $reponsesJson = json_encode($reponses, JSON_UNESCAPED_UNICODE);
@@ -54,7 +69,7 @@ try {
 } catch (PDOException $e) {
     error_log("Erreur lors de l'enregistrement du lead : " . $e->getMessage());
     redirectWithError(
-        BASE_URL . 'pages/epee/formulaire.php?ville=' . urlencode($ville),
+        BASE_URL . 'pages/capture/',
         "Une erreur est survenue. Veuillez réessayer."
     );
 }

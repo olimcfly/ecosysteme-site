@@ -29,11 +29,13 @@
         <?php
         // Affichage des messages d'erreur/succès
         if (isset($_SESSION['error'])) {
-            echo '<div class="alert error">' . $_SESSION['error'] . '</div>';
+            echo '<div class="alert error">' . htmlspecialchars($_SESSION['error'] ?? '', ENT_QUOTES, 'UTF-8') . '</div>';
+
             unset($_SESSION['error']);
         }
         if (isset($_SESSION['success'])) {
-            echo '<div class="alert success">' . $_SESSION['success'] . '</div>';
+            echo '<div class="alert success">' . htmlspecialchars($_SESSION['success'] ?? '', ENT_QUOTES, 'UTF-8') . '</div>';
+
             unset($_SESSION['success']);
         }
         ?>

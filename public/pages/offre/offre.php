@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "Choisissez votre offre";
 require_once '../../config/config.php';
+require_once '../../config/functions.php';
 require_once '../../includes/header.php';
 
 // Récupération de l'ID du lead
@@ -20,6 +21,7 @@ if (!$lead) {
 
 // Vérification si la ville est réservée
 $villeReservee = isVilleReserved($lead['ville']);
+$csrfToken = generateCsrfToken();
 ?>
 
 <section class="offre-section">
@@ -40,7 +42,12 @@ $villeReservee = isVilleReserved($lead['ville']);
                     <li>Support par email</li>
                     <li>Outils de base</li>
                 </ul>
-                <a href="traitement-offre.php?lead_id=<?= $leadId ?>&offre=standard" class="btn-secondary">Choisir cette offre</a>
+                <form action="traitement-offre.php" method="post">
+                    <input type="hidden" name="lead_id" value="<?= $leadId ?>">
+                    <input type="hidden" name="offre" value="standard">
+                    <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+                    <button type="submit" class="btn-secondary">Choisir cette offre</button>
+                </form>
             </div>
 
             <!-- Offre Exclusive (997€ - Ville réservée) -->
@@ -62,7 +69,12 @@ $villeReservee = isVilleReserved($lead['ville']);
                 <?php if ($villeReservee): ?>
                     <button class="btn-disabled" disabled>Ville déjà réservée</button>
                 <?php else: ?>
-                    <a href="traitement-offre.php?lead_id=<?= $leadId ?>&offre=exclusive" class="btn-primary">Réserver <?= htmlspecialchars($lead['ville']) ?></a>
+                    <form action="traitement-offre.php" method="post">
+                        <input type="hidden" name="lead_id" value="<?= $leadId ?>">
+                        <input type="hidden" name="offre" value="exclusive">
+                        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+                        <button type="submit" class="btn-primary">Réserver <?= htmlspecialchars($lead['ville']) ?></button>
+                    </form>
                 <?php endif; ?>
             </div>
         </div>
