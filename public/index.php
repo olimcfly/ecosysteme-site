@@ -247,7 +247,7 @@ unset($_SESSION['form_errors']);
                 à la démonstration complète.
             </p>
 
-            <form method="POST" action="traitement.php" id="form-popup">
+            <form method="POST" action="/traitement.php" id="form-popup">
                 <!-- Token CSRF caché -->
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="source" value="popup_7_erreurs">
