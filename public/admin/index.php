@@ -14,89 +14,11 @@ if (!$loggedIn) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRM ECOSYSTEMEIMMO</title>
-  <style>
-    :root{
-      --bg:#f3f5f9;
-      --panel:#ffffff;
-      --line:#e6e9f0;
-      --ink:#111827;
-      --ink-soft:#5b6474;
-      --primary:#2563eb;
-      --primary-dark:#1d4ed8;
-      --ok:#16a34a;
-      --warn:#f59e0b;
-      --lost:#ef4444;
-      --radius:14px;
-      --shadow:0 8px 24px rgba(15,23,42,.06);
-      --sidebar-w:260px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}
-    .small{font-size:.82rem;color:var(--ink-soft)}
-    .ok{color:var(--ok)}
-    .err{color:var(--lost)}
-    .btn{cursor:pointer;border:1px solid transparent;background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600;transition:.2s ease}
-    .btn:hover{background:var(--primary-dark)}
-    .btn-ghost{background:#eef2ff;color:#1e3a8a;border-color:#dbe3ff}
-    .btn-ghost:hover{background:#e2e8ff}
-    .layout{display:flex;min-height:100vh}
-    .sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);background:#0f172a;color:#dbe4ff;padding:24px 18px;border-right:1px solid #1f2937;z-index:20}
-    .brand{font-weight:700;letter-spacing:.2px;margin-bottom:18px}
-    .brand span{color:#93c5fd}
-    .menu{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-    .menu a{padding:10px 12px;border-radius:10px;color:#c4d0e8;font-size:.92rem}
-    .menu a.active,.menu a:hover{background:#1e293b;color:#fff}
-    .sidebar-foot{position:absolute;left:18px;right:18px;bottom:24px}
-    .main{margin-left:var(--sidebar-w);padding:24px;width:calc(100% - var(--sidebar-w))}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-    .title{margin:0;font-size:1.35rem}
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .grid-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
-    .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
-    .kpi .value{font-size:1.4rem;font-weight:700;margin-top:6px}
-    .surface{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .surface-pad{padding:16px}
-    .split{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-bottom:14px}
-
-    .pipeline{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:10px}
-    .stage{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fafbff;min-height:110px}
-    .stage h3{margin:0 0 8px;font-size:.85rem;text-transform:uppercase;letter-spacing:.4px;color:#334155}
-    .chip{display:inline-block;background:#e8edff;color:#1d4ed8;font-size:.78rem;padding:4px 8px;border-radius:999px;margin:0 6px 6px 0}
-
-    .table-wrap{overflow:auto}
-    table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:900px}
-    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-    th{background:#f8fafc;color:#334155;position:sticky;top:0}
-    select,textarea,input{width:100%;font:inherit;border-radius:10px;border:1px solid #cdd5e3;padding:8px;background:#fff;color:#0f172a}
-    textarea{min-width:180px}
-    .feedback{min-height:18px;margin-bottom:8px}
-
-    .login-card{max-width:430px;margin:10vh auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
-    .login-form{display:flex;gap:10px;align-items:center}
-
-    @media (max-width: 1080px){
-      .grid-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .split{grid-template-columns:1fr}
-      .pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}
-    }
-    @media (max-width: 840px){
-      .sidebar{position:sticky;width:100%;height:auto;bottom:auto;padding:14px 16px}
-      .menu{flex-direction:row;overflow:auto;padding-bottom:4px}
-      .sidebar-foot{position:static;margin-top:10px}
-      .layout{display:block}
-      .main{margin-left:0;width:100%;padding:16px}
-      .pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .login-form{flex-direction:column;align-items:stretch}
-    }
-    @media (max-width: 560px){
-      .grid-kpi,.pipeline{grid-template-columns:1fr}
-      .actions{width:100%}
-      .actions a,.actions button{flex:1}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CRM - Ecosystème Immo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/admin/css/style.css" rel="stylesheet">
 </head>
 <body>
   <div class="layout">

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/crm.php';
+require_once __DIR__ . '/_helpers.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -15,13 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['ok' => false, 'error' => 'Méthode non autorisée']);
+    api_error('method_not_allowed', 405);
     exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
-$eventKey = trim((string) ($input['event_key'] ?? ''));
+/** @var array<string, mixed> $jsonInput */
+$jsonInput = json_decode(file_get_contents('php://input'), true) ?: [];
+
+$eventKey = api_sanitize_string(filter_input(INPUT_POST, 'event_key', FILTER_UNSAFE_RAW));
+if ($eventKey === '' && isset($jsonInput['event_key'])) {
+    $eventKey = api_sanitize_string((string) $jsonInput['event_key']);
+}
 
 $labels = [
     'page_capture_vue' => 'Page capture vue',
@@ -33,19 +38,36 @@ $labels = [
 ];
 
 if (!isset($labels[$eventKey])) {
-    http_response_code(422);
-    echo json_encode(['ok' => false, 'error' => 'event_key invalide']);
+    api_error('invalid_event_key', 422);
     exit;
 }
 
+$leadId = api_sanitize_string(filter_input(INPUT_POST, 'lead_id', FILTER_UNSAFE_RAW));
+$visitorId = api_sanitize_string(filter_input(INPUT_POST, 'visitor_id', FILTER_UNSAFE_RAW));
+$page = api_sanitize_string(filter_input(INPUT_POST, 'page', FILTER_UNSAFE_RAW));
+$meta = filter_input(INPUT_POST, 'meta', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+if ($leadId === '' && isset($jsonInput['lead_id'])) {
+    $leadId = api_sanitize_string((string) $jsonInput['lead_id']);
+}
+if ($visitorId === '' && isset($jsonInput['visitor_id'])) {
+    $visitorId = api_sanitize_string((string) $jsonInput['visitor_id']);
+}
+if ($page === '' && isset($jsonInput['page'])) {
+    $page = api_sanitize_string((string) $jsonInput['page']);
+}
+if (!is_array($meta) && isset($jsonInput['meta']) && is_array($jsonInput['meta'])) {
+    $meta = $jsonInput['meta'];
+}
+
 $event = crm_track_event($eventKey, $labels[$eventKey], [
-    'lead_id' => trim((string) ($input['lead_id'] ?? '')),
-    'visitor_id' => trim((string) ($input['visitor_id'] ?? '')),
-    'page' => trim((string) ($input['page'] ?? '')),
-    'meta' => is_array($input['meta'] ?? null) ? $input['meta'] : [],
+    'lead_id' => $leadId,
+    'visitor_id' => $visitorId,
+    'page' => $page,
+    'meta' => is_array($meta) ? $meta : [],
 ]);
 
-echo json_encode([
+api_json_response([
     'ok' => true,
     'event_id' => $event['id'],
 ]);

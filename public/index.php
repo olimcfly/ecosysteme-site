@@ -1,131 +1,376 @@
+<?php
+// Démarrer la session et générer un token CSRF
+session_start();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Charger les anciennes valeurs du formulaire si elles existent
+$old = $_SESSION['form_old'] ?? [];
+unset($_SESSION['form_old']);
+
+// Charger les erreurs du formulaire si elles existent
+$errors = $_SESSION['form_errors'] ?? '';
+unset($_SESSION['form_errors']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ECOSYSTEMEIMMO : système pour devenir visible localement, capter des leads vendeurs, les suivre dans un CRM et automatiser vos séquences email.">
-  <title>ECOSYSTEMEIMMO — Tunnel de vente conseillers immobiliers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>EcosystèmeImmo — Les 7 erreurs qui coûtent des vendeurs</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Vos styles CSS existants restent inchangés */
+        /* ══ OVERLAY ══ */
+        #overlay {
+            display:     none;
+            position:    fixed;
+            inset:       0;
+            background:  rgba(0,0,0,0.82);
+            z-index:     99999;
+            overflow-y:  auto;
+            padding:     20px;
+        }
+        #overlay.active { display: block; }
+
+        /* ══ POPUP ══ */
+        #popup {
+            position:      relative;
+            background:    linear-gradient(160deg, #2e3849 0%, #1e2433 100%);
+            border:        1.5px solid #f0b429;
+            border-radius: 16px;
+            padding:       44px 32px 36px;
+            width:         100%;
+            max-width:     460px;
+            margin:        40px auto;
+            box-shadow:    0 12px 60px rgba(0,0,0,0.7);
+        }
+
+        #popup .popup-badge {
+            display:       block;
+            text-align:    center;
+            font-size:     0.72rem;
+            font-weight:   700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color:         #f0b429;
+            margin-bottom: 14px;
+        }
+
+        #popup h2 {
+            font-family:   Arial, sans-serif;
+            font-size:     1.4rem;
+            color:         #ffffff;
+            text-align:    center;
+            margin-bottom: 10px;
+            line-height:   1.4;
+        }
+
+        #popup h2 span { color: #f0b429; }
+
+        #popup .sous-pop {
+            font-family:   Arial, sans-serif;
+            font-size:     0.88rem;
+            color:         #8a96aa;
+            text-align:    center;
+            margin-bottom: 28px;
+            line-height:   1.7;
+        }
+
+        /* ══ CLOSE ══ */
+        #close-btn {
+            position:        absolute;
+            top:             14px;
+            right:           14px;
+            width:           36px;
+            height:          36px;
+            background:      rgba(255,255,255,0.06);
+            border:          1px solid rgba(255,255,255,0.1);
+            border-radius:   50%;
+            color:           #8a96aa;
+            font-size:       1.2rem;
+            cursor:          pointer;
+            display:         flex;
+            align-items:     center;
+            justify-content: center;
+            transition:      background 0.2s;
+        }
+        #close-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+        /* ══ INPUTS ══ */
+        #popup input {
+            display:       block;
+            width:         100%;
+            padding:       14px 16px;
+            margin-bottom: 12px;
+            background:    rgba(255,255,255,0.04);
+            border:        1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color:         #ffffff;
+            font-family:   Arial, sans-serif;
+            font-size:     16px;
+            outline:       none;
+            transition:    border-color 0.2s;
+        }
+        #popup input:focus  { border-color: #f0b429; }
+        #popup input::placeholder { color: #4a5568; }
+
+        /* ══ BOUTON SUBMIT ══ */
+        #popup .btn-submit {
+            display:     block;
+            width:       100%;
+            padding:     16px;
+            margin-top:  6px;
+            background:  linear-gradient(135deg, #f0b429 0%, #e0a820 100%);
+            border:      none;
+            border-radius: 8px;
+            color:       #1a1f2e;
+            font-family: Arial, sans-serif;
+            font-size:   1rem;
+            font-weight: 700;
+            cursor:      pointer;
+            text-align:  center;
+            letter-spacing: 0.02em;
+            transition:  opacity 0.2s, transform 0.1s;
+        }
+        #popup .btn-submit:hover  { opacity: 0.92; }
+        #popup .btn-submit:active { transform: scale(0.98); }
+
+        /* ══ GARANTIE SOUS BOUTON ══ */
+        #popup .popup-garantie {
+            text-align:  center;
+            font-size:   0.75rem;
+            color:       #4a5568;
+            margin-top:  14px;
+            line-height: 1.6;
+        }
+
+        /* ══ ERREUR ══ */
+        #msg-erreur {
+            display:       none;
+            background:    rgba(248,113,113,0.10);
+            border:        1px solid rgba(248,113,113,0.35);
+            border-radius: 6px;
+            padding:       10px 14px;
+            margin-bottom: 14px;
+            font-family:   Arial, sans-serif;
+            font-size:     0.85rem;
+            color:         #f87171;
+            text-align:    center;
+        }
+
+        /* Vos autres styles CSS restent inchangés */
+        .bullets {
+            list-style:  none;
+            padding:     0;
+            margin:      28px 0 0;
+            text-align:  left;
+        }
+        .bullets li {
+            position:    relative;
+            padding:     14px 16px 14px 48px;
+            margin-bottom: 10px;
+            background:  rgba(255,255,255,0.03);
+            border:      1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            font-size:   0.93rem;
+            color:       #bfc8d6;
+            line-height: 1.5;
+        }
+        .bullets li::before {
+            content:     attr(data-n);
+            position:    absolute;
+            left:        14px;
+            top:         50%;
+            transform:   translateY(-50%);
+            width:       24px;
+            height:      24px;
+            background:  rgba(240,180,41,0.12);
+            border:      1px solid rgba(240,180,41,0.35);
+            border-radius: 50%;
+            color:       #f0b429;
+            font-size:   0.75rem;
+            font-weight: 700;
+            display:     flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-<header class="navbar">
-  <div class="navbar__inner">
-    <a href="/" class="navbar__logo">Ecosystème<span>Immo</span></a>
-    <nav class="navbar__links">
-      <a href="#probleme">Problème</a>
-      <a href="#solution">Solution</a>
-      <a href="#offre">Offre</a>
-      <a href="#cta-final">Rendez-vous</a>
-      <a href="/admin/">Admin CRM</a>
-    </nav>
-    <a href="#cta-final" class="btn btn-primary open-modal">Réserver un appel</a>
-  </div>
-</header>
 
-<main>
-  <section class="hero">
-    <div class="container container--mid hero__content">
-      <p class="hero__eyebrow">Objectif : convaincre + préqualifier + augmenter le closing</p>
-      <h1>Pourquoi certains conseillers immobiliers reçoivent des vendeurs…<br>et d'autres passent des semaines sans aucun appel ?</h1>
-      <p class="hero__sub">👉 La différence n'est pas leur niveau. <strong>👉 C'est leur visibilité.</strong></p>
-      <div class="hero__actions">
-        <a href="#cta-final" class="btn btn-primary btn-lg open-modal">Réserver un rendez-vous</a>
-        <a href="#solution" class="btn btn-outline btn-lg">Voir le système</a>
-      </div>
+    <div class="logo">ECOSYSTÈME IMMO</div>
+
+    <div class="hero">
+
+        <span class="badge">Diagnostic gratuit · Places limitées par secteur</span>
+
+        <h1>Vous faites peut-être<br><span>ces 7 erreurs sans le savoir.</span></h1>
+
+        <p class="sous-titre">
+            Chaque mois, des conseillers expérimentés perdent des vendeurs qualifiés —
+            non par manque de travail, mais à cause de
+            <strong style="color:#fff;">7 erreurs précises</strong>
+            qui les rendent invisibles au moment exact où un vendeur cherche.
+        </p>
+
+        <ul class="bullets">
+            <li data-n="1">Du trafic qui arrive — mais des contacts qui ne convertissent pas</li>
+            <li data-n="2">Des contenus publiés — qui travaillent pour votre concurrence, pas pour vous</li>
+            <li data-n="3">Une expertise réelle — mais aucun système pour la rendre visible au bon moment</li>
+        </ul>
+
+        <br>
+
+        <button class="btn-cta" id="btn-ouvrir">→ Découvrir les 7 erreurs</button>
+
+        <p class="rarete" style="margin-top: 18px;">
+            <i class="fas fa-lock" style="margin-right: 6px;"></i>
+            Accès limité — un seul conseiller par secteur géographique.
+        </p>
+
     </div>
-  </section>
 
-  <section id="probleme" class="section-problem">
-    <div class="container container--mid">
-      <h2 class="section-title">Aujourd'hui, le marché est saturé.</h2>
-      <p class="section-sub">Des milliers de conseillers utilisent les mêmes outils, publient les mêmes contenus et travaillent dans les mêmes réseaux.</p>
-      <div class="problem-grid mt-8">
-        <div class="problem-item"><div class="problem-item__text"><h4>Peu de visibilité</h4></div></div>
-        <div class="problem-item"><div class="problem-item__text"><h4>Peu d'appels</h4></div></div>
-        <div class="problem-item"><div class="problem-item__text"><h4>Dépendance totale</h4></div></div>
-        <div class="problem-item"><div class="problem-item__text"><h4>Sans preuve sociale, personne ne vous appelle.</h4></div></div>
-      </div>
+    <!-- ══ OVERLAY ══ -->
+    <div id="overlay">
+        <div id="popup">
+
+            <button id="close-btn" aria-label="Fermer">×</button>
+
+            <span class="popup-badge">Accès gratuit · Sans engagement</span>
+
+            <h2>Découvrez les <span>7 erreurs</span><br>qui vous coûtent des vendeurs</h2>
+            <p class="sous-pop">
+                Renseignez vos informations pour accéder<br>
+                à la démonstration complète.
+            </p>
+
+            <form method="POST" action="traitement.php" id="form-popup">
+                <!-- Token CSRF caché -->
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="source" value="popup_7_erreurs">
+
+                <!-- Message d'erreur -->
+                <?php if ($errors): ?>
+                    <div id="msg-erreur" style="display: block;"><?= $errors ?></div>
+                <?php else: ?>
+                    <div id="msg-erreur">⚠️ Merci de remplir tous les champs obligatoires.</div>
+                <?php endif; ?>
+
+                <!-- Champs du formulaire -->
+                <input
+                    type="text"
+                    name="prenom"
+                    id="prenom"
+                    placeholder="Votre prénom *"
+                    autocomplete="given-name"
+                    value="<?= htmlspecialchars($old['prenom'] ?? '') ?>"
+                    required
+                >
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Votre email professionnel *"
+                    autocomplete="email"
+                    inputmode="email"
+                    value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                    required
+                >
+                <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    placeholder="Votre téléphone (optionnel)"
+                    autocomplete="tel"
+                    value="<?= htmlspecialchars($old['phone'] ?? '') ?>"
+                >
+                <input
+                    type="text"
+                    name="agency"
+                    id="agency"
+                    placeholder="Votre agence (optionnel)"
+                    value="<?= htmlspecialchars($old['agency'] ?? '') ?>"
+                >
+                <input
+                    type="text"
+                    name="ville"
+                    id="ville"
+                    placeholder="Votre ville / secteur *"
+                    value="<?= htmlspecialchars($old['ville'] ?? '') ?>"
+                    required
+                >
+
+                <button type="submit" class="btn-submit">
+                    Voir la démonstration →
+                </button>
+
+                <p class="popup-garantie">
+                    🔒 Vos données restent confidentielles.<br>
+                    * Champs obligatoires. Réponse sous 24h.
+                </p>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <section class="section-solution" id="solution">
-    <div class="container container--mid solution-card">
-      <h2 class="solution-card__headline">Le problème, ce n'est ni votre compétence, ni votre motivation, ni votre réseau.</h2>
-      <p class="solution-card__sub">👉 Le problème, c'est que vous n'avez pas de système.</p>
-      <p class="solution-card__sub">ECOSYSTEMEIMMO vous permet de construire votre propre écosystème immobilier local.</p>
-      <ul class="pricing-features">
-        <li class="pricing-feature">vous rend visible sur votre secteur</li>
-        <li class="pricing-feature">attire vendeurs et acheteurs</li>
-        <li class="pricing-feature">centralise vos contacts</li>
-        <li class="pricing-feature">automatise votre communication</li>
-      </ul>
-    </div>
-  </section>
+    <script>
+        var overlay   = document.getElementById('overlay');
+        var btnOuvrir = document.getElementById('btn-ouvrir');
+        var btnClose  = document.getElementById('close-btn');
 
-  <section class="section-features" id="fonctionnalites">
-    <div class="container container--mid">
-      <h2 class="section-title">⚙️ Ce que vous obtenez</h2>
-      <ul class="pricing-features">
-        <li class="pricing-feature">stratégie de contenu local (SEO + silo)</li>
-        <li class="pricing-feature">contenu basé sur 8 personas</li>
-        <li class="pricing-feature">pages de capture + tunnel simple</li>
-        <li class="pricing-feature">CRM avec suivi des contacts</li>
-        <li class="pricing-feature">automatisation email</li>
-        <li class="pricing-feature">présence régulière sans effort</li>
-      </ul>
+        // Ouvrir le popup
+        btnOuvrir.addEventListener('click', function() {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
 
-      <h3 style="margin-top:30px;">🧨 Différenciation forte</h3>
-      <p>Les réseaux vous donnent des outils, vous mettent en concurrence et ne garantissent aucun résultat.</p>
-      <p><strong>ECOSYSTEMEIMMO</strong> vous donne votre propre système, vous rend indépendant et vous positionne localement. 👉 Vous construisez un actif.</p>
-    </div>
-  </section>
+        // Fermer le popup
+        btnClose.addEventListener('click', fermer);
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) fermer();
+        });
 
-  <section id="offre" class="section-pricing">
-    <div class="container container--mid text-center">
-      <h2 class="section-title">💰 Offre de lancement : 997€</h2>
-      <p class="section-sub">Je lance actuellement ECOSYSTEMEIMMO avec un nombre limité de conseillers pour valider et optimiser le système.</p>
-      <p><strong>⚠️ Ce tarif ne sera plus disponible ensuite.</strong></p>
-      <p>🔥 <strong>1 seul conseiller par zone.</strong> Une fois la zone prise → fermé.</p>
-      <a href="#cta-final" class="btn btn-primary btn-lg open-modal">Vérifier la disponibilité de ma zone</a>
-    </div>
-  </section>
+        function fermer() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-  <section id="cta-final" class="section-final-cta">
-    <div class="container">
-      <div class="final-cta-box">
-        <h2>👉 Réservez un rendez-vous pour voir si votre zone est disponible</h2>
-        <p>Pendant cet appel : on analyse votre situation, on valide votre zone et on voit si le système est adapté pour vous.</p>
-        <a href="#" class="btn btn-primary btn-lg open-modal">Réserver mon rendez-vous</a>
-      </div>
-    </div>
-  </section>
-</main>
+        // Validation du formulaire
+        document.getElementById('form-popup').addEventListener('submit', function(e) {
+            var prenom = document.getElementById('prenom').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var ville = document.getElementById('ville').value.trim();
+            var msgErreur = document.getElementById('msg-erreur');
 
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__logo">Ecosystème<span>Immo</span></div>
-    <p class="footer__copy">&copy; <?php echo date('Y'); ?> ECOSYSTEMEIMMO — Funnel + CRM.</p>
-  </div>
-</footer>
+            // Validation simple côté client
+            if (!prenom || !email || !ville) {
+                e.preventDefault();
+                msgErreur.style.display = 'block';
+                return;
+            }
 
-<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="modal">
-    <button class="modal__close" id="modal-close" aria-label="Fermer">&times;</button>
-    <h3 id="modal-title">Réserver ma zone & mon appel</h3>
-    <p>Complétez ce formulaire pour être rappelé et entrer dans la séquence d'accompagnement.</p>
-    <form id="modal-form" novalidate>
-      <div class="form-group"><label class="form-label" for="modal-nom">Nom complet *</label><input class="form-input" type="text" id="modal-nom" name="nom" required></div>
-      <div class="form-group"><label class="form-label" for="modal-email">Adresse email *</label><input class="form-input" type="email" id="modal-email" name="email" required></div>
-      <div class="form-group"><label class="form-label" for="modal-phone">Téléphone</label><input class="form-input" type="tel" id="modal-phone" name="phone"></div>
-      <div class="form-group"><label class="form-label" for="modal-city">Votre zone / ville *</label><input class="form-input" type="text" id="modal-city" name="city" required></div>
-      <button type="submit" class="btn btn-primary btn-full">Envoyer ma demande</button>
-    </form>
-  </div>
-</div>
+            // Validation basique de l'email
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                msgErreur.textContent = '⚠️ Veuillez entrer un email valide.';
+                msgErreur.style.display = 'block';
+                return;
+            }
 
-<script src="/assets/js/main.js"></script>
+            msgErreur.style.display = 'none';
+        });
+
+        // Ouvrir le popup si une erreur est présente
+        <?php if (isset($_GET['erreur']) || $errors): ?>
+        window.addEventListener('DOMContentLoaded', function() {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        <?php endif; ?>
+    </script>
+
 </body>
 </html>
