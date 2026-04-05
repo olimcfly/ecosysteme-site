@@ -1,44 +1,51 @@
 <?php
-
 declare(strict_types=1);
 
-final class Auth
-{
-    private const SESSION_KEY = 'crm_admin';
-    private const PASSWORD_ENV = 'CRM_ADMIN_PASSWORD';
-    private const DEFAULT_PASSWORD = 'ecosystemeimmo2026';
+require_once __DIR__ . '/../../lib/crm.php';
 
-    public static function start(): void
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+class Auth
+{
+    public static function login(string $email, string $password): bool
     {
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
+        $adminEmail = $_ENV['ADMIN_EMAIL'] ?? getenv('ADMIN_EMAIL') ?: 'admin@ecosystemeimmo.com';
+        $adminHash = $_ENV['ADMIN_PASSWORD'] ?? getenv('ADMIN_PASSWORD') ?: '';
+
+        if ($email !== $adminEmail || $adminHash === '') {
+            return false;
         }
+
+        return password_verify($password, $adminHash);
     }
 
     public static function check(): bool
     {
-        self::start();
-
-        return !empty($_SESSION[self::SESSION_KEY]);
-    }
-
-    public static function attempt(string $password): bool
-    {
-        self::start();
-
-        $expected = getenv(self::PASSWORD_ENV) ?: self::DEFAULT_PASSWORD;
-        if (!hash_equals((string) $expected, $password)) {
-            return false;
-        }
-
-        $_SESSION[self::SESSION_KEY] = true;
-
-        return true;
+        return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
     }
 
     public static function logout(): void
     {
-        self::start();
-        unset($_SESSION[self::SESSION_KEY]);
+        session_unset();
+        session_destroy();
     }
+}
+
+// Traitement du login
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $emailInput = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $email = is_string($emailInput) ? $emailInput : '';
+    $password = $_POST['password'] ?? '';
+
+    if (Auth::login($email, (string) $password)) {
+        session_regenerate_id(true);
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_email'] = $email;
+        header('Location: /admin/');
+        exit;
+    }
+
+    $error = 'Email ou mot de passe incorrect';
 }

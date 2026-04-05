@@ -67,18 +67,12 @@ Exemple cron (toutes les 15 min) :
 
 ## Accès admin
 
-- URL : `/admin/`
-- Mot de passe par défaut : `ecosystemeimmo2026`
-- À personnaliser dans `public/admin/index.php`.
+- URL : `/admin/login.php`
+- Variables d'environnement requises : `ADMIN_EMAIL` et `ADMIN_PASSWORD` (hash Argon2id).
+- Générer un hash : `php -r "echo password_hash('votre_mot_de_passe', PASSWORD_ARGON2ID), PHP_EOL;"`
+- Exemple `.env` :
 
-## Webhook Calendly
-
-Un endpoint est disponible sur `POST /api/calendly.php` pour synchroniser les événements Calendly avec le statut des leads.
-
-Configuration attendue côté Calendly :
-- URL : `https://votre-domaine.com/api/calendly.php`
-- Événements : `invitee.created`, `invitee.canceled`
-- Header de signature : `Calendly-Webhook-Signature`
-
-Variable d'environnement requise :
-- `CALENDLY_WEBHOOK_SIGNING_KEY` (clé de signature du webhook Calendly)
+```env
+ADMIN_EMAIL=admin@ecosystemeimmo.com
+ADMIN_PASSWORD=$argon2id$...
+```
