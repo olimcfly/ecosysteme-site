@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "Confirmation de rendez-vous";
 require_once '../../config/config.php';
+require_once '../../config/functions.php';
 require_once '../../includes/header.php';
 
 // Récupération des paramètres
