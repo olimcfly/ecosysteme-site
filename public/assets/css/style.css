@@ -1054,8 +1054,34 @@ em, i {
         padding: 40px 0;
     }
 
+    .site-header .container {
+        position: relative;
+    }
+
     .main-nav {
         display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 15px;
+        background: var(--white-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-lg);
+        padding: 10px;
+        min-width: 220px;
+    }
+
+    .main-nav.open {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .main-nav a {
+        display: block;
     }
 
     .mobile-menu-btn {

@@ -13,7 +13,17 @@
             <a href="<?= BASE_URL ?>" class="logo">
                 <img src="<?= ASSETS_URL ?>images/logo.png" alt="Logo Ecosystème Immobilier">
             </a>
-            <nav class="main-nav">
+            <button
+                id="mobile-menu-btn"
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="mobile-nav"
+            >
+                ☰
+            </button>
+            <nav class="main-nav" id="mobile-nav" aria-hidden="true">
                 <ul>
                     <li><a href="<?= BASE_URL ?>pages/capture/">Accueil</a></li>
                     <?php if (isset($_SESSION['conseiller_id'])): ?>

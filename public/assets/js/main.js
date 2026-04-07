@@ -82,6 +82,16 @@
         mobileNav.setAttribute('aria-hidden', 'true');
       });
     });
+
+    document.addEventListener('click', function (event) {
+      const clickInsideMenu = mobileNav.contains(event.target);
+      const clickOnButton = mobileMenuBtn.contains(event.target);
+      if (!clickInsideMenu && !clickOnButton) {
+        mobileNav.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+    });
   }
 
   /* ──────────────────────────────────────────
@@ -289,11 +299,13 @@
   /* ──────────────────────────────────────────
      NAVBAR — scroll effect
   ────────────────────────────────────────── */
-  const navbar = document.querySelector('.navbar');
+  const navbar = document.querySelector('.navbar, .site-header');
   let lastScroll = 0;
 
   window.addEventListener('scroll', function () {
     const current = window.scrollY;
+
+    if (!navbar) return;
 
     if (current > 80) {
       navbar.style.boxShadow = '0 2px 24px rgba(0,0,0,0.25)';
