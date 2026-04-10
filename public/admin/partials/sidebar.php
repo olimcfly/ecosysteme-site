@@ -8,6 +8,7 @@
         <button class="nav-item" type="button" data-tab="calendar">Calendrier</button>
         <button class="nav-item" type="button" data-tab="emails">Emails</button>
         <button class="nav-item" type="button" data-tab="settings">Paramètres</button>
+        <a class="nav-item" href="/admin/sondage/">Sondage stratégique</a>
     </nav>
 
     <a href="/admin/?logout=1" class="btn btn-ghost logout-link">Déconnexion</a>
