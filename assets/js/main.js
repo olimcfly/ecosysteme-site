@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Header scroll effect
+  /* ============================================================
+     1. HEADER — SCROLL EFFECT
+  ============================================================ */
   const header = document.querySelector('.site-header');
   if (header) {
     const onScroll = () => {
@@ -10,9 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll();
   }
 
-  // Mobile menu
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
+
+  /* ============================================================
+     2. MOBILE MENU
+  ============================================================ */
+  const mobileMenuBtn   = document.querySelector('.mobile-menu-btn');
+  const mobileMenu      = document.querySelector('.mobile-menu');
   const mobileMenuClose = document.querySelector('.mobile-menu-close');
 
   if (mobileMenuBtn && mobileMenu) {
@@ -21,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = 'hidden';
     });
   }
+
   if (mobileMenuClose && mobileMenu) {
     mobileMenuClose.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -28,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Close mobile menu on link click
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
       if (mobileMenu) mobileMenu.classList.remove('open');
@@ -36,13 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // FAQ accordion
+
+  /* ============================================================
+     3. FAQ ACCORDION
+  ============================================================ */
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('open');
 
-      // Close all
+      // Ferme tout
       document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
       document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
 
@@ -53,20 +61,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Contact form submission
+
+  /* ============================================================
+     4. CONTACT FORM
+  ============================================================ */
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const successMsg = document.getElementById('form-success');
-      const submitBtn = contactForm.querySelector('[type="submit"]');
+      const successMsg  = document.getElementById('form-success');
+      const submitBtn   = contactForm.querySelector('[type="submit"]');
       const originalText = submitBtn.textContent;
 
-      submitBtn.disabled = true;
+      submitBtn.disabled    = true;
       submitBtn.textContent = 'Envoi en cours...';
 
       setTimeout(() => {
-        submitBtn.disabled = false;
+        submitBtn.disabled    = false;
         submitBtn.textContent = originalText;
         if (successMsg) {
           successMsg.style.display = 'flex';
@@ -77,30 +88,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Email capture form
+
+  /* ============================================================
+     5. EMAIL CAPTURE FORM
+  ============================================================ */
   const captureForm = document.getElementById('capture-form');
   if (captureForm) {
     captureForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const btn = captureForm.querySelector('button');
-      const input = captureForm.querySelector('input');
+      const btn      = captureForm.querySelector('button');
+      const input    = captureForm.querySelector('input');
       const original = btn.textContent;
 
-      btn.disabled = true;
+      btn.disabled    = true;
       btn.textContent = 'Envoi...';
 
       setTimeout(() => {
-        btn.disabled = false;
+        btn.disabled    = false;
         btn.textContent = '✓ Reçu !';
-        input.value = '';
+        input.value     = '';
         setTimeout(() => { btn.textContent = original; }, 3000);
       }, 900);
     });
   }
 
-  // Guide filter buttons
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const guideCards = document.querySelectorAll('.guide-card-wrapper');
+
+  /* ============================================================
+     6. GUIDE FILTER BUTTONS
+  ============================================================ */
+  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const guideCards  = document.querySelectorAll('.guide-card-wrapper');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -109,16 +126,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const tag = btn.dataset.tag;
       guideCards.forEach(card => {
-        if (tag === 'all' || card.dataset.tag === tag) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (tag === 'all' || card.dataset.tag === tag) ? '' : 'none';
       });
     });
   });
 
-  // Smooth reveal on scroll
+
+  /* ============================================================
+     7. SCROLL REVEAL
+  ============================================================ */
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -133,7 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(el => observer.observe(el));
   }
 
-  // Active nav link
+
+  /* ============================================================
+     8. ACTIVE NAV LINK
+  ============================================================ */
   const currentPath = window.location.pathname.split('/').pop() || 'index.php';
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
@@ -141,4 +160,95 @@ document.addEventListener('DOMContentLoaded', function () {
       link.classList.add('active');
     }
   });
-});
+
+
+  /* ============================================================
+     9. DEMO FORM — VALIDATION INLINE
+  ============================================================ */
+  const demoForm = document.getElementById('demo-form');
+  if (!demoForm) return;
+
+  const rules = {
+    prenom:      { min: 2,    msg: 'Prénom trop court.'          },
+    nom:         { min: 2,    msg: 'Nom trop court.'             },
+    email:       { type: 'email', msg: 'Email invalide.'         },
+    telephone:   { pattern: /^(\+33|0)[1-9](\s?\d{2}){4}$/,
+                   msg: 'Format attendu : 06 12 34 56 78'        },
+    reseau:      { required: true, msg: 'Choisissez votre réseau.'    },
+    objectif:    { required: true, msg: 'Choisissez un objectif.'     },
+    departement: { required: true, msg: 'Choisissez un département.'  },
+    ville:       { min: 2,    msg: 'Entrez votre ville ciblée.'  },
+  };
+
+  /* --- Attache les listeners sur chaque champ --- */
+  Object.keys(rules).forEach(field => {
+    const input = document.getElementById(field);
+    if (!input) return;
+    input.addEventListener('blur',  () => validateField(field, input));
+    input.addEventListener('input', () => {
+      if (input.classList.contains('is-error')) validateField(field, input);
+    });
+  });
+
+  /* --- Fonction de validation d'un champ --- */
+  function validateField(field, input) {
+    const rule  = rules[field];
+    const val   = input.value.trim();
+    const errEl = document.getElementById('error-' + field);
+    let valid   = true;
+    let msg     = '';
+
+    if (rule.min     && val.length < rule.min)   { valid = false; msg = rule.msg; }
+    if (rule.required && !val)                   { valid = false; msg = rule.msg; }
+    if (rule.type === 'email' &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { valid = false; msg = rule.msg; }
+    if (rule.pattern && !rule.pattern.test(val)) { valid = false; msg = rule.msg; }
+
+    input.classList.toggle('is-error', !valid);
+    input.classList.toggle('is-valid', valid && val.length > 0);
+    if (errEl) errEl.textContent = valid ? '' : msg;
+
+    return valid;
+  }
+
+  /* --- Validation RGPD --- */
+  function validateRgpd() {
+    const rgpd    = document.getElementById('rgpd');
+    const errRgpd = document.getElementById('error-rgpd');
+    const checked = rgpd && rgpd.checked;
+    if (errRgpd) errRgpd.textContent = checked ? '' : 'Vous devez accepter pour continuer.';
+    return checked;
+  }
+
+  // Listener live sur la case RGPD
+  const rgpdBox = document.getElementById('rgpd');
+  if (rgpdBox) rgpdBox.addEventListener('change', validateRgpd);
+
+  /* --- Submit --- */
+  demoForm.addEventListener('submit', function (e) {
+    let allValid = true;
+
+    Object.keys(rules).forEach(field => {
+      const input = document.getElementById(field);
+      if (input && !validateField(field, input)) allValid = false;
+    });
+
+    if (!validateRgpd()) allValid = false;
+
+    if (!allValid) {
+      e.preventDefault();
+      const firstErr = demoForm.querySelector('.is-error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    /* Loading state */
+    const btn     = document.getElementById('submit-btn');
+    const btnText = btn.querySelector('.btn-text');
+    const btnLoad = btn.querySelector('.btn-loading');
+    btn.disabled          = true;
+    btnText.style.display = 'none';
+    btnLoad.style.display = 'inline';
+  });
+
+}); // fin DOMContentLoaded

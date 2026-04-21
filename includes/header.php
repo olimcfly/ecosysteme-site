@@ -22,6 +22,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <header class="site-header" id="site-header">
   <div class="container">
     <div class="header-inner">
+
+      <!-- LOGO -->
       <a href="index.php" class="logo">
         <div class="logo-icon">ÉI</div>
         <div class="logo-text">
@@ -30,28 +32,62 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
       </a>
 
+      <!-- NAV DESKTOP -->
       <nav class="nav-main">
-        <a href="index.php" class="nav-link <?= $current_page === 'index.php' ? 'active' : '' ?>">Accueil</a>
-        <a href="guides.php" class="nav-link <?= $current_page === 'guides.php' ? 'active' : '' ?>">Les 12 guides</a>
-        <a href="methode.php" class="nav-link <?= $current_page === 'methode.php' ? 'active' : '' ?>">La méthode</a>
-        <a href="blog.php" class="nav-link <?= $current_page === 'blog.php' ? 'active' : '' ?>">Ressources</a>
-        <a href="a-propos.php" class="nav-link <?= $current_page === 'a-propos.php' ? 'active' : '' ?>">À propos</a>
-        <a href="contact.php" class="nav-link <?= $current_page === 'contact.php' ? 'active' : '' ?>">Contact</a>
+        <a href="index.php"
+           class="nav-link <?= $current_page === 'index.php' ? 'active' : '' ?>">
+          Accueil
+        </a>
+        <a href="pourquoi.php"
+           class="nav-link <?= $current_page === 'pourquoi.php' ? 'active' : '' ?>">
+          Pourquoi
+        </a>
+        <a href="methode.php"
+           class="nav-link <?= $current_page === 'methode.php' ? 'active' : '' ?>">
+          La méthode
+        </a>
+        <a href="demonstration.php"
+           class="nav-link <?= $current_page === 'demonstration.php' ? 'active' : '' ?>">
+          Démonstration
+        </a>
+        <a href="https://guides.ecosystemeimmo.fr"
+           class="nav-link"
+           target="_blank"
+           rel="noopener noreferrer">
+          Ressources ↗
+        </a>
+        <a href="a-propos.php"
+           class="nav-link <?= $current_page === 'a-propos.php' ? 'active' : '' ?>">
+          À propos
+        </a>
+        <a href="contact.php"
+           class="nav-link <?= $current_page === 'contact.php' ? 'active' : '' ?>">
+          Contact
+        </a>
       </nav>
 
+      <!-- CTA DESKTOP -->
       <div class="header-cta">
-        <a href="guides.php" class="btn btn-primary btn-sm">Découvrir les guides</a>
+        <a href="https://guides.ecosystemeimmo.fr"
+           class="btn btn-primary btn-sm"
+           target="_blank"
+           rel="noopener noreferrer">
+          Découvrir les guides ↗
+        </a>
       </div>
 
+      <!-- BURGER MOBILE -->
       <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
+
     </div>
   </div>
 </header>
 
+<!-- MENU MOBILE -->
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-header">
     <a href="index.php" class="logo">
@@ -66,16 +102,49 @@ $current_page = basename($_SERVER['PHP_SELF']);
       </svg>
     </button>
   </div>
+
   <nav>
-    <a href="index.php" class="mobile-nav-link">🏠 Accueil</a>
-    <a href="guides.php" class="mobile-nav-link">📚 Les 12 guides</a>
-    <a href="methode.php" class="mobile-nav-link">🔍 La méthode</a>
-    <a href="blog.php" class="mobile-nav-link">✏️ Ressources</a>
-    <a href="a-propos.php" class="mobile-nav-link">👤 À propos</a>
-    <a href="contact.php" class="mobile-nav-link">💬 Contact</a>
+    <a href="index.php"
+       class="mobile-nav-link <?= $current_page === 'index.php' ? 'active' : '' ?>">
+      🏠 Accueil
+    </a>
+    <a href="pourquoi.php"
+       class="mobile-nav-link <?= $current_page === 'pourquoi.php' ? 'active' : '' ?>">
+      🤔 Pourquoi
+    </a>
+    <a href="methode.php"
+       class="mobile-nav-link <?= $current_page === 'methode.php' ? 'active' : '' ?>">
+      🔍 La méthode
+    </a>
+    <a href="demonstration.php"
+       class="mobile-nav-link <?= $current_page === 'demonstration.php' ? 'active' : '' ?>">
+      🎯 Démonstration
+    </a>
+    <a href="https://guides.ecosystemeimmo.fr"
+       class="mobile-nav-link"
+       target="_blank"
+       rel="noopener noreferrer">
+      📚 Ressources ↗
+    </a>
+    <a href="a-propos.php"
+       class="mobile-nav-link <?= $current_page === 'a-propos.php' ? 'active' : '' ?>">
+      👤 À propos
+    </a>
+    <a href="contact.php"
+       class="mobile-nav-link <?= $current_page === 'contact.php' ? 'active' : '' ?>">
+      💬 Contact
+    </a>
   </nav>
+
   <div class="mobile-menu-footer">
-    <a href="guides.php" class="btn btn-primary">Voir les 12 guides — 47€ l'unité</a>
-    <a href="contact.php" class="btn btn-secondary">Demander un audit gratuit</a>
+    <a href="https://guides.ecosystemeimmo.fr"
+       class="btn btn-primary"
+       target="_blank"
+       rel="noopener noreferrer">
+      Voir les 12 guides — 47€ l'unité ↗
+    </a>
+    <a href="contact.php" class="btn btn-secondary">
+      Demander un audit gratuit
+    </a>
   </div>
 </div>

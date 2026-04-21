@@ -1,13 +1,14 @@
 <?php
 $page_title = 'Contact — Écosystème Immo';
-$meta_description = 'Contactez Écosystème Immo pour toute question sur nos guides, demander un audit gratuit de votre présence digitale ou discuter de votre projet immobilier.';
-
-$guide_param = isset($_GET['guide']) ? htmlspecialchars($_GET['guide']) : '';
-
+$meta_description = 'Contactez Écosystème Immo : une question sur les guides, le système ou votre situation ? Réponse sous 48h.';
 include 'includes/header.php';
 ?>
 
-<!-- PAGE HEADER -->
+<main>
+
+<!-- ============================================================
+     PAGE HEADER
+============================================================ -->
 <section class="page-header">
   <div class="container">
     <div class="breadcrumb">
@@ -15,132 +16,243 @@ include 'includes/header.php';
       <span class="breadcrumb-sep">›</span>
       <span>Contact</span>
     </div>
-    <h1 class="page-header-title">Parlons de votre activité<br><span style="color: var(--accent-400);">et de vos objectifs</span></h1>
-    <p class="page-header-subtitle">Une question sur un guide ? Vous souhaitez un audit de votre présence digitale ? Vous avez un projet spécifique ? On est là.</p>
+    <h1 class="page-header-title">
+      Une question ? Une situation particulière ?<br>
+      <span style="color: var(--accent-400);">On vous répond sous 48h</span>
+    </h1>
+    <p class="page-header-subtitle">
+      Pas un formulaire qui disparaît dans le vide. Un vrai échange pour vous orienter vers ce qui correspond à votre situation.
+    </p>
   </div>
 </section>
 
-<!-- MAIN CONTACT -->
-<section class="section">
+<!-- ============================================================
+     CONTACT PRINCIPAL
+============================================================ -->
+<section class="section" id="contact">
   <div class="container">
-    <div class="contact-layout">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
 
-      <!-- FORM -->
-      <div class="contact-form-wrapper">
-        <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px;">Envoyez-nous un message</h2>
-        <p style="font-size: .9375rem; color: var(--neutral-600); margin-bottom: 28px;">Nous répondons à toutes les demandes sous 24h ouvrées.</p>
+      <!-- COLONNE GAUCHE — Contexte -->
+      <div>
+        <span class="section-tag">Avant d'écrire</span>
+        <h2 class="section-title" style="margin-top: 16px; font-size: 1.75rem;">
+          À qui s'adresse ce formulaire ?
+        </h2>
+        <p style="font-size: 1.0625rem; color: var(--neutral-600); line-height: 1.7; margin-top: 16px;">
+          Écosystème Immo s'adresse aux conseillers immobiliers indépendants, mandataires et agents qui veulent structurer leur acquisition locale — sans dépendre des portails ni d'un réseau.
+        </p>
 
-        <div class="form-success" id="form-success" style="display: none; flex-direction: column; gap: 4px;">
-          <p style="font-weight: 600;">✓ Message envoyé avec succès !</p>
-          <p style="font-size: .875rem;">Nous vous répondons sous 24h ouvrées. À très vite.</p>
+        <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 36px;">
+
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--primary-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.125rem;">📚</div>
+            <div>
+              <div style="font-weight: 600; color: var(--neutral-900); margin-bottom: 4px;">Une question sur un guide</div>
+              <div style="font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.6;">
+                Vous hésitez entre plusieurs guides, vous voulez savoir lequel correspond à votre situation ? Dites-nous où vous en êtes.
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--primary-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.125rem;">🔍</div>
+            <div>
+              <div style="font-weight: 600; color: var(--neutral-900); margin-bottom: 4px;">Un audit de votre situation</div>
+              <div style="font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.6;">
+                Vous voulez un regard extérieur sur votre positionnement, votre communication ou votre système d'acquisition ? On peut regarder ça ensemble.
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--primary-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.125rem;">💬</div>
+            <div>
+              <div style="font-weight: 600; color: var(--neutral-900); margin-bottom: 4px;">Une simple question</div>
+              <div style="font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.6;">
+                Sur la méthode ANCRE, sur le système, sur la façon dont vous pourriez l'appliquer à votre secteur ou à votre profil.
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--primary-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.125rem;">🤝</div>
+            <div>
+              <div style="font-weight: 600; color: var(--neutral-900); margin-bottom: 4px;">Un partenariat ou une collaboration</div>
+              <div style="font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.6;">
+                Réseau immobilier, formateur, outil ou média qui partage nos convictions ? On est ouverts à la discussion.
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <form id="contact-form" action="#" method="post">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="prenom">Prénom *</label>
-              <input type="text" id="prenom" name="prenom" class="form-input" placeholder="Jean" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="nom">Nom *</label>
-              <input type="text" id="nom" name="nom" class="form-input" placeholder="Dupont" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="email">Email *</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="jean.dupont@email.fr" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="06 12 34 56 78">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="sujet">Sujet de votre demande *</label>
-            <select id="sujet" name="sujet" class="form-select" required>
-              <option value="">Sélectionnez un sujet</option>
-              <option value="guide" <?= $guide_param ? 'selected' : '' ?>>Question sur un guide</option>
-              <option value="audit">Demande d'audit gratuit</option>
-              <option value="pack">Offre multi-guides</option>
-              <option value="partenariat">Partenariat / Réseau</option>
-              <option value="autre">Autre question</option>
-            </select>
-          </div>
-
-          <?php if ($guide_param): ?>
-          <div class="form-group">
-            <label class="form-label">Guide concerné</label>
-            <input type="text" class="form-input" value="<?= $guide_param ?>" readonly style="background: var(--neutral-100); color: var(--neutral-600);">
-          </div>
-          <?php endif; ?>
-
-          <div class="form-group">
-            <label class="form-label" for="message">Votre message *</label>
-            <textarea id="message" name="message" class="form-textarea" placeholder="Décrivez votre situation, vos objectifs, ou posez-nous directement votre question..." required></textarea>
-          </div>
-
-          <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px;">
-            <input type="checkbox" id="rgpd" name="rgpd" style="margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--primary-600);" required>
-            <label for="rgpd" style="font-size: .875rem; color: var(--neutral-600); cursor: pointer; line-height: 1.5;">
-              J'accepte que mes données soient utilisées pour traiter ma demande. Aucune utilisation commerciale sans consentement explicite. <a href="#" style="color: var(--primary-600);">Politique de confidentialité</a>
-            </label>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 1.0625rem; margin-top: 8px;">
-            Envoyer ma demande →
-          </button>
-        </form>
+        <!-- RÉASSURANCE -->
+        <div style="margin-top: 40px; padding: 24px; background: var(--neutral-50); border-radius: 12px; border-left: 3px solid var(--primary-500);">
+          <div style="font-weight: 600; color: var(--neutral-900); margin-bottom: 8px;">Ce que vous pouvez attendre</div>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.9375rem; color: var(--neutral-700);">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--primary-500)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Une réponse personnelle sous 48h ouvrées
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.9375rem; color: var(--neutral-700);">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--primary-500)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Pas de relance commerciale si ce n'est pas le bon moment
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.9375rem; color: var(--neutral-700);">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--primary-500)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Un conseil honnête, même si ce n'est pas nous la bonne solution
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.9375rem; color: var(--neutral-700);">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--primary-500)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Vos données restent privées et ne sont pas revendues
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <!-- INFO SIDEBAR -->
+      <!-- COLONNE DROITE — Formulaire -->
       <div>
-        <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 24px;">Ce que nous pouvons faire pour vous</h2>
+        <div style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 16px; padding: 40px; box-shadow: 0 4px 24px rgba(0,0,0,.06);">
 
-        <div class="contact-info-cards">
-          <div class="contact-info-card">
-            <div class="contact-info-icon">📚</div>
-            <div>
-              <h4>Questions sur les guides</h4>
-              <p>Vous avez une question sur un guide en particulier, son contenu ou si il correspond à votre situation. On vous répond avec honnêteté.</p>
-            </div>
+          <div style="margin-bottom: 32px;">
+            <h3 style="font-size: 1.375rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px;">Écrivez-nous</h3>
+            <p style="font-size: 0.9375rem; color: var(--neutral-600);">Réponse sous 48h ouvrées. Pas de spam, jamais.</p>
           </div>
-          <div class="contact-info-card">
-            <div class="contact-info-icon">🎯</div>
-            <div>
-              <h4>Audit de présence digitale</h4>
-              <p>Vous ne savez pas par où commencer ? Nous analysons votre situation actuelle et vous proposons les actions prioritaires.</p>
-              <span class="badge badge-success" style="margin-top: 8px; display: inline-block;">Gratuit</span>
-            </div>
-          </div>
-          <div class="contact-info-card">
-            <div class="contact-info-icon">📦</div>
-            <div>
-              <h4>Offres multi-guides</h4>
-              <p>Vous souhaitez accéder à plusieurs guides ou à l'intégralité de la collection. Contactez-nous pour une proposition personnalisée.</p>
-            </div>
-          </div>
-          <div class="contact-info-card">
-            <div class="contact-info-icon">🤝</div>
-            <div>
-              <h4>Partenariats & Réseaux</h4>
-              <p>Vous êtes animateur de réseau, directeur d'agence ou organisateur de formation ? Discutons d'un partenariat adapté.</p>
-            </div>
-          </div>
-        </div>
 
-        <div style="background: linear-gradient(135deg, var(--primary-50), var(--primary-100)); border: 1px solid var(--primary-200); border-radius: var(--radius-lg); padding: 28px; margin-top: 24px;">
-          <div style="font-size: 1.5rem; margin-bottom: 12px;">⏱️</div>
-          <h4 style="font-size: 1rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px;">Réponse sous 24h</h4>
-          <p style="font-size: .9375rem; color: var(--neutral-600); line-height: 1.65;">
-            Nous répondons à chaque message personnellement, sous 24h ouvrées. Pas de réponse automatique, pas de bot — une vraie personne vous lira et vous répondra.
-          </p>
-        </div>
+          <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
 
-        <div style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 24px; margin-top: 16px; text-align: center;">
-          <p style="font-size: .875rem; color: var(--neutral-500); margin-bottom: 12px;">Email direct</p>
-          <p style="font-size: 1rem; font-weight: 600; color: var(--primary-800);">📧 contact@ecosysteme-immo.fr</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div>
+                <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                  Prénom <span style="color: var(--primary-500);">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="prenom"
+                  required
+                  placeholder="Jean"
+                  style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-900); background: var(--white); transition: border-color .2s; box-sizing: border-box;"
+                  onfocus="this.style.borderColor='var(--primary-500)'"
+                  onblur="this.style.borderColor='var(--neutral-200)'"
+                >
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                  Nom <span style="color: var(--primary-500);">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="nom"
+                  required
+                  placeholder="Dupont"
+                  style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-900); background: var(--white); transition: border-color .2s; box-sizing: border-box;"
+                  onfocus="this.style.borderColor='var(--primary-500)'"
+                  onblur="this.style.borderColor='var(--neutral-200)'"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                Email professionnel <span style="color: var(--primary-500);">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="jean.dupont@email.com"
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-900); background: var(--white); transition: border-color .2s; box-sizing: border-box;"
+                onfocus="this.style.borderColor='var(--primary-500)'"
+                onblur="this.style.borderColor='var(--neutral-200)'"
+              >
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                Votre situation
+              </label>
+              <select
+                name="situation"
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-700); background: var(--white); transition: border-color .2s; box-sizing: border-box; appearance: none; cursor: pointer;"
+                onfocus="this.style.borderColor='var(--primary-500)'"
+                onblur="this.style.borderColor='var(--neutral-200)'"
+              >
+                <option value="" disabled selected>Choisissez votre profil</option>
+                <option value="mandataire">Mandataire immobilier indépendant</option>
+                <option value="agent">Agent immobilier en agence</option>
+                <option value="agent-independant">Agent immobilier indépendant</option>
+                <option value="debutant">Je démarre dans l'immobilier</option>
+                <option value="partenariat">Partenariat / collaboration</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                Objet de votre message <span style="color: var(--primary-500);">*</span>
+              </label>
+              <select
+                name="objet"
+                required
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-700); background: var(--white); transition: border-color .2s; box-sizing: border-box; appearance: none; cursor: pointer;"
+                onfocus="this.style.borderColor='var(--primary-500)'"
+                onblur="this.style.borderColor='var(--neutral-200)'"
+              >
+                <option value="" disabled selected>Sélectionnez un objet</option>
+                <option value="question-guide">Question sur un guide</option>
+                <option value="audit">Demande d'audit gratuit</option>
+                <option value="methode">Question sur la méthode ANCRE</option>
+                <option value="systeme">Question sur le système</option>
+                <option value="partenariat">Partenariat ou collaboration</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
+                Votre message <span style="color: var(--primary-500);">*</span>
+              </label>
+              <textarea
+                name="message"
+                required
+                rows="5"
+                placeholder="Décrivez votre situation, votre question ou ce sur quoi vous aimeriez qu'on échange…"
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--neutral-200); border-radius: 8px; font-size: 0.9375rem; color: var(--neutral-900); background: var(--white); transition: border-color .2s; box-sizing: border-box; resize: vertical; font-family: inherit; line-height: 1.6;"
+                onfocus="this.style.borderColor='var(--primary-500)'"
+                onblur="this.style.borderColor='var(--neutral-200)'"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px 24px; font-size: 1rem;">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+              Envoyer mon message
+            </button>
+
+            <p style="font-size: 0.8125rem; color: var(--neutral-500); text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+              Vos données restent privées. Aucun spam, jamais.
+            </p>
+
+          </form>
+
+          <!-- MESSAGE DE CONFIRMATION -->
+          <div id="contact-success" style="display: none; text-align: center; padding: 32px 16px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--primary-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="var(--primary-500)" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px;">Message envoyé !</h3>
+            <p style="font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+              Merci pour votre message. Vous recevrez une réponse personnelle sous 48h ouvrées.
+            </p>
+          </div>
+
         </div>
       </div>
 
@@ -148,67 +260,105 @@ include 'includes/header.php';
   </div>
 </section>
 
-<!-- FAQ CONTACT -->
-<section class="section bg-light" style="border-top: 1px solid var(--neutral-200);">
+<!-- ============================================================
+     FAQ RAPIDE
+============================================================ -->
+<section class="section" style="background: var(--neutral-50);">
   <div class="container container-md">
     <div class="section-header center">
-      <h2 class="section-title">Questions fréquentes</h2>
+      <span class="section-tag">Questions fréquentes</span>
+      <h2 class="section-title" style="margin-top: 12px;">Avant d'écrire, peut-être que votre réponse est ici</h2>
     </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-question">
-          Comment se passe l'achat d'un guide ?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>Après avoir sélectionné un guide, vous êtes redirigé vers notre page de paiement sécurisée. Une fois le paiement confirmé, vous recevez par email le lien de téléchargement de votre guide au format PDF. L'accès est immédiat.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">
-          Proposez-vous des remises pour les réseaux immobiliers ?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>Oui. Si vous souhaitez proposer nos guides à vos conseillers ou les intégrer à vos outils de formation, contactez-nous. Nous proposons des conditions spéciales pour les réseaux et les groupements.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">
-          En quoi consiste l'audit gratuit ?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>L'audit gratuit est un échange de 20 à 30 minutes par email ou visioconférence. Nous analysons votre présence digitale actuelle (site, GMB, réseaux, email) et vous proposons les 3 actions prioritaires à mettre en place selon votre situation.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">
-          Est-il possible d'obtenir une facture pour mon achat ?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>Oui. Une facture est automatiquement générée et envoyée avec votre confirmation d'achat. Si vous avez besoin d'une facture spécifique ou d'un justificatif, contactez-nous et nous vous l'enverrons dans les 24h.</p>
-        </div>
-      </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 40px;">
+
+      <details style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 12px; padding: 20px 24px; cursor: pointer;">
+        <summary style="font-weight: 600; color: var(--neutral-900); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          Par quel guide est-ce que je devrais commencer ?
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+          Ça dépend de votre blocage principal. Si vous manquez de visibilité : commencez par le guide SEO local ou Google Business Profile. Si vous avez des contacts mais ne convertissez pas : le guide tunnel vendeur ou emails. Si tout est flou : commencez par le guide positionnement. En cas de doute, écrivez-nous — on vous orientera.
+        </p>
+      </details>
+
+      <details style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 12px; padding: 20px 24px; cursor: pointer;">
+        <summary style="font-weight: 600; color: var(--neutral-900); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          Les guides conviennent-ils aux débutants ?
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+          Oui. Les guides ont été rédigés sans jargon technique, avec une logique progressive. Que vous démarriez dans l'immobilier ou que vous ayez plusieurs années d'expérience, vous trouverez des éléments concrets à appliquer rapidement.
+        </p>
+      </details>
+
+      <details style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 12px; padding: 20px 24px; cursor: pointer;">
+        <summary style="font-weight: 600; color: var(--neutral-900); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          Qu'est-ce qu'un audit gratuit exactement ?
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+          C'est un regard extérieur sur votre situation actuelle : positionnement, communication, outils, points de friction visibles. Pas un argumentaire commercial — un diagnostic honnête pour identifier ce qui freine votre acquisition locale.
+        </p>
+      </details>
+
+      <details style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 12px; padding: 20px 24px; cursor: pointer;">
+        <summary style="font-weight: 600; color: var(--neutral-900); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          Est-ce que les guides fonctionnent pour tous les réseaux ?
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+          Oui. Les méthodes sont indépendantes de tout réseau ou enseigne. Que vous soyez chez IAD, Optimhome, EffiCity, en agence traditionnelle ou totalement indépendant — les leviers d'acquisition locale restent les mêmes.
+        </p>
+      </details>
+
+      <details style="background: var(--white); border: 1px solid var(--neutral-200); border-radius: 12px; padding: 20px 24px; cursor: pointer;">
+        <summary style="font-weight: 600; color: var(--neutral-900); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          Puis-je acheter plusieurs guides en même temps ?
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
+          Oui, tout à fait. Chaque guide est disponible à 47€ à l'unité sur <a href="https://guides.ecosystemeimmo.fr" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500); font-weight: 500;">guides.ecosystemeimmo.fr</a>. Si vous souhaitez accéder à l'ensemble de la collection, contactez-nous pour voir les options disponibles.
+        </p>
+      </details>
+
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- ============================================================
+     CTA FINAL
+============================================================ -->
 <section class="section cta-section">
   <div class="container container-md">
     <div class="section-header center" style="margin-bottom: 0;">
-      <h2 class="section-title" style="color: var(--white);">Prêt à développer votre activité ?</h2>
+      <span class="section-tag" style="background: rgba(245,158,11,.15); color: var(--accent-400);">Pas encore prêt à écrire ?</span>
+      <h2 class="section-title" style="color: var(--white); margin-top: 16px;">
+        Explorez les guides ou découvrez le système
+      </h2>
       <p class="section-subtitle" style="color: rgba(255,255,255,.75); margin-top: 16px;">
-        Commencez par le guide qui correspond à votre besoin le plus urgent. 47€ et une heure de lecture peuvent changer beaucoup de choses.
+        47€ par guide. Téléchargement immédiat. Applicable dès aujourd'hui.<br>
+        Pas d'abonnement. Pas de jargon. Pas de perte de temps.
       </p>
       <div class="cta-buttons">
-        <a href="guides.php" class="btn btn-primary btn-lg">Voir les 12 guides</a>
-        <a href="methode.php" class="btn btn-outline-white">Comprendre la méthode</a>
+        <a href="https://guides.ecosystemeimmo.fr" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+          Voir les 12 guides ↗
+        </a>
+        <a href="demonstration.php" class="btn btn-outline-white btn-lg">Voir la démonstration</a>
       </div>
     </div>
   </div>
 </section>
+
+</main>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Remplacer ici par votre logique d'envoi (fetch, formspree, etc.)
+  this.style.display = 'none';
+  document.getElementById('contact-success').style.display = 'block';
+});
+</script>
 
 <?php include 'includes/footer.php'; ?>
