@@ -40,8 +40,8 @@ include 'includes/header.php';
             <div class="hero-stat-label">Leviers connectés</div>
           </div>
           <div>
-            <div class="hero-stat-number">47€</div>
-            <div class="hero-stat-label">Par guide — accès immédiat</div>
+            <div class="hero-stat-number">PDF</div>
+            <div class="hero-stat-label">Conditions d’achat sur le site ressource</div>
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@ include 'includes/header.php';
           </div>
           <div class="hero-card-footer">
             <div>
-              <div class="hero-price-tag">47€ <span>/ guide</span></div>
-              <div style="font-size: .75rem; color: rgba(255,255,255,.5); margin-top: 2px;">Accès immédiat · PDF</div>
+              <div class="hero-price-tag">Sur le site ressource</div>
+              <div style="font-size: .75rem; color: rgba(255,255,255,.5); margin-top: 2px;">Accès immédiat · PDF (après achat)</div>
             </div>
             <a href="https://guides.ecosystemeimmo.fr" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Voir la collection</a>
           </div>
@@ -338,7 +338,7 @@ include 'includes/header.php';
           <h3 class="guide-card-title"><?= htmlspecialchars($guide['titre']) ?></h3>
           <p class="guide-card-desc"><?= htmlspecialchars($guide['promesse_courte']) ?></p>
           <div class="guide-card-footer">
-            <div class="guide-card-price"><?= $guide['prix'] ?>€ <span>HT</span></div>
+            <div class="guide-card-price">Conditions sur <span>guides.ecosystemeimmo.fr</span></div>
             <a href="guide.php?slug=<?= $guide['slug'] ?>" class="btn btn-dark btn-sm">Découvrir →</a>
           </div>
         </div>
@@ -467,7 +467,7 @@ include 'includes/header.php';
         <div class="method-step-number" style="background: var(--accent-500); font-size: 1rem;">?</div>
         <div class="method-step-content">
           <h4>Dois-je acheter les 12 guides d'un coup ?</h4>
-          <p>Non. Chaque guide est autonome et vendu séparément à 47€. Commencez par celui qui répond à votre blocage du moment, puis complétez selon vos besoins.</p>
+          <p>Non. Chaque guide est autonome et vendu séparément — tarif affiché sur le site ressource des guides. Commencez par celui qui répond à votre blocage du moment, puis complétez selon vos besoins.</p>
         </div>
       </div>
       <div class="method-step">
@@ -511,7 +511,7 @@ include 'includes/header.php';
         Choisissez votre premier guide<br>et construisez votre système
       </h2>
       <p class="section-subtitle" style="color: rgba(255,255,255,.75); margin-top: 16px;">
-        47€ par guide. Téléchargement immédiat. Applicable dès aujourd'hui.<br>
+        Tarification : voir guides.ecosystemeimmo.fr. Téléchargement immédiat après achat.<br>
         Pas d'abonnement. Pas de jargon. Pas de perte de temps.
       </p>
       <div class="cta-buttons">

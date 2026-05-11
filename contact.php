@@ -122,6 +122,11 @@ include 'includes/header.php';
 
           <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
 
+            <div style="position:absolute;left:-5000px;height:0;overflow:hidden;" aria-hidden="true">
+              <label for="contact_website_hp">Ne pas remplir</label>
+              <input type="text" id="contact_website_hp" name="website" tabindex="-1" autocomplete="off" value="">
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div>
                 <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px;">
@@ -318,7 +323,7 @@ include 'includes/header.php';
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <p style="margin-top: 12px; font-size: 0.9375rem; color: var(--neutral-600); line-height: 1.7;">
-          Oui, tout à fait. Chaque guide est disponible à 47€ à l'unité sur <a href="https://guides.ecosystemeimmo.fr" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500); font-weight: 500;">guides.ecosystemeimmo.fr</a>. Si vous souhaitez accéder à l'ensemble de la collection, contactez-nous pour voir les options disponibles.
+          Oui, tout à fait. Les conditions d’achat des guides sont celles affichées sur <a href="https://guides.ecosystemeimmo.fr" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500); font-weight: 500;">guides.ecosystemeimmo.fr</a>. Si vous souhaitez accéder à l'ensemble de la collection, contactez-nous pour voir les options disponibles.
         </p>
       </details>
 
@@ -337,7 +342,7 @@ include 'includes/header.php';
         Explorez les guides ou découvrez le système
       </h2>
       <p class="section-subtitle" style="color: rgba(255,255,255,.75); margin-top: 16px;">
-        47€ par guide. Téléchargement immédiat. Applicable dès aujourd'hui.<br>
+        Tarification des guides : voir le site ressource. Téléchargement immédiat une fois l’achat effectué.<br>
         Pas d'abonnement. Pas de jargon. Pas de perte de temps.
       </p>
       <div class="cta-buttons">
@@ -353,11 +358,53 @@ include 'includes/header.php';
 </main>
 
 <script>
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  // Remplacer ici par votre logique d'envoi (fetch, formspree, etc.)
-  this.style.display = 'none';
-  document.getElementById('contact-success').style.display = 'block';
+  const form = this;
+  const fd = new FormData(form);
+  if ((fd.get('website') || '').toString().trim() !== '') {
+    form.style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+    return;
+  }
+  const prenom = (fd.get('prenom') || '').toString().trim();
+  const nom = (fd.get('nom') || '').toString().trim();
+  const email = (fd.get('email') || '').toString().trim();
+  const situation = (fd.get('situation') || '').toString();
+  const objet = (fd.get('objet') || '').toString();
+  const message = (fd.get('message') || '').toString().trim();
+  if (!prenom || !nom || !email || !objet || !message) {
+    alert('Merci de compléter tous les champs obligatoires.');
+    return;
+  }
+  const payload = {
+    type_demande: 'prospect',
+    source: 'contact',
+    prenom: prenom,
+    nom: nom,
+    email: email,
+    telephone: '',
+    ville: '—',
+    besoin: objet,
+    message: 'Situation : ' + situation + '\n\n' + message,
+    website: ''
+  };
+  try {
+    const res = await fetch('https://api.ecosystemeimmo.fr/leads.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(function() { return {}; });
+    if (!res.ok || !data.success) {
+      alert('Erreur lors de l\'envoi. Vous pouvez réessayer ou nous écrire directement.');
+      return;
+    }
+    form.style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  } catch (err) {
+    alert('Erreur réseau. Vérifiez votre connexion et réessayez.');
+  }
 });
 </script>
 

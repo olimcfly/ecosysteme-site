@@ -114,8 +114,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ============================================================
-     6. GUIDE FILTER BUTTONS
-  ============================================================ */
+     6. BLOG / RESSOURCES — filtre par catégorie
+     ============================================================ */
+  const blogFilterBtns = document.querySelectorAll('[data-blog-filter]');
+  const blogCards    = document.querySelectorAll('.blog-card[data-categorie]');
+  const blogGridEmpty = document.getElementById('blog-grid-empty');
+  if (blogFilterBtns.length && blogCards.length) {
+    blogFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.blogFilter;
+        blogFilterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        let visible = 0;
+        blogCards.forEach((card) => {
+          const cat = card.dataset.categorie;
+          const show = id === 'tous' || cat === id;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (blogGridEmpty) blogGridEmpty.hidden = visible > 0;
+      });
+    });
+  }
+
+
+  /* ============================================================
+     7. GUIDE FILTER BUTTONS
+     ============================================================ */
   const filterBtns  = document.querySelectorAll('.filter-btn');
   const guideCards  = document.querySelectorAll('.guide-card-wrapper');
 
@@ -133,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ============================================================
-     7. SCROLL REVEAL
-  ============================================================ */
+     8. SCROLL REVEAL
+     ============================================================ */
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -151,8 +175,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ============================================================
-     8. ACTIVE NAV LINK
-  ============================================================ */
+     9. ACTIVE NAV LINK
+     ============================================================ */
   const currentPath = window.location.pathname.split('/').pop() || 'index.php';
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
@@ -163,8 +187,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ============================================================
-     9. DEMO FORM — VALIDATION INLINE
-  ============================================================ */
+     10. DEMO FORM — VALIDATION INLINE
+     ============================================================ */
   const demoForm = document.getElementById('demo-form');
   if (!demoForm) return;
 

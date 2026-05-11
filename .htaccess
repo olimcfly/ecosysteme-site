@@ -1,1 +1,34 @@
+Options -Indexes
+RewriteEngine On
 
+# Fichiers et répertoires existants servis directement
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# URLs propres → fichiers PHP
+RewriteRule ^fonctionnalites/?$ fonctionnalites.php [L]
+RewriteRule ^methode/?$ methode.php [L]
+RewriteRule ^verifier-ma-ville/?$ verifier-ma-ville.php [L]
+RewriteRule ^villes-disponibles/?$ verifier-ma-ville.php [L]
+RewriteRule ^etudes-cas/?$ etudes-cas.php [L]
+RewriteRule ^cas-clients/?$ etudes-cas.php [L]
+RewriteRule ^realisations/?$ etudes-cas.php [L]
+RewriteRule ^offres/?$ offres.php [L]
+RewriteRule ^pourquoi-ecosysteme-immo/?$ pourquoi-ecosysteme-immo.php [L]
+RewriteRule ^solutions/?$ solutions.php [L]
+RewriteRule ^immobilier/?$ immobilier.php [L]
+RewriteRule ^blog/hubspot-crm-ou-ecosysteme-immo/?$ blog/hubspot-crm-ou-ecosysteme-immo.php [L]
+RewriteRule ^blog/?$ blog/index.php [L]
+RewriteRule ^rdv/?$ rdv.php [L]
+RewriteRule ^essai/?$ essai.php [L]
+RewriteRule ^mentions-legales/?$ mentions-legales.php [L]
+RewriteRule ^cgv/?$ cgv.php [L]
+RewriteRule ^protection-des-donnees/?$ protection-des-donnees.php [L]
+RewriteRule ^club/?$ club-conseillers-malin.php [L]
+RewriteRule ^offre-dedie-qualif/?$ qualification-offre-dedie.php [L]
+RewriteRule ^merci-offre-dedie/?$ merci-offre-dedie.php [L]
+RewriteRule ^diagnostic-visibilite-locale/?$ diagnostic-visibilite-locale.php [L]
+RewriteRule ^audit-fiche-google/merci/?$ audit-fiche-google-merci.php [L]
+RewriteRule ^audit-fiche-google/?$ audit-fiche-google.php [L]
+RewriteRule ^admin/?$ admin/index.php [L]

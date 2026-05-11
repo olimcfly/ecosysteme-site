@@ -1,71 +1,77 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-main">
+
+      <!-- Colonne 1 — Écosystème Immo -->
       <div class="footer-brand">
-        <a href="index.php" class="logo">
+        <a href="/" class="logo">
           <div class="logo-icon">ÉI</div>
           <div class="logo-text">
             <span class="logo-name">Écosystème Immo</span>
-            <span class="logo-tagline">Guides pour l'immobilier</span>
+            <span class="logo-tagline">Système digital immobilier</span>
           </div>
         </a>
-        <p class="footer-description">Des guides pratiques pour aider les conseillers immobiliers indépendants à développer leur visibilité locale, attirer plus de contacts et structurer leur activité digitale.</p>
-      </div>
-
-      <div>
-        <p class="footer-col-title">Les guides</p>
+        <p class="footer-description">Un seul système pour capter et suivre vos vendeurs localement : site, CRM, contenu, trafic — alignés sur votre territoire.</p>
+        <p class="footer-col-title">Écosystème Immo</p>
         <ul class="footer-links">
-          <li><a href="guide.php?slug=attirer-mandats-vendeurs" class="footer-link">Attirer des mandats vendeurs</a></li>
-          <li><a href="guide.php?slug=google-my-business-immobilier" class="footer-link">Google My Business</a></li>
-          <li><a href="guide.php?slug=scripts-prise-mandats-exclusifs" class="footer-link">Scripts de mandats</a></li>
-          <li><a href="guide.php?slug=reseaux-sociaux-immobilier" class="footer-link">Réseaux sociaux</a></li>
-          <li><a href="guide.php?slug=ecosysteme-digital-immo" class="footer-link">Écosystème digital</a></li>
-          <li><a href="guides.php" class="footer-link" style="color: var(--accent-400); font-weight: 600;">→ Voir les 12 guides</a></li>
+          <li><a href="/" class="footer-link">Accueil</a></li>
+          <li><a href="/fonctionnalites" class="footer-link">Fonctionnalités</a></li>
+          <li><a href="/methode" class="footer-link">Méthode</a></li>
+          <li><a href="/offres" class="footer-link">Offres</a></li>
         </ul>
       </div>
 
+      <!-- Colonne 2 — Ressources -->
       <div>
-        <p class="footer-col-title">Le site</p>
+        <p class="footer-col-title">Ressources</p>
         <ul class="footer-links">
-          <li><a href="index.php" class="footer-link">Accueil</a></li>
-          <li><a href="guides.php" class="footer-link">Catalogue</a></li>
-          <li><a href="methode.php" class="footer-link">La méthode</a></li>
-          <li><a href="blog.php" class="footer-link">Ressources</a></li>
-          <li><a href="a-propos.php" class="footer-link">À propos</a></li>
-          <li><a href="contact.php" class="footer-link">Contact</a></li>
+          <li><a href="/blog" class="footer-link">Blog</a></li>
+          <li><a href="/pourquoi-ecosysteme-immo" class="footer-link">Pourquoi Écosystème Immo</a></li>
+          <li><a href="/solutions" class="footer-link">Avantages &amp; bénéfices</a></li>
+          <li><a href="/etudes-cas" class="footer-link">Études de cas</a></li>
+          <li><a href="/blog#articles-guides" class="footer-link">Guides</a></li>
+          <li><a href="/offres#faq-offres" class="footer-link">FAQ</a></li>
         </ul>
       </div>
 
+      <!-- Colonne 3 — Actions -->
       <div>
+        <p class="footer-col-title">Actions</p>
+        <ul class="footer-links">
+          <li><a href="/verifier-ma-ville" class="footer-link">Vérifier ma ville</a></li>
+          <li><a href="/rdv" class="footer-link">Demander une démo</a></li>
+          <li><a href="/rdv#reservation" class="footer-link">Réserver un diagnostic</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 — Contact & légal -->
+      <div class="footer-contact-col">
         <p class="footer-col-title">Contact</p>
+        <p class="footer-contact-name">Olivier Colas</p>
+        <p class="footer-contact-detail">
+          <a href="tel:+33785611700" class="footer-link">07&nbsp;85&nbsp;61&nbsp;17&nbsp;00</a>
+        </p>
+        <p class="footer-contact-detail">
+          <a href="mailto:contact@ecosystemeimmo.fr" class="footer-link">contact@ecosystemeimmo.fr</a>
+        </p>
+        <p class="footer-col-title footer-col-title--spaced">Légal</p>
         <ul class="footer-links">
-          <li><a href="contact.php" class="footer-link">📩 Nous contacter</a></li>
-          <li><a href="contact.php" class="footer-link">🎯 Demander un audit</a></li>
-          <li><span class="footer-link" style="cursor: default;">📧 contact@ecosysteme-immo.fr</span></li>
+          <li><a href="/mentions-legales" class="footer-link">Mentions légales</a></li>
+          <li><a href="/cgv" class="footer-link">CGV</a></li>
+          <li><a href="/protection-des-donnees" class="footer-link">Politique de confidentialité</a></li>
         </ul>
-        <div style="margin-top: 24px;">
-          <p class="footer-col-title">Ils nous font confiance</p>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-            <span class="badge badge-primary" style="background: rgba(255,255,255,.08); color: rgba(255,255,255,.6);">+500 conseillers</span>
-            <span class="badge badge-primary" style="background: rgba(255,255,255,.08); color: rgba(255,255,255,.6);">12 guides</span>
-          </div>
-        </div>
       </div>
+
     </div>
   </div>
 
   <div class="container">
     <div class="footer-bottom">
-      <span>© <?= date('Y') ?> Écosystème Immo — Tous droits réservés</span>
-      <div class="footer-legal-links">
-        <a href="#">Mentions légales</a>
-        <a href="#">CGV</a>
-        <a href="#">Politique de confidentialité</a>
-      </div>
+      <span>© 2026 Écosystème Immo — SAS OCDM Agency · Tous droits réservés</span>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

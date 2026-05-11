@@ -294,6 +294,11 @@ include 'includes/header.php';
 
         <form method="POST" action="traitement-demo.php" novalidate id="demo-form">
 
+          <div class="form-honeypot-api" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <label for="website_demo_hp">Ne pas remplir</label>
+            <input type="text" id="website_demo_hp" name="website" tabindex="-1" autocomplete="off" value="">
+          </div>
+
           <!-- Prénom + Nom -->
           <div class="form-row">
             <div class="form-group">

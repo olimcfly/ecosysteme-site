@@ -8,6 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$honeypot_demo = trim((string) ($_POST['website'] ?? ''));
+if ($honeypot_demo !== '') {
+    header('Location: demo.php?error=1');
+    exit;
+}
+
 // Sanitize
 function clean($val) {
     return htmlspecialchars(strip_tags(trim($val)));
@@ -63,6 +69,33 @@ $headers .= "Reply-To: $email\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 mail($to, $subject, $body, $headers);
+
+require_once __DIR__ . '/includes/nocodb.php';
+nocodb_sync('demo', [
+    'prenom'      => $prenom,
+    'nom'         => $nom,
+    'email'       => $email,
+    'telephone'   => $telephone,
+    'reseau'      => $reseau,
+    'objectif'    => $objectif,
+    'departement' => $departement,
+    'ville'       => $ville,
+    'message'     => $message,
+], "Démo — {$prenom} {$nom} ({$ville})");
+
+require_once __DIR__ . '/includes/leads_api_client.php';
+ecosystemeimmo_send_lead_to_api([
+    'type_demande' => 'demo',
+    'prenom'       => $prenom,
+    'nom'          => $nom,
+    'email'        => $email,
+    'telephone'    => $telephone,
+    'ville'        => $ville,
+    'source'       => 'demo',
+    'besoin'       => $objectif,
+    'message'      => trim("Département : {$departement}\nRéseau : {$reseau}\n\n{$message}"),
+    'website'      => '',
+]);
 
 // Redirection confirmation
 header('Location: bienvenue.php?prenom=' . urlencode($prenom));

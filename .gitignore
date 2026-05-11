@@ -1,2 +1,56 @@
-node_modules
+# =========================
+# SECRETS / ENV
 .env
+.env.*
+!.env.example
+
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+includes/nocodb_config.local.php
+includes/mini_crm_config.local.php
+infra/metabase/.env
+# DEPENDENCIES
+vendor/
+node_modules/
+# LOGS / CACHE / RUNTIME
+logs/
+error_log
+*.log
+cache/
+tmp/
+storage/logs/
+storage/cache/
+storage/tmp/
+# DATA PRIVÉES / RUNTIME
+data/
+mini-crm/data/
+mini-crm/data/contacts.json
+# BACKUPS / ARCHIVES
+backups/
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.bak
+*.backup
+*.bak-*
+# SQL
+# On ignore les dumps SQL, mais on autorise les migrations du projet.
+*.sql
+!migrations/*.sql
+# DEBUG / DEV LOCAL
+debug/
+dev/
+# OS / EDITORS
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+# AGENTS LOCAUX
+.codex/
+.agents/
+# Logs oubliés déjà présents dans certains sous-dossiers
+**/error_log

@@ -1,86 +1,80 @@
 <?php
-$page_title = 'Générez vos propres contacts immobiliers - Système Écosystème Immo';
-$meta_description = 'Découvrez le système complet Écosystème Immo pour attirer, convertir et suivre vos prospects immobiliers localement, sans dépendre des portails.';
-
-include 'includes/header.php';
+$page_title = 'L\'écosystème digital des conseillers immobiliers indépendants';
+$meta_description = 'Attirez, suivez et convertissez plus de vendeurs localement : site immobilier, CRM, contenus, estimation, automatisations et IA métier — un seul système pour les indépendants.';
+include 'includes/nav.php';
 ?>
 
-<!-- HERO -->
+<!-- 1. HERO -->
 <section class="hero">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-content">
+
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          Système complet pour indépendants
+          Pour les conseillers immobiliers indépendants
         </div>
+
         <h1 class="hero-title">
-          Générez vos propres contacts immobiliers,<br>
-          <span>sans dépendre des portails</span>
+          L'écosystème digital qui aide les conseillers immobiliers à <span>attirer, suivre et convertir plus de vendeurs localement.</span>
         </h1>
+
         <p class="hero-subtitle">
-          Un système complet pour attirer, convertir et suivre vos prospects localement, sans multiplier les outils
+          Site immobilier, CRM, contenus, estimation, automatisations et IA métier réunis dans un système pensé pour les conseillers immobiliers indépendants.
         </p>
+
         <div class="hero-ctas">
-          <a href="#demo" class="btn btn-primary btn-lg">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-            </svg>
-            Voir comment fonctionne l'écosystème
-          </a>
-          <a href="#benefices" class="btn btn-outline-white btn-lg">Découvrir les bénéfices</a>
+          <a href="/offres" class="btn btn-primary btn-lg">Voir les offres</a>
+          <a href="/rdv" class="btn btn-outline-white btn-lg">Demander une démo</a>
         </div>
+
         <div class="hero-stats">
           <div>
             <div class="hero-stat-number">1</div>
-            <div class="hero-stat-label">Système complet</div>
+            <div class="hero-stat-label">Système unifié</div>
           </div>
           <div>
             <div class="hero-stat-number">5</div>
-            <div class="hero-stat-label">Étapes clés</div>
+            <div class="hero-stat-label">Leviers connectés</div>
           </div>
           <div>
             <div class="hero-stat-number">100%</div>
-            <div class="hero-stat-label">Contrôle sur votre activité</div>
+            <div class="hero-stat-label">Pensé pour l'immo</div>
           </div>
         </div>
+
       </div>
 
       <div class="hero-visual">
         <div class="hero-card">
-          <div class="hero-card-title">Le système Écosystème Immo</div>
+          <div class="hero-card-title">Ce que vous obtenez</div>
           <div class="hero-guide-list">
             <div class="hero-guide-item">
-              <div class="hero-guide-number">1</div>
-              <span>Positionnement local ciblé</span>
+              <div class="hero-guide-number">01</div>
+              <span>Site immobilier &amp; visibilité locale</span>
             </div>
             <div class="hero-guide-item">
-              <div class="hero-guide-number">2</div>
-              <span>Contenu qui attire les vendeurs</span>
+              <div class="hero-guide-number">02</div>
+              <span>CRM, automatisations &amp; suivi des leads</span>
             </div>
             <div class="hero-guide-item">
-              <div class="hero-guide-number">3</div>
-              <span>Visibilité locale (SEO & GBP)</span>
+              <div class="hero-guide-number">03</div>
+              <span>Estimation &amp; avis de valeur</span>
             </div>
             <div class="hero-guide-item">
-              <div class="hero-guide-number">4</div>
-              <span>Tunnel de conversion vendeur</span>
+              <div class="hero-guide-number">04</div>
+              <span>Contenus &amp; SEO local</span>
             </div>
             <div class="hero-guide-item">
-              <div class="hero-guide-number">5</div>
-              <span>Suivi & système automatisé</span>
+              <div class="hero-guide-number">05</div>
+              <span>IA métier &amp; optimisation</span>
             </div>
-            <a href="guides.php" class="hero-guide-item" style="border: 1px dashed rgba(255,255,255,.2); justify-content: center;">
-              <span style="color: rgba(255,255,255,.6); font-size: .875rem;">Découvrir les 12 guides →</span>
-            </a>
           </div>
           <div class="hero-card-footer">
-            <div>
-              <div class="hero-price-tag">47€ <span>/ guide</span></div>
-              <div style="font-size: .75rem; color: rgba(255,255,255,.5); margin-top: 2px;">Accès immédiat · PDF</div>
+            <div style="padding-right: 8px;">
+              <p style="font-size: .6875rem; line-height: 1.45; color: rgba(255,255,255,.55); margin: 0;">Déploiement en réel : <a href="#preuve-terrain" style="color: var(--accent-400); font-weight: 600;">5 villes bêta fondatrice</a></p>
             </div>
-            <a href="guides.php" class="btn btn-primary btn-sm">Voir la collection</a>
+            <a href="/offres" class="btn btn-primary btn-sm">Voir les offres</a>
           </div>
         </div>
       </div>
@@ -89,412 +83,239 @@ include 'includes/header.php';
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container">
-    <div class="trust-items">
-      <div class="trust-item"><span class="trust-icon">✓</span> Téléchargement immédiat</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> Format PDF accessible</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> Méthodes terrain éprouvées</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> Sans jargon technique</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> Applicable dès aujourd'hui</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> Paiement sécurisé</div>
-    </div>
-  </div>
-</div>
-
-<!-- PROBLÈME -->
-<section class="section problem-section" id="probleme">
+<!-- 2. PROBLÈME -->
+<section class="section problem-section" id="constats">
   <div class="container">
     <div class="section-header center">
-      <span class="section-tag">Le problème</span>
-      <h2 class="section-title">Aujourd'hui, votre activité dépend de facteurs que vous ne maîtrisez pas</h2>
-      <p class="section-subtitle">Vous travaillez dur. Mais vos résultats restent irréguliers. Et vous ne savez jamais vraiment pourquoi.</p>
+      <span class="section-tag">Le constat</span>
+      <h2 class="section-title">Trop de conseillers tournent sans système, avec des leads qui s'évaporent</h2>
+      <p class="section-subtitle">Vous n'avez pas besoin d'un gadget en plus. Vous avez besoin d'un fil conducteur : visibilité locale, trafic qualifié, suivi, conversion.</p>
     </div>
-    <div class="problem-grid">
+
+    <div class="problem-grid" style="max-width: 900px; margin: 0 auto;">
       <div class="problem-card">
-        <div class="problem-icon">📢</div>
+        <div class="problem-icon">👁</div>
         <div class="problem-text">
-          <h4>Vous publiez</h4>
-          <p>Du contenu, des annonces, des posts… mais sans stratégie claire, la visibilité reste aléatoire et les contacts rares.</p>
+          <h4>Peu de visibilité sur votre propre territoire</h4>
+          <p>Les recherches locales passent à côté de vous — ou chez d'autres, alors que c'est chez vous que le contact aurait dû se jouer en premier.</p>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">💬</div>
+        <div class="problem-icon">🔗</div>
         <div class="problem-text">
-          <h4>Vous répondez aux leads</h4>
-          <p>Des contacts entrent, vous relancez, vous expliquez… mais la conversion reste faible et le taux de transformation décevant.</p>
+          <h4>Dépendance aux portails et intermédiaires</h4>
+          <p>Vous payez des leads froids, sans relation durable — et sans actif sur votre propre site.</p>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">🔄</div>
+        <div class="problem-icon">🌐</div>
         <div class="problem-text">
-          <h4>Vous testez des actions</h4>
-          <p>Un peu de SEO, un peu de pub, un peu de Google… mais rien n'est relié et rien ne construit quelque chose dans la durée.</p>
+          <h4>Site inadapté, qui ne génère pas d'estimations qualifiées</h4>
+          <p>Présentation, formulaires, parcours vendeur : tout ne mène pas vers une prise de contact structurée.</p>
         </div>
       </div>
       <div class="problem-card">
+        <div class="problem-icon">🧩</div>
+        <div class="problem-text">
+          <h4>CRM, tableurs, messageries… tout est déconnecté</h4>
+          <p>Les relances s'oublient, l'historique s'éclate, personne n'a la vue d'ensemble d'un vrai entonnoir de vente.</p>
+        </div>
+      </div>
+      <div class="problem-card" style="grid-column: 1 / -1; max-width: 100%;">
         <div class="problem-icon">📉</div>
         <div class="problem-text">
-          <h4>Vos résultats restent irréguliers</h4>
-          <p>Certains mois fonctionnent. D'autres non. Et vous ne savez jamais vraiment pourquoi ni comment inverser la tendance.</p>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">⏱️</div>
-        <div class="problem-text">
-          <h4>Vous manquez de temps pour structurer</h4>
-          <p>Entre les visites, les compromis et les relances, impossible de prendre du recul pour construire un système cohérent.</p>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">❓</div>
-        <div class="problem-text">
-          <h4>Vous dépendez de facteurs externes</h4>
-          <p>Portails, algorithmes, bouche-à-oreille : votre activité repose sur des éléments que vous ne contrôlez pas vraiment.</p>
+          <h4>Aucun rythme de contenu, aucune machine SEO locale</h4>
+          <p>Il manque le plan : thématiques, pages secteur, rythme de publication, pour tenir haut le rang sur <em>votre</em> zone.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRISE DE CONSCIENCE -->
-<section class="section">
-  <div class="container">
-    <div class="solution-grid">
-      <div class="solution-visual">
-        <div class="solution-image-wrapper">
-          <div class="solution-image-placeholder">
-            <span class="icon-big">💡</span>
-            <p style="font-size: 1.125rem; font-weight: 600; color: var(--primary-700);">Le vrai problème</p>
-            <p style="font-size: .9375rem; color: var(--neutral-500); margin-top: 8px;">Ce n'est pas un manque de travail — c'est un manque de structure.</p>
-          </div>
-        </div>
-        <div class="solution-badge">
-          <div class="solution-badge-number">1</div>
-          <div class="solution-badge-label">système complet</div>
-        </div>
-      </div>
-      <div>
-        <span class="section-tag">Prise de conscience</span>
-        <h2 class="section-title" style="margin-top: 12px;">Le problème n'est pas votre implication</h2>
-        <p style="font-size: 1.0625rem; color: var(--neutral-600); line-height: 1.7; margin-bottom: 24px;">
-          Ce n'est pas un manque de travail. C'est un manque de structure. Vos actions existent… mais elles ne sont pas reliées entre elles.
-        </p>
-        <p style="font-size: 1.0625rem; color: var(--neutral-600); line-height: 1.7; margin-bottom: 32px;">
-          Donc elles ne construisent rien dans le temps. On vous parle d'indépendance. Mais sans système, ce n'est pas de la liberté — c'est de l'autonomie sans direction.
-        </p>
-        <div class="solution-points">
-          <div class="solution-point">
-            <div class="solution-point-icon">✓</div>
-            <div>
-              <h4>Un patron a une stratégie</h4>
-              <p>Pas seulement de l'autonomie. Il sait où il va, comment il y va et avec quels leviers il avance semaine après semaine.</p>
-            </div>
-          </div>
-          <div class="solution-point">
-            <div class="solution-point-icon">✓</div>
-            <div>
-              <h4>Un système relie vos actions</h4>
-              <p>Quand positionnement, contenu, visibilité et conversion sont connectés, chaque action renforce les autres. C'est ça, construire.</p>
-            </div>
-          </div>
-          <div class="solution-point">
-            <div class="solution-point-icon">✓</div>
-            <div>
-              <h4>La régularité vient de la structure</h4>
-              <p>Ce n'est pas la chance qui crée des résultats stables — c'est un système clair, cohérent et répétable dans le temps.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI ÉCOSYSTÈME IMMO -->
-<section class="section bg-light" id="pourquoi">
+<!-- 3. SOLUTION — 5 piliers -->
+<section class="section bg-white" id="solution">
   <div class="container">
     <div class="section-header center">
-      <span class="section-tag">Notre pourquoi</span>
-      <h2 class="section-title">Pourquoi Écosystème Immo a été créé</h2>
-      <p class="section-subtitle">Trop de conseillers ont cru à une promesse de liberté. Ils ont investi, travaillé — mais sans système, leurs résultats restaient instables.</p>
+      <span class="section-tag">Un système complet</span>
+      <h2 class="section-title">Un système complet, pas un outil de plus</h2>
+      <p class="section-subtitle">Chaque brique s'enchaîne : du premier clic à la prise de contact, jusqu'au suivi de vos vendeurs — avec estimation, rappels, et IA en appui de votre discours.</p>
     </div>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">💰</div>
-        <div class="problem-text">
-          <h4>Ils ont investi</h4>
-          <p>Dans des formations, des outils, des abonnements à des portails. Mais sans structure pour relier tout ça, l'argent part sans retour clair.</p>
-        </div>
+
+    <div class="home-solution-grid">
+      <div class="ecosystem-pillar">
+        <div class="ecosystem-pillar-icon">🌐</div>
+        <h4>Site immobilier local</h4>
+        <p>Vitrine, pages secteur, offres, parcours vendeur conçu pour générer le contact, pas seulement « être en ligne ».</p>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon">⏳</div>
-        <div class="problem-text">
-          <h4>Ils ont travaillé</h4>
-          <p>Des heures de prospection, de contenu, de relances. Mais sans système cohérent, l'effort ne se transforme pas en croissance durable.</p>
-        </div>
+      <div class="ecosystem-pillar">
+        <div class="ecosystem-pillar-icon">📋</div>
+        <h4>CRM &amp; suivi des leads</h4>
+        <p>Pipeline, relances, scénarios et automatisations pour ne perdre ni estimation ni opportunité.</p>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon">👥</div>
-        <div class="problem-text">
-          <h4>Les réseaux continuent de recruter</h4>
-          <p>Leur communication est structurée — mais pas celle de leurs membres. Chaque conseiller est livré à lui-même pour se développer localement.</p>
-        </div>
+      <div class="ecosystem-pillar">
+        <div class="ecosystem-pillar-icon">📊</div>
+        <h4>Estimateur / avis de valeur</h4>
+        <p>Qualifiez les vendeurs, structurez l'échange et sécurisez l'étape estimation dans votre entonnoir.</p>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon">⚖️</div>
-        <div class="problem-text">
-          <h4>Et ça, c'est injuste</h4>
-          <p>Un conseiller indépendant mérite d'avoir accès aux mêmes leviers qu'une grande enseigne — avec la liberté d'un entrepreneur en plus.</p>
-        </div>
+      <div class="ecosystem-pillar">
+        <div class="ecosystem-pillar-icon">✍️</div>
+        <h4>Contenus &amp; SEO local</h4>
+        <p>Rythme éditorial, thématiques, pages locales : nourrir le référencement là où se jouent les mandats.</p>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon">🔧</div>
-        <div class="problem-text">
-          <h4>Pas un outil de plus</h4>
-          <p>Écosystème Immo n'est pas né pour ajouter un outil supplémentaire à votre pile. Il est né pour créer enfin un système complet.</p>
-        </div>
+      <div class="ecosystem-pillar">
+        <div class="ecosystem-pillar-icon">🤖</div>
+        <h4>Assistant IA métier</h4>
+        <p>Aide à la structuration, gain de temps sur les tâches répétitives, en restant cohérent avec votre côtier et votre offre.</p>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon">🎯</div>
-        <div class="problem-text">
-          <h4>Un système qui vous appartient</h4>
-          <p>Indépendant de tout réseau, de tout portail. Un système que vous maîtrisez, que vous pilotez et qui travaille pour vous dans la durée.</p>
-        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="/fonctionnalites" class="btn btn-dark">Découvrir le système (fonctionnalités) →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. BASE STRATÉGIQUE (méthode marketing) -->
+<section class="section bg-light home-marketing-base" id="methode">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">Notre logique</span>
+      <h2 class="section-title">Votre marketing immobilier ne part plus de zéro</h2>
+    </div>
+
+    <div class="home-marketing-base-inner">
+      <p class="home-marketing-base-text">La plupart des conseillers savent qu’ils doivent publier, écrire des articles, relancer leurs prospects et créer des offres.</p>
+      <p class="home-marketing-base-text">Le problème, c’est qu’ils ne savent pas toujours <strong>quoi dire</strong>, <strong>à qui le dire</strong>, ni <strong>comment l’adapter à leur ville</strong>.</p>
+      <p class="home-marketing-base-text home-marketing-base-text--strong">Écosystème Immo vous fournit une <strong>base stratégique prête à l’emploi</strong> :</p>
+
+      <div class="check-list home-marketing-base-list">
+        <div class="check-item"><span class="check-icon">✓</span><span>10 personas vendeurs prédéfinis</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>5 niveaux de conscience pour adapter le message</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Un générateur d’offres immobilières</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Des publications générées selon le profil du vendeur</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Des idées d’articles SEO locales</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Des séquences e-mail de suivi</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Des angles de communication adaptés à votre territoire</span></div>
+      </div>
+
+      <div class="content-block home-marketing-base-example">
+        <p class="home-marketing-base-example-title"><strong>Exemple simple</strong></p>
+        <p class="home-marketing-base-text">10 personas vendeurs × 5 niveaux de conscience = <strong>50 angles de publications</strong> pour une ville.</p>
+        <p class="home-marketing-base-text">Si vous couvrez <strong>10 communes</strong>, cela représente jusqu’à <strong>500 angles de contenus locaux</strong> exploitables.</p>
+        <p class="home-marketing-base-text">Et la même logique s’applique aux articles de blog, aux e-mails, aux pages de capture et aux campagnes de visibilité.</p>
+      </div>
+
+      <div class="home-marketing-base-outro">
+        <p class="home-marketing-base-outro-lead"><strong>Vous ne recevez pas seulement un site.</strong></p>
+        <p class="home-marketing-base-text home-marketing-base-text--flush">Vous recevez une <strong>méthode pour parler aux bons vendeurs</strong>, avec le <strong>bon message</strong>, au <strong>bon moment</strong>.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="section" id="demo">
+<!-- 5. OFFRES (aperçu) -->
+<section class="section" id="offres">
   <div class="container">
     <div class="section-header center">
-      <span class="section-tag">La solution</span>
-      <h2 class="section-title">Un seul système central qui relie tout</h2>
-      <p class="section-subtitle">Écosystème Immo, ce n'est pas un outil, une formation ou une méthode isolée. C'est un système complet qui connecte chaque levier de votre acquisition.</p>
+      <span class="section-tag">Offres</span>
+      <h2 class="section-title">Trois portes d'entrée, une seule logique de système</h2>
+      <p class="section-subtitle">De l'essentiel pour lancer, jusqu'au dispositif le plus exigeant sur votre territoire — le détail et les conditions complètes sont sur la page Offres.</p>
     </div>
-    <div class="method-steps" style="max-width: 760px; margin: 0 auto 48px;">
-      <div class="method-step">
-        <div class="method-step-number">1</div>
-        <div class="method-step-content">
-          <h4>Positionnement local ciblé</h4>
-          <p>Définir à qui vous vous adressez, ce que vous promettez et comment vous vous différenciez dans votre secteur géographique.</p>
-        </div>
+
+    <div class="grid grid-3" style="max-width: 1040px; margin: 0 auto; gap: 24px; align-items: stretch;">
+
+      <div class="content-block" style="margin-bottom: 0;">
+        <span class="badge badge-primary" style="margin-bottom: 12px;">Essentiel</span>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 12px;">Démarrer proprement</h3>
+        <p style="font-size: .9375rem; color: var(--neutral-600); line-height: 1.65; margin-bottom: 20px;">Mise en route structurée, hébergement géré — présence et pilotage de leads sans complexité d’infrastructure.</p>
+        <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-800); margin-bottom: 20px;">Sur demande</div>
+        <p style="font-size: .8125rem; color: var(--neutral-500); margin: -12px 0 20px;">Conditions communiquées en échange</p>
+        <a href="/offres" class="btn btn-secondary" style="width: 100%; justify-content: center;">Détails &amp; prise de contact</a>
       </div>
-      <div class="method-step">
-        <div class="method-step-number">2</div>
-        <div class="method-step-content">
-          <h4>Contenu qui attire les bons vendeurs</h4>
-          <p>Créer des contenus ciblés, utiles et réguliers qui parlent directement aux propriétaires que vous voulez accompagner.</p>
-        </div>
+
+      <div class="content-block" style="margin-bottom: 0; border-color: var(--accent-500); position: relative;">
+        <div style="position: absolute; top: -12px; right: 20px; background: var(--accent-500); color: var(--neutral-900); font-size: .75rem; font-weight: 700; padding: 4px 14px; border-radius: 100px;">Recommandé</div>
+        <span class="badge badge-accent" style="margin-bottom: 12px;">Pro</span>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 12px;">Écosystème dédié</h3>
+        <p style="font-size: .9375rem; color: var(--neutral-600); line-height: 1.65; margin-bottom: 20px;">Votre environnement, accompagnement humain, idéal quand l'immo est votre cœur de métiers sur la zone.</p>
+        <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-800); margin-bottom: 20px;">Sur demande</div>
+        <p style="font-size: .8125rem; color: var(--neutral-500); margin: -12px 0 20px;">Proposition personnalisée (setup + abonnement)</p>
+        <a href="/offres" class="btn btn-primary" style="width: 100%; justify-content: center;">Voir l'offre Pro</a>
       </div>
-      <div class="method-step">
-        <div class="method-step-number">3</div>
-        <div class="method-step-content">
-          <h4>Visibilité locale renforcée</h4>
-          <p>SEO local, Google Business Profile, articles et présence digitale : être trouvé au bon moment par les bons propriétaires.</p>
-        </div>
+
+      <div class="content-block" style="margin-bottom: 0;">
+        <span class="badge badge-primary" style="margin-bottom: 12px;">Expert</span>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 12px;">Acquisition &amp; stratégie</h3>
+        <p style="font-size: .9375rem; color: var(--neutral-600); line-height: 1.65; margin-bottom: 20px;">Dispositif premium : contenus, trafic, cadence et optimisation avancée — pour les profils exigeants.</p>
+        <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-800); margin: 0 0 8px;">Sur demande</div>
+        <p style="font-size: .8125rem; color: var(--neutral-500); margin: 0 0 20px;">Cadrage et chiffrage en rendez-vous</p>
+        <a href="/offres" class="btn btn-secondary" style="width: 100%; justify-content: center;">Détails &amp; prise de contact</a>
       </div>
-      <div class="method-step">
-        <div class="method-step-number">4</div>
-        <div class="method-step-content">
-          <h4>Tunnel de conversion vendeur</h4>
-          <p>Emails, estimation, relances et scripts : transformer votre visibilité en rendez-vous réels et en mandats signés.</p>
-        </div>
-      </div>
-      <div class="method-step">
-        <div class="method-step-number">5</div>
-        <div class="method-step-content">
-          <h4>Mise en système et régularité</h4>
-          <p>Facebook Ads, méthode FOTO et automatisation partielle : passer d'actions isolées à un système qui tourne en continu.</p>
-        </div>
-      </div>
+
     </div>
+  </div>
+</section>
+
+<!-- 6. PREUVE (villes) -->
+<section class="section bg-light" id="preuve-terrain">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">Déploiement en cours</span>
+      <h2 class="section-title">Déjà 5 territoires réservés en bêta fondatrice</h2>
+      <p class="section-subtitle"><strong>Bordeaux</strong>, <strong>Nantes</strong>, <strong>Aix-en-Provence</strong>, <strong>Nandy</strong> et <strong>Lannion</strong> : territoires déjà attribués. Les sites publics sont livrés ou en cours de finalisation ; le back-office complet se déploie progressivement. Les prochaines villes passent par les offres <strong>Essentiel</strong>, <strong>Pro</strong> et <strong>Expert</strong>.</p>
+    </div>
+
+    <div class="content-block" style="max-width: 720px; margin: 0 auto; border-color: var(--primary-200); text-align: center;">
+      <p style="font-size: .9375rem; color: var(--neutral-600); line-height: 1.7; margin: 0 0 16px;">La co-construction continue : <a href="/club" style="color: var(--primary-700); font-weight: 600;">rejoindre le club des conseillers malins</a> (gratuit) pour les retours terrain. Un accompagnement sur mesure <a href="/offre-dedie-qualif" style="color: var(--primary-700); font-weight: 600;">passe par la qualification</a> (PDF d'offre par email).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. EXCLUSIVITÉ (option) -->
+<section class="section benefits-section" id="exclusivite">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag" style="background: rgba(245,158,11,.15); color: var(--accent-400);">Option</span>
+      <h2 class="section-title" style="color: var(--white);">Verrouillez votre zone</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,.75);">Avec l'exclusivité géographique, un seul positionnement EcosystemeImmo actif sur votre cadrage — en complément d'une des offres.</p>
+    </div>
+
+    <div class="benefits-grid" style="max-width: 640px; margin: 0 auto 40px;">
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🏘️</div>
+        <div class="benefit-content">
+          <h4>Petite ville</h4>
+          <p><strong style="color: var(--accent-400);">Conditions sur demande</strong><br>Moins de 30 000 habitants</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🏙️</div>
+        <div class="benefit-content">
+          <h4>Grande ville</h4>
+          <p><strong style="color: var(--accent-400);">Conditions sur demande</strong><br>Plus de 30 000 habitants</p>
+        </div>
+      </div>
+
+    </div>
+
     <div style="text-align: center;">
-      <a href="methode.php" class="btn btn-primary btn-lg">Comprendre la méthode complète</a>
+      <a href="/verifier-ma-ville" class="btn btn-primary btn-lg">Vérifier si ma ville est disponible →</a>
     </div>
   </div>
 </section>
 
-<!-- GUIDES SECTION -->
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header center">
-      <span class="section-tag">La collection</span>
-      <h2 class="section-title">12 guides pour maîtriser chaque levier du système</h2>
-      <p class="section-subtitle">Commencez par le guide qui répond à votre blocage du moment, puis construisez progressivement votre système complet.</p>
-    </div>
-    <div class="guides-grid">
-      <?php
-      require_once 'data/guides.php';
-      $guide_icons = ['🏠','🔍','🎯','💬','🎨','💼','📧','⭐','✍️','📱','🤝','⚡'];
-      foreach (array_slice($guides, 0, 6) as $index => $guide):
-        $colors = ['#1A3C6E','#0E7490','#1A3C6E','#065F46','#7C3AED','#0369A1'];
-        $bg = $colors[$index % count($colors)];
-      ?>
-      <div class="guide-card">
-        <div class="guide-card-cover" style="background: linear-gradient(135deg, <?= $bg ?>, <?= $bg ?>cc);">
-          <div class="guide-card-cover-inner">
-            <div class="guide-card-number"><?= sprintf('%02d', $guide['id']) ?></div>
-            <div class="guide-card-icon"><?= $guide_icons[$index] ?></div>
-            <div class="guide-card-cover-title"><?= htmlspecialchars($guide['titre']) ?></div>
-          </div>
-          <span class="guide-card-tag"><?= htmlspecialchars($guide['tag']) ?></span>
-        </div>
-        <div class="guide-card-body">
-          <h3 class="guide-card-title"><?= htmlspecialchars($guide['titre']) ?></h3>
-          <p class="guide-card-desc"><?= htmlspecialchars($guide['promesse_courte']) ?></p>
-          <div class="guide-card-footer">
-            <div class="guide-card-price"><?= $guide['prix'] ?>€ <span>HT</span></div>
-            <a href="guide.php?slug=<?= $guide['slug'] ?>" class="btn btn-dark btn-sm">Découvrir →</a>
-          </div>
-        </div>
-      </div>
-      <?php endforeach; ?>
-    </div>
-    <div style="text-align: center; margin-top: 48px;">
-      <a href="guides.php" class="btn btn-primary btn-lg">Voir les 12 guides de la collection</a>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS SECTION -->
-<section class="section benefits-section" id="benefices">
-  <div class="container">
-    <div class="section-header center">
-      <span class="section-tag" style="background: rgba(245,158,11,.15); color: var(--accent-400);">Ce que vous allez gagner</span>
-      <h2 class="section-title" style="color: var(--white);">Un système qui travaille pour vous</h2>
-      <p class="section-subtitle" style="color: rgba(255,255,255,.7);">Chaque guide vise un résultat précis : plus de clarté, plus de visibilité, plus de contacts et plus de mandats.</p>
-    </div>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">📈</div>
-        <div class="benefit-content">
-          <h4>Un positionnement plus clair</h4>
-          <p>Vous saurez enfin à qui vous vous adressez, quoi promettre et comment vous différencier localement.</p>
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🗺️</div>
-        <div class="benefit-content">
-          <h4>Une visibilité locale plus forte</h4>
-          <p>SEO local, Google Business Profile et contenus ciblés vous aident à exister là où les vendeurs vous cherchent réellement.</p>
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">⚙️</div>
-        <div class="benefit-content">
-          <h4>Un système plus cohérent</h4>
-          <p>Vous arrêtez les actions isolées pour mettre en place des leviers qui se complètent au lieu de se disperser.</p>
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🤝</div>
-        <div class="benefit-content">
-          <h4>Plus de rendez-vous et de mandats</h4>
-          <p>Avec les bons angles, les bons messages et les bons tunnels, vous améliorez votre capacité à transformer un contact en mission signée.</p>
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">⏳</div>
-        <div class="benefit-content">
-          <h4>Moins de temps perdu</h4>
-          <p>Vous allez plus vite parce que vous savez quoi faire, dans quel ordre, et sur quel levier concentrer vos efforts.</p>
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🏆</div>
-        <div class="benefit-content">
-          <h4>Une posture plus professionnelle</h4>
-          <p>Votre communication devient plus claire, plus rassurante et plus crédible, du premier contact jusqu'à la signature.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header center">
-      <span class="section-tag">Ils nous font confiance</span>
-      <h2 class="section-title">Ce que disent les conseillers qui utilisent nos guides</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"J'ai appliqué la méthode Google My Business en une semaine. En moins d'un mois, j'ai reçu 4 demandes de contacts via ma fiche Google. C'est concret, simple et ça marche."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">MM</div>
-          <div>
-            <div class="testimonial-name">Marie-Hélène M.</div>
-            <div class="testimonial-role">Conseillère immobilière — Loire-Atlantique</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Les scripts de prise de mandats m'ont permis de mieux gérer les objections. J'ai signé 3 mandats exclusifs supplémentaires le mois suivant. Un investissement rentabilisé en quelques jours."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">TP</div>
-          <div>
-            <div class="testimonial-name">Thierry P.</div>
-            <div class="testimonial-role">Conseiller indépendant — Île-de-France</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Ce qui m'a conquis c'est le ton. Pas de jargon, pas de promesses folles. C'est écrit par quelqu'un qui connaît vraiment le terrain. J'ai tout lu d'une traite et j'ai commencé à appliquer le lendemain."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">SL</div>
-          <div>
-            <div class="testimonial-name">Sophie L.</div>
-            <div class="testimonial-role">Mandataire immobilière — Rhône-Alpes</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EMAIL CAPTURE -->
-<section class="section capture-section">
-  <div class="container">
-    <div class="capture-inner">
-      <span class="section-tag">Ressources gratuites</span>
-      <h2 class="section-title" style="margin-top: 12px;">Recevez nos conseils et ressources en avant-première</h2>
-      <p style="font-size: 1.0625rem; color: var(--neutral-600); line-height: 1.7; margin-top: 16px;">
-        Rejoignez les conseillers qui reçoivent nos idées, méthodes et contenus pratiques pour mieux structurer leur acquisition locale.
-      </p>
-      <form class="capture-form" id="capture-form">
-        <input type="email" placeholder="Votre adresse email professionnelle" required>
-        <button type="submit" class="btn btn-primary">Je m'abonne gratuitement</button>
-      </form>
-      <p class="capture-note">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-        </svg>
-        Zéro spam. Désinscription en un clic. Vos données restent privées.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
+<!-- 8. CTA FINAL -->
 <section class="section cta-section">
   <div class="container container-md">
     <div class="section-header center" style="margin-bottom: 0;">
-      <span class="section-tag" style="background: rgba(245,158,11,.15); color: var(--accent-400);">Prêt à passer à l'action ?</span>
-      <h2 class="section-title" style="color: var(--white); margin-top: 16px;">Construisez le système qui vous rend indépendant des portails</h2>
-      <p class="section-subtitle" style="color: rgba(255,255,255,.75); margin-top: 16px;">
-        47€ par guide. Téléchargement immédiat. Lecture rapide. Application concrète. Pas d'abonnement, pas de jargon, pas de perte de temps.
-      </p>
+      <span class="section-tag" style="background: rgba(245,158,11,.15); color: var(--accent-400);">Passez à l'action</span>
+      <h2 class="section-title" style="color: var(--white); margin-top: 16px;">Prêt à structurer l'acquisition de vendeurs sur votre zone ?</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,.75); margin-top: 16px;">Choisissez une offre alignée sur votre maturité, ou posons 30 minutes pour voir le système sur votre contexte — sans pression, sans blabla inutile.</p>
       <div class="cta-buttons">
-        <a href="guides.php" class="btn btn-primary btn-lg">Voir les 12 guides →</a>
-        <a href="contact.php" class="btn btn-outline-white btn-lg">Parler à un conseiller</a>
+        <a href="/verifier-ma-ville" class="btn btn-primary btn-lg">Vérifier si ma ville est disponible</a>
+        <a href="/rdv" class="btn btn-outline-white btn-lg">Demander une démo personnalisée</a>
       </div>
     </div>
   </div>
