@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F8F7F4;
+  color: #111827;
+}
+
+::selection {
+  background-color: #C8A84B;
+  color: #07090F;
+}
+
+/* Scrollbar minimal */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07090F;
+}
+::-webkit-scrollbar-thumb {
+  background: #1C2333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8A84B;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .section-light {
+    @apply bg-[#F8F7F4];
+  }
+  .section-white {
+    @apply bg-white;
+  }
+  .section-dark {
+    @apply bg-[#07090F];
+  }
+}
