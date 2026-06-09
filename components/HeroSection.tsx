@@ -25,18 +25,28 @@ export default function HeroSection() {
 
         {/* Sub */}
         <p className="text-center text-lg sm:text-xl text-stone-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Le système d&apos;acquisition local complet pour conseillers
-          indépendants — site, SEO local, CRM, automatisations, IA. Géré pour
-          vous. Personne d&apos;autre ne peut l&apos;avoir sur votre secteur.
+          Site, SEO local, CRM, automatisations et IA — un système d&apos;acquisition complet,
+          géré pour vous. Votre secteur vous appartient : personne d&apos;autre ne peut l&apos;obtenir.
         </p>
 
         {/* City checker */}
-        <div className="max-w-xl mx-auto mb-8">
+        <div className="max-w-xl mx-auto mb-4">
           <p className="text-center text-sm text-stone-400 font-medium mb-3 uppercase tracking-widest">
             Vérifiez si votre ville est encore disponible
           </p>
           <CityChecker />
         </div>
+
+        {/* Phone alternative */}
+        <p className="text-center text-sm text-stone-400 mb-10">
+          Ou appelez directement —{' '}
+          <a
+            href="tel:+33785611700"
+            className="text-navy-600 font-semibold hover:text-navy-800 transition-colors"
+          >
+            07 85 61 17 00
+          </a>
+        </p>
 
         {/* Closed cities FOMO */}
         <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm text-stone-400">

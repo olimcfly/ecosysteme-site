@@ -52,6 +52,29 @@ export default function RealitySection() {
             </div>
           ))}
         </div>
+
+        {/* Bridge vers la solution */}
+        <div className="mt-14 pt-8 border-t border-stone-200">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+            <div className="flex-1">
+              <p className="text-stone-900 font-semibold text-lg leading-snug">
+                Il existe une alternative aux portails.
+              </p>
+              <p className="text-stone-500 text-base mt-1 leading-relaxed">
+                Un système qui vous appartient, ancré sur votre territoire, qui génère des contacts vendeurs en continu — sans dépendance à une plateforme tierce.
+              </p>
+            </div>
+            <a
+              href="#systeme"
+              className="shrink-0 inline-flex items-center gap-2 text-navy-700 font-semibold text-sm hover:text-navy-900 transition-colors border border-navy-200 hover:border-navy-400 px-5 py-3 rounded-lg"
+            >
+              Voir le système
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   )

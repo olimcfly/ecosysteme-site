@@ -3,31 +3,37 @@ const components = [
     n: '1',
     title: 'Site professionnel local',
     desc: 'Un site à votre nom, optimisé pour convertir des visiteurs en contacts vendeurs. Mobile-first, rapide, brandé à votre identité.',
+    result: 'Votre nom s\'ancre durablement sur Google pour votre secteur.',
   },
   {
     n: '2',
     title: 'SEO local + pages secteurs',
-    desc: 'Des pages dédiées à vos communes et quartiers, optimisées pour apparaître sur les requêtes locales à fort potentiel vendeur.',
+    desc: 'Des pages dédiées à vos communes et quartiers, optimisées pour les requêtes locales à fort potentiel vendeur.',
+    result: 'Des positions sur "estimation immobilière [votre ville]" que vos concurrents n\'ont pas encore.',
   },
   {
     n: '3',
     title: 'Google Business Profile',
-    desc: 'Fiche Google optimisée, cohérente avec votre site. Indispensable pour apparaître sur Google Maps quand un vendeur cherche dans votre secteur.',
+    desc: 'Fiche Google optimisée, cohérente avec votre site. Indispensable pour apparaître sur Google Maps quand un vendeur cherche près de chez lui.',
+    result: 'Présence dans le Local Pack Google — là où se concentrent les clics immobiliers locaux.',
   },
   {
     n: '4',
     title: 'CRM prospects intégré',
     desc: 'Suivi clair de chaque contact vendeur : statut, historique, prochaine action. Tout centralisé, rien de dispersé entre vos outils.',
+    result: '0 lead oublié. 0 relance manquée.',
   },
   {
     n: '5',
     title: 'Automatisations et séquences',
-    desc: 'Relances email automatiques, rappels, nurturing. Vous restez présent auprès de vos prospects sans y penser.',
+    desc: 'Relances email automatiques, rappels, nurturing. Vous restez présent auprès de vos prospects sans y consacrer du temps.',
+    result: 'Vos prospects reçoivent le bon message au bon moment — même quand vous êtes en rendez-vous.',
   },
   {
     n: '6',
     title: 'IA de qualification',
-    desc: 'Les contacts entrants sont qualifiés automatiquement selon leur profil et leur niveau de maturité. Vous traitez les leads chauds en priorité.',
+    desc: 'Les contacts entrants sont analysés automatiquement selon leur profil et leur niveau de maturité de projet.',
+    result: 'Vous traitez les leads chauds en priorité. Fini les heures perdues sur des projets non aboutis.',
   },
 ]
 
@@ -55,16 +61,19 @@ export default function SystemSection() {
 
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-100 border border-stone-100 rounded-2xl overflow-hidden">
-          {components.map(({ n, title, desc }) => (
+          {components.map(({ n, title, desc, result }) => (
             <div
               key={n}
-              className="bg-white p-7 flex flex-col gap-4 hover:bg-stone-50 transition-colors duration-150"
+              className="bg-white p-7 flex flex-col gap-3 hover:bg-stone-50 transition-colors duration-150"
             >
               <div className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center shrink-0">
                 <span className="text-navy-700 font-bold text-sm">{n}</span>
               </div>
               <h3 className="font-semibold text-stone-900 text-base">{title}</h3>
               <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+              <p className="text-navy-700 text-xs font-semibold border-t border-stone-100 pt-3 mt-auto">
+                → {result}
+              </p>
             </div>
           ))}
         </div>

@@ -7,8 +7,9 @@ type Plan = {
   name: string
   price: number
   unit: string
-  setup: number
-  setupNote: string
+  monthlyEquiv: string | null
+  setupLine: string
+  firstPaymentNote: string | null
   badge: string | null
   description: string
   features: string[]
@@ -24,8 +25,9 @@ const MONTHLY_PLANS: Plan[] = [
     name: 'Estimateur',
     price: 27,
     unit: '/ mois',
-    setup: 197,
-    setupNote: 'setup unique',
+    monthlyEquiv: null,
+    setupLine: '+ 197€ setup unique',
+    firstPaymentNote: null,
     badge: null,
     description: 'Pour démarrer avec un outil de capture vendeurs et une présence locale de base.',
     features: [
@@ -51,10 +53,11 @@ const MONTHLY_PLANS: Plan[] = [
     name: 'Système Complet',
     price: 97,
     unit: '/ mois',
-    setup: 497,
-    setupNote: '+ 3 mois prépayés au démarrage',
+    monthlyEquiv: null,
+    setupLine: '+ 497€ setup · + 3 mois prépayés à l\'ouverture',
+    firstPaymentNote: 'Premier versement total : 788€ — puis 97€/mois dès le 4e mois',
     badge: 'Recommandé',
-    description: 'Le système d\'acquisition local intégral pour capter, qualifier et convertir des vendeurs.',
+    description: 'Le système d\'acquisition local intégral pour capter, qualifier et convertir des vendeurs sur votre territoire.',
     features: [
       'Site professionnel local brandé',
       'SEO local + pages quartiers et secteurs',
@@ -78,8 +81,9 @@ const ANNUAL_PLANS: Plan[] = [
     name: 'Estimateur',
     price: 324,
     unit: '/ an',
-    setup: 197,
-    setupNote: 'setup unique',
+    monthlyEquiv: null,
+    setupLine: '+ 197€ setup unique',
+    firstPaymentNote: null,
     badge: null,
     description: 'Pour démarrer avec un outil de capture vendeurs et une présence locale de base.',
     features: [
@@ -105,8 +109,9 @@ const ANNUAL_PLANS: Plan[] = [
     name: 'Système Complet',
     price: 897,
     unit: '/ an',
-    setup: 0,
-    setupNote: 'Setup offert — économisez 497€',
+    monthlyEquiv: 'soit 74€/mois',
+    setupLine: 'Setup offert — économie de 497€',
+    firstPaymentNote: null,
     badge: 'Meilleure valeur',
     description: 'Le système complet avec setup offert, exclusivité territoriale incluse et priorité sur les villes restantes.',
     features: [
@@ -123,7 +128,7 @@ const ANNUAL_PLANS: Plan[] = [
     featuresMissing: [],
     cta: 'Verrouiller mon territoire',
     highlighted: true,
-    savings: '764€ économisés la 1ère année',
+    savings: '764€ économisés la 1ère année vs mensuel',
   },
 ]
 
@@ -159,7 +164,7 @@ export default function PricingSection() {
             Choisissez votre formule.
           </h2>
           <p className="text-stone-500 text-lg mb-8">
-            Pas de frais cachés. Un seul conseiller par ville.
+            Transparence totale. Un seul conseiller par ville.
           </p>
 
           {/* Toggle */}
@@ -184,7 +189,7 @@ export default function PricingSection() {
             >
               Annuel
               <span className="tag bg-gold-50 text-gold-700 border border-gold-200 !py-0.5 !text-[10px]">
-                Économies
+                −25%
               </span>
             </button>
           </div>
@@ -213,17 +218,21 @@ export default function PricingSection() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">
                   {plan.name}
                 </p>
-                <div className="flex items-end gap-1 mb-2">
+                <div className="flex items-end gap-1.5 mb-1">
                   <span className="text-4xl font-bold text-stone-950">
                     {plan.price.toLocaleString('fr-FR')}€
                   </span>
                   <span className="text-stone-400 text-sm mb-1">{plan.unit}</span>
                 </div>
-                <p className="text-sm text-stone-500">
-                  {plan.setup > 0
-                    ? `+ ${plan.setup}€ setup — ${plan.setupNote}`
-                    : plan.setupNote}
-                </p>
+                {plan.monthlyEquiv && (
+                  <p className="text-navy-600 font-semibold text-sm mb-1">{plan.monthlyEquiv}</p>
+                )}
+                <p className="text-sm text-stone-500">{plan.setupLine}</p>
+                {plan.firstPaymentNote && (
+                  <p className="mt-2 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 leading-relaxed">
+                    {plan.firstPaymentNote}
+                  </p>
+                )}
                 {plan.savings && (
                   <p className="mt-2 text-sm font-semibold text-emerald-600">
                     {plan.savings}
@@ -282,14 +291,14 @@ export default function PricingSection() {
                 Exclusivité Verrouillée
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                Verrouillez définitivement votre territoire. Complémentaire à
-                n&apos;importe quelle formule. Votre ville devient inaccessible
-                pour tout nouveau conseiller, même après résiliation.
+                Votre exclusivité standard est active tant que votre abonnement l&apos;est.
+                Cette option la rend permanente : votre territoire reste inaccessible à tout concurrent,
+                même après résiliation. Compatible avec toutes les formules.
               </p>
             </div>
             <div className="sm:text-right shrink-0">
               <p className="text-3xl font-bold text-stone-950 mb-1">900€</p>
-              <p className="text-stone-500 text-sm mb-4">paiement unique</p>
+              <p className="text-stone-500 text-sm mb-4">paiement unique · définitif</p>
               <a href="#verifier-ville" className="btn-outline !border-gold-400 !text-gold-700 hover:!text-gold-800 hover:!border-gold-500 !text-sm !py-3">
                 En savoir plus
               </a>
@@ -303,24 +312,23 @@ export default function PricingSection() {
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
                 <span className="tag bg-stone-200 text-stone-600 border border-stone-300 !text-[11px]">
-                  Programme fermé
+                  Accès fermé
                 </span>
               </div>
               <h3 className="text-lg font-bold text-stone-900 mb-1">
                 Programme Fondateur
               </h3>
               <p className="text-stone-500 text-sm leading-relaxed">
-                Réservé aux premiers conseillers qui ont rejoint Écosystème Immo
-                en phase bêta. Le tarif à vie de 47€/mois n&apos;est plus disponible
-                à la souscription directe. Une liste d&apos;attente est ouverte pour
-                les candidatures exceptionnelles.
+                Réservé aux conseillers qui ont rejoint Écosystème Immo lors de la phase bêta.
+                Le tarif à vie de 47€/mois n&apos;est plus ouvert à la souscription. Une liste
+                d&apos;attente reste ouverte pour les candidatures exceptionnelles.
               </p>
             </div>
             <div className="sm:text-right shrink-0">
               <p className="text-3xl font-bold text-stone-400 mb-1 line-through">47€</p>
               <p className="text-stone-400 text-sm mb-4">/ mois à vie · Fermé</p>
               <a
-                href={`mailto:contact@ecosystemeimmo.fr?subject=${encodeURIComponent("Candidature Programme Fondateur")}`}
+                href={`mailto:contact@ecosystemeimmo.fr?subject=${encodeURIComponent('Candidature Programme Fondateur')}`}
                 className="btn-outline !text-sm !py-3"
               >
                 Candidater sur liste d&apos;attente

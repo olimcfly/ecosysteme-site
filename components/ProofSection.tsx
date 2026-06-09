@@ -3,26 +3,31 @@ const cases = [
     city: 'Bordeaux Métropole',
     name: 'Eduardo De Sul',
     desc: 'Site local, pages secteurs, estimateur, blog SEO et capture de leads vendeurs sur la métropole bordelaise.',
+    tags: ['Site local', 'SEO', 'Estimateur', 'Blog'],
   },
   {
     city: 'Aix-en-Provence',
     name: 'Pascal Hamm',
     desc: 'Site brandé, structure de pages, estimation, secteurs et base de contenu immobilier local.',
+    tags: ['Site local', 'SEO', 'Estimateur'],
   },
   {
     city: 'Nandy / Sénart',
     name: 'Fatima Rabia',
     desc: 'Site local, formulaire vendeur, pages secteurs et présence digitale centrée sur son territoire.',
+    tags: ['Site local', 'Capture vendeurs', 'SEO'],
   },
   {
     city: 'Lannion / Trégor',
     name: 'Stéphanie Hulen',
     desc: 'Site local, ressources, contenus et base digitale pour renforcer la visibilité en Bretagne.',
+    tags: ['Site local', 'Contenu', 'SEO'],
   },
   {
     city: 'Nantes',
     name: 'Brice Chupin',
-    desc: 'Présence digitale locale autour de son positionnement de conseiller spécialisé.',
+    desc: 'Présence digitale locale autour de son positionnement de conseiller spécialisé sur la métropole nantaise.',
+    tags: ['Site local', 'SEO', 'Positionnement'],
   },
 ]
 
@@ -39,13 +44,13 @@ export default function ProofSection() {
             Déjà actif dans 5 villes.
           </h2>
           <p className="text-stone-500 text-lg">
-            Des systèmes construits pour de vrais conseillers indépendants. Pas une démonstration.
+            Des systèmes construits pour de vrais conseillers indépendants, déployés sur leur territoire.
           </p>
         </div>
 
         {/* Cards grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {cases.map(({ city, name, desc }) => (
+          {cases.map(({ city, name, desc, tags }) => (
             <div
               key={name}
               className="bg-white border border-stone-200 rounded-xl p-6 flex flex-col gap-3"
@@ -55,10 +60,18 @@ export default function ProofSection() {
                 <p className="text-navy-600 text-sm font-medium">{name}</p>
               </div>
               <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
-              <div className="mt-auto pt-3 border-t border-stone-100">
-                <span className="text-xs text-stone-400 font-medium flex items-center gap-1.5">
+              <div className="mt-auto pt-3 border-t border-stone-100 flex flex-wrap items-center gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium bg-navy-50 text-navy-700 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                <span className="ml-auto text-xs text-stone-400 font-medium flex items-center gap-1.5 shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                  Ville fermée
+                  Fermée
                 </span>
               </div>
             </div>
@@ -71,7 +84,7 @@ export default function ProofSection() {
                 Votre ville ?
               </p>
               <p className="text-navy-200 text-sm leading-relaxed">
-                Il reste des territoires disponibles. Vérifiez le vôtre maintenant.
+                Des territoires restent disponibles. Vérifiez le vôtre maintenant avant qu&apos;un concurrent ne le prenne.
               </p>
             </div>
             <a
