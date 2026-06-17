@@ -8,8 +8,8 @@ const FAQS = [
     a: 'Vous pouvez rejoindre la liste d\'attente prioritaire pour votre secteur. Certains conseillers changent de ville ou résilient — vous serez alerté en premier. Vous pouvez aussi choisir une ville adjacente libre.',
   },
   {
-    q: 'Quel type de conseiller peut utiliser ce système ?',
-    a: 'Ecosystème Immo est conçu exclusivement pour les conseillers immobiliers indépendants français : agents mandataires, agents indépendants, conseillers en réseaux sans apport de leads centralisé. Si vous avez votre propre portefeuille secteur, vous êtes le profil idéal.',
+    q: 'Pourquoi 897 €/an plutôt qu\'un outil générique à 30 €/mois ?',
+    a: 'Un outil générique n\'est pas configuré pour l\'immobilier, n\'inclut pas le SEO local, et ne vous donne aucun avantage concurrentiel sur votre secteur. Ecosystème Immo est préconfiguré, livré prêt à l\'emploi, et réservé à un seul conseiller par ville. La comparaison juste n\'est pas un outil à 30 €/mois — c\'est un assistant marketing + SEO + CRM + automatisation à temps plein. Et contrairement à un salarié, il tourne 24h/24.',
   },
   {
     q: 'Combien de temps avant de voir des résultats ?',
@@ -21,7 +21,11 @@ const FAQS = [
   },
   {
     q: 'Y a-t-il un engagement minimum ?',
-    a: 'Le plan Mensuel est souple mais nécessite 3 mois prépayés à l\'activation (inclus dans le setup). L\'annuel est sur 12 mois. L\'exclusivité verrouillée est un paiement unique sans abonnement obligatoire.',
+    a: 'Le plan Mensuel nécessite 3 mois prépayés à l\'activation, inclus dans le premier versement de 788 €. L\'annuel est sur 12 mois. L\'exclusivité verrouillée est un paiement unique sans abonnement obligatoire.',
+  },
+  {
+    q: 'Quel type de conseiller peut utiliser ce système ?',
+    a: 'Ecosystème Immo est conçu exclusivement pour les conseillers immobiliers indépendants français : agents mandataires, agents indépendants, conseillers en réseaux sans apport de leads centralisé. Si vous avez votre propre portefeuille secteur, vous êtes le profil idéal.',
   },
   {
     q: 'Est-ce que ça fonctionne dans toutes les villes de France ?',

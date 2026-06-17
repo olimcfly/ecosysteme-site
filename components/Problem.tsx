@@ -9,12 +9,12 @@ const PROBLEMS = [
   {
     icon: Users,
     title: 'Dépendant du réseau',
-    body: 'Vos mandats viennent de vos contacts et du bouche-à-oreille. C\'est fragile, cyclique, et ça ne scale pas — même quand vous êtes excellent.',
+    body: 'Vos mandats viennent de vos contacts et du bouche-à-oreille. C\'est fragile, cyclique, et ça ne tient pas dans la durée — même quand vous êtes excellent sur le terrain.',
   },
   {
     icon: Clock,
-    title: 'Trop peu de temps pour le digital',
-    body: 'Entre les visites, les compromis et vos clients, le marketing passe à la trappe. Et sans système, vous recommencez à zéro chaque mois.',
+    title: 'Pas de système d\'acquisition',
+    body: 'Entre les visites, les compromis et vos clients, le marketing passe à la trappe. Sans système automatisé, vous recommencez à zéro chaque mois.',
   },
 ]
 
@@ -28,7 +28,7 @@ export default function Problem() {
             Ce que personne ne règle pour les indépendants
           </h2>
           <p className="section-sub">
-            Les outils génériques ne comprennent pas votre marché. Résultat : vous êtes excellent terrain, mais invisible en ligne.
+            Les outils génériques ne comprennent pas votre marché. Résultat : vous êtes excellent sur le terrain, mais inexistant en ligne.
           </p>
         </div>
 

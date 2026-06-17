@@ -8,7 +8,6 @@ interface HeroProps {
 export default function Hero({ onOpenModal }: HeroProps) {
   return (
     <section className="relative bg-navy pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden">
-      {/* Subtle gradient overlay */}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-navy to-navy pointer-events-none"
@@ -19,7 +18,6 @@ export default function Hero({ onOpenModal }: HeroProps) {
       />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8">
           <Shield size={12} className="text-gold" />
           <span className="text-white/70 text-xs font-medium tracking-wide uppercase">
@@ -27,45 +25,41 @@ export default function Hero({ onOpenModal }: HeroProps) {
           </span>
         </div>
 
-        {/* Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-          Devenez la référence
+          Attirez des vendeurs qualifiés
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">
-            immobilière de votre ville
+            dans votre ville — sans prospecter.
           </span>
         </h1>
 
-        {/* Sub-headline */}
         <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto mb-10">
-          Un système d&apos;acquisition locale complet — site SEO, CRM, automatisations et IA —
-          réservé en exclusivité à un seul conseiller par territoire.
+          Un système d&apos;acquisition locale clé en main — site SEO, CRM vendeurs, automatisations et IA —
+          activé en exclusivité sur votre territoire. Opérationnel sous 10 jours.
         </p>
 
-        {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
           <button
             onClick={onOpenModal}
             className="btn-primary w-full sm:w-auto text-base px-8 py-4 rounded-xl shadow-xl shadow-blue-900/30"
           >
-            Vérifier la disponibilité de ma ville
+            Vérifier si ma ville est disponible
             <ArrowRight size={16} />
           </button>
           <a
             href="#fonctionnalites"
             className="text-white/50 hover:text-white/80 text-sm transition-colors py-2"
           >
-            Voir comment ça fonctionne
+            Voir le système complet
           </a>
         </div>
 
-        {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <span className="text-white/30 text-xs">5 territoires verrouillés</span>
+          <span className="text-white/30 text-xs">5 villes déjà verrouillées</span>
           <span className="text-white/15 hidden sm:inline">·</span>
-          <span className="text-white/30 text-xs">Sans engagement caché</span>
+          <span className="text-white/30 text-xs">Opérationnel sous 10 jours</span>
           <span className="text-white/15 hidden sm:inline">·</span>
-          <span className="text-white/30 text-xs">Setup transparent</span>
+          <span className="text-white/30 text-xs">0 gestion technique requise</span>
         </div>
       </div>
     </section>

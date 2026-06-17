@@ -6,6 +6,7 @@ interface Plan {
   price: string
   period: string
   setup: string | null
+  setupNote?: string
   badge?: string
   highlighted: boolean
   features: string[]
@@ -28,15 +29,16 @@ const PLANS: Plan[] = [
       'Tableau de bord leads',
       'Support par email',
     ],
-    cta: 'Commencer avec l\'estimateur',
+    cta: 'Démarrer avec l\'estimateur',
     note: 'Sans exclusivité territoriale',
   },
   {
     id: 'mensuel',
-    name: 'Mensuel Standard',
+    name: 'Mensuel',
     price: '97',
     period: '/ mois',
-    setup: '+ 497 € setup + 3 mois prépayés',
+    setup: 'Premier versement : 788 €',
+    setupNote: 'setup 497 € + 3 mois inclus',
     highlighted: false,
     features: [
       'Système complet (site + CRM + automations)',
@@ -57,15 +59,15 @@ const PLANS: Plan[] = [
     badge: 'Recommandé',
     highlighted: true,
     features: [
-      'Tout le plan Mensuel Standard',
-      'Setup 497 € offert (économie immédiate)',
+      'Tout le plan Mensuel',
+      'Setup 497 € offert — économie immédiate',
       'Exclusivité territoriale incluse',
       'Rapport mensuel de performance',
       'Accès anticipé aux nouvelles fonctionnalités',
       'Support prioritaire',
     ],
     cta: 'Démarrer en annuel',
-    note: 'Revient à 74,75 €/mois',
+    note: 'Soit 74,75 €/mois — le plan le plus rentable',
   },
   {
     id: 'exclusivite',
@@ -81,7 +83,7 @@ const PLANS: Plan[] = [
       'Priorité absolue sur votre territoire',
     ],
     cta: 'Verrouiller ma ville',
-    note: 'Combinable avec tout plan',
+    note: 'Cumulable avec tout plan',
   },
 ]
 
@@ -97,26 +99,20 @@ export default function Pricing({ onOpenModal }: PricingProps) {
           <span className="section-label">Tarifs</span>
           <h2 className="section-title mb-4">Choisissez votre niveau d&apos;engagement</h2>
           <p className="section-sub">
-            Pas de frais cachés. Setup transparent. Résiliable. L&apos;exclusivité territoriale est incluse dès le plan Mensuel.
+            Pas de frais cachés. Setup transparent. L&apos;exclusivité territoriale est incluse dès le plan Mensuel.
           </p>
         </div>
 
-        {/* Founder badge */}
+        {/* Founder context */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8 max-w-2xl mx-auto">
           <div className="flex items-start gap-3">
             <Star size={16} className="text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-amber-900 text-sm font-semibold mb-1">Programme Fondateur — Fermé</p>
+              <p className="text-amber-900 text-sm font-semibold mb-1">Programme Fondateur — Places épuisées</p>
               <p className="text-amber-700 text-sm leading-relaxed">
-                Nos membres fondateurs ont verrouillé leur ville à <strong>47 €/mois à vie</strong>.
-                Ce programme n&apos;est plus ouvert. Rejoignez la liste d&apos;attente prioritaire pour être alerté en premier si une opportunité similaire se présente.
+                Nos premiers membres ont sécurisé leur ville à <strong>47 €/mois à vie</strong>.
+                Ces places sont fermées. Le programme actuel démarre à 897 €/an avec setup offert — c&apos;est toujours la meilleure entrée disponible.
               </p>
-              <button
-                onClick={onOpenModal}
-                className="mt-3 text-amber-700 font-semibold text-xs underline underline-offset-2 hover:text-amber-900 transition-colors"
-              >
-                Rejoindre la liste d&apos;attente
-              </button>
             </div>
           </div>
         </div>
@@ -154,17 +150,25 @@ export default function Pricing({ onOpenModal }: PricingProps) {
                 </div>
 
                 {plan.setup && (
-                  <p className={`text-xs mb-5 ${plan.highlighted ? 'text-white/40' : 'text-slate-400'}`}>
-                    {plan.setup}
-                  </p>
+                  <div className="mb-1">
+                    <p className={`text-xs ${plan.highlighted ? 'text-white/40' : 'text-slate-400'}`}>
+                      {plan.setup}
+                    </p>
+                    {plan.setupNote && (
+                      <p className={`text-xs ${plan.highlighted ? 'text-white/30' : 'text-slate-300'}`}>
+                        {plan.setupNote}
+                      </p>
+                    )}
+                  </div>
                 )}
-                {!plan.setup && <div className="mb-5" />}
+                {!plan.setup && <div className="mb-1 h-8" />}
 
                 {plan.note && (
-                  <p className={`text-xs font-medium mb-4 ${plan.highlighted ? 'text-gold' : 'text-blue-600'}`}>
+                  <p className={`text-xs font-medium mb-4 mt-2 ${plan.highlighted ? 'text-gold' : 'text-blue-600'}`}>
                     {plan.note}
                   </p>
                 )}
+                {!plan.note && <div className="mb-4" />}
 
                 <ul className="space-y-2.5">
                   {plan.features.map((f) => (

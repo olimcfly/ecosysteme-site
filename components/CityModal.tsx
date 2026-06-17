@@ -20,7 +20,7 @@ function normalize(s: string): string {
     .replace(/[^a-z0-9\s-]/g, '')
 }
 
-type Status = 'idle' | 'closed' | 'available'
+type Status = 'idle' | 'closed' | 'available' | 'form'
 
 interface CityModalProps {
   open: boolean
@@ -30,12 +30,16 @@ interface CityModalProps {
 export default function CityModal({ open, onClose }: CityModalProps) {
   const [city, setCity] = useState('')
   const [status, setStatus] = useState<Status>('idle')
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (open) {
       setCity('')
       setStatus('idle')
+      setName('')
+      setPhone('')
       setTimeout(() => inputRef.current?.focus(), 100)
       document.body.style.overflow = 'hidden'
     } else {
@@ -59,17 +63,23 @@ export default function CityModal({ open, onClose }: CityModalProps) {
     setStatus(isClosed ? 'closed' : 'available')
   }
 
+  const handleSendRequest = () => {
+    const subject = encodeURIComponent(`Réservation territoire — ${city}`)
+    const body = encodeURIComponent(
+      `Bonjour,\n\nJe souhaite réserver l'exclusivité sur ${city}.\n\nPrénom : ${name}\nTéléphone : ${phone}\n\nMerci de me contacter pour la suite.`
+    )
+    window.location.href = `mailto:contact@ecosystemeimmo.fr?subject=${subject}&body=${body}`
+  }
+
   if (!open) return null
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Modal */}
       <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl z-10 p-6 sm:p-8 mx-0 sm:mx-4">
         <button
           onClick={onClose}
@@ -79,38 +89,42 @@ export default function CityModal({ open, onClose }: CityModalProps) {
           <X size={14} className="text-slate-500" />
         </button>
 
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-slate-900 mb-1">Vérifier la disponibilité</h2>
-          <p className="text-slate-500 text-sm">Entrez le nom de votre ville pour savoir si elle est encore disponible.</p>
-        </div>
-
         {status === 'idle' && (
-          <div className="space-y-3">
-            <div className="relative">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
-                placeholder="Ex : Lyon, Toulouse, Rennes..."
-                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-slate-900 text-sm transition-all"
-              />
+          <>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Vérifier la disponibilité</h2>
+              <p className="text-slate-500 text-sm">Entrez le nom de votre ville pour savoir si elle est encore libre.</p>
             </div>
-            <button
-              onClick={handleCheck}
-              disabled={!city.trim()}
-              className="w-full bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2"
-            >
-              Vérifier ma ville
-              <ArrowRight size={14} />
-            </button>
-          </div>
+            <div className="space-y-3">
+              <div className="relative">
+                <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
+                  placeholder="Ex : Lyon, Toulouse, Rennes..."
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-slate-900 text-sm transition-all"
+                />
+              </div>
+              <button
+                onClick={handleCheck}
+                disabled={!city.trim()}
+                className="w-full bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2"
+              >
+                Vérifier ma ville
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          </>
         )}
 
         {status === 'closed' && (
           <div className="animate-fade-in">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Territoire verrouillé</h2>
+            </div>
             <div className="bg-red-50 border border-red-100 rounded-xl p-5 mb-5">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
@@ -118,11 +132,10 @@ export default function CityModal({ open, onClose }: CityModalProps) {
                 </div>
                 <div>
                   <p className="font-semibold text-red-800 text-sm mb-1">
-                    {city} est déjà verrouillé
+                    {city} est déjà activé
                   </p>
                   <p className="text-red-600 text-sm leading-relaxed">
-                    Un conseiller a déjà activé l&apos;exclusivité sur ce territoire.
-                    Rejoignez la liste d&apos;attente — vous serez alerté en priorité si une ville voisine se libère.
+                    Un conseiller a verrouillé ce territoire. Rejoignez la liste d&apos;attente — vous serez alerté en priorité si une ville adjacente se libère ou devient disponible.
                   </p>
                 </div>
               </div>
@@ -145,6 +158,9 @@ export default function CityModal({ open, onClose }: CityModalProps) {
 
         {status === 'available' && (
           <div className="animate-fade-in">
+            <div className="mb-5">
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Votre ville est libre</h2>
+            </div>
             <div className="bg-green-50 border border-green-100 rounded-xl p-5 mb-5">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
@@ -155,25 +171,62 @@ export default function CityModal({ open, onClose }: CityModalProps) {
                     {city} est disponible
                   </p>
                   <p className="text-green-700 text-sm leading-relaxed">
-                    Bonne nouvelle — votre territoire est libre. Activez l&apos;exclusivité maintenant
-                    avant qu&apos;un concurrent ne le fasse.
+                    Votre territoire est libre. Dès que vous activez l&apos;exclusivité, aucun autre conseiller ne peut l&apos;obtenir — définitivement.
                   </p>
                 </div>
               </div>
             </div>
-            <a
-              href={'mailto:contact@ecosystemeimmo.fr?subject=Réservation territoire — ' + encodeURIComponent(city)}
+            <button
+              onClick={() => setStatus('form')}
               className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors shadow-lg shadow-blue-900/20"
             >
               Réserver l&apos;exclusivité sur {city}
               <ArrowRight size={14} />
-            </a>
+            </button>
             <button
               onClick={() => { setCity(''); setStatus('idle') }}
               className="w-full mt-2 text-slate-400 hover:text-slate-600 text-sm py-2 transition-colors"
             >
               Vérifier une autre ville
             </button>
+          </div>
+        )}
+
+        {status === 'form' && (
+          <div className="animate-fade-in">
+            <div className="mb-5">
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Finaliser la réservation</h2>
+              <p className="text-slate-500 text-sm">
+                Territoire : <span className="font-semibold text-slate-700">{city}</span>. Laissez vos coordonnées — nous vous contactons sous 24h.
+              </p>
+            </div>
+            <div className="space-y-3 mb-4">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Votre prénom"
+                className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-slate-900 text-sm transition-all"
+              />
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Votre téléphone"
+                className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-slate-900 text-sm transition-all"
+              />
+            </div>
+            <button
+              onClick={handleSendRequest}
+              disabled={!name.trim() || !phone.trim()}
+              className="w-full bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors shadow-lg shadow-blue-900/20"
+            >
+              Envoyer ma demande de réservation
+              <ArrowRight size={14} />
+            </button>
+            <p className="text-center text-slate-400 text-xs mt-3">
+              Aucun engagement. Nous vous rappelons pour confirmer votre territoire.
+            </p>
           </div>
         )}
       </div>

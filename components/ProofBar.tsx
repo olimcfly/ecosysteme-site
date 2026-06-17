@@ -22,8 +22,8 @@ export default function ProofBar() {
               </span>
             ))}
           </div>
-          <div className="text-white/25 text-xs flex-shrink-0 hidden lg:block">
-            Votre ville est peut-être encore disponible.
+          <div className="text-white/40 text-xs flex-shrink-0 font-medium">
+            Votre ville est peut-être encore libre.
           </div>
         </div>
       </div>

@@ -3,38 +3,38 @@ import { Globe, Database, Zap, Brain, Calculator, Lock } from 'lucide-react'
 const FEATURES = [
   {
     icon: Globe,
-    title: 'Site vitrine SEO local',
-    body: 'Conçu pour apparaître sur "estimation immobilière + [votre ville]". Architecture technique, balises locales, pages de quartier.',
+    title: 'Site SEO local',
+    body: 'Vos concurrents en réseau monopolisent Google sur votre secteur. Ce site est architecturé pour vous positionner sur "estimation immobilière + [votre ville]" — et les faire passer derrière vous.',
     highlight: false,
   },
   {
     icon: Database,
-    title: 'CRM pré-configuré',
-    body: 'Pipeline vendeurs, suivi des mandats, historique des contacts. Tout ce qu\'un conseiller indépendant a besoin, sans se former des semaines.',
+    title: 'CRM vendeurs prêt à l\'emploi',
+    body: 'Plus de contacts perdus dans votre messagerie. Votre pipeline vendeurs est opérationnel dès J+1 : suivi des mandats, historique des échanges, relances planifiées.',
     highlight: false,
   },
   {
     icon: Zap,
-    title: 'Automatisations email & relances',
-    body: 'Vos prospects reçoivent le bon message au bon moment — sans que vous y pensiez. Séquences pré-configurées pour l\'immobilier.',
+    title: 'Relances automatiques',
+    body: 'Un propriétaire vous contacte à 22h ? Il reçoit une réponse immédiate. Vos séquences de relance partent sans action de votre part — configurées pour l\'immobilier.',
     highlight: false,
   },
   {
     icon: Brain,
-    title: 'Qualification par IA',
-    body: 'Filtrez les curieux des vendeurs réellement motivés. L\'IA qualifie, priorise et vous prévient quand un prospect est chaud.',
+    title: 'Qualification IA',
+    body: 'Ne passez plus de temps avec des curieux. L\'IA trie vos contacts, évalue la motivation réelle de chaque prospect et vous alerte uniquement quand un vendeur est sérieux.',
     highlight: false,
   },
   {
     icon: Calculator,
     title: 'Estimateur en ligne',
-    body: 'Générez des leads propriétaires 24h/24. L\'estimateur capte des contacts qualifiés pendant que vous êtes en visite.',
+    body: 'Des leads propriétaires arrivent pendant que vous êtes en visite. L\'estimateur génère des contacts qualifiés 24h/24 et les pousse directement dans votre CRM.',
     highlight: false,
   },
   {
     icon: Lock,
     title: 'Exclusivité territoriale',
-    body: 'Votre ville. Votre système. Aucun autre conseiller ne peut utiliser Ecosystème Immo sur votre secteur. À vie.',
+    body: 'Votre ville. Votre système. Aucun autre conseiller ne peut utiliser Ecosystème Immo sur votre secteur. Une fois activé, le territoire est fermé — définitivement.',
     highlight: true,
   },
 ]
@@ -46,7 +46,7 @@ export default function Solution() {
         <div className="max-w-2xl mx-auto text-center mb-14">
           <span className="section-label">Le système</span>
           <h2 className="section-title mb-4">
-            Un seul système. Tout ce qu&apos;il faut pour dominer localement.
+            Tout ce qu&apos;il faut pour dominer localement — en un seul système.
           </h2>
           <p className="section-sub">
             Pas un outil parmi d&apos;autres. Un écosystème complet, préconfiguré pour l&apos;immobilier, activé sur votre territoire.

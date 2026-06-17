@@ -23,23 +23,23 @@ export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
-          Votre ville est peut-être encore disponible.
+          Votre ville est probablement encore disponible.
         </h2>
         <p className="text-white/50 text-base leading-relaxed mb-10">
           Vérifiez maintenant — avant qu&apos;un autre conseiller de votre secteur ne le fasse.
-          Une ville activée est fermée définitivement.
+          Un territoire activé est verrouillé définitivement.
         </p>
 
         <button
           onClick={onOpenModal}
           className="btn-primary text-base px-8 py-4 rounded-xl shadow-xl shadow-blue-900/40 mb-6"
         >
-          Vérifier la disponibilité de ma ville
+          Vérifier si ma ville est disponible
           <ArrowRight size={16} />
         </button>
 
         <p className="text-white/25 text-xs">
-          Vérification gratuite et sans engagement.
+          Vérification gratuite. Aucun engagement.
         </p>
       </div>
     </section>

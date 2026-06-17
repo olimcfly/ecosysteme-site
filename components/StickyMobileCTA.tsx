@@ -23,7 +23,7 @@ export default function StickyMobileCTA({ onOpenModal }: StickyMobileCTAProps) {
         onClick={onOpenModal}
         className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors shadow-md shadow-blue-900/20"
       >
-        Vérifier la disponibilité de ma ville
+        Vérifier si ma ville est disponible
         <ArrowRight size={14} />
       </button>
     </div>
