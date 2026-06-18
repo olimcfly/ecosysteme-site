@@ -724,10 +724,10 @@ include 'includes/header.php';
  </div>
 
  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;">
- <a href="/front/pages/verifier-ma-ville.php" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18); transition:transform 0.2s;">
+ <a href="/verifier-ma-ville" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18); transition:transform 0.2s;">
  V&eacute;rifier si ma ville est disponible
  </a>
- <a href="/front/pages/demo.php" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
+ <a href="/demo" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
  Voir la d&eacute;mo
  </a>
  </div>
@@ -774,7 +774,7 @@ include 'includes/header.php';
  </div>
 
  <div class="system-action-cta">
- <a href="/front/pages/verifier-ma-ville.php" style="background:#667eea; color:white; font-weight:700; font-size:1rem; padding:14px 30px; border-radius:11px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 22px rgba(102,126,234,0.28);">
+ <a href="/verifier-ma-ville" style="background:#667eea; color:white; font-weight:700; font-size:1rem; padding:14px 30px; border-radius:11px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 22px rgba(102,126,234,0.28);">
  Vérifier si ma ville est disponible
  </a>
  </div>
@@ -922,28 +922,11 @@ include 'includes/header.php';
  foreach ($steps as $s):
  ?>
  <div class="pi-card" style="padding:32px; text-align:center;">
- <div style="font-size:2.4rem; margin-bottom:14px;"><?= $s[0] ?></div>
  <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[1] ?></h3>
  <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[2] ?></p>
  <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[3] ?></p>
  </div>
  <?php endforeach; ?>
- </div>
-
- <!-- Flux mandat -->
- <div style="background:white; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.07); max-width:860px; margin:0 auto; padding:36px; text-align:center;">
- <p style="font-size:0.88rem; font-weight:600; color:#718096; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:22px;"> Comment le syst&egrave;me g&eacute;n&egrave;re des mandats</p>
- <div style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:0;">
- <?php
- $flow = ['Recherche Google','Article local','Estimation','Lead CRM','RDV vendeur','Mandat sign&eacute;'];
- foreach ($flow as $i => $f):
- ?>
- <div class="pi-flow-box"><?= $f ?></div>
- <?php if ($i < count($flow)-1): ?>
- <span class="pi-flow-arrow">&#8594;</span>
- <?php endif; endforeach; ?>
- </div>
- <p style="margin-top:18px; font-size:0.88rem; color:#718096; margin-bottom:0;">Le syst&egrave;me travaille 24h/24, m&ecirc;me quand vous &ecirc;tes en visite.</p>
  </div>
 
  <!-- SaaS vs Écosystème -->
@@ -988,7 +971,6 @@ include 'includes/header.php';
  foreach ($modules as $m):
  ?>
  <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
- <div style="font-size:1.7rem; margin-bottom:9px;"><?= $m[0] ?></div>
  <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[1] ?></strong>
  <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[2] ?></p>
  </div>
@@ -1026,7 +1008,9 @@ include 'includes/header.php';
  foreach ($excl as $e):
  ?>
  <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.6rem; flex-shrink:0;"><?= $e[0] ?></span>
+ <span style="flex-shrink:0; width:28px; height:28px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+ <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+ </span>
  <div>
  <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $e[1] ?></strong>
  <p style="color:#718096; margin:0; font-size:0.93rem; line-height:1.6;"><?= $e[2] ?></p>
@@ -1072,7 +1056,6 @@ include 'includes/header.php';
  foreach ($results as $r):
  ?>
  <div class="pi-card" style="padding:26px; text-align:center;">
- <div style="font-size:1.8rem; margin-bottom:10px;"><?= $r[0] ?></div>
  <strong style="color:#1a202c; font-size:0.97rem;"><?= $r[1] ?></strong>
  <p style="color:#718096; margin:8px 0 0; font-size:0.88rem; line-height:1.55;"><?= $r[2] ?></p>
  </div>
@@ -1183,8 +1166,8 @@ include 'includes/header.php';
  <li>Suivi des leads entrants</li>
  </ul>
  <div class="pricing-actions">
- <a href="/front/pages/verifier-ma-ville.php" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
- <a href="/front/pages/rdv.php" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
+ <a href="/verifier-ma-ville" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
+ <a href="/rdv" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
  </div>
  </article>
 
@@ -1199,8 +1182,8 @@ include 'includes/header.php';
  <li>Pilotage centralis&eacute; des opportunit&eacute;s</li>
  </ul>
  <div class="pricing-actions">
- <a href="/front/pages/verifier-ma-ville.php" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
- <a href="/front/pages/rdv.php" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
+ <a href="/verifier-ma-ville" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
+ <a href="/rdv" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
  </div>
  </article>
 
@@ -1215,8 +1198,8 @@ include 'includes/header.php';
  <li>Co&ucirc;t optimis&eacute; pour votre marge annuelle</li>
  </ul>
  <div class="pricing-actions">
- <a href="/front/pages/verifier-ma-ville.php" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
- <a href="/front/pages/rdv.php" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
+ <a href="/verifier-ma-ville" style="background:#667eea; color:#fff; font-weight:600; padding:11px 14px; border-radius:9px; text-decoration:none; text-align:center;">V&eacute;rifier ma ville</a>
+ <a href="/rdv" style="background:#fff; color:#667eea; border:1px solid #c7d2fe; font-weight:600; padding:10px 14px; border-radius:9px; text-decoration:none; text-align:center;">R&eacute;server un appel d&eacute;couverte</a>
  </div>
  </article>
  </div>
@@ -1339,10 +1322,10 @@ document.addEventListener('DOMContentLoaded', function () {
  Une fois r&eacute;serv&eacute;e, l'acc&egrave;s est d&eacute;finitivement ferm&eacute;.
  </p>
  <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
- <a href="/front/pages/verifier-ma-ville.php" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.2); transition:transform 0.2s;">
+ <a href="/verifier-ma-ville" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.2); transition:transform 0.2s;">
  V&eacute;rifier ma ville maintenant
  </a>
- <a href="/front/pages/demo.php" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+ <a href="/demo" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
  Voir la d&eacute;monstration
  </a>
  </div>
