@@ -1,368 +1,426 @@
 <?php
-$pageTitle = "Tarifs - &Eacute;COSYST&Egrave;ME IMMO LOCAL+";
-$pageDescription = 'Programme Fondateurs + Coaching Immobilier Digital. Acc&egrave;s anticip&eacute; en places limit&eacute;es.';
+$pageTitle = "Tarifs — &Eacute;COSYST&Egrave;ME IMMO LOCAL+";
+$pageDescription = 'Syst&egrave;me d\'acquisition local vendeurs pour conseillers immobiliers ind&eacute;pendants. Estimateur, syst&egrave;me complet ou offre annuelle avec exclusivit&eacute; territoriale.';
 $currentPage = 'tarifs';
-
-$schemaFAQ = [
- ['question' => 'Le tarif fondateur peut-il évoluer ?', 'answer' => 'Le tarif fondateur est réservé aux partenaires acceptés dans le Programme Fondateurs. Les conditions sont précisées avant validation.'],
- ['question' => 'Combien de places sont ouvertes ?', 'answer' => 'Le Programme Fondateurs est volontairement limité pour pr&eacute;server la qualit&eacute; d\'accompagnement et l\'exclusivit&eacute; territoriale.'],
- ['question' => 'Je dois être dans l\'immobilier ?', 'answer' => 'Oui. Conseillers indépendants (IAD, Safti, eXp...) ou agents solo. Autre profil ? Contacte-nous, on discute.'],
- ['question' => 'Quel contrat ? Je peux partir ?', 'answer' => 'On pr&eacute;f&egrave;re 3-6 mois pour laisser le temps au d&eacute;ploiement local. Mais on discute au cas par cas. L\'important : avancer s&eacute;rieusement.'],
- ['question' => 'Programme Fondateurs + coaching, compatible ?', 'answer' => 'Oui. L\'accès fondateur et le coaching peuvent être combinés pour accélérer la mise en place locale.'],
-];
 
 include '../../includes/header.php';
 ?>
 
+<style>
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.tarif-grid {
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: 20px;
+ max-width: 1040px;
+ margin: 0 auto 24px;
+}
+
+.tarif-card {
+ background: #ffffff;
+ border: 1.5px solid #e2e8f0;
+ border-radius: 18px;
+ padding: 28px 24px;
+ box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+ position: relative;
+ display: flex;
+ flex-direction: column;
+}
+
+.tarif-card.is-featured {
+ border: 2px solid #667eea;
+ box-shadow: 0 12px 36px rgba(102,126,234,0.16);
+}
+
+.tarif-label {
+ display: inline-block;
+ font-size: 0.75rem;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ border-radius: 999px;
+ padding: 5px 11px;
+ margin-bottom: 16px;
+}
+
+.tarif-name {
+ font-size: 1.15rem;
+ font-weight: 700;
+ color: #0f172a;
+ margin-bottom: 10px;
+}
+
+.tarif-price {
+ font-size: 2.1rem;
+ font-weight: 800;
+ color: #0f172a;
+ line-height: 1.1;
+ margin-bottom: 3px;
+}
+
+.tarif-price-sub {
+ font-size: 0.88rem;
+ color: #64748b;
+ margin-bottom: 18px;
+}
+
+.tarif-features {
+ list-style: none;
+ padding: 0;
+ margin: 0 0 20px;
+ display: grid;
+ gap: 9px;
+ flex: 1;
+}
+
+.tarif-features li {
+ display: flex;
+ align-items: flex-start;
+ gap: 9px;
+ color: #334155;
+ font-size: 0.9rem;
+ line-height: 1.45;
+}
+
+.tarif-features li::before {
+ content: "";
+ color: #4f46e5;
+ font-weight: 700;
+ flex-shrink: 0;
+ margin-top: 1px;
+}
+
+.tarif-cta-primary {
+ display: block;
+ text-align: center;
+ background: #667eea;
+ color: #fff;
+ font-weight: 700;
+ font-size: 0.97rem;
+ padding: 13px 16px;
+ border-radius: 11px;
+ text-decoration: none;
+ transition: opacity 0.2s, transform 0.2s;
+ margin-bottom: 9px;
+}
+.tarif-cta-primary:hover { opacity: 0.9; transform: translateY(-1px); color: #fff; }
+
+.tarif-cta-ghost {
+ display: block;
+ text-align: center;
+ background: transparent;
+ color: #667eea;
+ border: 1.5px solid #c7d2fe;
+ font-weight: 600;
+ font-size: 0.92rem;
+ padding: 11px 16px;
+ border-radius: 11px;
+ text-decoration: none;
+ transition: background 0.2s;
+}
+.tarif-cta-ghost:hover { background: #eef2ff; }
+
+.tarif-note-box {
+ max-width: 900px;
+ margin: 0 auto 24px;
+ background: #eef2ff;
+ border: 1px solid #c7d2fe;
+ border-radius: 12px;
+ padding: 14px 18px;
+ font-size: 0.91rem;
+ color: #3730a3;
+ text-align: center;
+ line-height: 1.6;
+}
+
+.tarif-option-box {
+ max-width: 900px;
+ margin: 0 auto;
+ background: #fff;
+ border: 1.5px solid #e2e8f0;
+ border-radius: 14px;
+ padding: 22px 24px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 20px;
+ flex-wrap: wrap;
+ box-shadow: 0 3px 14px rgba(15,23,42,0.05);
+}
+
+.tarif-faq-grid {
+ max-width: 900px;
+ margin: 32px auto 0;
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0,1fr));
+ gap: 14px;
+}
+
+.tarif-faq-item {
+ background: #fff;
+ border: 1px solid #e2e8f0;
+ border-radius: 12px;
+ padding: 18px;
+}
+
+.tarif-faq-item strong {
+ display: block;
+ color: #0f172a;
+ font-size: 0.94rem;
+ margin-bottom: 7px;
+}
+
+.tarif-faq-item p {
+ margin: 0;
+ color: #64748b;
+ font-size: 0.88rem;
+ line-height: 1.55;
+}
+
+.fondateur-box {
+ max-width: 900px;
+ margin: 0 auto;
+ background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+ border: 1.5px solid #c7d2fe;
+ border-radius: 16px;
+ padding: 28px 32px;
+ display: grid;
+ grid-template-columns: 1fr auto;
+ gap: 24px;
+ align-items: center;
+}
+
+@media (max-width: 992px) {
+ .tarif-grid { grid-template-columns: 1fr; max-width: 560px; }
+ .tarif-card.is-featured { border: 2px solid #667eea; }
+ .tarif-faq-grid { grid-template-columns: 1fr; }
+ .fondateur-box { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+ .tarif-price { font-size: 1.8rem; }
+ .tarif-card { padding: 22px 18px; }
+ .tarif-option-box { flex-direction: column; gap: 14px; }
+}
+</style>
+
 <!-- HERO -->
-<section class="hero" style="padding: 100px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<section style="padding:90px 0 76px; text-align:center; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); animation:fadeUp 0.6s ease both;">
  <div class="container">
- <div class="hero-content" style="color: white; max-width: 700px; margin: 0 auto;">
- <h1 style="font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; color: white;">
- Rejoignez le Programme Fondateurs
+ <div style="color:white; max-width:720px; margin:0 auto;">
+ <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:white; border-radius:30px; padding:6px 18px; font-size:0.84rem; font-weight:600; margin-bottom:22px;">
+ <span style="width:7px;height:7px;border-radius:50%;background:#FDCB6E;display:inline-block;"></span>
+ Exclusivit&eacute; territoriale garantie &mdash; 1 conseiller par zone
+ </span>
+ <h1 style="font-size:2.7rem; font-weight:800; line-height:1.2; color:white; margin-bottom:18px;">
+ Choisissez votre rythme de d&eacute;ploiement local
  </h1>
- <p class="hero-subtitle" style="font-size: 1.2rem; opacity: 0.95; line-height: 1.6; margin-bottom: 40px;">
- Acc&egrave;s anticip&eacute; en places limit&eacute;es. <strong>Deux chemins</strong> pour acc&eacute;der &agrave; l'&eacute;cosyst&egrave;me.
- <br>Tarif fondateur disponible selon votre zone.
+ <p style="font-size:1.1rem; opacity:0.95; line-height:1.75; margin-bottom:32px; max-width:640px; margin-left:auto; margin-right:auto;">
+ Des offres pens&eacute;es pour un seul objectif&nbsp;: g&eacute;n&eacute;rer des vendeurs qualifi&eacute;s dans votre zone et convertir en mandats.
  </p>
- <div class="hero-buttons" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
- <a href="/front/pages/contact.php?type=fondateur" class="btn btn-primary btn-lg" style="background: white; color: #667eea; font-weight: 600;">
- Demander un acc&egrave;s fondateur
+ <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+ <a href="/verifier-ma-ville" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:14px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
+ V&eacute;rifier si ma ville est disponible
  </a>
- <a href="#chemins" class="btn btn-secondary btn-lg" style="background: transparent; border: 2px solid white; color: white; font-weight: 600;">
- D&eacute;couvrir
+ <a href="/rdv" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:12px 28px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+ R&eacute;server un appel
  </a>
  </div>
  </div>
  </div>
 </section>
 
-<!-- STATUT FONDATEURS -->
-<section class="bg-light" style="padding: 80px 0;">
+<!-- PRICING GRID -->
+<section style="padding:90px 0; background:#f8fafc;">
  <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #fee2e2; color: #991b1b; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Statut du programme</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c; margin-bottom: 15px;">O&ugrave; en est-on aujourd'hui ?</h2>
- </div>
-
- <div style="max-width: 750px; margin: 0 auto; display: grid; gap: 15px;">
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Partenaires fondateurs actifs</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Ils utilisent la plateforme au quotidien et partagent leurs retours terrain.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;">⏳</span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">+1 en cours d'onboarding</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Installation et configuration en cours sur son serveur d&eacute;di&eacute;.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #10b981;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">4 places encore disponibles</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Places fondateurs limit&eacute;es pour conserver un accompagnement premium.</p>
- </div>
- </div>
- </div>
-
- <div style="text-align: center; margin-top: 50px; padding: 30px; background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(102, 126, 234, 0.1); max-width: 650px; margin-left: auto; margin-right: auto;">
- <p style="font-size: 1.1rem; color: #1a202c; margin: 0; line-height: 1.8;">
- Le probl&egrave;me n'est pas votre <strong>motivation</strong>.<br>
- C'est l'absence d'un <strong>syst&egrave;me qui travaille pour vous</strong>.
- </p>
- </div>
- </div>
-</section>
-
-<!-- POURQUOI PAS DE GRILLE -->
-<section style="padding: 80px 0;">
- <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Notre approche</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c; margin-bottom: 30px;">Pourquoi pas de grille tarifaire ?</h2>
- </div>
-
- <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 50px;">
- <p style="font-size: 1.15rem; color: #4a5568; line-height: 1.8; margin-bottom: 25px;">
- Chaque conseiller immobilier a une zone diff&eacute;rente, un march&eacute; diff&eacute;rent, une ambition diff&eacute;rente.<br>
- Un tarif unique ne refl&egrave;terait pas la r&eacute;alit&eacute; de votre projet.
- </p>
- <p style="font-size: 1.25rem; color: #1a202c; line-height: 1.8; font-weight: 600; margin: 0;">
- On pr&eacute;f&egrave;re discuter, comprendre votre situation, et construire une offre adapt&eacute;e.
+ <div style="text-align:center; margin-bottom:50px;">
+ <span style="display:inline-block; background:#dbeafe; color:#1e40af; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">Tarifs transparents</span>
+ <h2 style="font-size:2.05rem; color:#0f172a; margin-bottom:12px;">Trois formats selon votre objectif</h2>
+ <p style="font-size:1rem; color:#64748b; margin:0; max-width:680px; margin-left:auto; margin-right:auto;">
+ Un seul mandat peut rentabiliser plusieurs mois d'abonnement. Chaque format inclut l'acc&egrave;s fondateur et l'exclusivit&eacute; sur votre zone.
  </p>
  </div>
 
- <div style="padding: 30px; background: #f7fafc; border-left: 4px solid #667eea; border-radius: 0 12px 12px 0; max-width: 650px; margin: 0 auto; text-align: left;">
- <p style="color: #2d3748; margin: 0; font-style: italic; font-size: 1.05rem;">
- "Nous limitons volontairement les acc&egrave;s pour conserver un accompagnement haut niveau et une ex&eacute;cution locale de qualit&eacute;."
+ <div class="tarif-grid">
+
+ <!-- Estimateur seul -->
+ <article class="tarif-card">
+ <span class="tarif-label" style="background:#f1f5f9; color:#475569;">Entr&eacute;e rapide</span>
+ <div class="tarif-name">Estimateur seul</div>
+ <div class="tarif-price">27&euro;<span style="font-size:1.1rem; font-weight:500; color:#64748b;">/mois</span></div>
+ <div class="tarif-price-sub">+ 197&euro; setup unique</div>
+ <ul class="tarif-features">
+ <li>Estimateur local install&eacute; sur votre site</li>
+ <li>Capture vendeurs 24h/24 sur vos pages</li>
+ <li>Suivi des leads entrants</li>
+ <li>Configuration et mise en ligne incluses</li>
+ </ul>
+ <a href="/verifier-ma-ville" class="tarif-cta-primary">V&eacute;rifier ma ville</a>
+ <a href="/rdv" class="tarif-cta-ghost">R&eacute;server un appel</a>
+ </article>
+
+ <!-- Standard mensuel — featured -->
+ <article class="tarif-card is-featured">
+ <span class="tarif-label" style="background:#ede9fe; color:#5b21b6;">Recommand&eacute;</span>
+ <div class="tarif-name">Syst&egrave;me complet mensuel</div>
+ <div class="tarif-price">97&euro;<span style="font-size:1.1rem; font-weight:500; color:#64748b;">/mois</span></div>
+ <div class="tarif-price-sub">+ 497&euro; setup &bull; 3 premiers mois pr&eacute;pay&eacute;s</div>
+ <ul class="tarif-features">
+ <li>Syst&egrave;me d'acquisition local complet</li>
+ <li>Tunnel vendeur&nbsp;: visibilit&eacute; &rarr; estimation &rarr; RDV</li>
+ <li>CRM, automatisations, blog SEO local</li>
+ <li>Assistant IA + GMB int&eacute;gr&eacute;</li>
+ <li>Accompagnement d&eacute;ploiement inclus</li>
+ </ul>
+ <a href="/verifier-ma-ville" class="tarif-cta-primary" style="background:linear-gradient(135deg,#667eea,#764ba2); box-shadow:0 6px 20px rgba(102,126,234,0.3);">V&eacute;rifier ma ville</a>
+ <a href="/rdv" class="tarif-cta-ghost">R&eacute;server un appel</a>
+ </article>
+
+ <!-- Annuel -->
+ <article class="tarif-card">
+ <span class="tarif-label" style="background:#ecfdf5; color:#065f46;">Position dominante</span>
+ <div class="tarif-name">Annuel &mdash; Exclusivit&eacute; incluse</div>
+ <div class="tarif-price">897&euro;<span style="font-size:1.1rem; font-weight:500; color:#64748b;">/an</span></div>
+ <div class="tarif-price-sub">Setup offert &bull; exclusivit&eacute; territoriale int&eacute;gr&eacute;e</div>
+ <ul class="tarif-features">
+ <li>Tout le syst&egrave;me complet mensuel inclus</li>
+ <li>Exclusivit&eacute; territoriale verrouill&eacute;e sur votre zone</li>
+ <li>D&eacute;ploiement prioritaire</li>
+ <li>Co&ucirc;t optimis&eacute; sur 12 mois vs mensuel</li>
+ </ul>
+ <a href="/verifier-ma-ville" class="tarif-cta-primary">V&eacute;rifier ma ville</a>
+ <a href="/rdv" class="tarif-cta-ghost">R&eacute;server un appel</a>
+ </article>
+
+ </div>
+
+ <p class="tarif-note-box">
+ Les 3 mois pr&eacute;pay&eacute;s sur l'offre standard laissent le temps au syst&egrave;me local de produire ses premiers r&eacute;sultats mesurables.
+ </p>
+
+ <!-- Option exclusivité -->
+ <div class="tarif-option-box">
+ <div>
+ <strong style="display:block; color:#0f172a; font-size:1rem; margin-bottom:5px;">Option&nbsp;: Exclusivit&eacute; verrouill&eacute;e</strong>
+ <p style="color:#64748b; font-size:0.9rem; line-height:1.55; margin:0;">
+ Disponible en compl&eacute;ment de certaines offres. Votre zone est verrouill&eacute;e d&eacute;finitivement, m&ecirc;me si vous choisissez de mettre en pause votre abonnement.
+ </p>
+ </div>
+ <div style="flex-shrink:0; text-align:right;">
+ <div style="font-size:1.7rem; font-weight:800; color:#0f172a;">900&euro;</div>
+ <div style="font-size:0.85rem; color:#64748b;">paiement unique</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- PROGRAMME FONDATEURS -->
+<section style="padding:80px 0; background:#fff;">
+ <div class="container">
+ <div style="text-align:center; margin-bottom:44px;">
+ <span style="display:inline-block; background:#fce7f3; color:#be123c; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">Programme Fondateurs</span>
+ <h2 style="font-size:2rem; color:#0f172a; margin-bottom:12px;">Un acc&egrave;s fondateur, pour ceux qui s'engagent t&ocirc;t</h2>
+ <p style="font-size:1rem; color:#64748b; margin:0; max-width:680px; margin-left:auto; margin-right:auto;">
+ Les premiers partenaires b&eacute;n&eacute;ficient de conditions pr&eacute;f&eacute;rentielles &agrave; vie, en &eacute;change d'un engagement actif sur leur zone et de retours terrain r&eacute;guliers.
+ </p>
+ </div>
+
+ <div class="fondateur-box">
+ <div>
+ <div style="display:grid; gap:12px; margin-bottom:20px;">
+ <?php
+ $fBenefs = [
+ 'Conditions tarifaires pr&eacute;f&eacute;rentielles conserv&eacute;es &agrave; vie',
+ 'Accompagnement prioritaire et onboarding d&eacute;di&eacute;',
+ 'Statut fondateur avec exclusivit&eacute; territoriale garantie',
+ 'Feedback loop direct avec l\'&eacute;quipe produit',
+ ];
+ foreach ($fBenefs as $b):
+ ?>
+ <div style="display:flex; align-items:center; gap:10px; font-size:0.92rem; color:#334155;">
+ <span style="color:#4f46e5; font-weight:700; flex-shrink:0;"></span>
+ <?= $b ?>
+ </div>
+ <?php endforeach; ?>
+ </div>
+ <div style="padding:14px 16px; background:#fee2e2; border-radius:10px; border:1px solid #fecaca;">
+ <p style="color:#991b1b; margin:0; font-size:0.89rem; font-weight:600;">
+ Villes d&eacute;j&agrave; r&eacute;serv&eacute;es&nbsp;: Bordeaux, Nantes, Nandy, Aix-en-Provence, Lannion.
+ Les nouvelles admissions sont sur validation de zone uniquement.
  </p>
  </div>
  </div>
-</section>
-
-<!-- DEUX CHEMINS -->
-<section class="bg-light" style="padding: 80px 0;" id="chemins">
- <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #dbeafe; color: #1e40af; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Les deux chemins</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c; margin-bottom: 15px;">Deux fa&ccedil;ons d'avancer avec nous</h2>
- <p style="font-size: 1.1rem; color: #718096;">Selon ton niveau et tes objectifs</p>
- </div>
-
- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 900px; margin: 0 auto; margin-bottom: 50px;">
- <div style="padding: 30px; background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); text-align: center;">
- <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
- <h3 style="color: #1a202c; margin-bottom: 10px; font-size: 1.3rem;">Programme Fondateurs</h3>
- <p style="color: #667eea; font-weight: 600; margin-bottom: 12px;">Acc&egrave;s complet &agrave; la plateforme</p>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Vous activez un syst&egrave;me complet avec exclusivit&eacute; territoriale, onboarding personnalis&eacute; et accompagnement prioritaire.</p>
- </div>
-
- <div style="padding: 30px; background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); text-align: center;">
- <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
- <h3 style="color: #1a202c; margin-bottom: 10px; font-size: 1.3rem;">Coaching Digital Immobilier</h3>
- <p style="color: #667eea; font-weight: 600; margin-bottom: 12px;">Apprendre la strat&eacute;gie maintenant</p>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Audit digital, SEO local, Google My Business, tunnels de capture, publicit&eacute; digitale. Accompagnement 3-6 mois avec appels hebdo et Slack priv&eacute;.</p>
- </div>
- </div>
-
- <div style="padding: 30px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto; text-align: center;">
- <h3 style="color: #1a202c; margin-bottom: 20px;"> La vraie diff&eacute;rence :</h3>
- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
- <div style="padding: 20px; background: #fee2e2; border-radius: 8px;">
- <strong style="color: #991b1b; display: block; margin-bottom: 8px;"> Un seul chemin</strong>
- <p style="color: #991b1b; margin: 0; font-size: 0.9rem;">Tu avances, mais &agrave; ton rythme</p>
- </div>
- <div style="padding: 20px; background: #d1fae5; border-radius: 8px;">
- <strong style="color: #065f46; display: block; margin-bottom: 8px;"> Fondateur + Coaching</strong>
- <p style="color: #065f46; margin: 0; font-size: 0.9rem;">Tu acc&eacute;l&egrave;res la courbe d'apprentissage</p>
- </div>
+ <div style="flex-shrink:0; text-align:center;">
+ <a href="/verifier-ma-ville" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; font-size:0.97rem; padding:13px 24px; border-radius:11px; text-decoration:none; box-shadow:0 6px 20px rgba(102,126,234,0.28); white-space:nowrap;">
+ V&eacute;rifier ma zone
+ </a>
+ <p style="color:#94a3b8; font-size:0.8rem; margin:10px 0 0;">R&eacute;ponse sous 24h</p>
  </div>
  </div>
  </div>
 </section>
 
-<!-- CE QUE TU REÇOIS -->
-<section style="padding: 80px 0;">
+<!-- FAQ TARIFS -->
+<section style="padding:80px 0; background:#f8fafc;">
  <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #e9d5ff; color: #6b21a8; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Programme Fondateurs</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c; margin-bottom: 15px;">Ce que vous recevez avec l'acc&egrave;s fondateur</h2>
- <p style="font-size: 1.1rem; color: #718096;">Tout est inclus &mdash; sur devis selon ta zone et ton ambition</p>
+ <div style="text-align:center; margin-bottom:44px;">
+ <span style="display:inline-block; background:#ede9fe; color:#5b21b6; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">FAQ</span>
+ <h2 style="font-size:2rem; color:#0f172a; margin-bottom:0;">Questions avant de valider votre zone</h2>
  </div>
 
- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Plateforme compl&egrave;te</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">43 modules install&eacute;s sur ton serveur : site, CRM, SEO, IA, automation.</p>
- </div>
+ <?php
+ $faqItems = [
+ ['q' => 'Pourquoi 3 mois pr&eacute;pay&eacute;s sur l\'offre standard&nbsp;?',
+ 'a' => 'Pour laisser le temps au syst&egrave;me local de produire ses premiers r&eacute;sultats mesurables. Un syst&egrave;me SEO + contenu + automatisations n\'est pas instantan&eacute; &mdash; 90 jours est le d&eacute;lai m&eacute;dian avant les premiers RDV vendeurs entrants.'],
+ ['q' => 'L\'exclusivit&eacute; &agrave; 900&euro; est-elle obligatoire&nbsp;?',
+ 'a' => 'Non. C\'est une option compl&eacute;mentaire selon votre zone et votre strat&eacute;gie. L\'offre annuelle inclut d&eacute;j&agrave; l\'exclusivit&eacute; territoriale.'],
+ ['q' => 'Puis-je arr&ecirc;ter quand je veux&nbsp;?',
+ 'a' => 'Oui. Les modalit&eacute;s de sortie sont clarifi&eacute;es avant signature. L\'objectif est un partenariat utile, pas un engagement subi.'],
+ ['q' => 'Combien de temps avant d\'&ecirc;tre en ligne&nbsp;?',
+ 'a' => 'G&eacute;n&eacute;ralement quelques jours apr&egrave;s validation de votre zone et des &eacute;l&eacute;ments de base (logo, descriptif, zone g&eacute;o).'],
+ ['q' => 'Compatible avec mon r&eacute;seau actuel&nbsp;?',
+ 'a' => 'Oui. IAD, SAFTI, eXp, ind&eacute;pendant ou agence. On adapte l\'int&eacute;gration &agrave; votre contexte pour &eacute;viter de repartir de z&eacute;ro inutilement.'],
+ ['q' => 'Est-ce adapt&eacute; aux petites villes&nbsp;?',
+ 'a' => 'Oui, tant qu\'il y a une demande locale. L\'approche SEO local est plus facile &agrave; dominer dans une ville moyenne que dans une grande agglom&eacute;ration.'],
+ ];
+ ?>
 
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;">️</div>
- <strong style="color: #1a202c;">Exclusivit&eacute; zone 50km</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Personne d'autre ne peut acheter le syst&egrave;me dans ta zone.</p>
+ <div class="tarif-faq-grid">
+ <?php foreach ($faqItems as $item): ?>
+ <div class="tarif-faq-item">
+ <strong><?= $item['q'] ?></strong>
+ <p><?= $item['a'] ?></p>
  </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Onboarding personnalis&eacute;</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">2-3h de visio pour configurer et lancer ta machine.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Support direct</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Feedback loop permanent, corrections prioritaires.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Statut Fondateur</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">T&eacute;moignage de lancement + tarif pr&eacute;f&eacute;rentiel &agrave; vie.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #667eea;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Transition douce</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Vous conservez vos conditions fondateurs valid&eacute;es &agrave; l'entr&eacute;e.</p>
- </div>
- </div>
- </div>
-</section>
-
-<!-- CE QU'ON ATTEND -->
-<section class="bg-light" style="padding: 80px 0;">
- <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #fce7f3; color: #be123c; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> En &eacute;change</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c;">Ce qu'on attend de toi</h2>
- </div>
-
- <div style="max-width: 750px; margin: 0 auto;">
- <div style="display: grid; gap: 15px; margin-bottom: 40px;">
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">S'engager 3-6 mois sur votre zone</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Activer le syst&egrave;me local au quotidien, pas seulement en surface.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Remonter les bugs et id&eacute;es</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Tes retours am&eacute;liorent le produit pour tout le monde.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Donner un avis honn&ecirc;te</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Positif ou n&eacute;gatif, c'est le feedback qui compte.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Partager tes r&eacute;sultats</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Si &ccedil;a marche pour toi, on veut pouvoir le montrer.</p>
- </div>
- </div>
- </div>
-
- <div style="text-align: center; padding: 20px; background: #fee2e2; border-radius: 12px; border: 1px solid #fecaca;">
- <p style="color: #991b1b; margin: 0; font-weight: 500;">
- ️ Villes d&eacute;j&agrave; r&eacute;serv&eacute;es : Bordeaux, Nantes, Nandy, Aix-en-Provence, Lannion
- </p>
- </div>
- </div>
- </div>
-</section>
-
-<!-- COACHING DÉTAIL -->
-<section style="padding: 80px 0;">
- <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #d1fae5; color: #065f46; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Coaching Digital</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c; margin-bottom: 15px;">Apprendre la strat&eacute;gie sans attendre</h2>
- <p style="font-size: 1.1rem; color: #718096;">M&ecirc;me sans la plateforme, tu peux d&eacute;marrer ta pr&eacute;sence digitale</p>
- </div>
-
- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Audit digital complet</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Analyse de ta pr&eacute;sence en ligne actuelle et recommandations.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">SEO local + GMB</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Strat&eacute;gie de r&eacute;f&eacute;rencement et fiche Google optimis&eacute;e.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;">️</div>
- <strong style="color: #1a202c;">Contenu + capture</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Plan contenu, articles, landing pages et lead magnets.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Publicit&eacute; digitale</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Facebook Ads, Google Ads, suivi et ajustement continu.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Appels hebdo</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">30-45 min chaque semaine pour avancer concr&egrave;tement.</p>
- </div>
-
- <div style="padding: 25px; background: #f7fafc; border-radius: 12px; border-left: 4px solid #10b981;">
- <div style="font-size: 1.8rem; margin-bottom: 10px;"></div>
- <strong style="color: #1a202c;">Slack priv&eacute;</strong>
- <p style="color: #718096; margin: 8px 0 0 0; font-size: 0.9rem;">Support continu entre les appels, r&eacute;ponses rapides.</p>
- </div>
- </div>
- </div>
-</section>
-
-<!-- FAQ -->
-<section class="bg-light" style="padding: 80px 0;">
- <div class="container">
- <div class="section-header" style="text-align: center; margin-bottom: 60px;">
- <span class="section-badge" style="display: inline-block; background: #c7d2fe; color: #3730a3; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px;"> Questions fr&eacute;quentes</span>
- <h2 class="section-title" style="font-size: 2.2rem; color: #1a202c;">On r&eacute;pond &agrave; vos questions</h2>
- </div>
-
- <div style="max-width: 750px; margin: 0 auto; display: grid; gap: 15px;">
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Le tarif fondateur peut-il &eacute;voluer ?</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Le tarif fondateur est r&eacute;serv&eacute; aux partenaires accept&eacute;s dans le Programme Fondateurs. Les conditions sont pr&eacute;cis&eacute;es avant validation.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Combien de places restent ?</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Le Programme Fondateurs est volontairement limit&eacute; pour pr&eacute;server la qualit&eacute; d'accompagnement et l'exclusivit&eacute; territoriale.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Je dois &ecirc;tre dans l'immobilier ?</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Oui. Conseillers ind&eacute;pendants (IAD, Safti, eXp...) ou agents solo. Autre profil ? Contacte-nous, on discute.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Quel contrat ? Je peux partir ?</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">On pr&eacute;f&egrave;re 3-6 mois pour laisser le temps au d&eacute;ploiement local. Mais on discute au cas par cas. L'important : avancer s&eacute;rieusement.</p>
- </div>
- </div>
-
- <div style="display: flex; align-items: flex-start; gap: 15px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #667eea;">
- <span style="font-size: 1.8rem; flex-shrink: 0;"></span>
- <div>
- <strong style="color: #1a202c; display: block; margin-bottom: 5px;">Programme Fondateurs + coaching, compatible ?</strong>
- <p style="color: #718096; margin: 0; font-size: 0.95rem;">Oui. Le coaching acc&eacute;l&egrave;re la mise en place ; l'acc&egrave;s fondateur fournit l'&eacute;cosyst&egrave;me complet.</p>
- </div>
- </div>
+ <?php endforeach; ?>
  </div>
  </div>
 </section>
 
 <!-- CTA FINAL -->
-<section style="padding: 80px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
+<section style="padding:90px 0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); text-align:center;">
  <div class="container">
- <h2 style="font-size: 2.2rem; color: white; margin-bottom: 15px;">Votre ville est-elle encore disponible ?</h2>
- <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
- Que vous souhaitiez activer le syst&egrave;me local ou apprendre la strat&eacute;gie d&egrave;s maintenant, parlons-en.
+ <div style="max-width:620px; margin:0 auto; color:white;">
+ <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:white; border-radius:30px; padding:6px 18px; font-size:0.84rem; font-weight:600; margin-bottom:22px;">
+ <span style="width:7px;height:7px;border-radius:50%;background:#FDCB6E;display:inline-block;"></span>
+ V&eacute;rifiez avant qu'un concurrent ne r&eacute;serve
+ </span>
+ <h2 style="font-size:2.2rem; color:white; margin-bottom:16px; font-weight:800;">Votre ville est-elle encore disponible&nbsp;?</h2>
+ <p style="font-size:1.1rem; opacity:0.95; margin-bottom:36px; line-height:1.7;">
+ Chaque ville ne peut &ecirc;tre attribu&eacute;e qu'&agrave; un seul professionnel.<br>
+ Une fois r&eacute;serv&eacute;e, l'acc&egrave;s est d&eacute;finitivement ferm&eacute;.
  </p>
- <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
- <a href="/front/pages/contact.php?type=fondateur" class="btn btn-lg" style="background: white; color: #667eea; font-weight: 600; padding: 15px 35px; text-decoration: none; border-radius: 8px; display: inline-block;">
- Acc&egrave;s Fondateur
+ <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+ <a href="/verifier-ma-ville" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.2);">
+ V&eacute;rifier ma ville maintenant
  </a>
- <a href="/front/pages/contact.php?type=coaching" class="btn btn-lg" style="background: transparent; border: 2px solid white; color: white; font-weight: 600; padding: 13px 33px; text-decoration: none; border-radius: 8px; display: inline-block;">
- Coaching Digital
+ <a href="/rdv" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+ R&eacute;server un appel
  </a>
+ </div>
+ <p style="font-size:0.86rem; opacity:0.78; margin-top:20px; margin-bottom:0;">
+ V&eacute;rification gratuite &bull; r&eacute;ponse sous 24h &bull; aucune obligation
+ </p>
  </div>
  </div>
 </section>
