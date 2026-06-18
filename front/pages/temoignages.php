@@ -45,10 +45,11 @@ $temoignages = [
 ];
 
 $resultats = [
- 'Plus de visibilit&eacute; locale sur Google',
- 'Plus de demandes d\'estimation entrants',
- 'Moins de d&eacute;pendance aux portails',
- 'Un syst&egrave;me marketing automatis&eacute;',
+ ['Premi&egrave;res demandes d\'estimation entrantes', 'G&eacute;n&eacute;ralement observ&eacute;es dans les 60 premiers jours de d&eacute;ploiement.'],
+ ['R&eacute;duction de la d&eacute;pendance aux portails payants', 'Votre SEO local travaille en continu, sans budget pub mensuel.'],
+ ['Aucun lead perdu &mdash; suivi automatique', 'Les relances partent seules via le CRM : vous n\'avez rien &agrave; g&eacute;rer manuellement.'],
+ ['Position digitale exclusive dans votre zone', 'Un seul partenaire par secteur &mdash; votre concurrent local ne peut pas utiliser le m&ecirc;me syst&egrave;me.'],
+ ['Syst&egrave;me op&eacute;rationnel 24h/24', 'Le contenu, les tunnels et les relances fonctionnent m&ecirc;me quand vous &ecirc;tes en visite.'],
 ];
 ?>
 
@@ -153,7 +154,6 @@ $resultats = [
  foreach ($trust as $t):
  ?>
  <div class="tm-trust-item">
- <div style="font-size:1.8rem; margin-bottom:8px;"><?= $t[0] ?></div>
  <div style="font-size:1.7rem; font-weight:800; color:#667eea; line-height:1;"><?= $t[1] ?></div>
  <div style="font-size:0.82rem; color:#718096; margin-top:4px;"><?= $t[2] ?></div>
  </div>
@@ -234,7 +234,10 @@ $resultats = [
  <div style="width:36px;height:36px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
  </div>
- <p style="margin:0; color:#2d3748; font-size:0.96rem; font-weight:500;"><?= $r ?></p>
+ <div>
+ <p style="margin:0; color:#2d3748; font-size:0.96rem; font-weight:600; line-height:1.4;"><?= $r[0] ?></p>
+ <p style="margin:3px 0 0; color:#718096; font-size:0.84rem; line-height:1.5;"><?= $r[1] ?></p>
+ </div>
  </div>
  <?php endforeach; ?>
  </div>
@@ -255,7 +258,6 @@ $resultats = [
  foreach ($why as $w):
  ?>
  <div style="text-align:center; padding:18px 14px; background:#f7fafc; border-radius:10px;">
- <div style="font-size:1.5rem; margin-bottom:8px;"><?= $w[0] ?></div>
  <strong style="color:#1a202c; display:block; font-size:0.88rem; margin-bottom:4px;"><?= $w[1] ?></strong>
  <p style="color:#718096; margin:0; font-size:0.8rem;"><?= $w[2] ?></p>
  </div>
@@ -270,7 +272,6 @@ $resultats = [
 <section style="padding:70px 0;">
  <div class="container">
  <div style="max-width:760px; margin:0 auto; background:linear-gradient(135deg,#f0f4ff,#faf0ff); border-radius:16px; border:1px solid rgba(102,126,234,0.2); padding:36px; text-align:center;">
- <div style="font-size:2rem; margin-bottom:14px;"></div>
  <h3 style="font-size:1.3rem; color:#1a202c; margin-bottom:12px;">Vous &ecirc;tes professionnel de l'immobilier&nbsp;?</h3>
  <p style="color:#4a5568; font-size:0.97rem; line-height:1.8; margin-bottom:24px;">
  ÉCOSYSTÈME IMMO LOCAL+ ouvre un <strong>Programme Fondateurs</strong> en nombre limit&eacute;.<br>
@@ -281,10 +282,10 @@ $resultats = [
  </div>
  <br>
  <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
- <a href="/front/pages/verifier-ma-ville.php" style="background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; font-size:0.97rem; padding:13px 28px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 6px 20px rgba(102,126,234,0.3);">
+ <a href="/verifier-ma-ville" style="background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; font-size:0.97rem; padding:13px 28px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 6px 20px rgba(102,126,234,0.3);">
  V&eacute;rifier ma zone
  </a>
- <a href="/front/pages/demo.php" style="background:white; border:2px solid #667eea; color:#667eea; font-weight:600; font-size:0.97rem; padding:11px 26px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+ <a href="/demo" style="background:white; border:2px solid #667eea; color:#667eea; font-weight:600; font-size:0.97rem; padding:11px 26px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
  Voir la d&eacute;monstration
  </a>
  </div>
@@ -308,10 +309,10 @@ $resultats = [
  Si un autre professionnel r&eacute;serve avant vous, elle devient d&eacute;finitivement ferm&eacute;e.
  </p>
  <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
- <a href="/front/pages/verifier-ma-ville.php" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:14px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
+ <a href="/verifier-ma-ville" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:14px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
  V&eacute;rifier ma zone
  </a>
- <a href="/front/pages/demo.php" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:12px 28px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+ <a href="/demo" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:12px 28px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
  Voir la d&eacute;monstration
  </a>
  </div>
