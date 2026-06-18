@@ -57,7 +57,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
  </div>
 
  <?php
- $rdvLink = '/front/pages/rdv.php?ville=' . urlencode($ville);
+ $rdvLink = '/rdv?ville=' . urlencode($ville);
  if ($email !== '') {
  $rdvLink .= '&email=' . urlencode($email);
  }

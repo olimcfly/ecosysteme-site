@@ -410,14 +410,14 @@ textarea.rdv-input { resize: vertical; min-height: 70px; }
  
  <div class="rdv-ty-links">
  <a href="/" class="rdv-ty-link rdv-ty-link-primary"> Retour à l'accueil</a>
- <a href="/front/pages/verifier-zone.php" class="rdv-ty-link rdv-ty-link-ghost"> Vérifier ma zone</a>
+ <a href="/verifier-ma-ville" class="rdv-ty-link rdv-ty-link-ghost">Vérifier ma ville</a>
  </div>
  <div class="rdv-ty-footer">© 2026 ÉCOSYSTÈME IMMO LOCAL+ — SAS OCDM Agency</div>
  </div>
 </div>
 
 <script>
-var API='/api/bookings.php',S={y:null,m:null,date:null,time:null},
+var API='/api/booking.php',S={y:null,m:null,date:null,time:null},
 MOIS=['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
 JOURS=['','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'],
 AV={1:{s:'09:00',e:'18:00',on:1},2:{s:'09:00',e:'18:00',on:1},3:{s:'09:00',e:'18:00',on:1},4:{s:'09:00',e:'18:00',on:1},5:{s:'09:00',e:'18:00',on:1},6:{s:'10:00',e:'13:00',on:0},7:{s:'00:00',e:'00:00',on:0}},

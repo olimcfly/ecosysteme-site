@@ -4,7 +4,7 @@ require_once __DIR__ . '/csrf.php';
 require_once __DIR__ . '/helpers.php';
 // Définir les variables de page si elles n'existent pas
 if (!isset($pageTitle)) $pageTitle = 'ÉCOSYSTÈME IMMO LOCAL+';
-if (!isset($pageDescription)) $pageDescription = 'La plateforme SaaS complète pour les agents immobiliers indépendants.';
+if (!isset($pageDescription)) $pageDescription = 'Le système d\'acquisition local pour les conseillers immobiliers indépendants — site SEO, CRM, automatisations et exclusivité territoriale garantie.';
 if (!isset($currentPage)) $currentPage = 'accueil';
 ?>
 <!DOCTYPE html>

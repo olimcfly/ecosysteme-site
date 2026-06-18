@@ -120,7 +120,7 @@ $headersAdmin = "From: noreply@ecosystemeimmo.fr\r\n"
 @mail($adminEmail, $sujetAdmin, $corpsAdmin, $headersAdmin);
 
 // ── 8. Email confirmation prospect ───────────────────────────
-$sujetPro = 'Votre demande a bien ete recue - Ecosysteme Immo Local+ Local+';
+$sujetPro = 'Votre demande a bien ete recue - Ecosysteme Immo Local+';
 $corpsPro = "Bonjour {$prenom},\n\n"
  . "Nous avons bien recu votre demande pour la ville de {$ville}.\n\n"
  . "Voici la suite :\n"
@@ -133,7 +133,7 @@ $corpsPro = "Bonjour {$prenom},\n\n"
  . "ECOSYSTEME IMMO LOCAL+\n"
  . "https://ecosystemeimmo.fr";
 
-$headersPro = "From: Ecosysteme Immo Local+ Local+ <noreply@ecosystemeimmo.fr>\r\n"
+$headersPro = "From: Ecosysteme Immo Local+ <noreply@ecosystemeimmo.fr>\r\n"
  . "Reply-To: contact@ecosystemeimmo.fr\r\n"
  . "Content-Type: text/plain; charset=utf-8\r\n";
 

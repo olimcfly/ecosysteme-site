@@ -68,7 +68,7 @@
 
  <div class="footer-bottom">
  <p>&copy; <?php echo date('Y'); ?> ÉCOSYSTÈME IMMO LOCAL+ &mdash; SAS OCDM Agency. Tous droits réservés.</p>
- <p class="footer-made">Fait avec pour les conseillers immobiliers indépendants</p>
+ <p class="footer-made">Conçu pour les conseillers immobiliers indépendants</p>
  </div>
  </div>
  </footer>

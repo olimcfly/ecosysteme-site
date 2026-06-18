@@ -257,7 +257,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
 </section>
 
 <!-- ═══ FORMULAIRE + SUITE ═══ -->
-<section style="padding:80px 0; background:#f7fafc;">
+<section id="formulaire" style="padding:80px 0; background:#f7fafc;">
  <div class="container">
  <div class="vv-conv-grid">
 
@@ -267,7 +267,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <span style="display:inline-block; background:#fce7f3; color:#be123c; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;"> V&eacute;rifier ma ville</span>
  <h2 style="font-size:1.8rem; color:#1a202c; margin-bottom:10px;">Validation rapide de votre zone</h2>
  <p style="color:#718096; font-size:0.95rem; line-height:1.6; margin:0;">
- 5 champs, 1 minute. Nous qualifions votre demande puis vous orientons vers l'appel d&eacute;couverte.
+ Quelques champs, 1 minute. Nous qualifions votre demande puis vous orientons vers l'appel d&eacute;couverte.
  </p>
  </div>
 
@@ -364,7 +364,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <p style="font-size:1.05rem; opacity:0.95; margin-bottom:32px; line-height:1.7;">
  Une fois la ville r&eacute;serv&eacute;e, l'acc&egrave;s est d&eacute;finitivement ferm&eacute;.
  </p>
- <a href="#nom" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
+ <a href="#formulaire" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 34px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18);">
  V&eacute;rifier la disponibilit&eacute; de ma ville
  </a>
  </div>
