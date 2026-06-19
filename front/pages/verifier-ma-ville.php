@@ -143,7 +143,6 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  foreach ($garanties as $g):
  ?>
  <div class="vv-card" style="padding:26px; text-align:center;">
- <div style="font-size:1.9rem; margin-bottom:10px;"><?= $g[0] ?></div>
  <strong style="color:#1a202c; font-size:0.97rem;"><?= $g[1] ?></strong>
  <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $g[2] ?></p>
  </div>
@@ -157,7 +156,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <div class="container">
  <div style="max-width:720px; margin:0 auto;">
  <div style="text-align:center; margin-bottom:40px;">
- <span style="display:inline-block; background:#e9d5ff; color:#6b21a8; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;"> Pourquoi nous limitons les licences</span>
+ <span style="display:inline-block; background:#e9d5ff; color:#6b21a8; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">Pourquoi nous limitons les licences</span>
  <h2 style="font-size:2rem; color:#1a202c; margin-bottom:16px;">Nous faisons l'inverse des autres plateformes</h2>
  <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin:0;">
  Les plateformes classiques cherchent des milliers d'utilisateurs.<br>
@@ -195,7 +194,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <div class="container">
  <div style="max-width:820px; margin:0 auto;">
  <div style="text-align:center; margin-bottom:50px;">
- <span style="display:inline-block; background:#dbeafe; color:#1e40af; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;"> Ce que la licence inclut</span>
+ <span style="display:inline-block; background:#dbeafe; color:#1e40af; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">Ce que la licence inclut</span>
  <h2 style="font-size:2rem; color:#1a202c; margin-bottom:0;">Votre &eacute;cosyst&egrave;me digital immobilier complet</h2>
  </div>
 
@@ -212,7 +211,6 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  foreach ($inclus as $i):
  ?>
  <div class="vv-card" style="padding:20px; border-left:4px solid #667eea;">
- <div style="font-size:1.5rem; margin-bottom:8px;"><?= $i[0] ?></div>
  <strong style="color:#1a202c; font-size:0.94rem;"><?= $i[1] ?></strong>
  <p style="color:#718096; margin:5px 0 0; font-size:0.86rem; line-height:1.5;"><?= $i[2] ?></p>
  </div>
@@ -264,7 +262,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <!-- Formulaire -->
  <div>
  <div style="margin-bottom:28px;">
- <span style="display:inline-block; background:#fce7f3; color:#be123c; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;"> V&eacute;rifier ma ville</span>
+ <span style="display:inline-block; background:#fce7f3; color:#be123c; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">V&eacute;rifier ma ville</span>
  <h2 style="font-size:1.8rem; color:#1a202c; margin-bottom:10px;">Validation rapide de votre zone</h2>
  <p style="color:#718096; font-size:0.95rem; line-height:1.6; margin:0;">
  Quelques champs, 1 minute. Nous qualifions votre demande puis vous orientons vers l'appel d&eacute;couverte.
@@ -317,7 +315,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <!-- Ce qui se passe ensuite -->
  <div>
  <div style="margin-bottom:28px;">
- <span style="display:inline-block; background:#c7d2fe; color:#3730a3; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;"> Que se passe-t-il ensuite&nbsp;?</span>
+ <span style="display:inline-block; background:#c7d2fe; color:#3730a3; padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600; margin-bottom:14px;">Que se passe-t-il ensuite&nbsp;?</span>
  <h2 style="font-size:1.8rem; color:#1a202c; margin-bottom:0;">En 3 &eacute;tapes simples</h2>
  </div>
 
@@ -343,7 +341,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_data']);
  <!-- Alerte urgence -->
  <div style="padding:20px 24px; background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; border-left:4px solid #f97316;">
  <p style="margin:0; color:#9a3412; font-size:0.92rem; line-height:1.65;">
- <strong> Important</strong><br>
+ <strong>Important</strong><br>
  Certaines villes sont actuellement en discussion avec d'autres professionnels.
  Si votre zone est encore disponible, nous vous recommandons de la r&eacute;server rapidement.
  </p>

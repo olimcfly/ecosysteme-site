@@ -40,7 +40,7 @@
  <div class="footer-col">
  <h4>Découvrir</h4>
  <ul class="footer-links">
- <li><a href="/blog"> Blog</a></li>
+ <li><a href="/blog">Blog</a></li>
  <li><a href="/villes">Villes disponibles</a></li>
  <li><a href="/demo">Voir la démo</a></li>
  <li><a href="/verifier-ma-ville">Vérifier ma ville</a></li>
@@ -77,5 +77,20 @@
  <?php if (isset($additionalJS)): ?>
  <script src="<?php echo h($additionalJS); ?>"></script>
  <?php endif; ?>
+<!-- Sticky mobile CTA - only on mobile -->
+<div id="stickyCTA" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:999; padding:12px 16px; background:linear-gradient(135deg,#667eea,#764ba2); box-shadow:0 -4px 20px rgba(102,126,234,0.3);">
+ <a href="/verifier-ma-ville" style="display:flex; align-items:center; justify-content:center; gap:8px; color:white; font-weight:700; font-size:0.97rem; text-decoration:none;">
+  <span style="width:7px;height:7px;border-radius:50%;background:#FDCB6E;flex-shrink:0;"></span>
+  Vérifier si ma ville est disponible
+ </a>
+</div>
+<style>
+@media (max-width:768px) {
+ #stickyCTA { display:block !important; }
+ body { padding-bottom:56px; }
+}
+</style>
+
+
 </body>
 </html>

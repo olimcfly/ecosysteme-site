@@ -739,6 +739,46 @@ include 'includes/header.php';
  </div>
 </section>
 
+<!-- ═══════════ PROBLÈME ═══════════ -->
+<section style="padding:90px 0; background:#f7fafc;">
+ <div class="container">
+ <div style="text-align:center; margin-bottom:55px;">
+ <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;">Le Probl&egrave;me</span>
+ <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Si vous &ecirc;tes agent ou mandataire,<br>vous vivez probablement &ccedil;a</h2>
+ </div>
+
+ <div style="max-width:760px; margin:0 auto; display:grid; gap:14px;">
+
+ <?php
+ $problems = [
+ ['Trop d\'outils, pas de syst&egrave;me',
+ 'Un CRM, un site, des emails, des r&eacute;seaux sociaux&hellip; Mais rien n\'est r&eacute;ellement connect&eacute;. R&eacute;sultat&nbsp;: vous passez votre temps &agrave; copier-coller entre les outils.'],
+ ['Invisible sur Google',
+ 'Votre site existe. Mais quand un vendeur tape &laquo;&nbsp;Estimer maison + votre ville&nbsp;&raquo;, vous n\'apparaissez pas.'],
+ ['D&eacute;pendance aux portails et &agrave; la pub',
+ 'SeLoger. LeBonCoin. Facebook Ads. Vous payez pour exister. Coupez la pub et les leads disparaissent.'],
+ ['Pas le temps de faire du marketing',
+ 'Entre les visites, les estimations, les relances et les compromis&nbsp;: le marketing digital devient impossible &agrave; g&eacute;rer seul.'],
+ ];
+ foreach ($problems as $p):
+ ?>
+ <div class="pi-card" style="padding:22px 26px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; display:block; margin-bottom:6px; font-size:0.97rem;"><?= $p[0] ?></strong>
+ <p style="color:#718096; margin:0; font-size:0.93rem; line-height:1.6;"><?= $p[1] ?></p>
+ </div>
+ <?php endforeach; ?>
+
+ </div>
+
+ <div style="text-align:center; margin-top:44px; padding:28px 36px; background:white; border-radius:14px; box-shadow:0 2px 14px rgba(102,126,234,0.1); max-width:620px; margin-left:auto; margin-right:auto;">
+ <p style="font-size:1.1rem; color:#1a202c; margin:0; line-height:1.85;">
+ Le probl&egrave;me n'est pas votre <strong>motivation</strong>.<br>
+ C'est l'absence d'un <strong>syst&egrave;me qui travaille pour vous</strong>.
+ </p>
+ </div>
+ </div>
+</section>
+
 <!-- ═══════════ SYSTÈME EN ACTION ═══════════ -->
 <section style="padding:88px 0; background:#f8fafc;">
  <div class="container">
@@ -778,6 +818,85 @@ include 'includes/header.php';
  Vérifier si ma ville est disponible
  </a>
  </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════ MÉTHODE ═══════════ -->
+<section style="padding:90px 0; background:#f7fafc;" id="methode">
+ <div class="container">
+ <div style="text-align:center; margin-bottom:60px;">
+ <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">La M&eacute;thode</span>
+ <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">3 leviers pour attirer vos vendeurs</h2>
+ <p style="font-size:1.05rem; color:#718096; margin:0;">Sans pub, sans portails, sans d&eacute;pendance</p>
+ </div>
+
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:24px; max-width:920px; margin:0 auto 50px;">
+ <?php
+ $steps = [
+ ['', '1 &mdash; PERSONA', 'Comprendre vos vendeurs',
+ 'Qui sont-ils&nbsp;? vendeurs seniors, familles qui d&eacute;m&eacute;nagent, investisseurs&hellip; L\'assistant IA identifie leurs motivations, leurs blocages et leurs objections.'],
+ ['', '2 &mdash; CONTENU', 'Savoir quoi leur dire',
+ 'L\'IA g&eacute;n&egrave;re automatiquement&nbsp;: articles SEO, posts r&eacute;seaux, emails, guides vendeurs. Chaque contenu correspond &agrave; une &eacute;tape du parcours vendeur.'],
+ ['', '3 &mdash; TRAFIC', 'Les atteindre au bon endroit',
+ 'Vos contenus sont diffus&eacute;s sur Google, votre blog, votre fiche Google, vos r&eacute;seaux. Objectif&nbsp;: attirer des vendeurs avant m&ecirc;me qu\'ils contactent un agent.'],
+ ];
+ foreach ($steps as $s):
+ ?>
+ <div class="pi-card" style="padding:32px; text-align:center;">
+ <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[1] ?></h3>
+ <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[2] ?></p>
+ <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[3] ?></p>
+ </div>
+ <?php endforeach; ?>
+ </div>
+
+ <!-- SaaS vs Écosystème -->
+ <div style="padding:28px; background:white; border-radius:14px; box-shadow:0 4px 18px rgba(0,0,0,0.07); max-width:620px; margin:30px auto 0; text-align:center;">
+ <p style="font-size:0.9rem; font-weight:700; color:#1a202c; margin-bottom:18px; text-transform:uppercase; letter-spacing:0.05em;">La vraie diff&eacute;rence</p>
+ <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+ <div style="padding:18px; background:#fee2e2; border-radius:10px;">
+ <strong style="color:#991b1b; display:block; margin-bottom:6px;"> SaaS classiques</strong>
+ <p style="color:#b91c1c; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici les outils, d&eacute;brouille-toi&nbsp;&raquo;</p>
+ </div>
+ <div style="padding:18px; background:#d1fae5; border-radius:10px;">
+ <strong style="color:#065f46; display:block; margin-bottom:6px;"> &Eacute;COSYST&Egrave;ME IMMO</strong>
+ <p style="color:#047857; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici la m&eacute;thode + les outils&nbsp;&raquo;</p>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════ MODULES ═══════════ -->
+<section style="padding:90px 0;">
+ <div class="container">
+ <div style="text-align:center; margin-bottom:60px;">
+ <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;">La Plateforme</span>
+ <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">Une plateforme compl&egrave;te &mdash; tout est int&eacute;gr&eacute;</h2>
+ <p style="font-size:1.05rem; color:#718096; margin:0;">Pas besoin d'empiler les outils. Tout est connect&eacute;.</p>
+ </div>
+
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:18px; max-width:1040px; margin:0 auto;">
+ <?php
+ $modules = [
+ ['', 'Site immobilier professionnel', 'Pages g&eacute;olocalis&eacute;es optimis&eacute;es pour Google.'],
+ ['', 'Blog SEO local', 'Articles con&ccedil;us pour attirer les vendeurs de votre secteur.'],
+ ['', 'Pages de capture', 'Landing pages illimit&eacute;es, templates optimis&eacute;s, suivi conversions.'],
+ ['', 'CRM immobilier', 'Suivi des contacts, leads, mandats. Pipeline complet.'],
+ ['', 'Automatisations', 'Emails, SMS et relances automatiques. Le syst&egrave;me tourne 24/7.'],
+ ['', 'Assistant IA', 'G&eacute;n&eacute;ration instantan&eacute;e de contenus, emails, posts, descriptions.'],
+ ['', 'Dashboard temps r&eacute;el', 'Leads, RDV, mandats, commissions en un coup d\'&#339;il.'],
+ ['', 'Estimateur en ligne', 'Un outil qui capture des vendeurs 24h/24 sur votre site.'],
+ ['', 'GMB int&eacute;gr&eacute;', 'Fiche Google optimis&eacute;e, avis, publications pilot&eacute;es depuis la plateforme.'],
+ ];
+ foreach ($modules as $m):
+ ?>
+ <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[1] ?></strong>
+ <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[2] ?></p>
+ </div>
+ <?php endforeach; ?>
  </div>
  </div>
 </section>
@@ -831,159 +950,11 @@ include 'includes/header.php';
  </div>
 </section>
 
-<!-- ═══════════ PROBLÈME ═══════════ -->
-<section style="padding:90px 0; background:#f7fafc;">
- <div class="container">
- <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;"> Le Probl&egrave;me</span>
- <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Si vous &ecirc;tes agent ou mandataire,<br>vous vivez probablement &ccedil;a</h2>
- </div>
-
- <div style="max-width:760px; margin:0 auto; display:grid; gap:14px;">
-
- <?php
- $problems = [
- ['', 'Trop d\'outils, pas de syst&egrave;me',
- 'Un CRM, un site, des emails, des r&eacute;seaux sociaux&hellip; Mais rien n\'est r&eacute;ellement connect&eacute;. R&eacute;sultat&nbsp;: vous passez votre temps &agrave; copier-coller entre les outils.'],
- ['', 'Invisible sur Google',
- 'Votre site existe. Mais quand un vendeur tape &laquo;&nbsp;Estimer maison + votre ville&nbsp;&raquo;, vous n\'apparaissez pas.'],
- ['', 'D&eacute;pendance aux portails et &agrave; la pub',
- 'SeLoger. LeBonCoin. Facebook Ads. Vous payez pour exister. Coupez la pub et les leads disparaissent.'],
- ['', 'Pas le temps de faire du marketing',
- 'Entre les visites, les estimations, les relances et les compromis&nbsp;: le marketing digital devient impossible &agrave; g&eacute;rer seul.'],
- ];
- foreach ($problems as $p):
- ?>
- <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.7rem; flex-shrink:0;"><?= $p[0] ?></span>
- <div>
- <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $p[1] ?></strong>
- <p style="color:#718096; margin:0; font-size:0.94rem; line-height:1.6;"><?= $p[2] ?></p>
- </div>
- </div>
- <?php endforeach; ?>
-
- </div>
-
- <div style="text-align:center; margin-top:44px; padding:28px 36px; background:white; border-radius:14px; box-shadow:0 2px 14px rgba(102,126,234,0.1); max-width:620px; margin-left:auto; margin-right:auto;">
- <p style="font-size:1.1rem; color:#1a202c; margin:0; line-height:1.85;">
- Le probl&egrave;me n'est pas votre <strong>motivation</strong>.<br>
- C'est l'absence d'un <strong>syst&egrave;me qui travaille pour vous</strong>.
- </p>
- </div>
- </div>
-</section>
-
-<!-- ═══════════ DÉCLIC ═══════════ -->
-<section style="padding:90px 0;">
- <div class="container">
- <div style="text-align:center; margin-bottom:50px;">
- <span class="pi-section-badge" style="background:#fef3c7; color:#92400e;"> Le D&eacute;clic</span>
- <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Les outils sans m&eacute;thode ne servent &agrave; rien</h2>
- </div>
-
- <div style="max-width:680px; margin:0 auto; text-align:center; margin-bottom:44px;">
- <p style="font-size:1.15rem; color:#4a5568; line-height:1.85; margin-bottom:20px;">
- Vous pouvez avoir&nbsp;: le meilleur CRM, un beau site, des campagnes publicitaires.<br>
- Mais si vous ne savez pas <strong>&agrave; qui parler</strong>, <strong>quoi dire</strong> et <strong>o&ugrave; le diffuser</strong>&hellip;
- </p>
- <p style="font-size:1.25rem; color:#1a202c; font-weight:700; margin:0;">
- &hellip;vous avez simplement un outil de plus qui prend la poussi&egrave;re.
- </p>
- </div>
-
- <div style="padding:28px 32px; background:#f7fafc; border-left:4px solid #667eea; border-radius:0 12px 12px 0; max-width:640px; margin:0 auto;">
- <p style="color:#2d3748; margin:0; font-style:italic; font-size:1.05rem; line-height:1.7;">
- &laquo;&nbsp;La diff&eacute;rence entre un ind&eacute;pendant qui gal&egrave;re et un ind&eacute;pendant qui cartonne&nbsp;? Ce n'est pas le talent. C'est le syst&egrave;me.&nbsp;&raquo;
- </p>
- </div>
- </div>
-</section>
-
-<!-- ═══════════ MÉTHODE ═══════════ -->
-<section style="padding:90px 0; background:#f7fafc;" id="methode">
- <div class="container">
- <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;"> La M&eacute;thode</span>
- <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">3 leviers pour attirer vos vendeurs</h2>
- <p style="font-size:1.05rem; color:#718096; margin:0;">Sans pub, sans portails, sans d&eacute;pendance</p>
- </div>
-
- <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:24px; max-width:920px; margin:0 auto 50px;">
- <?php
- $steps = [
- ['', '1 &mdash; PERSONA', 'Comprendre vos vendeurs',
- 'Qui sont-ils&nbsp;? vendeurs seniors, familles qui d&eacute;m&eacute;nagent, investisseurs&hellip; L\'assistant IA identifie leurs motivations, leurs blocages et leurs objections.'],
- ['', '2 &mdash; CONTENU', 'Savoir quoi leur dire',
- 'L\'IA g&eacute;n&egrave;re automatiquement&nbsp;: articles SEO, posts r&eacute;seaux, emails, guides vendeurs. Chaque contenu correspond &agrave; une &eacute;tape du parcours vendeur.'],
- ['', '3 &mdash; TRAFIC', 'Les atteindre au bon endroit',
- 'Vos contenus sont diffus&eacute;s sur Google, votre blog, votre fiche Google, vos r&eacute;seaux. Objectif&nbsp;: attirer des vendeurs avant m&ecirc;me qu\'ils contactent un agent.'],
- ];
- foreach ($steps as $s):
- ?>
- <div class="pi-card" style="padding:32px; text-align:center;">
- <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[1] ?></h3>
- <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[2] ?></p>
- <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[3] ?></p>
- </div>
- <?php endforeach; ?>
- </div>
-
- <!-- SaaS vs Écosystème -->
- <div style="padding:28px; background:white; border-radius:14px; box-shadow:0 4px 18px rgba(0,0,0,0.07); max-width:620px; margin:30px auto 0; text-align:center;">
- <p style="font-size:0.9rem; font-weight:700; color:#1a202c; margin-bottom:18px; text-transform:uppercase; letter-spacing:0.05em;">La vraie diff&eacute;rence</p>
- <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
- <div style="padding:18px; background:#fee2e2; border-radius:10px;">
- <strong style="color:#991b1b; display:block; margin-bottom:6px;"> SaaS classiques</strong>
- <p style="color:#b91c1c; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici les outils, d&eacute;brouille-toi&nbsp;&raquo;</p>
- </div>
- <div style="padding:18px; background:#d1fae5; border-radius:10px;">
- <strong style="color:#065f46; display:block; margin-bottom:6px;"> &Eacute;COSYST&Egrave;ME IMMO</strong>
- <p style="color:#047857; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici la m&eacute;thode + les outils&nbsp;&raquo;</p>
- </div>
- </div>
- </div>
- </div>
-</section>
-
-<!-- ═══════════ MODULES ═══════════ -->
-<section style="padding:90px 0;">
- <div class="container">
- <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;"> La Plateforme</span>
- <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">Une plateforme compl&egrave;te &mdash; tout est int&eacute;gr&eacute;</h2>
- <p style="font-size:1.05rem; color:#718096; margin:0;">Pas besoin d'empiler les outils. Tout est connect&eacute;.</p>
- </div>
-
- <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:18px; max-width:1040px; margin:0 auto;">
- <?php
- $modules = [
- ['', 'Site immobilier professionnel', 'Pages g&eacute;olocalis&eacute;es optimis&eacute;es pour Google.'],
- ['', 'Blog SEO local', 'Articles con&ccedil;us pour attirer les vendeurs de votre secteur.'],
- ['', 'Pages de capture', 'Landing pages illimit&eacute;es, templates optimis&eacute;s, suivi conversions.'],
- ['', 'CRM immobilier', 'Suivi des contacts, leads, mandats. Pipeline complet.'],
- ['', 'Automatisations', 'Emails, SMS et relances automatiques. Le syst&egrave;me tourne 24/7.'],
- ['', 'Assistant IA', 'G&eacute;n&eacute;ration instantan&eacute;e de contenus, emails, posts, descriptions.'],
- ['', 'Dashboard temps r&eacute;el', 'Leads, RDV, mandats, commissions en un coup d\'&#339;il.'],
- ['', 'Estimateur en ligne', 'Un outil qui capture des vendeurs 24h/24 sur votre site.'],
- ['', 'GMB int&eacute;gr&eacute;', 'Fiche Google optimis&eacute;e, avis, publications pilot&eacute;es depuis la plateforme.'],
- ];
- foreach ($modules as $m):
- ?>
- <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
- <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[1] ?></strong>
- <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[2] ?></p>
- </div>
- <?php endforeach; ?>
- </div>
- </div>
-</section>
-
 <!-- ═══════════ EXCLUSIVITÉ ═══════════ -->
 <section style="padding:90px 0; background:#f7fafc;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;"> L'Exclusivit&eacute;</span>
+ <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;">L'Exclusivit&eacute;</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">L'avantage que personne ne peut copier</h2>
  </div>
 
@@ -1039,7 +1010,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;"> Ce que &ccedil;a change</span>
+ <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;">Ce que &ccedil;a change</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Ce que &ccedil;a change pour vous</h2>
  </div>
 
@@ -1112,8 +1083,9 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f8fafc;">
  <div class="container">
  <div class="founder-wrap">
- <div class="founder-photo">
- Emplacement photo<br>Olivier Colas
+  <div class="founder-photo" style="border:1.5px solid #c7d2fe; background:#eef2ff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px;">
+  <div style="width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#667eea,#764ba2); display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:800; color:white;">OC</div>
+  <div style="font-size:0.88rem; color:#4338ca; font-weight:600; line-height:1.5;">Olivier Colas<br><span style="font-weight:400; color:#6366f1; font-size:0.8rem;">Fondateur</span></div>
  </div>
 
  <article class="founder-card">
@@ -1152,6 +1124,20 @@ include 'includes/header.php';
  <p style="font-size:1.02rem; color:#64748b; margin:0; max-width:720px; margin-left:auto; margin-right:auto;">
  Des offres pens&eacute;es pour un objectif simple&nbsp;: g&eacute;n&eacute;rer des vendeurs qualifi&eacute;s dans votre zone et convertir en mandats.
  </p>
+ </div>
+
+ <div style="max-width:900px; margin:0 auto 36px; padding:20px 28px; background:linear-gradient(135deg,#eff6ff,#eef2ff); border:1px solid #c7d2fe; border-radius:14px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+  <div style="flex:1; min-width:260px;">
+   <p style="margin:0; font-size:0.97rem; color:#1e3a8a; line-height:1.65;">
+    <strong>Un seul mandat suffit</strong> &mdash; la commission moyenne d&rsquo;un conseiller ind&eacute;pendant tourne entre 4&nbsp;000 et 8&nbsp;000&euro;.<br>
+    L&rsquo;abonnement annuel est amorti d&egrave;s le premier vendeur converti.
+   </p>
+  </div>
+  <div style="flex-shrink:0; text-align:center;">
+   <div style="font-size:0.82rem; color:#3730a3; font-weight:600; margin-bottom:2px;">ROI typique</div>
+   <div style="font-size:1.9rem; font-weight:800; color:#1e3a8a; line-height:1.1;">x5 &agrave; x8</div>
+   <div style="font-size:0.78rem; color:#6366f1;">sur 12 mois</div>
+  </div>
  </div>
 
  <div class="pricing-grid">

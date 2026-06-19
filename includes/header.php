@@ -387,7 +387,7 @@ body {
  <a href="/demo" class="nav-demo">Démo</a>
  <a href="/verifier-ma-ville" class="nav-cta">
  <span class="nav-pulse"></span>
- Vérifier
+ Vérifier ma ville
  </a>
  </div>
 
