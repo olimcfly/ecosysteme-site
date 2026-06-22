@@ -1,4 +1,4 @@
-import { Check, Lock, Star, ArrowRight } from 'lucide-react'
+import { Check, Lock, ArrowRight } from 'lucide-react'
 
 interface Plan {
   id: string
@@ -65,7 +65,7 @@ const PLANS: Plan[] = [
       'Support prioritaire',
     ],
     cta: 'Démarrer en annuel',
-    note: 'Revient à 74,75 €/mois',
+    note: 'Soit 74,75 €/mois — économie de 267 € vs mensuel',
   },
   {
     id: 'exclusivite',
@@ -101,24 +101,17 @@ export default function Pricing({ onOpenModal }: PricingProps) {
           </p>
         </div>
 
-        {/* Founder badge */}
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8 max-w-2xl mx-auto">
-          <div className="flex items-start gap-3">
-            <Star size={16} className="text-amber-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="text-amber-900 text-sm font-semibold mb-1">Programme Fondateur — Fermé</p>
-              <p className="text-amber-700 text-sm leading-relaxed">
-                Nos membres fondateurs ont verrouillé leur ville à <strong>47 €/mois à vie</strong>.
-                Ce programme n&apos;est plus ouvert. Rejoignez la liste d&apos;attente prioritaire pour être alerté en premier si une opportunité similaire se présente.
-              </p>
-              <button
-                onClick={onOpenModal}
-                className="mt-3 text-amber-700 font-semibold text-xs underline underline-offset-2 hover:text-amber-900 transition-colors"
-              >
-                Rejoindre la liste d&apos;attente
-              </button>
-            </div>
-          </div>
+        {/* Founder social proof */}
+        <div className="bg-navy/5 border border-navy/10 rounded-2xl p-4 mb-8 max-w-2xl mx-auto flex items-center justify-between gap-4">
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Nos membres fondateurs ont verrouillé leur territoire à <strong className="text-slate-900">47 €/mois à vie</strong>. Ce programme est fermé.
+          </p>
+          <button
+            onClick={onOpenModal}
+            className="text-blue-700 font-semibold text-xs whitespace-nowrap hover:text-blue-900 transition-colors flex-shrink-0"
+          >
+            Liste d&apos;attente
+          </button>
         </div>
 
         <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">

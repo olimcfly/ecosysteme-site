@@ -37,9 +37,8 @@ export default function Hero({ onOpenModal }: HeroProps) {
         </h1>
 
         {/* Sub-headline */}
-        <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto mb-10">
-          Un système d&apos;acquisition locale complet — site SEO, CRM, automatisations et IA —
-          réservé en exclusivité à un seul conseiller par territoire.
+        <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-xl mx-auto mb-10">
+          Le système d&apos;acquisition locale tout-en-un — réservé à un seul conseiller par territoire. Site SEO, CRM, IA et automatisations, activés sur votre ville.
         </p>
 
         {/* CTAs */}
@@ -61,11 +60,11 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
         {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <span className="text-white/30 text-xs">5 territoires verrouillés</span>
+          <span className="text-white/30 text-xs">Opérationnel sous 10 jours</span>
           <span className="text-white/15 hidden sm:inline">·</span>
-          <span className="text-white/30 text-xs">Sans engagement caché</span>
+          <span className="text-white/30 text-xs">5 territoires déjà activés</span>
           <span className="text-white/15 hidden sm:inline">·</span>
-          <span className="text-white/30 text-xs">Setup transparent</span>
+          <span className="text-white/30 text-xs">Setup offert sur l&apos;annuel</span>
         </div>
       </div>
     </section>

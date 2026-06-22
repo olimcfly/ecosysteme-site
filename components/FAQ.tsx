@@ -31,6 +31,10 @@ const FAQS = [
     q: 'Que se passe-t-il si je veux changer de secteur ?',
     a: 'Votre exclusivité territoriale est transmissible. Vous pouvez la transférer sur une autre ville disponible, ou la revendre à un autre conseiller avec notre accord. Contactez-nous pour les modalités.',
   },
+  {
+    q: 'Quand puis-je démarrer concrètement ?',
+    a: 'Dès que vous avez confirmé votre territoire, l\'onboarding commence sous 48h. Le site, le CRM et les automatisations sont opérationnels sous 10 jours ouvrés. Les premiers leads via l\'estimateur arrivent dès l\'activation — sans attendre le SEO.',
+  },
 ]
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -65,7 +69,7 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <span className="section-label">Questions fréquentes</span>
-          <h2 className="section-title">Ce que vous vous demandez sûrement</h2>
+          <h2 className="section-title">Vos questions, nos réponses</h2>
         </div>
 
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-2">

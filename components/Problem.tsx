@@ -25,10 +25,10 @@ export default function Problem() {
         <div className="max-w-2xl mx-auto text-center mb-14">
           <span className="section-label">Le problème</span>
           <h2 className="section-title mb-4">
-            Ce que personne ne règle pour les indépendants
+            Vous perdez des mandats sans le savoir
           </h2>
           <p className="section-sub">
-            Les outils génériques ne comprennent pas votre marché. Résultat : vous êtes excellent terrain, mais invisible en ligne.
+            Les outils génériques ne comprennent pas votre marché. Résultat : vous êtes excellent sur le terrain, mais invisible en ligne.
           </p>
         </div>
 

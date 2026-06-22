@@ -5,6 +5,7 @@ import Hero from '@/components/Hero'
 import ProofBar from '@/components/ProofBar'
 import Problem from '@/components/Problem'
 import Solution from '@/components/Solution'
+import SocialProof from '@/components/SocialProof'
 import Exclusivity from '@/components/Exclusivity'
 import Pricing from '@/components/Pricing'
 import FAQ from '@/components/FAQ'
@@ -22,9 +23,10 @@ export default function Home() {
 
       <main>
         <Hero onOpenModal={() => setModalOpen(true)} />
-        <ProofBar />
+        <ProofBar onOpenModal={() => setModalOpen(true)} />
         <Problem />
         <Solution />
+        <SocialProof />
         <Exclusivity />
         <Pricing onOpenModal={() => setModalOpen(true)} />
         <FAQ />
