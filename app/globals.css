@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080E1A;
+  color: #EEE8D8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #C8A84B33;
+  color: #EEE8D8;
+}
+
+@layer utilities {
+  .section-divider {
+    @apply border-t border-[#1A2840];
+  }
+}
