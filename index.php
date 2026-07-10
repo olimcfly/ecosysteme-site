@@ -727,8 +727,8 @@ include 'includes/header.php';
  <a href="/front/pages/verifier-ma-ville.php" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18); transition:transform 0.2s;">
  V&eacute;rifier si ma ville est disponible
  </a>
- <a href="/front/pages/demo.php" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
- Voir la d&eacute;mo
+ <a href="/rdv" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
+ R&eacute;server un appel d&eacute;couverte
  </a>
  </div>
 
@@ -835,7 +835,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;"> Le Probl&egrave;me</span>
+ <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;">Le Probl&egrave;me</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Si vous &ecirc;tes agent ou mandataire,<br>vous vivez probablement &ccedil;a</h2>
  </div>
 
@@ -854,12 +854,9 @@ include 'includes/header.php';
  ];
  foreach ($problems as $p):
  ?>
- <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.7rem; flex-shrink:0;"><?= $p[0] ?></span>
- <div>
- <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $p[1] ?></strong>
+ <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; display:block; margin-bottom:6px;"><?= $p[1] ?></strong>
  <p style="color:#718096; margin:0; font-size:0.94rem; line-height:1.6;"><?= $p[2] ?></p>
- </div>
  </div>
  <?php endforeach; ?>
 
@@ -878,7 +875,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:50px;">
- <span class="pi-section-badge" style="background:#fef3c7; color:#92400e;"> Le D&eacute;clic</span>
+ <span class="pi-section-badge" style="background:#fef3c7; color:#92400e;">Le D&eacute;clic</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Les outils sans m&eacute;thode ne servent &agrave; rien</h2>
  </div>
 
@@ -904,7 +901,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;" id="methode">
  <div class="container">
  <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;"> La M&eacute;thode</span>
+ <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">La M&eacute;thode</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">3 leviers pour attirer vos vendeurs</h2>
  <p style="font-size:1.05rem; color:#718096; margin:0;">Sans pub, sans portails, sans d&eacute;pendance</p>
  </div>
@@ -922,7 +919,6 @@ include 'includes/header.php';
  foreach ($steps as $s):
  ?>
  <div class="pi-card" style="padding:32px; text-align:center;">
- <div style="font-size:2.4rem; margin-bottom:14px;"><?= $s[0] ?></div>
  <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[1] ?></h3>
  <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[2] ?></p>
  <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[3] ?></p>
@@ -951,11 +947,11 @@ include 'includes/header.php';
  <p style="font-size:0.9rem; font-weight:700; color:#1a202c; margin-bottom:18px; text-transform:uppercase; letter-spacing:0.05em;">La vraie diff&eacute;rence</p>
  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
  <div style="padding:18px; background:#fee2e2; border-radius:10px;">
- <strong style="color:#991b1b; display:block; margin-bottom:6px;"> SaaS classiques</strong>
+ <strong style="color:#991b1b; display:block; margin-bottom:6px;">SaaS classiques</strong>
  <p style="color:#b91c1c; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici les outils, d&eacute;brouille-toi&nbsp;&raquo;</p>
  </div>
  <div style="padding:18px; background:#d1fae5; border-radius:10px;">
- <strong style="color:#065f46; display:block; margin-bottom:6px;"> &Eacute;COSYST&Egrave;ME IMMO</strong>
+ <strong style="color:#065f46; display:block; margin-bottom:6px;">&Eacute;COSYST&Egrave;ME IMMO</strong>
  <p style="color:#047857; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici la m&eacute;thode + les outils&nbsp;&raquo;</p>
  </div>
  </div>
@@ -967,7 +963,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;"> La Plateforme</span>
+ <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;">La Plateforme</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">Une plateforme compl&egrave;te &mdash; tout est int&eacute;gr&eacute;</h2>
  <p style="font-size:1.05rem; color:#718096; margin:0;">Pas besoin d'empiler les outils. Tout est connect&eacute;.</p>
  </div>
@@ -988,7 +984,6 @@ include 'includes/header.php';
  foreach ($modules as $m):
  ?>
  <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
- <div style="font-size:1.7rem; margin-bottom:9px;"><?= $m[0] ?></div>
  <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[1] ?></strong>
  <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[2] ?></p>
  </div>
@@ -1001,7 +996,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;"> L'Exclusivit&eacute;</span>
+ <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;">L'Exclusivit&eacute;</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">L'avantage que personne ne peut copier</h2>
  </div>
 
@@ -1025,12 +1020,9 @@ include 'includes/header.php';
  ];
  foreach ($excl as $e):
  ?>
- <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.6rem; flex-shrink:0;"><?= $e[0] ?></span>
- <div>
- <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $e[1] ?></strong>
+ <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; display:block; margin-bottom:6px;"><?= $e[1] ?></strong>
  <p style="color:#718096; margin:0; font-size:0.93rem; line-height:1.6;"><?= $e[2] ?></p>
- </div>
  </div>
  <?php endforeach; ?>
  </div>
@@ -1055,7 +1047,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;"> Ce que &ccedil;a change</span>
+ <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;">Ce que &ccedil;a change</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Ce que &ccedil;a change pour vous</h2>
  </div>
 
@@ -1072,7 +1064,6 @@ include 'includes/header.php';
  foreach ($results as $r):
  ?>
  <div class="pi-card" style="padding:26px; text-align:center;">
- <div style="font-size:1.8rem; margin-bottom:10px;"><?= $r[0] ?></div>
  <strong style="color:#1a202c; font-size:0.97rem;"><?= $r[1] ?></strong>
  <p style="color:#718096; margin:8px 0 0; font-size:0.88rem; line-height:1.55;"><?= $r[2] ?></p>
  </div>
