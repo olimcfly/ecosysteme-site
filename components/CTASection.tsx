@@ -2,7 +2,7 @@ import CityChecker from './CityChecker'
 
 export default function CTASection() {
   return (
-    <section className="section-pad bg-navy-700">
+    <section id="cta-final" className="section-pad bg-navy-700">
       <div className="container-main">
         <div className="max-w-xl mx-auto text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">

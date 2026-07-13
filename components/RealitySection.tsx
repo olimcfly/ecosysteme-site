@@ -41,7 +41,7 @@ export default function RealitySection() {
         </div>
 
         {/* Pain points */}
-        <div className="grid sm:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-3 gap-8 mb-14">
           {pains.map(({ number, title, desc }) => (
             <div key={number} className="flex flex-col gap-4">
               <span className="text-[11px] font-bold text-stone-300 tracking-widest">
@@ -51,6 +51,24 @@ export default function RealitySection() {
               <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Bridge */}
+        <div className="border-t border-stone-200 pt-10 flex flex-col sm:flex-row sm:items-center gap-6">
+          <p className="text-stone-700 text-base leading-relaxed max-w-xl">
+            Il existe une alternative aux portails. Un système qui vous appartient,
+            ancré sur votre territoire, qui génère des contacts vendeurs en continu —
+            sans aucune dépendance à une plateforme tierce.
+          </p>
+          <a
+            href="#systeme"
+            className="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-navy-600 hover:text-navy-800 transition-colors"
+          >
+            Voir le système
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
