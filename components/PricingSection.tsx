@@ -23,7 +23,7 @@ const MONTHLY_PLANS: Plan[] = [
     id: 'estimateur',
     name: 'Estimateur',
     price: 27,
-    unit: '/ mois',
+    unit: '/ mois HT',
     setup: 197,
     setupNote: 'setup unique',
     badge: null,
@@ -50,9 +50,9 @@ const MONTHLY_PLANS: Plan[] = [
     id: 'systeme',
     name: 'Système Complet',
     price: 97,
-    unit: '/ mois',
+    unit: '/ mois HT',
     setup: 497,
-    setupNote: '+ 3 mois prépayés au démarrage',
+    setupNote: 'setup + 3 mois prépayés au démarrage (788€ total)',
     badge: 'Recommandé',
     description: 'Le système d\'acquisition local intégral pour capter, qualifier et convertir des vendeurs.',
     features: [
@@ -77,7 +77,7 @@ const ANNUAL_PLANS: Plan[] = [
     id: 'estimateur-annuel',
     name: 'Estimateur',
     price: 324,
-    unit: '/ an',
+    unit: '/ an HT',
     setup: 197,
     setupNote: 'setup unique',
     badge: null,
@@ -104,7 +104,7 @@ const ANNUAL_PLANS: Plan[] = [
     id: 'systeme-annuel',
     name: 'Système Complet',
     price: 897,
-    unit: '/ an',
+    unit: '/ an HT',
     setup: 0,
     setupNote: 'Setup offert — économisez 497€',
     badge: 'Meilleure valeur',
@@ -184,11 +184,23 @@ export default function PricingSection() {
             >
               Annuel
               <span className="tag bg-gold-50 text-gold-700 border border-gold-200 !py-0.5 !text-[10px]">
-                Économies
+                Setup offert
               </span>
             </button>
           </div>
         </div>
+
+        {/* First-payment note for monthly */}
+        {!annual && (
+          <div className="flex items-start gap-2 bg-stone-50 border border-stone-200 rounded-xl px-5 py-3.5 mb-6 text-sm text-stone-600">
+            <svg className="w-4 h-4 text-stone-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+            <span>
+              <strong className="text-stone-800">Plan mensuel — premier versement :</strong> setup 497€ + 3 mois prépayés (3×97€) = <strong className="text-stone-800">788€</strong>, puis 97€/mois à partir du 4e mois.
+            </span>
+          </div>
+        )}
 
         {/* Plans */}
         <div className="grid sm:grid-cols-2 gap-6 mb-8">

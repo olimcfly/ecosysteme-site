@@ -38,8 +38,19 @@ export default function HeroSection() {
           <CityChecker />
         </div>
 
+        {/* Phone fallback */}
+        <p className="text-center text-sm text-stone-400 mt-4">
+          Ou appelez directement —{' '}
+          <a
+            href="tel:+33785611700"
+            className="font-semibold text-stone-600 hover:text-navy-700 transition-colors"
+          >
+            07 85 61 17 00
+          </a>
+        </p>
+
         {/* Closed cities FOMO */}
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm text-stone-400">
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm text-stone-400 mt-8">
           <span className="font-medium text-stone-500">Déjà pris :</span>
           {CLOSED.map((city) => (
             <span key={city} className="flex items-center gap-1.5">
