@@ -52,7 +52,7 @@ const MONTHLY_PLANS: Plan[] = [
     price: 97,
     unit: '/ mois',
     setup: 497,
-    setupNote: '+ 3 mois prépayés au démarrage',
+    setupNote: '+ 3 mois prépayés au démarrage (788€ au total)',
     badge: 'Recommandé',
     description: 'Le système d\'acquisition local intégral pour capter, qualifier et convertir des vendeurs.',
     features: [
@@ -66,9 +66,9 @@ const MONTHLY_PLANS: Plan[] = [
       'Support prioritaire',
     ],
     featuresMissing: [],
-    cta: 'Démarrer le système',
+    cta: 'Réserver ma ville',
     highlighted: true,
-    savings: null,
+    savings: 'ROI dès le 1er mandat supplémentaire',
   },
 ]
 
@@ -123,7 +123,7 @@ const ANNUAL_PLANS: Plan[] = [
     featuresMissing: [],
     cta: 'Verrouiller mon territoire',
     highlighted: true,
-    savings: '764€ économisés la 1ère année',
+    savings: '764€ économisés la 1ère année vs mensuel',
   },
 ]
 
@@ -135,13 +135,6 @@ function CheckIcon() {
   )
 }
 
-function CrossIcon() {
-  return (
-    <svg className="w-4 h-4 text-stone-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  )
-}
 
 export default function PricingSection() {
   const [annual, setAnnual] = useState(false)
@@ -225,7 +218,10 @@ export default function PricingSection() {
                     : plan.setupNote}
                 </p>
                 {plan.savings && (
-                  <p className="mt-2 text-sm font-semibold text-emerald-600">
+                  <p className="mt-2 text-sm font-semibold text-emerald-600 flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
                     {plan.savings}
                   </p>
                 )}
@@ -242,12 +238,11 @@ export default function PricingSection() {
                     <span>{f}</span>
                   </li>
                 ))}
-                {plan.featuresMissing.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 text-sm text-stone-300">
-                    <CrossIcon />
-                    <span>{f}</span>
+                {plan.featuresMissing.length > 0 && (
+                  <li className="mt-1">
+                    <p className="text-xs text-stone-400 font-medium">Non inclus : {plan.featuresMissing.join(', ')}</p>
                   </li>
-                ))}
+                )}
               </ul>
 
               <div className="mt-auto">
