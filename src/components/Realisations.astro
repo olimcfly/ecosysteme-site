@@ -1,0 +1,62 @@
+---
+const realisations = [
+  {
+    ville: 'Bordeaux Métropole',
+    conseiller: 'Eduardo De Sul',
+    desc: 'Livré en 18 jours : site local, 6 pages secteurs, estimateur intégré, 3 articles SEO de démarrage, séquence email vendeurs. Eduardo dispose d\'une présence propriétaire sur Bordeaux — indépendante de son réseau.',
+  },
+  {
+    ville: 'Aix-en-Provence',
+    conseiller: 'Pascal Hamm',
+    desc: 'Site brandé, pages services, estimateur, structure SEO locale. Fondation digitale posée sur un marché à forte concurrence.',
+  },
+  {
+    ville: 'Nandy / Sénart',
+    conseiller: 'Fatima Rabia',
+    desc: 'Site local humanisé, formulaire vendeur, pages secteurs. Présence propriétaire sur son territoire d\'origine.',
+  },
+  {
+    ville: 'Lannion / Trégor',
+    conseiller: 'Stéphanie Hulen',
+    desc: 'Site local, pages géographiques, contenus et formulaires. Présence digitale ancrée dans l\'identité bretonne de son territoire.',
+  },
+  {
+    ville: 'Nantes',
+    conseiller: 'Brice Chupin',
+    desc: 'Positionnement "coach immobilier" rendu visible localement. Présence différenciante sur Nantes.',
+  },
+];
+---
+<section id="realisations" class="bg-white py-20 sm:py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <p class="section-label text-center">Territoires installés</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 text-center mb-3 tracking-tight">
+      Les territoires déjà installés
+    </h2>
+    <p class="text-center text-slate-500 text-base sm:text-lg mb-14">
+      Cinq bases locales construites pour des conseillers indépendants.<br />
+      Ces territoires sont désormais fermés.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {realisations.map(r => (
+        <div class="border border-slate-100 rounded-xl p-6 relative hover:border-slate-200 hover:shadow-sm transition-all duration-200">
+          <span class="badge-complet mb-4 block w-fit">Territoire complet</span>
+          <h3 class="text-base font-bold text-navy-900 mb-0.5">{r.ville}</h3>
+          <p class="text-xs text-slate-400 font-medium mb-3">{r.conseiller}</p>
+          <p class="text-sm text-slate-600 leading-relaxed">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-slate-600 text-base mb-5">
+        Ces territoires sont fermés.<br class="sm:hidden" />
+        Le vôtre est peut-être encore disponible.
+      </p>
+      <a href="#verifier" class="btn-primary text-base px-8 py-4">
+        Vérifier ma ville
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,143 @@
+---
+---
+<section id="offres" class="bg-slate-50 py-20 sm:py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <p class="section-label text-center">Tarifs</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 text-center mb-3 tracking-tight">
+      Sécurisez votre territoire
+    </h2>
+    <p class="text-center text-slate-500 text-base sm:text-lg mb-14 leading-relaxed">
+      Un système. Un territoire. Un conseiller.<br />
+      Chaque formule inclut l'exclusivité sur votre secteur.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-6 mb-8">
+
+      <!-- Estimateur -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-7">
+        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-4">Formule Estimateur</p>
+        <div class="mb-1">
+          <span class="text-3xl font-bold text-navy-900">27 €</span>
+          <span class="text-slate-500 text-sm">/mois</span>
+        </div>
+        <p class="text-sm text-slate-400 mb-6">+ 197 € setup unique</p>
+        <ul class="space-y-2.5 mb-8">
+          {['Estimateur immobilier intégré', 'Formulaire de capture vendeurs', 'Hébergement et maintenance'].map(item => (
+            <li class="flex items-start gap-2.5 text-sm text-slate-600">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs text-slate-400 italic mb-5">Pour les conseillers qui veulent démarrer par la capture d'estimations.</p>
+        <a href="https://tally.so/r/ecosystemeimmo" target="_blank" rel="noopener" class="btn-secondary w-full text-center text-sm py-3">
+          Choisir cette formule
+        </a>
+      </div>
+
+      <!-- Mensuel RECOMMANDÉE -->
+      <div class="bg-navy-900 border border-navy-900 rounded-2xl p-7 relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+          Recommandée
+        </span>
+        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-4">Formule Mensuelle</p>
+        <div class="mb-1">
+          <span class="text-3xl font-bold text-white">97 €</span>
+          <span class="text-slate-400 text-sm">/mois</span>
+        </div>
+        <p class="text-sm text-slate-400 mb-6">+ 497 € setup · 3 mois prépayés</p>
+        <ul class="space-y-2.5 mb-8">
+          {[
+            'Site immobilier local à votre nom',
+            'Pages secteurs et quartiers',
+            'Google Business Profile',
+            'Estimateur et formulaire vendeur',
+            'CRM et suivi prospects',
+            'Automatisations et relances IA',
+            'Contenu SEO mensuel',
+            'Exclusivité territoriale',
+          ].map(item => (
+            <li class="flex items-start gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs text-slate-500 italic mb-5">Pour les conseillers qui veulent un système complet sans engagement annuel.</p>
+        <a href="https://tally.so/r/ecosystemeimmo" target="_blank" rel="noopener" class="inline-block w-full text-center bg-white text-navy-900 font-semibold text-sm py-3 rounded-lg hover:bg-slate-100 transition-colors">
+          Vérifier si ma ville est disponible
+        </a>
+      </div>
+
+      <!-- Annuel -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-7 relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+          Meilleure valeur
+        </span>
+        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-4">Formule Annuelle</p>
+        <div class="mb-1">
+          <span class="text-3xl font-bold text-navy-900">897 €</span>
+          <span class="text-slate-500 text-sm">/an</span>
+        </div>
+        <p class="text-sm text-slate-400 mb-1">Setup offert · &asymp; 74 €/mois</p>
+        <p class="text-xs text-emerald-600 font-semibold mb-6">Économisez 267 € vs mensuel</p>
+        <ul class="space-y-2.5 mb-8">
+          {[
+            'Tout ce qui est inclus dans le Mensuel',
+            'Setup offert (497 € économisés)',
+            'Exclusivité territoriale renforcée',
+            'Priorité sur les villes à forte demande',
+          ].map(item => (
+            <li class="flex items-start gap-2.5 text-sm text-slate-600">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs text-slate-400 italic mb-5">Pour les conseillers qui veulent sécuriser leur territoire durablement.</p>
+        <a href="https://tally.so/r/ecosystemeimmo" target="_blank" rel="noopener" class="btn-primary w-full text-center text-sm py-3">
+          Sécuriser mon territoire
+        </a>
+      </div>
+
+      <!-- Exclusivité verrouillée -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-7">
+        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-4">Exclusivité Verrouillée</p>
+        <div class="mb-1">
+          <span class="text-3xl font-bold text-navy-900">900 €</span>
+        </div>
+        <p class="text-sm text-slate-400 mb-6">Paiement unique</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-8">
+          Verrou territorial à vie sur votre ville. Sans abonnement. Sans renouvellement.
+          Votre territoire reste bloqué pour les concurrents, quelle que soit votre formule.
+        </p>
+        <a href="mailto:contact@ecosystemeimmo.fr?subject=Option%20Exclusivit%C3%A9%20Verrouill%C3%A9e" class="btn-secondary w-full text-center text-sm py-3">
+          Me renseigner sur cette option
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Reassurance -->
+    <div class="bg-white border border-slate-100 rounded-xl p-5 text-center text-sm text-slate-500 leading-relaxed mb-8">
+      Vos données, votre domaine, votre site &mdash; vous repartez avec tout si vous partez.<br />
+      Un seul conseiller par territoire. La disponibilité dépend de votre ville.
+    </div>
+
+    <!-- Fondateur -->
+    <div class="border border-slate-200 rounded-xl p-5 text-center bg-slate-50">
+      <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-2">Programme Fondateur &mdash; Places épuisées</p>
+      <p class="text-sm text-slate-600">
+        Les 5 premiers conseillers ont rejoint le programme à 47 €/mois à vie.
+        Ces places sont fermées. Ce sont eux qui apparaissent dans les réalisations ci-dessous.
+      </p>
+    </div>
+
+  </div>
+</section>

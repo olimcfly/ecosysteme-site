@@ -1,0 +1,56 @@
+---
+const features = [
+  {
+    num: '01',
+    title: 'Site immobilier local',
+    desc: 'Professionnel, mobile-first, brandé à votre nom. Pensé pour capter les propriétaires vendeurs de votre secteur.',
+  },
+  {
+    num: '02',
+    title: 'Pages secteurs et quartiers',
+    desc: 'Des pages dédiées à vos communes et zones d\'influence, optimisées pour apparaître sur Google quand un vendeur cherche dans votre ville.',
+  },
+  {
+    num: '03',
+    title: 'Google Business Profile',
+    desc: 'Une fiche locale cohérente avec votre site. Indispensable pour apparaître sur Google Maps et dans les résultats locaux.',
+  },
+  {
+    num: '04',
+    title: 'Formulaire vendeur',
+    desc: 'Un point d\'entrée clair pour capter les demandes d\'estimation et les contacts vendeurs directement depuis votre site.',
+  },
+  {
+    num: '05',
+    title: 'CRM et suivi prospects',
+    desc: 'Suivi centralisé de vos contacts, statuts et prochaines actions. Tout au même endroit, sans outils dispersés.',
+  },
+  {
+    num: '06',
+    title: 'Automatisations et IA',
+    desc: 'Rappels automatiques, relances intelligentes, scoring prospects. Le système travaille quand vous prospectez.',
+  },
+];
+---
+<section class="bg-white py-20 sm:py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <p class="section-label text-center">Ce qui est installé</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 text-center mb-4 tracking-tight">
+      Un système d'acquisition local,<br class="hidden sm:block" /> pas un outil de plus.
+    </h2>
+    <p class="text-center text-slate-500 text-base sm:text-lg max-w-2xl mx-auto mb-14 leading-relaxed">
+      Visibilité locale, contenus SEO, capture vendeurs, suivi CRM et automatisations IA &mdash;
+      activé sur votre territoire exclusif.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map(f => (
+        <div class="border border-slate-100 rounded-xl p-6 hover:border-slate-300 hover:shadow-sm transition-all duration-200">
+          <span class="text-xs font-bold tracking-widest text-slate-300 mb-4 block">{f.num}</span>
+          <h3 class="text-base font-semibold text-navy-900 mb-2">{f.title}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

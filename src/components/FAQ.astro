@@ -1,0 +1,40 @@
+---
+const faqs = [
+  {
+    q: 'Est-ce que je dois gérer le site moi-même ?',
+    r: 'Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business Profile. Vous recevez les demandes, on gère le système.',
+  },
+  {
+    q: 'En combien de temps je vois des résultats ?',
+    r: 'Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours. Le référencement local se renforce sur 3 à 6 mois. Le système travaille en continu, pas ponctuellement.',
+  },
+  {
+    q: 'Et si je change de réseau ou de secteur ?',
+    r: 'Le domaine, le site et toutes vos données vous appartiennent. Vous pouvez continuer à utiliser le système indépendamment de votre réseau.',
+  },
+];
+---
+<section class="bg-slate-50 py-20 sm:py-24 px-4">
+  <div class="max-w-2xl mx-auto">
+    <p class="section-label text-center">Questions fréquentes</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 text-center mb-12 tracking-tight">
+      Ce qu'on nous demande
+    </h2>
+
+    <div class="space-y-4">
+      {faqs.map(faq => (
+        <details class="group bg-white border border-slate-100 rounded-xl overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none font-semibold text-navy-900 text-sm sm:text-base hover:bg-slate-50 transition-colors select-none">
+            {faq.q}
+            <svg class="w-4 h-4 shrink-0 text-slate-400 group-open:rotate-45 transition-transform duration-200 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+          </summary>
+          <p class="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4">
+            {faq.r}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
