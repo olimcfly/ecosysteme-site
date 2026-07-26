@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAFinal from '../components/CTAFinal.astro';
+---
+
+<Layout
+  title="Offres — Écosystème Immo"
+  description="Un seul territoire. Un seul conseiller. Un système qui travaille pour vous. Formules à partir de 27 €/mois."
+>
+  <div class="bg-slate-950 text-white py-20 md:py-28 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-5">
+        Exclusivité territoriale · 1 ville = 1 conseiller
+      </p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
+        Un seul territoire.<br />Un seul conseiller.<br />
+        <span class="text-blue-400">Un système qui travaille pour vous.</span>
+      </h1>
+      <p class="text-lg text-slate-300 mt-6 max-w-xl mx-auto">
+        Choisissez votre niveau d'engagement. Chaque formule inclut l'exclusivité sur votre territoire.
+      </p>
+    </div>
+  </div>
+
+  <Pricing />
+  <FAQ />
+  <CTAFinal />
+</Layout>

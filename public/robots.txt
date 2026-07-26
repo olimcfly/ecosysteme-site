@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ecosystemeimmo.fr/sitemap.xml

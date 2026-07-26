@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-slate-950 text-slate-400 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row justify-between gap-10 mb-10">
+      <div class="max-w-xs">
+        <p class="font-bold text-white text-base mb-2">Écosystème Immo</p>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Système d'acquisition local pour conseillers immobiliers indépendants.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-10">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Navigation</p>
+          <ul class="space-y-2">
+            <li><a href="/offre" class="text-sm hover:text-white transition-colors">Offres</a></li>
+            <li><a href="/realisations" class="text-sm hover:text-white transition-colors">Réalisations</a></li>
+            <li><a href="/blog" class="text-sm hover:text-white transition-colors">Blog</a></li>
+            <li><a href="/#verifier" class="text-sm hover:text-white transition-colors">Vérifier ma ville</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Contact</p>
+          <ul class="space-y-2">
+            <li>
+              <a href="tel:+33785611700" class="text-sm hover:text-white transition-colors">
+                07 85 61 17 00
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contact@ecosystemeimmo.fr" class="text-sm hover:text-white transition-colors">
+                contact@ecosystemeimmo.fr
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <p class="text-xs text-slate-600">© {year} Écosystème Immo — OCDM Agency</p>
+      <div class="flex gap-5">
+        <a href="/mentions-legales" class="text-xs hover:text-slate-300 transition-colors">Mentions légales</a>
+        <a href="/cgu" class="text-xs hover:text-slate-300 transition-colors">CGU</a>
+        <a href="/confidentialite" class="text-xs hover:text-slate-300 transition-colors">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>

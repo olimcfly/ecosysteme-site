@@ -1,0 +1,56 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Vous vérifiez votre ville',
+    description:
+      'Renseignez votre commune. Si elle est disponible, vous recevez une confirmation et un brief personnalisé sous 24h.',
+  },
+  {
+    number: '02',
+    title: 'On installe votre système en 21 jours',
+    description:
+      'Site, SEO local, Google Business, pages secteurs, CRM et automatisations. Vous validez chaque étape. On livre clé en main.',
+  },
+  {
+    number: '03',
+    title: 'Votre territoire travaille pour vous',
+    description:
+      'Les vendeurs de votre ville vous trouvent sur Google. Les demandes arrivent directement dans votre CRM.',
+  },
+];
+---
+
+<section id="process" class="bg-slate-50 py-20 md:py-28 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
+        Comment ça marche
+      </h2>
+      <p class="text-lg text-slate-600">
+        Un processus simple, un résultat tangible, un territoire sécurisé.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      {steps.map(step => (
+        <div>
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-700 text-white font-bold text-xl mb-6 select-none">
+            {step.number}
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
+          <p class="text-slate-600 leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-14">
+      <a
+        href="#verifier"
+        class="inline-flex items-center px-7 py-3.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors"
+      >
+        Vérifier si ma ville est disponible
+      </a>
+    </div>
+  </div>
+</section>

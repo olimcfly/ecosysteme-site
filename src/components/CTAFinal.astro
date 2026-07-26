@@ -1,0 +1,78 @@
+---
+---
+
+<section id="verifier" class="bg-slate-950 py-20 md:py-28 px-4">
+  <div class="max-w-lg mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+      Votre territoire est encore disponible ?
+    </h2>
+    <p class="text-lg text-slate-300 mb-10">
+      La vérification est gratuite et sans engagement.
+      Si votre ville est libre, vous recevez une confirmation sous 24h.
+    </p>
+
+    <form
+      name="disponibilite"
+      method="POST"
+      data-netlify="true"
+      class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 text-left"
+    >
+      <input type="hidden" name="form-name" value="disponibilite" />
+
+      <div class="space-y-4">
+        <div>
+          <label for="prenom" class="block text-sm font-medium text-slate-300 mb-1.5">
+            Prénom
+          </label>
+          <input
+            type="text"
+            id="prenom"
+            name="prenom"
+            required
+            placeholder="Votre prénom"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="votre@email.fr"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+          />
+        </div>
+
+        <div>
+          <label for="ville" class="block text-sm font-medium text-slate-300 mb-1.5">
+            Votre ville
+          </label>
+          <input
+            type="text"
+            id="ville"
+            name="ville"
+            required
+            placeholder="Ex : Lyon, Montpellier, Rennes..."
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-base mt-2"
+        >
+          Vérifier si ma ville est disponible
+        </button>
+      </div>
+    </form>
+
+    <p class="mt-6 text-sm text-slate-500">
+      Sans engagement · Réponse sous 24h · Un seul conseiller par ville
+    </p>
+  </div>
+</section>
