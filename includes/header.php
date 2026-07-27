@@ -2,7 +2,6 @@
 require_once __DIR__ . '/security-headers.php';
 require_once __DIR__ . '/csrf.php';
 require_once __DIR__ . '/helpers.php';
-// Définir les variables de page si elles n'existent pas
 if (!isset($pageTitle)) $pageTitle = 'ÉCOSYSTÈME IMMO LOCAL+';
 if (!isset($pageDescription)) $pageDescription = 'La plateforme SaaS complète pour les agents immobiliers indépendants.';
 if (!isset($currentPage)) $currentPage = 'accueil';
@@ -38,9 +37,12 @@ if (!isset($currentPage)) $currentPage = 'accueil';
  50% { opacity: 0.5; transform: scale(0.7); }
 }
 
+.sb-desktop { display: inline; }
+@media (max-width: 640px) { .sb-desktop { display: none; } }
+
 .navbar {
  position: fixed;
- top: 0;
+ top: 33px;
  left: 0;
  right: 0;
  z-index: 1000;
@@ -108,87 +110,11 @@ if (!isset($currentPage)) $currentPage = 'accueil';
  font-weight: 600;
 }
 
-.nav-badge {
- background: rgba(102, 126, 234, 0.12);
- color: #667eea;
- font-size: 8px;
- font-weight: 700;
- letter-spacing: 0.06em;
- padding: 2px 5px;
- border-radius: 3px;
- text-transform: uppercase;
- flex-shrink: 0;
-}
-
-.nav-dropdown {
- position: relative;
-}
-
-.nav-dropdown-menu {
- position: absolute;
- top: calc(100% + 6px);
- left: 0;
- background: white;
- border: 1px solid #e2e8f0;
- border-radius: 10px;
- box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
- min-width: 200px;
- padding: 6px 0;
- opacity: 0;
- visibility: hidden;
- transform: translateY(-6px);
- transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
- pointer-events: none;
- z-index: 1100;
-}
-
-.nav-dropdown:hover .nav-dropdown-menu {
- opacity: 1;
- visibility: visible;
- transform: translateY(0);
- pointer-events: auto;
-}
-
-.nav-dropdown-link {
- display: flex;
- align-items: center;
- gap: 7px;
- padding: 8px 14px;
- font-size: 13px;
- font-weight: 500;
- color: #4a5568;
- text-decoration: none;
- transition: color 0.2s, background 0.2s;
-}
-
-.nav-dropdown-link:hover {
- color: #667eea;
- background: rgba(102, 126, 234, 0.07);
-}
-
 .nav-actions {
  display: flex;
  align-items: center;
  gap: 8px;
  flex-shrink: 0;
-}
-
-.nav-demo {
- font-size: 12px;
- font-weight: 500;
- color: #718096;
- padding: 7px 12px;
- border-radius: 6px;
- border: 1px solid #e2e8f0;
- background: white;
- text-decoration: none;
- transition: border-color 0.2s, color 0.2s;
- white-space: nowrap;
-}
-
-.nav-demo:hover {
- border-color: #667eea;
- color: #667eea;
 }
 
 .nav-cta {
@@ -259,7 +185,7 @@ if (!isset($currentPage)) $currentPage = 'accueil';
  background: white;
  border-top: 1px solid #f0f0f0;
  padding: 1rem 1.5rem 1.5rem;
- max-height: calc(100vh - 60px);
+ max-height: calc(100vh - 93px);
  overflow-y: auto;
 }
 
@@ -306,9 +232,6 @@ if (!isset($currentPage)) $currentPage = 'accueil';
  .nav-menu {
  display: none;
  }
- .nav-demo {
- display: none;
- }
  .nav-toggle {
  display: flex;
  }
@@ -325,7 +248,7 @@ if (!isset($currentPage)) $currentPage = 'accueil';
 }
 
 body {
- padding-top: 60px;
+ padding-top: 93px;
 }
 </style>
 
@@ -333,9 +256,14 @@ body {
 
 <body>
 
+<div id="scarcity-bar" style="background:#0f172a;color:#f8fafc;text-align:center;padding:8px 16px;font-size:12px;letter-spacing:0.01em;position:fixed;top:0;left:0;right:0;z-index:1001;line-height:1.4;">
+ <span class="sb-desktop">Territoires complets&nbsp;: Bordeaux &middot; Nantes &middot; Nandy &middot; Aix-en-Provence &middot; Lannion &nbsp;&mdash;&nbsp;</span>
+ <a href="/verifier-ma-ville" style="color:#e2e8f0;text-decoration:underline;font-weight:600;">V&eacute;rifier votre ville &rarr;</a>
+</div>
+
 <nav class="navbar" id="mainNav">
  <div class="nav-container">
- <a href="/" class="nav-logo">ÉCOSYSTÈME IMMO LOCAL+</a>
+ <a href="/" class="nav-logo">ÉCOSYSTÈME IMMO</a>
 
  <ul class="nav-menu" id="mainMenu">
  <li>
@@ -344,50 +272,31 @@ body {
  </a>
  </li>
  <li>
- <a href="/plateforme" class="nav-link <?php echo ($currentPage ?? '') === 'plateforme' ? 'active' : ''; ?>">
- Plateforme
+ <a href="/#methode" class="nav-link">
+ Comment &ccedil;a marche
  </a>
  </li>
  <li>
- <a href="/methode" class="nav-link <?php echo ($currentPage ?? '') === 'methode' ? 'active' : ''; ?>">
- Méthode
+ <a href="/tarifs" class="nav-link <?php echo ($currentPage ?? '') === 'tarifs' ? 'active' : ''; ?>">
+ Tarifs
  </a>
  </li>
  <li>
- <a href="/modules" class="nav-link <?php echo ($currentPage ?? '') === 'licence' ? 'active' : ''; ?>">
- Modules
+ <a href="/villes-pilotes" class="nav-link <?php echo ($currentPage ?? '') === 'villes' ? 'active' : ''; ?>">
+ R&eacute;alisations
  </a>
  </li>
  <li>
- <a href="/assistant" class="nav-link <?php echo ($currentPage ?? '') === 'assistant' ? 'active' : ''; ?>">
- IA
- <span class="nav-badge">IA</span>
- </a>
- </li>
- <li class="nav-dropdown">
- <a href="/ressources" class="nav-link <?php echo ($currentPage ?? '') === 'ressources' || ($currentPage ?? '') === 'blog' ? 'active' : ''; ?>">
- Ressources
- <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
- </a>
- <div class="nav-dropdown-menu">
- <a href="/ressources" class="nav-dropdown-link"> Guides</a>
- <a href="/blog" class="nav-dropdown-link"> Blog</a>
- <a href="/temoignages" class="nav-dropdown-link">Avis clients</a>
- </div>
- </li>
- <li>
- <a href="/villes" class="nav-link <?php echo ($currentPage ?? '') === 'villes' ? 'active' : ''; ?>">
- Villes
- <span class="nav-badge">carte</span>
+ <a href="/blog" class="nav-link <?php echo ($currentPage ?? '') === 'blog' ? 'active' : ''; ?>">
+ Blog
  </a>
  </li>
  </ul>
 
  <div class="nav-actions">
- <a href="/demo" class="nav-demo">Démo</a>
  <a href="/verifier-ma-ville" class="nav-cta">
  <span class="nav-pulse"></span>
- Vérifier
+ V&eacute;rifier ma ville
  </a>
  </div>
 
@@ -400,19 +309,14 @@ body {
 
  <div class="nav-mobile" id="navMobile">
  <a href="/">Accueil</a>
- <a href="/plateforme">Plateforme</a>
- <a href="/methode">Méthode</a>
- <a href="/modules">Modules</a>
- <a href="/assistant">Assistant IA</a>
- <a href="/ressources"> Guides</a>
- <a href="/blog"> Blog</a>
- <a href="/temoignages">Avis clients</a>
- <a href="/villes">Villes</a>
- <a href="/demo">Démo</a>
+ <a href="/#methode">Comment &ccedil;a marche</a>
+ <a href="/tarifs">Tarifs</a>
+ <a href="/villes-pilotes">R&eacute;alisations</a>
+ <a href="/blog">Blog</a>
 
  <a href="/verifier-ma-ville" class="nav-mobile-cta">
  <span class="nav-pulse"></span>
- Vérifier ma ville
+ V&eacute;rifier ma ville
  </a>
  </div>
 </nav>
