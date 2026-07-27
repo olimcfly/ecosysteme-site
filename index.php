@@ -1,6 +1,6 @@
 <?php
-$pageTitle = "L'&eacute;cosyst&egrave;me digital que vos concurrents ne pourront jamais avoir";
-$pageDescription = '&Eacute;COSYST&Egrave;ME IMMO LOCAL+ : la plateforme tout-en-un pour les pros immobiliers avec exclusivit&eacute; territoriale garantie. Site, SEO, CRM, IA et m&eacute;thode guid&eacute;e.';
+$pageTitle = "Votre syst&egrave;me d'acquisition local &mdash; 1 conseiller par ville";
+$pageDescription = 'Écosystème Immo installe votre système d\'acquisition local : site immobilier, SEO local, CRM et automatisations IA. Exclusivité territoriale — 1 seul conseiller par ville.';
 $currentPage = 'accueil';
 
 include 'includes/header.php';
@@ -290,9 +290,9 @@ include 'includes/header.php';
 
 .proof-status {
  display: inline-block;
- background: #ecfeff;
- color: #0f766e;
- border: 1px solid #99f6e4;
+ background: #fee2e2;
+ color: #991b1b;
+ border: 1px solid #fecaca;
  border-radius: 999px;
  font-size: 0.74rem;
  font-weight: 700;
@@ -689,22 +689,23 @@ include 'includes/header.php';
 
  <div class="pi-badge" style="background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:white;">
  <span class="pi-pulse" style="background:#FDCB6E;"></span>
- Exclusivit&eacute; territoriale &mdash; 1 conseiller par zone
+ Exclusivit&eacute; territoriale &mdash; 1 conseiller par ville
  </div>
 
  <h1 style="font-size:2.75rem; font-weight:800; line-height:1.18; margin-bottom:18px; color:white;">
- Devenez le conseiller r&eacute;f&eacute;rent de votre ville<br>et attirez des vendeurs qualifi&eacute;s en continu
+ Votre ville a une seule place disponible.
  </h1>
 
  <p style="font-size:1.1rem; opacity:0.96; line-height:1.7; margin-bottom:22px; max-width:760px; margin-left:auto; margin-right:auto;">
- Un syst&egrave;me d'acquisition local pens&eacute; pour les conseillers ind&eacute;pendants :
- <strong>plus de vendeurs entrants</strong>, sans d&eacute;pendre des portails et sans prospection &agrave; froid.
+ &Eacute;cosyst&egrave;me Immo installe votre syst&egrave;me d'acquisition local &mdash; site professionnel,
+ SEO, Google Business, pages quartiers, CRM et automatisations IA.
+ Exclusif &agrave; votre territoire. Un seul conseiller par ville.
  </p>
 
  <div class="hero-proof-row">
  <div class="hero-proof-item">5 villes d&eacute;j&agrave; verrouill&eacute;es</div>
  <div class="hero-proof-item">Premiers r&eacute;sultats en moins de 90 jours</div>
- <div class="hero-proof-item">1 seul conseiller par zone</div>
+ <div class="hero-proof-item">1 seul conseiller par ville</div>
  </div>
 
  <div class="hero-funnel">
@@ -727,39 +728,39 @@ include 'includes/header.php';
  <a href="/front/pages/verifier-ma-ville.php" style="background:white; color:#667eea; font-weight:700; font-size:1rem; padding:15px 32px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(0,0,0,0.18); transition:transform 0.2s;">
  V&eacute;rifier si ma ville est disponible
  </a>
- <a href="/front/pages/demo.php" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
- Voir la d&eacute;mo
+ <a href="#methode" style="background:transparent; border:2px solid rgba(255,255,255,0.8); color:white; font-weight:600; font-size:1rem; padding:13px 30px; border-radius:12px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s;">
+ Comment &ccedil;a marche
  </a>
  </div>
 
  <p style="font-size:0.86rem; opacity:0.78; margin:0;">
- V&eacute;rification gratuite de votre ville &bull; r&eacute;ponse sous 24h &bull; aucune obligation d'engagement
+ V&eacute;rification gratuite &bull; r&eacute;ponse sous 24h &bull; sans engagement
  </p>
  </div>
  </div>
 </section>
 
 <!-- ═══════════ SYSTÈME EN ACTION ═══════════ -->
-<section style="padding:88px 0; background:#f8fafc;">
+<section style="padding:88px 0; background:#f8fafc;" id="methode">
  <div class="container">
  <div class="system-action-wrap">
  <div style="text-align:center;">
- <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">Le système en action</span>
- <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Comment un vendeur devient un mandat, étape par étape</h2>
+ <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">Le syst&egrave;me en action</span>
+ <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Comment un vendeur devient un mandat, &eacute;tape par &eacute;tape</h2>
  <p style="font-size:1rem; color:#64748b; margin:0; max-width:760px; margin-left:auto; margin-right:auto;">
- Vous n'avez rien à deviner : le parcours est clair, concret et orienté résultat business.
+ Vous n'avez rien &agrave; deviner : le parcours est clair, concret et orient&eacute; r&eacute;sultat business.
  </p>
  </div>
 
  <?php
  $systemSteps = [
- ['titre' => 'Recherche Google', 'copy' => 'Le vendeur cherche une réponse locale dans votre secteur.'],
- ['titre' => 'Contenu local', 'copy' => 'Il trouve votre contenu utile, adapté à sa ville.'],
+ ['titre' => 'Recherche Google', 'copy' => 'Le vendeur cherche une r&eacute;ponse locale dans votre secteur.'],
+ ['titre' => 'Contenu local', 'copy' => 'Il trouve votre contenu utile, adapt&eacute; &agrave; sa ville.'],
  ['titre' => 'Avis de valeur', 'copy' => 'Il demande une estimation de son bien en ligne.'],
- ['titre' => 'Lead qualifié', 'copy' => 'La demande arrive avec les infos utiles pour agir vite.'],
- ['titre' => 'Relance CRM', 'copy' => 'Le suivi part automatiquement pour éviter les leads perdus.'],
- ['titre' => 'Rendez-vous', 'copy' => 'Vous échangez avec un vendeur déjà engagé dans sa démarche.'],
- ['titre' => 'Mandat', 'copy' => 'Vous transformez une demande locale en opportunité concrète.'],
+ ['titre' => 'Lead qualifi&eacute;', 'copy' => 'La demande arrive avec les infos utiles pour agir vite.'],
+ ['titre' => 'Relance CRM', 'copy' => 'Le suivi part automatiquement pour &eacute;viter les leads perdus.'],
+ ['titre' => 'Rendez-vous', 'copy' => 'Vous &eacute;changez avec un vendeur d&eacute;j&agrave; engag&eacute; dans sa d&eacute;marche.'],
+ ['titre' => 'Mandat', 'copy' => 'Vous transformez une demande locale en opportunit&eacute; concr&egrave;te.'],
  ];
  ?>
 
@@ -775,7 +776,7 @@ include 'includes/header.php';
 
  <div class="system-action-cta">
  <a href="/front/pages/verifier-ma-ville.php" style="background:#667eea; color:white; font-weight:700; font-size:1rem; padding:14px 30px; border-radius:11px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 22px rgba(102,126,234,0.28);">
- Vérifier si ma ville est disponible
+ V&eacute;rifier si ma ville est disponible
  </a>
  </div>
  </div>
@@ -788,44 +789,44 @@ include 'includes/header.php';
  <div class="comparatif-wrap">
  <div style="text-align:center;">
  <span class="pi-section-badge" style="background:#ede9fe; color:#5b21b6;">Positionnement</span>
- <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Empiler des outils ou piloter un vrai système&nbsp;?</h2>
+ <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Empiler des outils ou piloter un vrai syst&egrave;me&nbsp;?</h2>
  <p style="font-size:1rem; color:#64748b; margin:0; max-width:790px; margin-left:auto; margin-right:auto;">
- Chaque approche a sa logique. Le but ici est de vous montrer, de façon concrète et honnête, ce qui change sur le terrain quand on vise des mandats vendeurs réguliers.
+ Chaque approche a sa logique. Le but ici est de vous montrer, de fa&ccedil;on concr&egrave;te et honn&ecirc;te, ce qui change sur le terrain quand on vise des mandats vendeurs r&eacute;guliers.
  </p>
  </div>
 
  <div class="comparatif-grid">
  <div class="comparatif-head">
- <div>Critères clés</div>
+ <div>Crit&egrave;res cl&eacute;s</div>
  <div>Outils classiques</div>
- <div>SaaS générique</div>
- <div class="is-ecosysteme">Écosystème Immo</div>
+ <div>SaaS g&eacute;n&eacute;rique</div>
+ <div class="is-ecosysteme">&Eacute;cosyst&egrave;me Immo</div>
  </div>
 
  <?php
  $comparatifRows = [
- ['critere' => 'Méthode', 'outils' => 'Actions dispersées', 'saas' => 'Cadre global standard', 'ecosysteme' => 'Méthode locale structurée'],
- ['critere' => 'SEO local', 'outils' => 'Souvent absent', 'saas' => 'Fonction partielle', 'ecosysteme' => 'Plan éditorial orienté ville'],
- ['critere' => 'Exclusivité territoriale', 'outils' => 'Non prévue', 'saas' => 'Rare', 'ecosysteme' => '1 conseiller par zone'],
- ['critere' => 'CRM connecté', 'outils' => 'Connexions manuelles', 'saas' => 'Connecteurs limités', 'ecosysteme' => 'Suivi lead et relance intégrés'],
- ['critere' => 'Accompagnement', 'outils' => 'Support ponctuel', 'saas' => 'Support produit', 'ecosysteme' => 'Accompagnement orienté résultats'],
- ['critere' => 'IA contextuelle', 'outils' => 'Utilisation isolée', 'saas' => 'IA généraliste', 'ecosysteme' => 'IA nourrie par votre contexte local'],
- ['critere' => 'Tunnel orienté vendeur', 'outils' => 'À construire seul', 'saas' => 'Base non spécialisée', 'ecosysteme' => 'Tunnel pensé pour capter du vendeur'],
+ ['critere' => 'M&eacute;thode', 'outils' => 'Actions dispers&eacute;es', 'saas' => 'Cadre global standard', 'ecosysteme' => 'M&eacute;thode locale structur&eacute;e'],
+ ['critere' => 'SEO local', 'outils' => 'Souvent absent', 'saas' => 'Fonction partielle', 'ecosysteme' => 'Plan &eacute;ditorial orient&eacute; ville'],
+ ['critere' => 'Exclusivit&eacute; territoriale', 'outils' => 'Non pr&eacute;vue', 'saas' => 'Rare', 'ecosysteme' => '1 conseiller par ville'],
+ ['critere' => 'CRM connect&eacute;', 'outils' => 'Connexions manuelles', 'saas' => 'Connecteurs limit&eacute;s', 'ecosysteme' => 'Suivi lead et relance int&eacute;gr&eacute;s'],
+ ['critere' => 'Accompagnement', 'outils' => 'Support ponctuel', 'saas' => 'Support produit', 'ecosysteme' => 'Accompagnement orient&eacute; r&eacute;sultats'],
+ ['critere' => 'IA contextuelle', 'outils' => 'Utilisation isol&eacute;e', 'saas' => 'IA g&eacute;n&eacute;raliste', 'ecosysteme' => 'IA nourrie par votre contexte local'],
+ ['critere' => 'Tunnel orient&eacute; vendeur', 'outils' => '&Agrave; construire seul', 'saas' => 'Base non sp&eacute;cialis&eacute;e', 'ecosysteme' => 'Tunnel pens&eacute; pour capter du vendeur'],
  ];
  ?>
 
  <?php foreach ($comparatifRows as $row): ?>
  <div class="comparatif-row">
- <div class="comparatif-critere" data-label="Critère"><?= $row['critere'] ?></div>
+ <div class="comparatif-critere" data-label="Crit&egrave;re"><?= $row['critere'] ?></div>
  <div class="comparatif-no" data-label="Outils"><?= $row['outils'] ?></div>
  <div class="comparatif-mid" data-label="SaaS"><?= $row['saas'] ?></div>
- <div class="comparatif-ok" data-label="Écosystème"><?= $row['ecosysteme'] ?></div>
+ <div class="comparatif-ok" data-label="&Eacute;cosyst&egrave;me"><?= $row['ecosysteme'] ?></div>
  </div>
  <?php endforeach; ?>
  </div>
 
  <p class="comparatif-note">
- Notre promesse n'est pas d'opposer des outils, mais d'orchestrer un système complet qui fait gagner du temps et sécurise la conquête locale.
+ Notre promesse n'est pas d'opposer des outils, mais d'orchestrer un syst&egrave;me complet qui fait gagner du temps et s&eacute;curise la conqu&ecirc;te locale.
  </p>
  </div>
  </div>
@@ -835,7 +836,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;"> Le Probl&egrave;me</span>
+ <span class="pi-section-badge" style="background:#fee2e2; color:#991b1b;">Le Probl&egrave;me</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Si vous &ecirc;tes agent ou mandataire,<br>vous vivez probablement &ccedil;a</h2>
  </div>
 
@@ -843,23 +844,20 @@ include 'includes/header.php';
 
  <?php
  $problems = [
- ['', 'Trop d\'outils, pas de syst&egrave;me',
+ ['Trop d\'outils, pas de syst&egrave;me',
  'Un CRM, un site, des emails, des r&eacute;seaux sociaux&hellip; Mais rien n\'est r&eacute;ellement connect&eacute;. R&eacute;sultat&nbsp;: vous passez votre temps &agrave; copier-coller entre les outils.'],
- ['', 'Invisible sur Google',
+ ['Invisible sur Google',
  'Votre site existe. Mais quand un vendeur tape &laquo;&nbsp;Estimer maison + votre ville&nbsp;&raquo;, vous n\'apparaissez pas.'],
- ['', 'D&eacute;pendance aux portails et &agrave; la pub',
+ ['D&eacute;pendance aux portails et &agrave; la pub',
  'SeLoger. LeBonCoin. Facebook Ads. Vous payez pour exister. Coupez la pub et les leads disparaissent.'],
- ['', 'Pas le temps de faire du marketing',
+ ['Pas le temps de faire du marketing',
  'Entre les visites, les estimations, les relances et les compromis&nbsp;: le marketing digital devient impossible &agrave; g&eacute;rer seul.'],
  ];
  foreach ($problems as $p):
  ?>
- <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.7rem; flex-shrink:0;"><?= $p[0] ?></span>
- <div>
- <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $p[1] ?></strong>
- <p style="color:#718096; margin:0; font-size:0.94rem; line-height:1.6;"><?= $p[2] ?></p>
- </div>
+ <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $p[0] ?></strong>
+ <p style="color:#718096; margin:0; font-size:0.94rem; line-height:1.6;"><?= $p[1] ?></p>
  </div>
  <?php endforeach; ?>
 
@@ -878,7 +876,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:50px;">
- <span class="pi-section-badge" style="background:#fef3c7; color:#92400e;"> Le D&eacute;clic</span>
+ <span class="pi-section-badge" style="background:#fef3c7; color:#92400e;">Le D&eacute;clic</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Les outils sans m&eacute;thode ne servent &agrave; rien</h2>
  </div>
 
@@ -904,7 +902,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;" id="methode">
  <div class="container">
  <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;"> La M&eacute;thode</span>
+ <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">La M&eacute;thode</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">3 leviers pour attirer vos vendeurs</h2>
  <p style="font-size:1.05rem; color:#718096; margin:0;">Sans pub, sans portails, sans d&eacute;pendance</p>
  </div>
@@ -912,27 +910,26 @@ include 'includes/header.php';
  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:24px; max-width:920px; margin:0 auto 50px;">
  <?php
  $steps = [
- ['', '1 &mdash; PERSONA', 'Comprendre vos vendeurs',
+ ['1 &mdash; PERSONA', 'Comprendre vos vendeurs',
  'Qui sont-ils&nbsp;? vendeurs seniors, familles qui d&eacute;m&eacute;nagent, investisseurs&hellip; L\'assistant IA identifie leurs motivations, leurs blocages et leurs objections.'],
- ['', '2 &mdash; CONTENU', 'Savoir quoi leur dire',
+ ['2 &mdash; CONTENU', 'Savoir quoi leur dire',
  'L\'IA g&eacute;n&egrave;re automatiquement&nbsp;: articles SEO, posts r&eacute;seaux, emails, guides vendeurs. Chaque contenu correspond &agrave; une &eacute;tape du parcours vendeur.'],
- ['', '3 &mdash; TRAFIC', 'Les atteindre au bon endroit',
+ ['3 &mdash; TRAFIC', 'Les atteindre au bon endroit',
  'Vos contenus sont diffus&eacute;s sur Google, votre blog, votre fiche Google, vos r&eacute;seaux. Objectif&nbsp;: attirer des vendeurs avant m&ecirc;me qu\'ils contactent un agent.'],
  ];
  foreach ($steps as $s):
  ?>
  <div class="pi-card" style="padding:32px; text-align:center;">
- <div style="font-size:2.4rem; margin-bottom:14px;"><?= $s[0] ?></div>
- <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[1] ?></h3>
- <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[2] ?></p>
- <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[3] ?></p>
+ <h3 style="color:#1a202c; margin-bottom:8px; font-size:1.1rem; letter-spacing:0.04em;"><?= $s[0] ?></h3>
+ <p style="color:#667eea; font-weight:600; margin-bottom:12px; font-size:0.95rem;"><?= $s[1] ?></p>
+ <p style="color:#718096; margin:0; font-size:0.91rem; line-height:1.6;"><?= $s[2] ?></p>
  </div>
  <?php endforeach; ?>
  </div>
 
  <!-- Flux mandat -->
  <div style="background:white; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.07); max-width:860px; margin:0 auto; padding:36px; text-align:center;">
- <p style="font-size:0.88rem; font-weight:600; color:#718096; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:22px;"> Comment le syst&egrave;me g&eacute;n&egrave;re des mandats</p>
+ <p style="font-size:0.88rem; font-weight:600; color:#718096; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:22px;">Comment le syst&egrave;me g&eacute;n&egrave;re des mandats</p>
  <div style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:0;">
  <?php
  $flow = ['Recherche Google','Article local','Estimation','Lead CRM','RDV vendeur','Mandat sign&eacute;'];
@@ -951,11 +948,11 @@ include 'includes/header.php';
  <p style="font-size:0.9rem; font-weight:700; color:#1a202c; margin-bottom:18px; text-transform:uppercase; letter-spacing:0.05em;">La vraie diff&eacute;rence</p>
  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
  <div style="padding:18px; background:#fee2e2; border-radius:10px;">
- <strong style="color:#991b1b; display:block; margin-bottom:6px;"> SaaS classiques</strong>
+ <strong style="color:#991b1b; display:block; margin-bottom:6px;">SaaS classiques</strong>
  <p style="color:#b91c1c; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici les outils, d&eacute;brouille-toi&nbsp;&raquo;</p>
  </div>
  <div style="padding:18px; background:#d1fae5; border-radius:10px;">
- <strong style="color:#065f46; display:block; margin-bottom:6px;"> &Eacute;COSYST&Egrave;ME IMMO</strong>
+ <strong style="color:#065f46; display:block; margin-bottom:6px;">&Eacute;COSYST&Egrave;ME IMMO</strong>
  <p style="color:#047857; margin:0; font-size:0.87rem;">&laquo;&nbsp;Voici la m&eacute;thode + les outils&nbsp;&raquo;</p>
  </div>
  </div>
@@ -967,7 +964,7 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:60px;">
- <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;"> La Plateforme</span>
+ <span class="pi-section-badge" style="background:#e9d5ff; color:#6b21a8;">La Plateforme</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">Une plateforme compl&egrave;te &mdash; tout est int&eacute;gr&eacute;</h2>
  <p style="font-size:1.05rem; color:#718096; margin:0;">Pas besoin d'empiler les outils. Tout est connect&eacute;.</p>
  </div>
@@ -975,22 +972,21 @@ include 'includes/header.php';
  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:18px; max-width:1040px; margin:0 auto;">
  <?php
  $modules = [
- ['', 'Site immobilier professionnel', 'Pages g&eacute;olocalis&eacute;es optimis&eacute;es pour Google.'],
- ['', 'Blog SEO local', 'Articles con&ccedil;us pour attirer les vendeurs de votre secteur.'],
- ['', 'Pages de capture', 'Landing pages illimit&eacute;es, templates optimis&eacute;s, suivi conversions.'],
- ['', 'CRM immobilier', 'Suivi des contacts, leads, mandats. Pipeline complet.'],
- ['', 'Automatisations', 'Emails, SMS et relances automatiques. Le syst&egrave;me tourne 24/7.'],
- ['', 'Assistant IA', 'G&eacute;n&eacute;ration instantan&eacute;e de contenus, emails, posts, descriptions.'],
- ['', 'Dashboard temps r&eacute;el', 'Leads, RDV, mandats, commissions en un coup d\'&#339;il.'],
- ['', 'Estimateur en ligne', 'Un outil qui capture des vendeurs 24h/24 sur votre site.'],
- ['', 'GMB int&eacute;gr&eacute;', 'Fiche Google optimis&eacute;e, avis, publications pilot&eacute;es depuis la plateforme.'],
+ ['Site immobilier professionnel', 'Pages g&eacute;olocalis&eacute;es optimis&eacute;es pour Google.'],
+ ['Blog SEO local', 'Articles con&ccedil;us pour attirer les vendeurs de votre secteur.'],
+ ['Pages de capture', 'Landing pages illimit&eacute;es, templates optimis&eacute;s, suivi conversions.'],
+ ['CRM immobilier', 'Suivi des contacts, leads, mandats. Pipeline complet.'],
+ ['Automatisations', 'Emails, SMS et relances automatiques. Le syst&egrave;me tourne 24/7.'],
+ ['Assistant IA', 'G&eacute;n&eacute;ration instantan&eacute;e de contenus, emails, posts, descriptions.'],
+ ['Dashboard temps r&eacute;el', 'Leads, RDV, mandats, commissions en un coup d\'&oelig;il.'],
+ ['Estimateur en ligne', 'Un outil qui capture des vendeurs 24h/24 sur votre site.'],
+ ['GMB int&eacute;gr&eacute;', 'Fiche Google optimis&eacute;e, avis, publications pilot&eacute;es depuis la plateforme.'],
  ];
  foreach ($modules as $m):
  ?>
  <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
- <div style="font-size:1.7rem; margin-bottom:9px;"><?= $m[0] ?></div>
- <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[1] ?></strong>
- <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[2] ?></p>
+ <strong style="color:#1a202c; font-size:0.97rem;"><?= $m[0] ?></strong>
+ <p style="color:#718096; margin:7px 0 0; font-size:0.88rem; line-height:1.5;"><?= $m[1] ?></p>
  </div>
  <?php endforeach; ?>
  </div>
@@ -1001,7 +997,7 @@ include 'includes/header.php';
 <section style="padding:90px 0; background:#f7fafc;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;"> L'Exclusivit&eacute;</span>
+ <span class="pi-section-badge" style="background:#fce7f3; color:#be123c;">L'Exclusivit&eacute;</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">L'avantage que personne ne peut copier</h2>
  </div>
 
@@ -1016,21 +1012,18 @@ include 'includes/header.php';
  <div style="display:grid; gap:16px; margin-bottom:36px;">
  <?php
  $excl = [
- ['', 'Aucune concurrence interne',
+ ['Aucune concurrence interne',
  'Votre concurrent local ne peut pas utiliser le m&ecirc;me syst&egrave;me que vous.'],
- ['', 'SEO local prot&eacute;g&eacute;',
+ ['SEO local prot&eacute;g&eacute;',
  'Votre r&eacute;f&eacute;rencement ne sera jamais dilu&eacute; par d\'autres utilisateurs dans votre zone.'],
- ['', 'Investissement s&eacute;curis&eacute;',
+ ['Investissement s&eacute;curis&eacute;',
  'La position digitale que vous construisez vous appartient. Personne ne peut la dupliquer.'],
  ];
  foreach ($excl as $e):
  ?>
- <div class="pi-card" style="display:flex; align-items:flex-start; gap:16px; padding:22px; border-left:4px solid #667eea;">
- <span style="font-size:1.6rem; flex-shrink:0;"><?= $e[0] ?></span>
- <div>
- <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $e[1] ?></strong>
- <p style="color:#718096; margin:0; font-size:0.93rem; line-height:1.6;"><?= $e[2] ?></p>
- </div>
+ <div class="pi-card" style="padding:22px; border-left:4px solid #667eea;">
+ <strong style="color:#1a202c; display:block; margin-bottom:5px;"><?= $e[0] ?></strong>
+ <p style="color:#718096; margin:0; font-size:0.93rem; line-height:1.6;"><?= $e[1] ?></p>
  </div>
  <?php endforeach; ?>
  </div>
@@ -1055,26 +1048,25 @@ include 'includes/header.php';
 <section style="padding:90px 0;">
  <div class="container">
  <div style="text-align:center; margin-bottom:55px;">
- <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;"> Ce que &ccedil;a change</span>
+ <span class="pi-section-badge" style="background:#c7d2fe; color:#3730a3;">Ce que &ccedil;a change</span>
  <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:0;">Ce que &ccedil;a change pour vous</h2>
  </div>
 
  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px; max-width:920px; margin:0 auto;">
  <?php
  $results = [
- ['', 'Attirer sans prospecter', 'Les vendeurs viennent &agrave; vous gr&acirc;ce &agrave; votre pr&eacute;sence digitale.'],
- ['', 'R&eacute;duire la d&eacute;pendance aux portails', 'Le SEO et le contenu travaillent en continu, sans budget pub.'],
- ['', 'Gagner du temps', 'Les automatisations et l\'IA g&egrave;rent le marketing r&eacute;p&eacute;titif.'],
- ['', 'Devenir la r&eacute;f&eacute;rence locale', 'Votre nom devient associ&eacute; &agrave; l\'immobilier dans votre secteur.'],
- ['', 'Prospects qualifi&eacute;s', 'Les tunnels filtrent&nbsp;: vous ne parlez qu\'aux pr&ecirc;ts &agrave; vendre.'],
- ['', 'Position prot&eacute;g&eacute;e', 'L\'exclusivit&eacute; garantit que vous restez seul sur votre zone.'],
+ ['Attirer sans prospecter', 'Les vendeurs viennent &agrave; vous gr&acirc;ce &agrave; votre pr&eacute;sence digitale.'],
+ ['R&eacute;duire la d&eacute;pendance aux portails', 'Le SEO et le contenu travaillent en continu, sans budget pub.'],
+ ['Gagner du temps', 'Les automatisations et l\'IA g&egrave;rent le marketing r&eacute;p&eacute;titif.'],
+ ['Devenir la r&eacute;f&eacute;rence locale', 'Votre nom devient associ&eacute; &agrave; l\'immobilier dans votre secteur.'],
+ ['Prospects qualifi&eacute;s', 'Les tunnels filtrent&nbsp;: vous ne parlez qu\'aux pr&ecirc;ts &agrave; vendre.'],
+ ['Position prot&eacute;g&eacute;e', 'L\'exclusivit&eacute; garantit que vous restez seul sur votre zone.'],
  ];
  foreach ($results as $r):
  ?>
  <div class="pi-card" style="padding:26px; text-align:center;">
- <div style="font-size:1.8rem; margin-bottom:10px;"><?= $r[0] ?></div>
- <strong style="color:#1a202c; font-size:0.97rem;"><?= $r[1] ?></strong>
- <p style="color:#718096; margin:8px 0 0; font-size:0.88rem; line-height:1.55;"><?= $r[2] ?></p>
+ <strong style="color:#1a202c; font-size:0.97rem;"><?= $r[0] ?></strong>
+ <p style="color:#718096; margin:8px 0 0; font-size:0.88rem; line-height:1.55;"><?= $r[1] ?></p>
  </div>
  <?php endforeach; ?>
  </div>
@@ -1086,21 +1078,21 @@ include 'includes/header.php';
  <div class="container">
  <div style="text-align:center; margin-bottom:44px;">
  <span class="pi-section-badge" style="background:#ecfeff; color:#0f766e;">Conseillers d&eacute;j&agrave; en place</span>
- <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Une base solide, ville par ville</h2>
+ <h2 style="font-size:2.05rem; color:#1a202c; margin-bottom:12px;">Les territoires d&eacute;j&agrave; install&eacute;s</h2>
  <p style="font-size:1.01rem; color:#64748b; margin:0; max-width:760px; margin-left:auto; margin-right:auto;">
- Nous publions uniquement des informations v&eacute;rifi&eacute;es&nbsp;: zones ferm&eacute;es, conseillers d&eacute;ploy&eacute;s et activations en cours.
- Pas de faux avis, pas de chiffres invent&eacute;s.
+ Cinq bases locales construites pour des conseillers ind&eacute;pendants.<br>
+ Ces territoires sont d&eacute;sormais ferm&eacute;s.
  </p>
  </div>
 
  <div class="proof-grid">
  <?php
  $proofAdvisors = [
- ['initiales' => 'ED', 'nom' => 'Eduardo De Sul', 'zone' => 'Bordeaux M&eacute;tropole', 'statut' => 'D&eacute;ploy&eacute;'],
- ['initiales' => 'SH', 'nom' => 'St&eacute;phanie Hulen', 'zone' => 'Lannion / Tr&eacute;gor', 'statut' => 'D&eacute;ploy&eacute;'],
- ['initiales' => 'PH', 'nom' => 'Pascal Hamm', 'zone' => 'Aix-en-Provence', 'statut' => 'D&eacute;ploy&eacute;'],
- ['initiales' => 'FR', 'nom' => 'Fatima Rabia', 'zone' => 'Nandy / S&eacute;nart', 'statut' => 'D&eacute;ploy&eacute;'],
- ['initiales' => 'BC', 'nom' => 'Brice Chupin', 'zone' => 'Nantes', 'statut' => 'D&eacute;ploy&eacute;'],
+ ['initiales' => 'ED', 'nom' => 'Eduardo De Sul', 'zone' => 'Bordeaux M&eacute;tropole', 'statut' => 'Territoire complet'],
+ ['initiales' => 'SH', 'nom' => 'St&eacute;phanie Hulen', 'zone' => 'Lannion / Tr&eacute;gor', 'statut' => 'Territoire complet'],
+ ['initiales' => 'PH', 'nom' => 'Pascal Hamm', 'zone' => 'Aix-en-Provence', 'statut' => 'Territoire complet'],
+ ['initiales' => 'FR', 'nom' => 'Fatima Rabia', 'zone' => 'Nandy / S&eacute;nart', 'statut' => 'Territoire complet'],
+ ['initiales' => 'BC', 'nom' => 'Brice Chupin', 'zone' => 'Nantes', 'statut' => 'Territoire complet'],
  ];
  foreach ($proofAdvisors as $advisor):
  ?>
@@ -1119,8 +1111,8 @@ include 'includes/header.php';
  </div>
 
  <p class="proof-note">
- Villes actuellement ferm&eacute;es&nbsp;: Bordeaux, Nantes, Nandy, Aix-en-Provence, Lannion.
- Cette section est volontairement factuelle et sera enrichie au fur et &agrave; mesure avec des retours clients document&eacute;s (photo, contexte, cas d'usage).
+ Ces territoires sont ferm&eacute;s. Le v&ocirc;tre est peut-&ecirc;tre encore disponible.
+ &nbsp;&rarr;&nbsp;<a href="/verifier-ma-ville" style="color:#475569; font-weight:600;">V&eacute;rifier ma ville</a>
  </p>
  </div>
 </section>
@@ -1165,9 +1157,10 @@ include 'includes/header.php';
  <div class="container">
  <div style="text-align:center; margin-bottom:44px;">
  <span class="pi-section-badge" style="background:#dbeafe; color:#1e40af;">Tarifs</span>
- <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">Choisissez votre rythme de d&eacute;ploiement local</h2>
+ <h2 style="font-size:2.1rem; color:#1a202c; margin-bottom:12px;">S&eacute;curisez votre territoire</h2>
  <p style="font-size:1.02rem; color:#64748b; margin:0; max-width:720px; margin-left:auto; margin-right:auto;">
- Des offres pens&eacute;es pour un objectif simple&nbsp;: g&eacute;n&eacute;rer des vendeurs qualifi&eacute;s dans votre zone et convertir en mandats.
+ Un syst&egrave;me. Un territoire. Un conseiller.<br>
+ Chaque formule inclut l'exclusivit&eacute; sur votre secteur.
  </p>
  </div>
 
@@ -1224,9 +1217,14 @@ include 'includes/header.php';
  <p class="pricing-note">
  Un seul mandat peut rentabiliser plusieurs mois d'abonnement. Option compl&eacute;mentaire&nbsp;: exclusivit&eacute; verrouill&eacute;e &agrave; 900&euro; (paiement unique) sur certaines offres.
  </p>
- <p style="text-align:center; margin-top:12px; font-size:0.87rem; color:#64748b;">
- Acc&egrave;s fondateur disponible selon les zones ouvertes, apr&egrave;s validation.
+
+ <div style="max-width:900px; margin:20px auto 0; padding:16px 22px; background:#f1f5f9; border-left:4px solid #94a3b8; border-radius:0 10px 10px 0;">
+ <p style="margin:0; font-size:0.88rem; color:#475569; line-height:1.6;">
+ <strong style="color:#0f172a;">Programme Fondateur &mdash; Places &eacute;puis&eacute;es.</strong>
+ Les 5 premiers conseillers ont int&eacute;gr&eacute; le programme &agrave; 47&thinsp;&euro;/mois &agrave; vie. Ces places sont ferm&eacute;es.
+ Ce sont eux qui apparaissent dans les r&eacute;alisations ci-dessus.
  </p>
+ </div>
 
  <div class="pricing-faq">
  <div class="pricing-faq-item">
@@ -1273,7 +1271,7 @@ include 'includes/header.php';
  <article class="faq-item">
  <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-<?= $i ?>" id="faq-question-<?= $i ?>">
  <span><?= $item['q'] ?></span>
- <span class="faq-chevron"></span>
+ <span class="faq-chevron">&#8964;</span>
  </button>
  <div class="faq-answer" id="faq-answer-<?= $i ?>" role="region" aria-labelledby="faq-question-<?= $i ?>">
  <div class="faq-answer-inner"><?= $item['a'] ?></div>
@@ -1283,7 +1281,7 @@ include 'includes/header.php';
  </div>
 
  <p class="faq-micro">
- Une question plus sp&eacute;cifique sur votre zone ? V&eacute;rifiez la disponibilit&eacute; puis r&eacute;servez un appel.
+ Une question plus sp&eacute;cifique sur votre zone&nbsp;? V&eacute;rifiez la disponibilit&eacute; puis r&eacute;servez un appel.
  </p>
  </div>
  </div>
@@ -1346,6 +1344,9 @@ document.addEventListener('DOMContentLoaded', function () {
  Voir la d&eacute;monstration
  </a>
  </div>
+ <p style="margin-top:20px; font-size:0.84rem; opacity:0.78;">
+ Sans engagement &bull; R&eacute;ponse sous 24h &bull; Un seul conseiller par ville
+ </p>
  </div>
  </div>
 </section>
