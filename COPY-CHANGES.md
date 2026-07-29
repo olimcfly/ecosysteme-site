@@ -1,9 +1,9 @@
 # Copy Changes — Écosystème Immo
-> Copy prête à intégrer, section par section
+> Mis à jour le 2026-07-29 — Copy validée, pricing confirmé par brief
 
 ---
 
-## SCARCITY BAR (header global)
+## SCARCITY BAR (Layout.astro — sticky top, z-index 100)
 
 ```html
 <div id="scarcity-bar" style="
@@ -25,9 +25,11 @@
 </div>
 ```
 
+Note : ajouter "· Angers" si le territoire Eric Verneau est confirmé fermé.
+
 ---
 
-## HERO
+## HERO (Hero.astro)
 
 ```
 H1 :
@@ -38,15 +40,22 @@ Sous-titre :
 SEO, Google Business, pages quartiers, CRM et automatisations IA.
 Exclusif à votre territoire. Un seul conseiller par ville.
 
-CTA principal : "Vérifier si ma ville est disponible"
-CTA secondaire : "Comment ça marche" (ancre #process)
+CTA principal : Vérifier si ma ville est disponible
+CTA secondaire : Comment ça marche  (ancre #process)
 
-SUPPRIMER : "Voir les offres à partir de 149 €/mois"
+SUPPRIMER ENTIÈREMENT :
+— "Démarrer mes 30 jours gratuits"
+— "Voir les offres à partir de X €/mois"
+— "Ma zone est-elle encore libre ?" (remplacé par le CTA principal)
+— Toute mention de "zone de 50 km"
+— Toute mention d'"essai gratuit"
 ```
 
 ---
 
-## SECTION "COMMENT ÇA MARCHE" (nouvelle section, après hero)
+## SECTION "COMMENT ÇA MARCHE" (HowItWorks.astro — nouvelle section)
+
+Insérer juste après le Hero dans index.astro. Anchor : id="process"
 
 ```
 H2 : Comment ça marche
@@ -57,7 +66,7 @@ Renseignez votre commune. Si elle est disponible, vous recevez
 une confirmation et un brief personnalisé sous 24h.
 
 Étape 02
-On installe votre système (en 21 jours)
+On installe votre système en 21 jours
 Site, SEO local, Google Business, pages secteurs, CRM et automatisations.
 Vous validez chaque étape. On livre clé en main.
 
@@ -71,7 +80,7 @@ CTA : Vérifier si ma ville est disponible
 
 ---
 
-## SECTION FEATURES
+## SECTION FEATURES (Features.astro)
 
 ```
 H2 : Un système d'acquisition local, pas un outil de plus.
@@ -103,14 +112,13 @@ Tout au même endroit, sans outils dispersés.
 06 — Automatisations et IA
 Rappels automatiques, relances intelligentes, scoring prospects.
 Le système travaille quand vous prospectez.
-
-NB : Supprimer tous les emojis (🌐 📍 ⭐ 📝 📋 ✉️)
-     Remplacer par numéros 01-06 ou icônes SVG outline simples
 ```
+
+Supprimer tous les emojis : 🌐 📍 ⭐ 📝 📋 ✉️ → remplacer par 01 à 06.
 
 ---
 
-## SECTION PRICING
+## SECTION PRICING (Pricing.astro + offre.astro)
 
 ```
 H2 : Sécurisez votre territoire
@@ -157,7 +165,7 @@ CTA : Vérifier si ma ville est disponible
 
 FORMULE ANNUELLE   [MEILLEURE VALEUR]
 897 €/an — setup offert
-≈ 74 €/mois · Économisez 267 € vs mensuel
+soit 74 €/mois · Économisez 267 € vs mensuel
 
 Tout le Mensuel, plus :
 — Setup offert (497 € économisés)
@@ -189,12 +197,12 @@ Un seul conseiller par territoire. La disponibilité dépend de votre ville.
 
 Programme Fondateur — Places épuisées
 Les 5 premiers conseillers ont rejoint le programme à 47 €/mois à vie.
-Ces places sont fermées. C'est eux qui apparaissent dans les réalisations ci-dessous.
+Ces places sont fermées. Ce sont eux qui apparaissent dans les réalisations ci-dessous.
 ```
 
 ---
 
-## SECTION RÉALISATIONS
+## SECTION RÉALISATIONS (Realisations.astro + realisations.astro)
 
 ```
 H2 : Les territoires déjà installés
@@ -205,10 +213,8 @@ Ces territoires sont désormais fermés.
 
 ---
 
-[Carte avec badge "TERRITOIRE COMPLET" rouge]
-
+[Badge rouge : TERRITOIRE COMPLET]
 Bordeaux Métropole — Eduardo De Sul
-Territoire complet
 
 Livré en 18 jours : site local, 6 pages secteurs, estimateur intégré,
 3 articles SEO de démarrage, séquence email vendeurs.
@@ -217,40 +223,32 @@ Eduardo dispose d'une présence propriétaire sur Bordeaux
 
 ---
 
-[Carte avec badge "TERRITOIRE COMPLET" rouge]
-
+[Badge rouge : TERRITOIRE COMPLET]
 Aix-en-Provence — Pascal Hamm
-Territoire complet
 
 Site brandé, pages services, estimateur, structure SEO locale.
 Fondation digitale posée sur un marché à forte concurrence.
 
 ---
 
-[Carte avec badge "TERRITOIRE COMPLET" rouge]
-
+[Badge rouge : TERRITOIRE COMPLET]
 Nandy / Sénart — Fatima Rabia
-Territoire complet
 
 Site local humanisé, formulaire vendeur, pages secteurs.
 Présence propriétaire sur son territoire d'origine.
 
 ---
 
-[Carte avec badge "TERRITOIRE COMPLET" rouge]
-
+[Badge rouge : TERRITOIRE COMPLET]
 Lannion / Trégor — Stéphanie Hulen
-Territoire complet
 
 Site local, pages géographiques, contenus et formulaires.
 Présence digitale ancrée dans l'identité bretonne de son territoire.
 
 ---
 
-[Carte avec badge "TERRITOIRE COMPLET" rouge]
-
+[Badge rouge : TERRITOIRE COMPLET]
 Nantes — Brice Chupin
-Territoire complet
 
 Positionnement "coach immobilier" rendu visible localement.
 Présence différenciante sur Nantes.
@@ -264,21 +262,23 @@ Ces territoires sont fermés. Le vôtre est peut-être encore disponible.
 
 ---
 
-## FAQ HOMEPAGE (3 objections critiques)
+## FAQ HOMEPAGE (FAQ.astro — nouvelle section)
+
+Insérer avant le CTA final dans index.astro.
 
 ```
 H2 : Questions fréquentes
 
-Q : Est-ce que je dois gérer le site moi-même ?
+Q1 : Est-ce que je dois gérer le site moi-même ?
 R : Non. On gère tout — maintenance, mises à jour, contenus SEO,
     Google Business Profile. Vous recevez les demandes, on gère le système.
 
-Q : En combien de temps je vois des résultats ?
+Q2 : En combien de temps je vois des résultats ?
 R : Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours.
     Le référencement local se renforce sur 3 à 6 mois.
     Le système travaille en continu, pas ponctuellement.
 
-Q : Et si je change de réseau ou de secteur ?
+Q3 : Et si je change de réseau ou de secteur ?
 R : Le domaine, le site et toutes vos données vous appartiennent.
     Vous pouvez continuer à utiliser le système
     indépendamment de votre réseau.
@@ -286,7 +286,7 @@ R : Le domaine, le site et toutes vos données vous appartiennent.
 
 ---
 
-## SECTION FINALE CTA
+## SECTION FINALE CTA (homepage)
 
 ```
 H2 : Votre territoire est encore disponible ?
@@ -303,29 +303,35 @@ Sans engagement · Réponse sous 24h · Un seul conseiller par ville
 
 ---
 
-## NAVIGATION SIMPLIFIÉE
+## NAVIGATION (Header.astro)
 
 ```
-AVANT : Accueil | L'offre | Avantages | Réalisations | Blog |
-        Diagnostic gratuit | Solution financement | Site Estimateur ville
+AVANT :
+Accueil | L'offre | Avantages | Réalisations | Blog |
+Diagnostic gratuit | Solution financement | Site Estimateur ville
 
-APRÈS : Accueil | Comment ça marche | Offres | Réalisations | Blog
+APRÈS :
+Accueil | Comment ça marche | Offres | Réalisations | Blog
 
 CTA nav : [Vérifier ma ville]
 
-Supprimer de la nav : Phenix, Site Estimateur ville, Solution financement,
-                      Diagnostic gratuit (garder en lien secondaire footer)
+Supprimer de la nav :
+— Phenix
+— Site Estimateur ville
+— Solution financement
+— Diagnostic gratuit  (garder en lien secondaire footer seulement)
+— Avantages (contenu absorbé dans "Comment ça marche")
 ```
 
 ---
 
-## FOOTER SIMPLIFIÉ
+## FOOTER (Footer.astro)
 
 ```
 Écosystème Immo
 Système d'acquisition local pour conseillers immobiliers indépendants.
 
-Liens : Offres · Réalisations · Blog · Contact
+Liens : Offres · Réalisations · Blog · Contact · Diagnostic gratuit
 
 Olivier Colas
 07 85 61 17 00
@@ -346,4 +352,14 @@ APRÈS : "Un seul territoire. Un seul conseiller. Un système qui travaille pour
 
 ---
 
-*Copy validée le 2026-07-16 — à intégrer dans les fichiers composants correspondants*
+## RÈGLES COPY GÉNÉRALES
+
+- Ne jamais écrire "outil" → toujours "système d'acquisition local"
+- Ne jamais écrire "zone de 50 km" → "votre ville" ou "votre territoire"
+- Ne jamais écrire "essai gratuit" ou "30 jours offerts"
+- Toujours utiliser le CTA unique : "Vérifier si ma ville est disponible"
+- Emojis : zéro — remplacer par numéros ou icônes SVG
+
+---
+
+*Copy finalisée le 2026-07-29 — pricing confirmé, décisions structurelles tranchées*
