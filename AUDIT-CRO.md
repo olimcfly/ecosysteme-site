@@ -1,5 +1,71 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-07-25 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-07-31 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-07-31
+
+Troisième audit live. Le site a changé depuis le 25 juillet — dans une **direction opposée au brief**.
+0/15 actions exécutées. Nouveau H1, nouveau pricing, nouveau funnel — toujours dans le mauvais sens.
+
+### Pricing en production au 31/07 (3ème version en 3 semaines)
+
+| | Brief (16/07) | Live 25/07 | Live 31/07 |
+|---|---|---|---|
+| Entrée | 27€/mois + 197€ setup | 0€ (essai 30j) | 0€ (essai 7j) |
+| Standard | 97€/mois + 497€ setup | 49€/mois | **197€/mois + 997€ setup** |
+| Supérieur | 897€/an setup offert | 149€/mois exclusivité | **397€/mois + 1 497€ setup** |
+| Exclusivité | 900€ paiement unique | Incluse | Incluse dans 397€ |
+
+Le prix a été **multiplié par 2 à 4** par rapport au brief. Si c'est intentionnel (montée en gamme),
+l'ensemble du positionnement, du ciblage et de la page offre doit être repensé en conséquence.
+Si c'est une erreur, corriger immédiatement — ces prix tuent la conversion sur un marché B2B immobilier
+où les conseillers indépendants ont des revenus variables.
+
+### H1 au 31/07
+
+> "Écosystème Immo n'est pas un simple logiciel. C'est votre système métier immobilier, clé en main."
+
+Problèmes :
+- Commence par le nom de marque → centré sur le produit, pas sur le client
+- "n'est pas un simple logiciel" = defense posture, pas une promesse
+- "clé en main" = vague, utilisé par tout le secteur
+
+H1 cible (toujours valide) : "Votre ville a une seule place disponible."
+
+### Programme Fondateur — contradiction majeure
+
+Brief : "Beta fondateur fermé — 47€/mois à vie, places épuisées"
+Live 31/07 : "Devenir partenaire fondateur — 197€/mois + 997€ setup, limité à 10 conseillers"
+
+C'est l'inverse. Soit le programme est fermé (le brief), soit il est ouvert à 197€/mois (le live).
+Ces deux réalités ne peuvent pas coexister. Décision requise.
+
+### Nouvelle découverte : disclaimer de non-résultat sur /offre `CRITIQUE`
+
+Sur la page /offre, en production : **"nous ne promettons ni délai ni volume de mandats"**
+
+Cette phrase doit disparaître. En B2B SaaS, un disclaimer de non-résultat sur la page de vente
+élimine la confiance que tout le reste du site cherche à construire. Remplacer par des résultats
+observés avec délai de réalisme : "Premiers contacts sous 60 à 90 jours selon votre marché."
+
+### Navigation au 31/07 — toujours ingérable
+
+15+ liens visibles : Accueil · Offre · Avantages · Blog · Partenaires · Financement ·
+Guides gratuits · Programme Fondateurs · Autres métiers · Vérifier votre zone · Pourquoi ·
+Ventes immobilières · À propos · Actualités · Contact
+
+Cible : 5 liens max + 1 CTA bouton.
+
+### CTAs concurrents toujours actifs
+
+- "Tester gratuitement pendant 7 jours"
+- "Mon territoire est-il encore libre ?"
+- "Devenir partenaire fondateur"
+- "Vérifier la disponibilité de mon territoire"
+- "Vérifier si ma zone est disponible"
+
+5 CTAs actifs. L'essai gratuit 7 jours dilue l'urgence territoriale.
 
 ---
 
@@ -130,27 +196,55 @@ Note : le code source n'est pas dans ce dépôt. Ces fichiers sont à modifier d
 
 ---
 
-## ÉTAT D'IMPLÉMENTATION DE L'AUDIT INITIAL (16/07)
+## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut |
-|---|--------|--------|
-| 1 | Corriger le pricing | Non fait (prix différents du brief ET différents de l'audit) |
-| 2 | Barre scarcité villes fermées | Non fait |
-| 3 | Badges "Territoire complet" réalisations | Non fait |
-| 4 | Réécrire H1 | Non fait (nouveau H1 mais toujours trop long et passif) |
-| 5 | Supprimer CTA prix incohérent | Non fait (nouveau prix, nouvelle incohérence) |
-| 6 | Ajouter IA/automatisations features | Non fait |
-| 7 | Simplifier CTAs | Non fait (2 funnels contradictoires désormais) |
-| 8 | Case studies avec résultats | Non fait |
-| 9 | Section "Comment ça marche" | Non fait |
-| 10 | FAQ homepage | Non fait |
-| 11 | Programme Fondateur fermé | Non fait |
-| 12 | Retirer emojis | Non fait (davantage d'emojis qu'avant) |
-| 13 | Modifier titre page /offre | Non fait |
-| 14 | Nettoyer navigation | Partiellement (Réalisations n'apparaît plus dans la nav principale) |
-| 15 | Simplifier footer | Non fait |
+| # | Action | Statut au 31/07 | Notes |
+|---|--------|-----------------|-------|
+| 1 | Corriger le pricing | Non fait | 3ème version de prix, toujours incohérente avec le brief |
+| 2 | Barre scarcité villes fermées | Non fait | Aucun élément de scarcité territoriale visible |
+| 3 | Badges "Territoire complet" réalisations | Non fait | /realisations : 6 clients sans badge ni statut |
+| 4 | Réécrire H1 | Non fait | Nouveau H1 pire que le précédent — centré marque, pas client |
+| 5 | Unifier CTA principal | Non fait | 5 CTAs actifs, dont 3 directions contradictoires |
+| 6 | Ajouter IA/automatisations features | Non fait | Section features : emojis toujours présents |
+| 7 | Simplifier CTAs | Non fait | Empiré (essai 7j + 4 autres CTAs) |
+| 8 | Case studies avec résultats | Non fait | Nom + ville + "Voir le site →" uniquement |
+| 9 | Section "Comment ça marche" | Non fait | Absente |
+| 10 | FAQ homepage | Non fait | Absente |
+| 11 | Programme Fondateur — statut cohérent | Non fait | Brief : fermé. Live : ouvert à 197€. Contradiction. |
+| 12 | Retirer emojis | Non fait | 📉 🔗 🚫 🌐 📝 📍 ⭐ 📋 🎁 🔓 🔒 🚀 toujours présents |
+| 13 | Modifier titre page /offre | Non fait | H1 identique à la homepage |
+| 14 | Nettoyer navigation | Non fait | 15 liens en nav (était partiellement fait au 25/07, empiré au 31/07) |
+| 15 | Simplifier footer | Non fait | Non audité au 31/07 |
+| 16 | *(nouveau)* Retirer disclaimer non-résultat /offre | Non fait | "nous ne promettons ni délai ni volume" = tueur de conversion |
+| 17 | *(nouveau)* Ajouter Angers dans la scarcity bar | Non fait | Eric Verneau affiché sur /realisations, non listé dans les villes fermées |
 
 ---
 
-*Audit mis à jour le 2026-07-25*
-*0/15 actions de l'audit initial exécutées. 4 nouveaux problèmes critiques détectés.*
+## DÉCISIONS REQUISES AVANT IMPLÉMENTATION (ordre de priorité)
+
+Ces décisions doivent être tranchées par Olivier Colas. Sans elles, aucun développeur ne peut
+implémenter correctement.
+
+**Décision 1 — PRICING (bloquant tout le reste)**
+- Brief : 97€/mois + 497€ setup / 897€/an
+- Live actuel : 197€/mois + 997€ setup / 397€/mois + 1 497€ setup
+- Question : La montée en gamme est-elle intentionnelle ? Si oui, l'ensemble du positionnement change.
+
+**Décision 2 — PROGRAMME FONDATEUR**
+- Brief : fermé, 47€/mois à vie, places épuisées
+- Live actuel : ouvert, 197€/mois, 10 places max
+- Question : Quel est le statut réel ?
+
+**Décision 3 — TRIAL GRATUIT**
+- Un essai gratuit et une exclusivité territoriale sont des messages contradictoires.
+- Choisir : SaaS avec trial, ou système d'acquisition premium sans trial.
+
+**Décision 4 — "VILLE" ou "ZONE"**
+- "1 ville = 1 conseiller" : précis, scarcité immédiate, vérifiable
+- "Zone 50 km" / "territoire" flou : géographique vague, urgence faible
+- Recommandation : "1 ville = 1 conseiller"
+
+---
+
+*Audit mis à jour le 2026-07-31*
+*0/15 actions de l'audit initial exécutées après 15 jours. 2 nouveaux problèmes détectés. 17 actions totales en attente.*
