@@ -1,250 +1,306 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-07-31 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-01 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
 
 ---
 
-## SITUATION AU 2026-07-31
+## SITUATION AU 2026-08-01 (4ème audit)
 
-Troisième audit live. Le site a changé depuis le 25 juillet — dans une **direction opposée au brief**.
-0/15 actions exécutées. Nouveau H1, nouveau pricing, nouveau funnel — toujours dans le mauvais sens.
+**0/17 actions exécutées. 3 semaines de dérive.**
 
-### Pricing en production au 31/07 (3ème version en 3 semaines)
+Deux légères évolutions depuis le 31/07 :
+- Une section FAQ apparaît sur `/offre` (bonne direction, mais absente de la homepage)
+- La mention "jamais un rayon de 50 km" est ajoutée dans /offre (correction partielle de l'ambiguïté "zone")
 
-| | Brief (16/07) | Live 25/07 | Live 31/07 |
-|---|---|---|---|
-| Entrée | 27€/mois + 197€ setup | 0€ (essai 30j) | 0€ (essai 7j) |
-| Standard | 97€/mois + 497€ setup | 49€/mois | **197€/mois + 997€ setup** |
-| Supérieur | 897€/an setup offert | 149€/mois exclusivité | **397€/mois + 1 497€ setup** |
-| Exclusivité | 900€ paiement unique | Incluse | Incluse dans 397€ |
-
-Le prix a été **multiplié par 2 à 4** par rapport au brief. Si c'est intentionnel (montée en gamme),
-l'ensemble du positionnement, du ciblage et de la page offre doit être repensé en conséquence.
-Si c'est une erreur, corriger immédiatement — ces prix tuent la conversion sur un marché B2B immobilier
-où les conseillers indépendants ont des revenus variables.
-
-### H1 au 31/07
-
-> "Écosystème Immo n'est pas un simple logiciel. C'est votre système métier immobilier, clé en main."
-
-Problèmes :
-- Commence par le nom de marque → centré sur le produit, pas sur le client
-- "n'est pas un simple logiciel" = defense posture, pas une promesse
-- "clé en main" = vague, utilisé par tout le secteur
-
-H1 cible (toujours valide) : "Votre ville a une seule place disponible."
-
-### Programme Fondateur — contradiction majeure
-
-Brief : "Beta fondateur fermé — 47€/mois à vie, places épuisées"
-Live 31/07 : "Devenir partenaire fondateur — 197€/mois + 997€ setup, limité à 10 conseillers"
-
-C'est l'inverse. Soit le programme est fermé (le brief), soit il est ouvert à 197€/mois (le live).
-Ces deux réalités ne peuvent pas coexister. Décision requise.
-
-### Nouvelle découverte : disclaimer de non-résultat sur /offre `CRITIQUE`
-
-Sur la page /offre, en production : **"nous ne promettons ni délai ni volume de mandats"**
-
-Cette phrase doit disparaître. En B2B SaaS, un disclaimer de non-résultat sur la page de vente
-élimine la confiance que tout le reste du site cherche à construire. Remplacer par des résultats
-observés avec délai de réalisme : "Premiers contacts sous 60 à 90 jours selon votre marché."
-
-### Navigation au 31/07 — toujours ingérable
-
-15+ liens visibles : Accueil · Offre · Avantages · Blog · Partenaires · Financement ·
-Guides gratuits · Programme Fondateurs · Autres métiers · Vérifier votre zone · Pourquoi ·
-Ventes immobilières · À propos · Actualités · Contact
-
-Cible : 5 liens max + 1 CTA bouton.
-
-### CTAs concurrents toujours actifs
-
-- "Tester gratuitement pendant 7 jours"
-- "Mon territoire est-il encore libre ?"
-- "Devenir partenaire fondateur"
-- "Vérifier la disponibilité de mon territoire"
-- "Vérifier si ma zone est disponible"
-
-5 CTAs actifs. L'essai gratuit 7 jours dilue l'urgence territoriale.
+Tout le reste : inchangé. Le site continue de diverger du brief fourni.
 
 ---
 
-## SITUATION AU 2026-07-25
+## PROBLÈMES CLASSÉS PAR IMPACT BUSINESS
 
-L'audit du 16 juillet listait 15 changements à apporter en 3 phases.
-**Aucun n'a été implémenté.**
+### CRITIQUE — bloquent la conversion aujourd'hui
 
-Pire : le site a évolué dans une direction qui crée de **nouveaux problèmes critiques** — notamment une rupture complète entre le brief business et ce qui est en production.
+| Ref | Problème | Observation au 01/08 |
+|-----|----------|----------------------|
+| CR1 | **Pricing 2-4x supérieur au brief** | Live : 197€/mois + 997€ setup. Brief : 97€/mois + 497€ setup. Le delta détruit la conversion sur un marché de conseillers indépendants à revenus variables. |
+| CR2 | **Essai gratuit 7 jours en CTA principal** | "Tester gratuitement pendant 7 jours" = premier bouton visible. Annule l'exclusivité territoriale comme argument d'achat. Contradiction totale avec le positionnement premium. |
+| CR3 | **5 CTAs sans hiérarchie** | "Tester gratuitement" · "Mon territoire est-il encore libre ?" · "Devenir partenaire fondateur" · "Vérifier la disponibilité" · "Vérifier si ma zone est disponible" → le visiteur ne sait pas quoi faire. |
+| CR4 | **H1 centré sur la marque, pas le client** | "Écosystème Immo n'est pas un simple logiciel…" — commence par le nom de marque, posture défensive, aucune promesse client. |
+| CR5 | **Disclaimer de non-résultat sur /offre** | "nous ne promettons ni délai ni volume de mandats" = annihile la confiance construite par le reste de la page. |
+| CR6 | **Aucun élément de scarcité territoriale** | Pas de barre "Bordeaux · Nantes · Nandy · Aix · Lannion fermés". La scarcité est le principal levier de conversion — elle est absente. |
 
----
+### FORT — affaiblissent la persuasion
 
-## ÉCARTS CRITIQUES DÉTECTÉS (nouveaux, vs audit initial)
+| Ref | Problème | Observation au 01/08 |
+|-----|----------|----------------------|
+| FO1 | **Exclusivité présentée en bas de page** | "Une seule exclusivité par territoire" est un H2 en fin de page. C'est le différenciateur #1 — il doit être dans le H1. |
+| FO2 | **Aucun badge "Territoire complet" sur /realisations** | 6 clients affichés sans statut de fermeture. Aucune urgence, aucune preuve sociale d'exclusivité. |
+| FO3 | **Programme Fondateur — contradiction** | Brief : fermé, 47€/mois à vie. Live : ouvert, "OFFRE LIMITÉE 10 CONSEILLERS", 197€/mois + 997€ setup. Ces deux réalités sont incompatibles. |
+| FO4 | **Section "Comment ça marche" absente** | Aucun visiteur ne comprend le process d'achat. 3 étapes claires manquantes entre le H1 et le pricing. |
+| FO5 | **Case studies sans résultats** | 6 territoires affichés : "Site local, pages secteurs" — aucun chiffre, aucune métrique, aucun before/after. |
+| FO6 | **IA et automatisations non mises en avant** | Mentionnées dans la liste de features mais pas présentées comme différenciateur fort. Or c'est une attente clé en 2026. |
+| FO7 | **FAQ absente de la homepage** | Elle existe sur /offre depuis le 31/07 — elle doit être sur la homepage pour traiter les objections avant la page d'offre. |
 
-### EC1 — Pricing en production ≠ pricing du brief `BLOQUANT`
+### MOYEN — dégradent l'expérience et la crédibilité
 
-| | Brief fourni | Site en production (25/07) |
-|---|---|---|
-| Entrée | 27€/mois + 197€ setup | 0€/mois (essai 30j) |
-| Standard | 97€/mois + 497€ setup | 49€/mois (engagement 12 mois) |
-| Annuel | 897€/an, setup offert | 149€/mois exclusivité (12 mois) |
-| Exclusivité | 900€ paiement unique | Incluse dans 149€/mois |
-| Setup | 497€ (mensuel) | Non mentionné |
+| Ref | Problème | Observation au 01/08 |
+|-----|----------|----------------------|
+| MO1 | **Emojis partout** | 📉 🔗 🚫 🌐 📝 📍 ⭐ 📋 🎁 🚀 🔒 ✓ — ton "startup débutante", pas "système B2B premium" |
+| MO2 | **Navigation surchargée** | Accueil · Offre · Avantages · Blog · Partenaires · Financement · Guides gratuits · Programme Fondateurs · Autres métiers · Vérifier votre zone · Offre et tarifs · Pourquoi · Méthode FOTO · À propos · Contact · Actualités · Diagnostic · Simulation financement = 18 destinations. Cible : 5 liens + 1 CTA. |
+| MO3 | **Angers non listé dans les villes fermées** | Eric Verneau (Angers) affiché sur /realisations mais Angers absent de la scarcity bar et du brief. |
+| MO4 | **Titre /offre identique à la homepage** | Même H1 sur les deux pages. La page offre doit avoir son propre titre orienté conversion. |
+| MO5 | **"Système d'acquisition local" jamais nommé** | Le produit est décrit comme "logiciel" ou "plateforme" — jamais comme "système d'acquisition local". Pourtant c'est le positionnement du brief. |
 
-Ce n'est pas un problème de copy. C'est une incohérence de modèle économique.
-Avant d'implémenter quoi que ce soit, décider : quel pricing est le bon ?
+### FAIBLE — à corriger en phase 3
 
----
-
-### EC2 — "Zone 50 km" vs "1 ville = 1 conseiller" `CRITIQUE`
-
-Le site en production parle de "zone de 50 km". Le brief parle de "1 ville = 1 seul conseiller".
-- "Zone 50 km" = géographiquement flou, difficile à vendre, urgence faible
-- "1 ville = 1 conseiller" = précis, exclusivité visible, scarcité immédiate
-
-Le différenciateur central n'est pas activé dans la version actuelle.
-
----
-
-### EC3 — Deux funnels de conversion en compétition `CRITIQUE`
-
-Le site propose simultanément :
-- CTA A : "Démarrer mes 30 jours gratuits" → funnel d'essai gratuit
-- CTA B : "Ma zone est-elle encore libre ?" / "Vérifier ma zone" → funnel de qualification
-
-Ces deux approches sont contradictoires. L'essai gratuit dilue l'urgence territoriale.
-Question à trancher : produit SaaS avec trial, ou système d'acquisition avec exclusivité ?
+| Ref | Problème |
+|-----|----------|
+| FA1 | Footer non audité — probablement trop chargé |
+| FA2 | "Méthode FOTO" en nav — jargon interne, aucun sens pour un prospect |
+| FA3 | "Autres métiers" en nav — hors scope, dilue le focus sur les conseillers indépendants |
 
 ---
 
-### EC4 — 6ème client non documenté dans le brief `MOYEN`
+## PLAN D'EXÉCUTION EN 3 PHASES
 
-La page /realisations affiche Eric Verneau (Angers) — absent de la liste des villes fermées
-(Bordeaux, Nantes, Nandy, Aix, Lannion). Angers doit apparaître dans la scarcity bar
-si le territoire est fermé.
-
----
-
-## CE QUI N'A PAS CHANGÉ (15 problèmes de l'audit initial toujours présents)
-
-| Ref | Problème | Priorité |
-|-----|----------|----------|
-| C2 | Exclusivité présentée comme détail, pas comme pilier | CRITIQUE |
-| C3 | Pas de badges "Territoire complet" sur les réalisations | CRITIQUE |
-| C4 | IA et automatisations absentes du site | FORT |
-| F1 | H1 faible et trop long | FORT |
-| F2 | Case studies sans chiffres de résultats | FORT |
-| F3 | CTAs concurrents sans hiérarchie claire | FORT |
-| F4 | Pas de barre de scarcité territoriale | FORT |
-| F6 | Programme Fondateur non valorisé | FORT |
-| F7 | Pas de section "Comment ça marche" | FORT |
-| M1 | Emojis partout : 📉 🔗 🚫 🌐 📝 📍 ⭐ 📋 🎁 🔓 🔒 | MOYEN |
-| M3 | FAQ absente de la homepage | MOYEN |
-| M5 | "Système d'acquisition" jamais nommé | MOYEN |
+> Pricing de référence (brief fourni par Olivier Colas) :
+> - Estimateur seul : 27€/mois + 197€ setup
+> - Mensuel standard : 97€/mois + 497€ setup + 3 mois prépayés
+> - Annuel : 897€/an, setup offert, exclusivité incluse
+> - Exclusivité verrouillée : 900€ paiement unique
+> - Programme Fondateur : 47€/mois à vie — **FERMÉ**, 5 places prises
 
 ---
 
-## DÉCISIONS À PRENDRE EN PRIORITÉ (avant toute implémentation)
+### PHASE 1 — Conversion immédiate (1 à 2 jours)
 
-1. Quel est le pricing définitif ?
-   Brief : 97€/mois + setup. Live : 49€/mois sans setup. Ces deux modèles
-   ont des implications complètement différentes sur la page d'offre et la crédibilité.
+Chaque action ci-dessous supprime un frein direct à la conversion.
 
-2. L'essai gratuit 30j est-il maintenu ?
-   Si oui : repenser le funnel autour du trial (onboarding, email, qualification).
-   Si non : retirer immédiatement — il affaiblit la scarcité et le positionnement premium.
+**Action 1 — Réécrire le H1**
+```
+Avant : "Écosystème Immo n'est pas un simple logiciel. C'est votre système métier immobilier, clé en main."
+Après : "Votre ville a une seule place disponible."
+```
+Fichier : `src/components/Hero.astro`
 
-3. Exclusivité par ville ou par zone de 50 km ?
-   "1 ville = 1 conseiller" est laser et différenciant.
-   "Zone 50 km" est flou et difficile à vendre.
+**Action 2 — Unifier le CTA principal**
+```
+Supprimer : "Tester gratuitement pendant 7 jours"
+CTA unique : "Vérifier si ma ville est disponible" → ancre #verifier
+```
+Fichiers : `src/components/Hero.astro`, `src/components/Header.astro`
+
+**Action 3 — Ajouter la barre de scarcité (sticky top)**
+```html
+<div id="scarcity-bar">
+  Territoires complets : Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion
+  — <a href="#verifier">Vérifiez votre ville →</a>
+</div>
+```
+Style : fond #0f172a, texte #f8fafc, 13px, position sticky, z-index 100.
+Fichier : `src/layouts/Layout.astro`
+
+**Action 4 — Corriger le pricing**
+```
+Formule Estimateur      : 27€/mois + 197€ setup
+Formule Mensuelle       : 97€/mois + 497€ setup (3 mois prépayés)  [RECOMMANDÉE]
+Formule Annuelle        : 897€/an — setup offert ≈ 74€/mois        [MEILLEURE VALEUR]
+Exclusivité verrouillée : 900€ paiement unique (verrou territorial à vie)
+Programme Fondateur     : Places épuisées — 5 conseillers à 47€/mois à vie
+```
+Fichiers : `src/components/Pricing.astro`, `src/pages/offre.astro`
+
+**Action 5 — Supprimer le disclaimer de non-résultat**
+```
+Supprimer : "nous ne promettons ni délai ni volume de mandats"
+Remplacer par : "Premiers contacts vendeurs observés sous 60 à 90 jours selon le territoire."
+```
+Fichier : `src/pages/offre.astro`
+
+**Action 6 — Clore le Programme Fondateur**
+```
+Avant : "OFFRE LIMITÉE — 10 PREMIERS CONSEILLERS" + 197€/mois
+Après : "Programme Fondateur — Places épuisées.
+         Les 5 premiers conseillers ont rejoint à 47€/mois à vie.
+         Ces places sont fermées."
+```
+Fichier : `src/components/Pricing.astro`
 
 ---
 
-## PLAN D'ACTION (si retour au brief : pricing 97€/897€, exclusivité par ville)
+### PHASE 2 — Confiance et preuve sociale (3 à 5 jours)
 
-Ordre d'exécution :
-1. Corriger le pricing sur toutes les pages (homepage, /offre, /realisations, /avantages)
-2. Retirer "Démarrer gratuitement" — remplacer par "Vérifier si ma ville est disponible"
-3. Ajouter la barre de scarcité (Bordeaux, Nantes, Nandy, Aix, Lannion, Angers)
-4. Réécrire le H1 : "Votre ville a une seule place disponible."
-5. Ajouter badges "Territoire complet" sur /realisations
-6. Ajouter section "Comment ça marche" (3 étapes)
-7. Ajouter FAQ homepage (3 objections)
-8. Supprimer emojis — numéros ou icônes SVG outline
-9. Simplifier navigation : ajouter Réalisations, retirer /avantages en lien nav
+**Action 7 — Badges "Territoire complet" sur /realisations**
+```
+Chaque carte client → badge rouge "TERRITOIRE COMPLET"
+Sous chaque nom : description de ce qui a été livré (voir COPY-CHANGES.md)
+CTA section : "Ces territoires sont fermés. Le vôtre est peut-être encore disponible. [Vérifier ma ville]"
+```
+Fichiers : `src/components/Realisations.astro`, `src/pages/realisations.astro`
 
-Voir COPY-CHANGES.md pour tous les textes prêts à intégrer.
+**Action 8 — Créer la section "Comment ça marche"**
+```
+Étape 01 : Vous vérifiez votre ville → confirmation + brief sous 24h
+Étape 02 : On installe votre système (21 jours) → site, SEO, GBP, CRM, automatisations
+Étape 03 : Votre territoire travaille pour vous → vendeurs sur Google → demandes dans CRM
+CTA : "Vérifier si ma ville est disponible"
+```
+Fichier à créer : `src/components/HowItWorks.astro`
+Intégrer dans : `src/pages/index.astro` (après le Hero, avant Features)
+
+**Action 9 — Déplacer la FAQ sur la homepage**
+```
+3 questions (déjà rédigées dans COPY-CHANGES.md) :
+Q : Est-ce que je dois gérer le site moi-même ?
+Q : En combien de temps je vois des résultats ?
+Q : Et si je change de réseau ou de secteur ?
+```
+Fichier à créer : `src/components/FAQ.astro`
+Intégrer dans : `src/pages/index.astro` (avant la section CTA finale)
+
+**Action 10 — Réécrire le sous-titre hero**
+```
+Écosystème Immo installe votre système d'acquisition local — site professionnel,
+SEO, Google Business, pages quartiers, CRM et automatisations IA.
+Exclusif à votre territoire. Un seul conseiller par ville.
+```
+Fichier : `src/components/Hero.astro`
 
 ---
 
-## LISTE DES FICHIERS À MODIFIER
+### PHASE 3 — Finition, UX et SEO (1 semaine)
 
-| Fichier | Modifications requises |
-|---------|----------------------|
-| `src/layouts/Layout.astro` | Barre de scarcité (sticky top) |
-| `src/components/Header.astro` | Navigation simplifiée, CTA unique |
-| `src/components/Hero.astro` | H1, sous-titre, CTA unifié |
-| `src/components/Features.astro` | Emojis → numéros, ajouter IA/automatisations |
-| `src/components/Pricing.astro` | Pricing complet à corriger |
-| `src/components/Realisations.astro` | Badges "Territoire complet", résultats |
-| `src/components/HowItWorks.astro` | Créer — section 3 étapes |
-| `src/components/FAQ.astro` | Créer — 3 objections |
-| `src/pages/offre.astro` | Pricing + titre page |
-| `src/pages/realisations.astro` | Badges + case studies |
-| `src/components/Footer.astro` | Simplifier |
+**Action 11 — Supprimer les emojis (features)**
+```
+Remplacer 📉 🔗 🚫 🌐 📝 📍 ⭐ 📋 🎁 🚀 🔒
+Par : numéros 01–06 ou icônes SVG outline simples (stroke, pas fill)
+```
+Fichier : `src/components/Features.astro`
 
-Note : le code source n'est pas dans ce dépôt. Ces fichiers sont à modifier dans le projet source.
+**Action 12 — Simplifier la navigation**
+```
+Avant : 18 liens
+Après : Accueil | Comment ça marche | Offres | Réalisations | Blog + [Vérifier ma ville]
+Supprimer : Avantages, Partenaires, Financement, Guides gratuits, Programme Fondateurs,
+            Autres métiers, Vérifier votre zone (doublon), Offre et tarifs (doublon),
+            Pourquoi, Méthode FOTO, Diagnostic, Simulation financement
+```
+Fichier : `src/components/Header.astro`
+
+**Action 13 — Titre page /offre**
+```
+Avant : H1 identique à la homepage
+Après : "Un seul territoire. Un seul conseiller. Un système qui travaille pour vous."
+```
+Fichier : `src/pages/offre.astro`
+
+**Action 14 — Ajouter Angers dans la scarcity bar** (si territoire fermé)
+```
+"Territoires complets : Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion · Angers"
+```
+Fichier : `src/layouts/Layout.astro`
+
+**Action 15 — Simplifier le footer**
+```
+Écosystème Immo — Système d'acquisition local pour conseillers immobiliers indépendants.
+Liens : Offres · Réalisations · Blog · Contact
+Olivier Colas — 07 85 61 17 00 — contact@ecosystemeimmo.fr
+Mentions légales | CGU | Confidentialité
+© 2026 Écosystème Immo — OCDM Agency
+```
+Fichier : `src/components/Footer.astro`
+
+---
+
+## ORDRE EXACT D'EXÉCUTION
+
+```
+Jour 1
+  1. src/components/Hero.astro         → H1 + sous-titre + CTA unifié
+  2. src/layouts/Layout.astro          → Barre de scarcité sticky
+  3. src/components/Pricing.astro      → Pricing brief + clore Fondateur
+  4. src/pages/offre.astro             → Pricing + supprimer disclaimer
+
+Jour 2
+  5. src/components/Header.astro       → Retirer "Tester gratuitement", CTA unique
+  6. src/pages/realisations.astro      → Badges "Territoire complet"
+  7. src/components/Realisations.astro → Descriptions livrées + CTA section
+
+Jour 3–4
+  8. src/components/HowItWorks.astro   → Créer (3 étapes)
+  9. src/pages/index.astro             → Intégrer HowItWorks après Hero
+ 10. src/components/FAQ.astro          → Créer (3 questions)
+ 11. src/pages/index.astro             → Intégrer FAQ avant CTA finale
+
+Jour 5–7
+ 12. src/components/Features.astro     → Supprimer emojis → numéros 01-06
+ 13. src/components/Header.astro       → Navigation 5 liens + CTA
+ 14. src/pages/offre.astro             → Titre H1 différencié
+ 15. src/layouts/Layout.astro          → Angers dans scarcity bar (si fermé)
+ 16. src/components/Footer.astro       → Simplifier
+```
+
+---
+
+## LISTE COMPLÈTE DES FICHIERS À MODIFIER
+
+| Fichier | Actions | Phase |
+|---------|---------|-------|
+| `src/layouts/Layout.astro` | Barre scarcité sticky | P1 |
+| `src/components/Hero.astro` | H1, sous-titre, CTA | P1 |
+| `src/components/Pricing.astro` | Pricing complet + Fondateur fermé | P1 |
+| `src/pages/offre.astro` | Pricing + disclaimer + titre H1 | P1 + P3 |
+| `src/components/Header.astro` | Retirer trial CTA + nav simplifiée | P1 + P3 |
+| `src/components/Realisations.astro` | Badges + descriptions + CTA section | P2 |
+| `src/pages/realisations.astro` | Badges + descriptions | P2 |
+| `src/components/HowItWorks.astro` | Créer — 3 étapes | P2 |
+| `src/components/FAQ.astro` | Créer — 3 objections | P2 |
+| `src/pages/index.astro` | Intégrer HowItWorks + FAQ | P2 |
+| `src/components/Features.astro` | Emojis → numéros, ajouter IA | P3 |
+| `src/components/Footer.astro` | Simplifier | P3 |
+
+Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ---
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 31/07 | Notes |
+| # | Action | Statut au 01/08 | Notes |
 |---|--------|-----------------|-------|
-| 1 | Corriger le pricing | Non fait | 3ème version de prix, toujours incohérente avec le brief |
-| 2 | Barre scarcité villes fermées | Non fait | Aucun élément de scarcité territoriale visible |
-| 3 | Badges "Territoire complet" réalisations | Non fait | /realisations : 6 clients sans badge ni statut |
-| 4 | Réécrire H1 | Non fait | Nouveau H1 pire que le précédent — centré marque, pas client |
-| 5 | Unifier CTA principal | Non fait | 5 CTAs actifs, dont 3 directions contradictoires |
-| 6 | Ajouter IA/automatisations features | Non fait | Section features : emojis toujours présents |
-| 7 | Simplifier CTAs | Non fait | Empiré (essai 7j + 4 autres CTAs) |
-| 8 | Case studies avec résultats | Non fait | Nom + ville + "Voir le site →" uniquement |
-| 9 | Section "Comment ça marche" | Non fait | Absente |
-| 10 | FAQ homepage | Non fait | Absente |
-| 11 | Programme Fondateur — statut cohérent | Non fait | Brief : fermé. Live : ouvert à 197€. Contradiction. |
-| 12 | Retirer emojis | Non fait | 📉 🔗 🚫 🌐 📝 📍 ⭐ 📋 🎁 🔓 🔒 🚀 toujours présents |
-| 13 | Modifier titre page /offre | Non fait | H1 identique à la homepage |
-| 14 | Nettoyer navigation | Non fait | 15 liens en nav (était partiellement fait au 25/07, empiré au 31/07) |
-| 15 | Simplifier footer | Non fait | Non audité au 31/07 |
-| 16 | *(nouveau)* Retirer disclaimer non-résultat /offre | Non fait | "nous ne promettons ni délai ni volume" = tueur de conversion |
-| 17 | *(nouveau)* Ajouter Angers dans la scarcity bar | Non fait | Eric Verneau affiché sur /realisations, non listé dans les villes fermées |
+| 1 | Corriger le pricing | Non fait | 4ème version incohérente avec le brief |
+| 2 | Barre scarcité villes fermées | Non fait | Toujours absente |
+| 3 | Badges "Territoire complet" réalisations | Non fait | 6 clients sans statut |
+| 4 | Réécrire H1 | Non fait | Même H1 faible depuis le 31/07 |
+| 5 | Unifier CTA principal | Non fait | 5 CTAs actifs, trial en premier |
+| 6 | Ajouter IA/automatisations features | Non fait | Mentionné mais non mis en avant |
+| 7 | Simplifier CTAs | Non fait | Empiré au fil des semaines |
+| 8 | Case studies avec résultats | Non fait | Nom + ville uniquement |
+| 9 | Section "Comment ça marche" | Non fait | Absente homepage |
+| 10 | FAQ homepage | Non fait | Présente sur /offre uniquement (progression partielle) |
+| 11 | Programme Fondateur — statut cohérent | Non fait | Brief : fermé 47€. Live : ouvert 197€. |
+| 12 | Retirer emojis | Non fait | Toujours présents |
+| 13 | Modifier titre page /offre | Non fait | H1 identique homepage |
+| 14 | Nettoyer navigation | Non fait | 18 liens (empiré depuis juillet) |
+| 15 | Simplifier footer | Non fait | Non audité |
+| 16 | Retirer disclaimer non-résultat /offre | Non fait | Toujours en production |
+| 17 | Ajouter Angers dans scarcity bar | Non fait | Eric Verneau affiché, Angers non listé |
+
+**Score : 0/17 après 3 semaines.**
+Une progression partielle sur la FAQ (transférer de /offre vers la homepage reste à faire).
 
 ---
 
-## DÉCISIONS REQUISES AVANT IMPLÉMENTATION (ordre de priorité)
+## NOTE ARCHITECTURALE
 
-Ces décisions doivent être tranchées par Olivier Colas. Sans elles, aucun développeur ne peut
-implémenter correctement.
+Le site est en **Astro**. L'architecture (Layout → pages → composants) est saine.
+Aucune refonte de structure n'est nécessaire. Toutes les modifications ci-dessus
+sont des substitutions de texte et ajouts de composants — elles peuvent être faites
+indépendamment les unes des autres, dans l'ordre indiqué ci-dessus.
 
-**Décision 1 — PRICING (bloquant tout le reste)**
-- Brief : 97€/mois + 497€ setup / 897€/an
-- Live actuel : 197€/mois + 997€ setup / 397€/mois + 1 497€ setup
-- Question : La montée en gamme est-elle intentionnelle ? Si oui, l'ensemble du positionnement change.
-
-**Décision 2 — PROGRAMME FONDATEUR**
-- Brief : fermé, 47€/mois à vie, places épuisées
-- Live actuel : ouvert, 197€/mois, 10 places max
-- Question : Quel est le statut réel ?
-
-**Décision 3 — TRIAL GRATUIT**
-- Un essai gratuit et une exclusivité territoriale sont des messages contradictoires.
-- Choisir : SaaS avec trial, ou système d'acquisition premium sans trial.
-
-**Décision 4 — "VILLE" ou "ZONE"**
-- "1 ville = 1 conseiller" : précis, scarcité immédiate, vérifiable
-- "Zone 50 km" / "territoire" flou : géographique vague, urgence faible
-- Recommandation : "1 ville = 1 conseiller"
+Mobile-first : vérifier que la barre de scarcité, le H1, et le CTA hero sont visibles
+sans scroll sur un écran 375px (iPhone SE). C'est le premier point de vérification
+après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-07-31*
-*0/15 actions de l'audit initial exécutées après 15 jours. 2 nouveaux problèmes détectés. 17 actions totales en attente.*
+*Audit mis à jour le 2026-08-01*
+*4ème session. 0/17 actions exécutées en 3 semaines. Plan d'exécution en 15 étapes ordonné ci-dessus.*
