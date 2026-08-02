@@ -1,15 +1,28 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-01 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-02 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
 
 ---
 
-## SITUATION AU 2026-08-01 (4ème audit)
+## SITUATION AU 2026-08-02 (5ème audit)
 
-**0/17 actions exécutées. 3 semaines de dérive.**
+**0/17 actions exécutées. 3,5 semaines de dérive.**
 
-Deux légères évolutions depuis le 31/07 :
-- Une section FAQ apparaît sur `/offre` (bonne direction, mais absente de la homepage)
-- La mention "jamais un rayon de 50 km" est ajoutée dans /offre (correction partielle de l'ambiguïté "zone")
+Aucun changement depuis le 01/08. Nouvelle anomalie détectée sur le pricing.
+
+### Nouvelles observations au 02/08
+
+**Pricing — régression critique**
+Le site ne montre plus aucun prix réel sur la homepage ni sur /offre.
+L'offre affichée est désormais : "0 € pendant 7 jours, puis 1 € le 1er mois" — sans aucun tarif d'abonnement visible.
+Les formules réelles (27€ / 97€ / 897€) sont absentes de toutes les pages accessibles.
+C'est une régression par rapport à l'état du 01/08 où des prix (même incorrects) étaient au moins visibles.
+
+**CTA principal — variante identique**
+Texte live : "Tester 7 jours gratuits, puis 1 €" (légère variation de formulation, même problème)
+
+**Angers confirmé sur /realisations**
+Eric Verneau (Angers) est bien affiché sur la page réalisations.
+Angers devra figurer dans la scarcity bar quand elle sera créée (action 14, déjà documentée).
 
 Tout le reste : inchangé. Le site continue de diverger du brief fourni.
 
@@ -21,7 +34,7 @@ Tout le reste : inchangé. Le site continue de diverger du brief fourni.
 
 | Ref | Problème | Observation au 01/08 |
 |-----|----------|----------------------|
-| CR1 | **Pricing 2-4x supérieur au brief** | Live : 197€/mois + 997€ setup. Brief : 97€/mois + 497€ setup. Le delta détruit la conversion sur un marché de conseillers indépendants à revenus variables. |
+| CR1 | **Pricing absent du site** | Live au 02/08 : "0€ / 7 jours puis 1€" uniquement. Aucun tarif réel visible. Brief : 27€/97€/897€. Le visiteur ne peut pas acheter sans voir de prix — blocage total de conversion. |
 | CR2 | **Essai gratuit 7 jours en CTA principal** | "Tester gratuitement pendant 7 jours" = premier bouton visible. Annule l'exclusivité territoriale comme argument d'achat. Contradiction totale avec le positionnement premium. |
 | CR3 | **5 CTAs sans hiérarchie** | "Tester gratuitement" · "Mon territoire est-il encore libre ?" · "Devenir partenaire fondateur" · "Vérifier la disponibilité" · "Vérifier si ma zone est disponible" → le visiteur ne sait pas quoi faire. |
 | CR4 | **H1 centré sur la marque, pas le client** | "Écosystème Immo n'est pas un simple logiciel…" — commence par le nom de marque, posture défensive, aucune promesse client. |
@@ -266,7 +279,7 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 | # | Action | Statut au 01/08 | Notes |
 |---|--------|-----------------|-------|
-| 1 | Corriger le pricing | Non fait | 4ème version incohérente avec le brief |
+| 1 | Corriger le pricing | Non fait | 5ème version : aucun prix réel visible. Régression vs 01/08. |
 | 2 | Barre scarcité villes fermées | Non fait | Toujours absente |
 | 3 | Badges "Territoire complet" réalisations | Non fait | 6 clients sans statut |
 | 4 | Réécrire H1 | Non fait | Même H1 faible depuis le 31/07 |
@@ -284,8 +297,9 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 | 16 | Retirer disclaimer non-résultat /offre | Non fait | Toujours en production |
 | 17 | Ajouter Angers dans scarcity bar | Non fait | Eric Verneau affiché, Angers non listé |
 
-**Score : 0/17 après 3 semaines.**
-Une progression partielle sur la FAQ (transférer de /offre vers la homepage reste à faire).
+**Score : 0/17 après 3,5 semaines.**
+Régression sur CR1 : le pricing a disparu du site (ni correct ni incorrect — absent).
+Une progression partielle sur la FAQ reste la seule évolution depuis le 16/07.
 
 ---
 
@@ -302,5 +316,5 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-01*
-*4ème session. 0/17 actions exécutées en 3 semaines. Plan d'exécution en 15 étapes ordonné ci-dessus.*
+*Audit mis à jour le 2026-08-02*
+*5ème session. 0/17 actions exécutées en 3,5 semaines. Régression sur CR1 (pricing disparu). Plan d'exécution en 15 étapes inchangé — toujours exécutable immédiatement.*
