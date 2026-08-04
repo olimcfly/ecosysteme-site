@@ -1,30 +1,74 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-02 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-04 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
 
 ---
 
-## SITUATION AU 2026-08-02 (5ème audit)
+## SITUATION AU 2026-08-04 (6ème audit)
 
-**0/17 actions exécutées. 3,5 semaines de dérive.**
+**ALERTE DÉPLOIEMENT — Code CRO corrigé en branche GitHub, non déployé en production.**
 
-Aucun changement depuis le 01/08. Nouvelle anomalie détectée sur le pricing.
+Le blocage n'est plus de l'ordre du développement : les principales corrections existent dans la branche
+`codex/audit-et-optimisation-du-site-pour-conversion`. Le site live tourne encore sur l'ancienne version.
 
-### Nouvelles observations au 02/08
+### CORRECTION CRITIQUE — Le framework n'est pas Astro
 
-**Pricing — régression critique**
-Le site ne montre plus aucun prix réel sur la homepage ni sur /offre.
-L'offre affichée est désormais : "0 € pendant 7 jours, puis 1 € le 1er mois" — sans aucun tarif d'abonnement visible.
-Les formules réelles (27€ / 97€ / 897€) sont absentes de toutes les pages accessibles.
-C'est une régression par rapport à l'état du 01/08 où des prix (même incorrects) étaient au moins visibles.
+**Le site est en PHP (pas Astro)**. Les fichiers sont :
+- `index.php` — Homepage
+- `front/pages/tarifs.php` — Page tarifs/fondateur
+- `front/pages/verifier-ma-ville.php` — Page vérification ville
+- `includes/header.php` — Navigation + meta
+- `includes/footer.php` — Footer
+- `assets/css/style.css` — Styles
 
-**CTA principal — variante identique**
-Texte live : "Tester 7 jours gratuits, puis 1 €" (légère variation de formulation, même problème)
+Toutes les références à `src/components/*.astro` et `src/pages/*.astro` dans ce document
+sont à lire comme les fichiers PHP correspondants ci-dessus.
 
-**Angers confirmé sur /realisations**
-Eric Verneau (Angers) est bien affiché sur la page réalisations.
-Angers devra figurer dans la scarcity bar quand elle sera créée (action 14, déjà documentée).
+---
 
-Tout le reste : inchangé. Le site continue de diverger du brief fourni.
+### ÉTAT LIVE vs BRANCHE au 04/08/2026
+
+| Élément | Site live (ecosystemeimmo.fr) | Branche codex/audit-et-optimisation |
+|---------|-------------------------------|--------------------------------------|
+| H1 | "Écosystème Immo n'est pas un simple logiciel..." | "Devenez le conseiller référent de votre ville..." |
+| CTA principal | "Tester 7 jours gratuitement" | "Vérifier si ma ville est disponible" |
+| Pricing homepage | Aucun prix réel visible | 27€ / 97€ / 897€ présents |
+| FAQ homepage | Absente | 10 questions présentes |
+| Section "système en action" | Absente | Présente (7 étapes) |
+| Comparatif positionnement | Absent | Présent |
+| Villes fermées | Non listées de façon visible | Box rouge présente |
+| Scarcity bar sticky | Absente | Absente (non corrigée) |
+| Programme Fondateur | "OFFRE LIMITÉE, 10 conseillers" | "4 places encore disponibles" (toujours ouvert) |
+| Disclaimer non-résultat | Présent sur /offre | À vérifier |
+
+**Conclusion : le développement a été fait. Le déploiement n'a pas eu lieu.**
+
+### Nouveaux problèmes détectés dans la branche (non corrigés)
+
+**PF1 — Programme Fondateur toujours ouvert dans la branche**
+`front/pages/tarifs.php` affiche : "Rejoignez le Programme Fondateurs" + "4 places encore disponibles"
+Brief : fermé, 5 conseillers à 47€/mois à vie. La page doit indiquer "Places épuisées".
+
+**PF2 — H1 de la branche encore perfectible**
+"Devenez le conseiller référent de votre ville..." est meilleur que l'original mais toujours orienté aspiration.
+Recommandation conservée : "Votre ville a une seule place disponible."
+
+**PF3 — Barre scarcité sticky absente de la branche**
+La branche liste les villes dans un bloc rouge dans la section exclusivité, mais pas en sticky bar.
+La barre de scarcité persistante (top: 0, z-index: 100) n'existe dans aucune version.
+
+**PF4 — Navigation de la branche encore trop chargée**
+Branche : Accueil | Plateforme | Méthode | Modules | IA | Ressources | Villes = 7 liens + 2 CTA
+Cible : 5 liens max + 1 CTA "Vérifier ma ville"
+
+**PF5 — Badges "TERRITOIRE COMPLET" absents**
+La section "Conseillers déjà en place" montre un badge vert "Déployé" — pas de badge rouge
+"TERRITOIRE COMPLET" qui crée l'urgence et la preuve d'exclusivité.
+
+---
+
+## PLAN D'ACTION IMMÉDIAT (ordre strict)
+
+---
 
 ---
 
@@ -275,40 +319,58 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ---
 
-## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
+## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ (04/08/2026)
 
-| # | Action | Statut au 01/08 | Notes |
-|---|--------|-----------------|-------|
-| 1 | Corriger le pricing | Non fait | 5ème version : aucun prix réel visible. Régression vs 01/08. |
-| 2 | Barre scarcité villes fermées | Non fait | Toujours absente |
-| 3 | Badges "Territoire complet" réalisations | Non fait | 6 clients sans statut |
-| 4 | Réécrire H1 | Non fait | Même H1 faible depuis le 31/07 |
-| 5 | Unifier CTA principal | Non fait | 5 CTAs actifs, trial en premier |
-| 6 | Ajouter IA/automatisations features | Non fait | Mentionné mais non mis en avant |
-| 7 | Simplifier CTAs | Non fait | Empiré au fil des semaines |
-| 8 | Case studies avec résultats | Non fait | Nom + ville uniquement |
-| 9 | Section "Comment ça marche" | Non fait | Absente homepage |
-| 10 | FAQ homepage | Non fait | Présente sur /offre uniquement (progression partielle) |
-| 11 | Programme Fondateur — statut cohérent | Non fait | Brief : fermé 47€. Live : ouvert 197€. |
-| 12 | Retirer emojis | Non fait | Toujours présents |
-| 13 | Modifier titre page /offre | Non fait | H1 identique homepage |
-| 14 | Nettoyer navigation | Non fait | 18 liens (empiré depuis juillet) |
-| 15 | Simplifier footer | Non fait | Non audité |
-| 16 | Retirer disclaimer non-résultat /offre | Non fait | Toujours en production |
-| 17 | Ajouter Angers dans scarcity bar | Non fait | Eric Verneau affiché, Angers non listé |
+**LECTURE DU TABLEAU** : deux colonnes — état sur le site live, état dans la branche GitHub non déployée.
 
-**Score : 0/17 après 3,5 semaines.**
-Régression sur CR1 : le pricing a disparu du site (ni correct ni incorrect — absent).
-Une progression partielle sur la FAQ reste la seule évolution depuis le 16/07.
+| # | Action | Live au 04/08 | Branche codex/audit-et-optimisation | Priorité |
+|---|--------|---------------|--------------------------------------|----------|
+| 1 | Corriger le pricing | ABSENT — aucun prix réel | FAIT — 27€/97€/897€ présents | P0 deploy |
+| 2 | Barre scarcité villes fermées | Absente | Absente — block rouge statique seulement | À faire |
+| 3 | Badges "Territoire complet" réalisations | Absents | "Déployé" vert — pas "TERRITOIRE COMPLET" rouge | À faire |
+| 4 | Réécrire H1 | Inchangé ("logiciel") | Partiellement — "Devenez le conseiller référent" | Améliorer |
+| 5 | Unifier CTA principal | "Tester gratuitement" | "Vérifier si ma ville est disponible" | P0 deploy |
+| 6 | Section "Comment ça marche" | Absente | Présente (7 étapes "système en action") | P0 deploy |
+| 7 | FAQ homepage | Absente | 10 questions présentes | P0 deploy |
+| 8 | Programme Fondateur — statut cohérent | "Ouvert" (prix variable) | "4 places encore disponibles" — TOUJOURS OUVERT | CRITIQUE |
+| 9 | Simplifier CTAs | 5 CTAs actifs | 2 CTAs clairs | P0 deploy |
+| 10 | Retirer disclaimer non-résultat /offre | Présent | Non vérifié | À vérifier |
+| 11 | Barre sticky scarcité | Absente | Absente | À faire |
+| 12 | Retirer emojis sections | Présents partout | Partiellement retirés | À compléter |
+| 13 | Navigation simplifiée | 18+ liens | 7 liens (Plateforme, Méthode, Modules, IA...) | Améliorer |
+| 14 | Simplifier footer | Non audité | Non audité | À faire |
+| 15 | H1 page /offre différencié | Identique homepage | Non vérifié | À vérifier |
+| 16 | Angers dans scarcity bar | Absent | Absent | À faire |
+| 17 | Comparatif positionnement | Absent | FAIT — tableau présent | P0 deploy |
+
+**Score site live : 0/17**
+**Score branche : ~7/17 implémentés, non déployés**
+
+**Blocage numéro 1 : déploiement de la branche `codex/audit-et-optimisation-du-site-pour-conversion`.**
+Avant de continuer à développer, déployer ce qui existe.
+
+**Blocage numéro 2 après déploiement :**
+- `front/pages/tarifs.php` — Programme Fondateur à fermer explicitement
+- `includes/header.php` — Sticky scarcity bar à ajouter
+- `index.php` — Badges "TERRITOIRE COMPLET" rouges dans la section preuves
 
 ---
 
-## NOTE ARCHITECTURALE
+## NOTE ARCHITECTURALE (CORRIGÉE AU 04/08/2026)
 
-Le site est en **Astro**. L'architecture (Layout → pages → composants) est saine.
-Aucune refonte de structure n'est nécessaire. Toutes les modifications ci-dessus
-sont des substitutions de texte et ajouts de composants — elles peuvent être faites
-indépendamment les unes des autres, dans l'ordre indiqué ci-dessus.
+**Le site est en PHP, pas Astro.** Structure réelle :
+```
+index.php                          → Homepage
+includes/header.php                → Navigation, meta, styles nav
+includes/footer.php                → Footer
+front/pages/tarifs.php             → Page tarifs / Programme Fondateur
+front/pages/verifier-ma-ville.php  → Page vérification ville (CTA principal)
+front/pages/temoignages.php        → Réalisations / témoignages
+assets/css/style.css               → Styles globaux
+```
+
+Aucune refonte de structure n'est nécessaire. Les modifications sont des substitutions
+de texte et ajouts de blocs HTML dans les fichiers PHP correspondants.
 
 Mobile-first : vérifier que la barre de scarcité, le H1, et le CTA hero sont visibles
 sans scroll sur un écran 375px (iPhone SE). C'est le premier point de vérification
@@ -316,5 +378,5 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-02*
-*5ème session. 0/17 actions exécutées en 3,5 semaines. Régression sur CR1 (pricing disparu). Plan d'exécution en 15 étapes inchangé — toujours exécutable immédiatement.*
+*Audit mis à jour le 2026-08-04*
+*6ème session. Découverte clé : ~7/17 corrections existent dans la branche GitHub mais ne sont PAS déployées. Le site live tourne encore sur l'ancienne version. Priorité absolue : déploiement de la branche `codex/audit-et-optimisation-du-site-pour-conversion`, puis fermeture du Programme Fondateur et ajout de la sticky scarcity bar.*
