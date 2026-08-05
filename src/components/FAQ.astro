@@ -1,0 +1,122 @@
+---
+const faqs = [
+  {
+    question: 'Est-ce que je dois gérer le site moi-même ?',
+    answer:
+      'Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business Profile. Vous recevez les demandes, on gère le système.',
+  },
+  {
+    question: 'En combien de temps je vois des résultats ?',
+    answer:
+      'Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours. Le référencement local se renforce sur 3 à 6 mois. Le système travaille en continu, pas ponctuellement.',
+  },
+  {
+    question: 'Et si je change de réseau ou de secteur ?',
+    answer:
+      'Le domaine, le site et toutes vos données vous appartiennent. Vous pouvez continuer à utiliser le système indépendamment de votre réseau.',
+  },
+];
+---
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">FAQ</p>
+      <h2>Questions fréquentes</h2>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map(faq => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>{faq.question}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="icon-h" d="M3 9h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                <path class="icon-v" d="M9 3v12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.375rem 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    list-style: none;
+    user-select: none;
+    transition: color var(--transition);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::marker {
+    content: '';
+  }
+
+  .faq-question:hover {
+    color: var(--accent);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform 0.2s ease, color var(--transition);
+    display: flex;
+  }
+
+  .faq-question:hover .faq-icon {
+    color: var(--accent);
+  }
+
+  .icon-v {
+    transition: opacity 0.2s ease;
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding-bottom: 1.375rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+</style>

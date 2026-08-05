@@ -1,0 +1,205 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="footer-logo-mark">EI</span>
+          <span class="footer-logo-text">Écosystème Immo</span>
+        </div>
+        <p class="footer-tagline">
+          Système d'acquisition local pour conseillers immobiliers indépendants.
+        </p>
+        <div class="footer-contact">
+          <a href="tel:+33785611700">07 85 61 17 00</a>
+          <a href="mailto:contact@ecosystemeimmo.fr">contact@ecosystemeimmo.fr</a>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navigation pied de page">
+        <div class="footer-nav-group">
+          <p class="footer-nav-label">Découvrir</p>
+          <a href="/offre">Offres</a>
+          <a href="/realisations">Réalisations</a>
+          <a href="/blog">Blog</a>
+          <a href="/#process">Comment ça marche</a>
+        </div>
+        <div class="footer-nav-group">
+          <p class="footer-nav-label">Contact</p>
+          <a href="mailto:contact@ecosystemeimmo.fr">Nous contacter</a>
+          <a href="#verifier">Vérifier ma ville</a>
+        </div>
+        <div class="footer-nav-group">
+          <p class="footer-nav-label">Légal</p>
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/cgu">CGU</a>
+          <a href="/confidentialite">Confidentialité</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {year} Écosystème Immo &mdash; OCDM Agency
+      </p>
+      <p class="footer-dev">
+        Olivier Colas
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-subtle);
+    border-top: 1px solid var(--border);
+    padding: 3.5rem 0 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .footer-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--dark);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 5px;
+  }
+
+  .footer-logo-text {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 280px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-contact a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-contact a:hover {
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  /* Nav */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-nav-group a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-nav-group a:hover {
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  /* Bottom */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy,
+  .footer-dev {
+    font-size: 0.8125rem;
+    color: var(--subtle);
+  }
+
+  @media (max-width: 768px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-tagline {
+      max-width: 100%;
+    }
+
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-nav {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.375rem;
+    }
+  }
+</style>

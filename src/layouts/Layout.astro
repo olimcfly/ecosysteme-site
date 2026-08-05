@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Écosystème Immo — Système d'acquisition local pour conseillers immobiliers indépendants",
+  description = "Votre ville a une seule place disponible. Site professionnel, SEO local, CRM et automatisations IA — exclusif à votre territoire.",
+  canonical = Astro.url.href,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <title>{title}</title>
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+
+  <!-- Barre de scarcité — sticky, visible en priorité mobile -->
+  <div id="scarcity-bar" role="banner" aria-label="Territoires fermés">
+    <span class="scarcity-text">
+      Territoires complets&nbsp;:
+      <strong>Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion · Angers</strong>
+    </span>
+    <span class="scarcity-divider" aria-hidden="true"> &mdash; </span>
+    <a href="#verifier" class="scarcity-link">Vérifiez votre ville &rarr;</a>
+  </div>
+
+  <slot />
+
+</body>
+</html>
+
+<style>
+  #scarcity-bar {
+    background: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 10px 1.25rem;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  #scarcity-bar strong {
+    color: #f1f5f9;
+    font-weight: 600;
+  }
+
+  .scarcity-link {
+    color: #e2e8f0;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 150ms ease;
+    white-space: nowrap;
+  }
+
+  .scarcity-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    .scarcity-divider {
+      display: none;
+    }
+    #scarcity-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 1rem;
+    }
+  }
+</style>

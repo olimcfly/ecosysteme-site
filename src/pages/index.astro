@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Features from '../components/Features.astro';
+import Pricing from '../components/Pricing.astro';
+import Realisations from '../components/Realisations.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Écosystème Immo — Votre ville a une seule place disponible"
+  description="Système d'acquisition local pour conseillers immobiliers indépendants. Site, SEO local, CRM et automatisations IA — exclusif à votre territoire."
+>
+  <Header />
+  <main>
+    <Hero />
+    <HowItWorks />
+    <Features />
+    <Pricing />
+    <Realisations limit={3} />
+    <FAQ />
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>

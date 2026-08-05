@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Demande envoyée — Écosystème Immo"
+  description="Votre demande de vérification de disponibilité a bien été reçue. Réponse sous 24h."
+>
+  <Header />
+  <main>
+    <section class="confirmation-section section">
+      <div class="container">
+        <div class="confirmation-inner">
+          <div class="confirmation-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="#059669" stroke-width="2"/>
+              <path d="M15 24l7 7 11-14" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1>Demande bien reçue.</h1>
+          <p>
+            Votre demande de vérification de disponibilité a été envoyée à Olivier Colas.
+            Vous recevrez une réponse sous 24h avec la disponibilité de votre ville
+            et un brief personnalisé si elle est libre.
+          </p>
+          <div class="confirmation-actions">
+            <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+            <a href="/realisations" class="btn btn-outline">Voir les réalisations</a>
+          </div>
+          <p class="confirmation-contact">
+            Une question urgente ?
+            <a href="tel:+33785611700">07 85 61 17 00</a>
+            ou
+            <a href="mailto:contact@ecosystemeimmo.fr">contact@ecosystemeimmo.fr</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .confirmation-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background: var(--bg-subtle);
+  }
+
+  .confirmation-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto;
+    gap: 1.25rem;
+  }
+
+  .confirmation-icon {
+    margin-bottom: 0.5rem;
+  }
+
+  .confirmation-inner h1 {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+  }
+
+  .confirmation-inner > p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .confirmation-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .confirmation-contact {
+    font-size: 0.875rem;
+    color: var(--subtle);
+  }
+
+  .confirmation-contact a {
+    color: var(--accent);
+    font-weight: 500;
+  }
+</style>

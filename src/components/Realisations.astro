@@ -1,0 +1,162 @@
+---
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const territories = [
+  {
+    city: 'Bordeaux Métropole',
+    advisor: 'Eduardo De Sul',
+    description:
+      "Livré en 18 jours : site local, 6 pages secteurs, estimateur intégré, 3 articles SEO de démarrage, séquence email vendeurs. Eduardo dispose d'une présence propriétaire sur Bordeaux — indépendante de son réseau.",
+  },
+  {
+    city: 'Aix-en-Provence',
+    advisor: 'Pascal Hamm',
+    description:
+      'Site brandé, pages services, estimateur, structure SEO locale. Fondation digitale posée sur un marché à forte concurrence.',
+  },
+  {
+    city: 'Nandy / Sénart',
+    advisor: 'Fatima Rabia',
+    description:
+      "Site local humanisé, formulaire vendeur, pages secteurs. Présence propriétaire sur son territoire d'origine.",
+  },
+  {
+    city: 'Lannion / Trégor',
+    advisor: 'Stéphanie Hulen',
+    description:
+      'Site local, pages géographiques, contenus et formulaires. Présence digitale ancrée dans l\'identité bretonne de son territoire.',
+  },
+  {
+    city: 'Nantes',
+    advisor: 'Brice Chupin',
+    description:
+      'Positionnement "coach immobilier" rendu visible localement. Présence différenciante sur Nantes.',
+  },
+];
+
+const displayed = limit ? territories.slice(0, limit) : territories;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">Réalisations</p>
+      <h2>Les territoires déjà installés</h2>
+      <p>Cinq bases locales construites pour des conseillers indépendants. Ces territoires sont désormais fermés.</p>
+    </div>
+
+    <div class="territories-grid">
+      {displayed.map(t => (
+        <article class="territory-card">
+          <header class="territory-header">
+            <span class="badge badge-red">Territoire complet</span>
+          </header>
+          <div class="territory-body">
+            <h3 class="territory-city">{t.city}</h3>
+            <p class="territory-advisor">{t.advisor}</p>
+            <p class="territory-desc">{t.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="territories-cta">
+      <p class="territories-cta-text">
+        Ces territoires sont fermés. Le vôtre est peut-être encore disponible.
+      </p>
+      <a href="#verifier" class="btn btn-primary btn-lg">
+        Vérifier ma ville
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .territories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .territory-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+
+  .territory-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  .territory-header {
+    padding: 1rem 1.5rem 0;
+  }
+
+  .territory-body {
+    padding: 0.75rem 1.5rem 1.5rem;
+  }
+
+  .territory-city {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .territory-advisor {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 0.875rem;
+  }
+
+  .territory-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .territories-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .territories-cta-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .territories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .territories-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .territory-card {
+      border-radius: var(--radius);
+    }
+  }
+</style>
