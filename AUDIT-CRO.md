@@ -1,5 +1,64 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-02 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-06 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-08-06 (6ème audit)
+
+**5/17 actions exécutées (partiellement). Premiers progrès réels depuis 4 semaines.**
+
+Des changements significatifs ont eu lieu entre le 02/08 et le 06/08.
+
+### Observations au 06/08
+
+**Navigation — RÉSOLUE**
+Navigation réduite à 5 liens : Accueil · La méthode · Villes disponibles · Blog · Vérifier ma ville.
+Plus de "Diagnostic", "Méthode FOTO", "Financement", "Guides gratuits", etc. visibles en nav principale.
+(Ils restent dans le footer — à simplifier en phase 3.)
+
+**H1 — AMÉLIORÉ (partiel)**
+Texte live : "Un seul conseiller par bassin de vie"
+Sous-titre : "Les vendeurs de votre ville cherchent sur Google. Aujourd'hui, ils trouvent quelqu'un d'autre."
+Progrès réel vs l'ancien H1 centré sur la marque. Pas exactement le brief mais client-centré et axé exclusivité.
+
+**CTA principal — AMÉLIORÉ (partiel)**
+CTA dominant désormais : "Vérifier si ma ville est encore libre →"
+Cohérent sur toute la homepage. L'essai gratuit 7 jours a disparu.
+CTA secondaire : "Voir la méthode en détail →" — acceptable.
+
+**Section "Comment ça marche" — PRÉSENTE (partielle)**
+Section visible : "Comment ça marche — Trois leviers, trois vitesses, une seule chaîne."
+Contenu : 3 vitesses (3-6 mois articles / quelques semaines GBP / immédiat annonces).
+Différent du brief (3 étapes process) mais la section existe.
+
+**Emojis — RÉSOLUS**
+Aucun emoji visible sur la homepage. Action 11 complète.
+
+**Exclusivité dans le hero — PRÉSENTE**
+"Un seul conseiller par secteur" et "Un seul conseiller par bassin de vie" visibles dans le hero.
+FO1 (exclusivité en bas de page) partiellement résolu.
+
+**Pricing — TOUJOURS ABSENT (CRITIQUE)**
+Aucun prix visible sur la homepage ni sur /offre.
+La page /offre affiche H1 : "Ce que nous installons, dans l'ordre où ça produit des résultats."
+Aucune formule, aucun montant en euros. Blocage total de conversion — 3e semaine consécutive.
+
+**Disclaimer non-résultat — TOUJOURS PRÉSENT (CRITIQUE)**
+/offre : "nous ne promettons ni délai ni volume de mandats" — inchangé.
+
+**Barre de scarcité — TOUJOURS ABSENTE (CRITIQUE)**
+Aucune indication des villes fermées. Levier de conversion #1 toujours absent.
+
+**Badges "Territoire complet" — TOUJOURS ABSENTS**
+/realisations : 6 territoires listés dont Angers (Eric Verneau), mais aucun badge rouge.
+Progression : Angers désormais listé (résout partiellement l'action 14/17).
+
+**Programme Fondateur — STATUT AMBIGU**
+Redirige vers un sous-domaine externe : fondateurs.ecosystemeimmo.fr
+Pas de prix affiché ni de statut "places épuisées" sur le site principal.
+
+**FAQ homepage — TOUJOURS ABSENTE**
+Pas de FAQ visible sur la homepage.
 
 ---
 
@@ -277,29 +336,30 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 01/08 | Notes |
-|---|--------|-----------------|-------|
-| 1 | Corriger le pricing | Non fait | 5ème version : aucun prix réel visible. Régression vs 01/08. |
-| 2 | Barre scarcité villes fermées | Non fait | Toujours absente |
-| 3 | Badges "Territoire complet" réalisations | Non fait | 6 clients sans statut |
-| 4 | Réécrire H1 | Non fait | Même H1 faible depuis le 31/07 |
-| 5 | Unifier CTA principal | Non fait | 5 CTAs actifs, trial en premier |
-| 6 | Ajouter IA/automatisations features | Non fait | Mentionné mais non mis en avant |
-| 7 | Simplifier CTAs | Non fait | Empiré au fil des semaines |
-| 8 | Case studies avec résultats | Non fait | Nom + ville uniquement |
-| 9 | Section "Comment ça marche" | Non fait | Absente homepage |
-| 10 | FAQ homepage | Non fait | Présente sur /offre uniquement (progression partielle) |
-| 11 | Programme Fondateur — statut cohérent | Non fait | Brief : fermé 47€. Live : ouvert 197€. |
-| 12 | Retirer emojis | Non fait | Toujours présents |
-| 13 | Modifier titre page /offre | Non fait | H1 identique homepage |
-| 14 | Nettoyer navigation | Non fait | 18 liens (empiré depuis juillet) |
-| 15 | Simplifier footer | Non fait | Non audité |
-| 16 | Retirer disclaimer non-résultat /offre | Non fait | Toujours en production |
-| 17 | Ajouter Angers dans scarcity bar | Non fait | Eric Verneau affiché, Angers non listé |
+| # | Action | Statut au 06/08 | Statut au 02/08 | Notes |
+|---|--------|-----------------|-----------------|-------|
+| 1 | Corriger le pricing | **NON FAIT** | Non fait | 6ème version : aucun prix réel visible. Blocage #1. |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — levier de conversion absent |
+| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 6 clients listés, 0 badge |
+| 4 | Réécrire H1 | **PARTIEL** | Non fait | Nouveau H1 client-centré : "Un seul conseiller par bassin de vie" |
+| 5 | Unifier CTA principal | **PARTIEL** | Non fait | CTA dominant unifié "Vérifier ma ville" — essai gratuit supprimé |
+| 6 | Ajouter IA/automatisations features | **NON FAIT** | Non fait | Non audité au 06/08 |
+| 7 | Simplifier CTAs | **PARTIEL** | Non fait | Mieux mais toujours plusieurs CTAs différents |
+| 8 | Case studies avec résultats | **NON FAIT** | Non fait | Pas de métriques, pas de livrables détaillés |
+| 9 | Section "Comment ça marche" | **PARTIEL** | Non fait | Section présente ("3 leviers, 3 vitesses") — différente du brief |
+| 10 | FAQ homepage | **NON FAIT** | Non fait | Absente de la homepage |
+| 11 | Programme Fondateur — statut cohérent | **INCERTAIN** | Non fait | Redirige vers fondateurs.ecosystemeimmo.fr — statut inconnu |
+| 12 | Retirer emojis | **FAIT** | Non fait | Aucun emoji visible sur homepage |
+| 13 | Modifier titre page /offre | **PARTIEL** | Non fait | Nouveau H1 /offre — différent brief mais différencié de la homepage |
+| 14 | Nettoyer navigation | **FAIT** | Non fait | 5 liens en nav principale |
+| 15 | Simplifier footer | **NON FAIT** | Non fait | Footer toujours chargé (4 colonnes, ~15 liens) |
+| 16 | Retirer disclaimer non-résultat /offre | **NON FAIT** | Non fait | "nous ne promettons ni délai..." toujours en prod |
+| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Angers dans /realisations, mais scarcity bar absente |
 
-**Score : 0/17 après 3,5 semaines.**
-Régression sur CR1 : le pricing a disparu du site (ni correct ni incorrect — absent).
-Une progression partielle sur la FAQ reste la seule évolution depuis le 16/07.
+**Score au 06/08 : ~5/17 (partiellement). Progression réelle depuis 4 semaines.**
+Actions complètes : emojis retirés (12), navigation simplifiée (14).
+Actions partielles : H1 (4), CTA (5/7), Comment ça marche (9), titre /offre (13).
+Blocages critiques inchangés : pricing absent (1), scarcité bar (2), disclaimer (16).
 
 ---
 
@@ -316,5 +376,7 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-02*
-*5ème session. 0/17 actions exécutées en 3,5 semaines. Régression sur CR1 (pricing disparu). Plan d'exécution en 15 étapes inchangé — toujours exécutable immédiatement.*
+*Audit mis à jour le 2026-08-06*
+*6ème session. ~5/17 actions (partiellement). Premiers progrès réels : navigation simplifiée, H1 amélioré, emojis retirés, CTA unifié.*
+*Blocages critiques persistants (semaine 4) : pricing absent, barre scarcité absente, disclaimer non-résultat présent.*
+*Priorité absolue : intégrer le pricing (CR1) — un visiteur ne peut pas convertir sans voir de prix.*
