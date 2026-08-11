@@ -1,5 +1,48 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-10 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-11 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-08-11 (9ème audit)
+
+**~5/17 actions (inchangé). 1 nouveauté. Blocages critiques semaine 7.**
+
+Des modifications mineures ont eu lieu entre le 10/08 et le 11/08.
+
+### Observations au 11/08
+
+**Homepage — 1 NOUVEAU CTA vidéo**
+- H1 : "Les vendeurs de votre ville cherchent sur Google. Aujourd'hui, ils trouvent quelqu'un d'autre." (inchangé)
+- Sous-titre : "Notre métier : faire que ce soit vous qu'ils trouvent." (inchangé)
+- CTA dominant : "Vérifier si ma ville est encore libre →" (inchangé)
+- **NOUVEAU CTA** : "Voir la vidéo (9 minutes)" — ajouté entre le CTA principal et "Voir la méthode en détail →"
+- Navigation : 5 liens — Accueil · La méthode · Villes disponibles · Blog · Vérifier ma ville (inchangé)
+- Aucun emoji visible (inchangé)
+- **Pas de prix · Pas de barre de scarcité** (inchangés — semaine 7 consécutive)
+
+Analyse du CTA vidéo : une vidéo de 9 minutes comme CTA secondaire peut qualifier les prospects mais risque de diluer le flux vers le CTA principal. À surveiller : est-ce un levier de confiance ou une fuite d'attention avant conversion ?
+
+**Page /offre — inchangée (régression double disclaimer confirmée)**
+- H1 : "Ce que nous installons, dans l'ordre où ça produit des résultats." (inchangé)
+- **Aucun prix affiché** (inchangé — blocage critique semaine 7)
+- **Double disclaimer toujours présent** : (1) "nous ne promettons ni délai ni volume de mandats" + (2) "Aucun volume de contacts n'est promis : il dépend du secteur, du budget et du marché." — régression confirmée semaine 2 consécutive
+- Aucune FAQ
+
+**Page /realisations — inchangée**
+- H1 : "Des conseillers indépendants, déjà accompagnés"
+- 6 clients : Eduardo De Sul (Bordeaux), Pascal Hamm (Aix), Stéphanie Hulen (Lannion), Brice Chupin (Nantes), Fatima Rabia (Nandy), Eric Verneau (Angers)
+- **Aucun badge "Territoire complet"** (inchangé)
+- CTAs nav secondaires encore visibles : "Diagnostic gratuit", "Simulation de financement", "Voir la démo" — pollution de navigation persistante
+
+### Score au 11/08 : ~5/17 (inchangé)
+
+1 nouveauté :
+- CTA "Voir la vidéo (9 minutes)" ajouté sur la homepage
+
+Les 3 blocages critiques persistent depuis 7 semaines :
+1. **CR1 — Pricing absent** : aucun prix sur homepage ni /offre (semaine 7)
+2. **CR6 — Scarcité bar absente** : Bordeaux · Nantes · Nandy · Aix · Lannion · Angers non signalés (semaine 7)
+3. **CR5 — Double disclaimer** : toujours présent sur /offre (2e semaine consécutive de régression)
 
 ---
 
@@ -416,15 +459,15 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 10/08 | Statut au 09/08 | Notes |
+| # | Action | Statut au 11/08 | Statut au 10/08 | Notes |
 |---|--------|-----------------|-----------------|-------|
-| 1 | Corriger le pricing | **NON FAIT** | Non fait | 8ème audit : aucun prix visible. Blocage critique semaine 6. |
-| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 6 |
+| 1 | Corriger le pricing | **NON FAIT** | Non fait | 9ème audit : aucun prix visible. Blocage critique semaine 7. |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 7 |
 | 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 6 clients listés, 0 badge |
-| 4 | Réécrire H1 | **AMÉLIORÉ** | Partiel | Nouveau H1 : "Les vendeurs de votre ville cherchent sur Google..." — centré douleur client |
-| 5 | Unifier CTA principal | **PARTIEL** | Partiel | "Vérifier si ma ville est encore libre →" dominant |
+| 4 | Réécrire H1 | **AMÉLIORÉ** | Amélioré | H1 centré douleur client — inchangé depuis 10/08 |
+| 5 | Unifier CTA principal | **PARTIEL** | Partiel | CTA dominant "Vérifier si ma ville est encore libre →" — nouveau CTA vidéo ajouté (dilution potentielle) |
 | 6 | Ajouter IA/automatisations features | **NON FAIT** | Non fait | Non confirmé visible |
-| 7 | Simplifier CTAs | **PARTIEL** | Partiel | Plusieurs CTAs encore présents |
+| 7 | Simplifier CTAs | **PARTIEL** | Partiel | 3 CTAs homepage : principal, vidéo 9min, méthode |
 | 8 | Case studies avec résultats | **NON FAIT** | Non fait | Pas de métriques, pas de livrables |
 | 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Section présente ("3 leviers, 3 vitesses") — différente du brief |
 | 10 | FAQ homepage | **NON FAIT** | Non fait | Absente |
@@ -432,15 +475,15 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 | 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible |
 | 13 | Modifier titre page /offre | **PARTIEL** | Partiel | "Ce que nous installons..." — différencié de la homepage |
 | 14 | Nettoyer navigation | **FAIT** | Fait | 5 liens en nav principale |
-| 15 | Simplifier footer | **NON FAIT** | Non fait | Non vérifié au 10/08 |
-| 16 | Retirer disclaimer non-résultat /offre | **RÉGRESSION** | Non fait | Double disclaimer au 10/08 : disclaimer initial + "Aucun volume de contacts n'est promis" ajouté |
-| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Angers dans /realisations, scarcity bar absente |
+| 15 | Simplifier footer | **NON VÉRIFIÉ** | Non fait | Non vérifié |
+| 16 | Retirer disclaimer non-résultat /offre | **RÉGRESSION** | Régression | Double disclaimer confirmé au 11/08 — inchangé depuis 10/08 |
+| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Angers dans /realisations, scarcity bar toujours absente |
 
-**Score au 10/08 : ~5/17 (inchangé). 1 amélioration (H1). 1 régression (double disclaimer /offre).**
+**Score au 11/08 : ~5/17 (inchangé). Blocages critiques semaine 7.**
 Actions complètes : emojis retirés (12), navigation simplifiée (14).
 Actions améliorées : H1 (4) — plus client-centré.
 Actions partielles : CTA (5/7), Comment ça marche (9), titre /offre (13).
-Blocages critiques semaine 6 : pricing absent (1), scarcité bar (2), disclaimer doublé (16).
+Blocages critiques semaine 7 : pricing absent (1), scarcité bar absente (2), double disclaimer /offre (16).
 
 ---
 
@@ -457,9 +500,9 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-10*
-*8ème session. ~5/17 actions (partiellement). 1 amélioration, 1 régression vs 09/08.*
-*Amélioration : H1 homepage désormais centré sur la douleur vendeur.*
-*Régression critique : double disclaimer sur /offre — message de non-résultat répété deux fois.*
-*Blocages critiques persistants (semaine 6) : pricing absent (CR1), barre scarcité absente (CR6), disclaimer aggravé (CR5).*
-*Priorité absolue : (1) intégrer le pricing — 6 semaines sans prix visible, conversion impossible. (2) supprimer le double disclaimer /offre immédiatement — régression urgente à corriger.*
+*Audit mis à jour le 2026-08-11*
+*9ème session. ~5/17 actions (partiellement). 1 nouveauté mineure (CTA vidéo 9min), aucune amélioration des blocages critiques.*
+*Nouveauté : CTA "Voir la vidéo (9 minutes)" ajouté sur la homepage.*
+*Double disclaimer /offre : régression confirmée pour la 2e semaine consécutive.*
+*Blocages critiques persistants (semaine 7) : pricing absent (CR1), barre scarcité absente (CR6), double disclaimer aggravé (CR5).*
+*Priorité absolue : (1) intégrer le pricing — 7 semaines sans prix visible, conversion impossible. (2) supprimer le double disclaimer /offre. (3) créer la barre de scarcité.*
