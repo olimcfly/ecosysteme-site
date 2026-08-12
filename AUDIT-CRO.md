@@ -1,5 +1,87 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-11 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-08-12 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-08-12 (10ème audit)
+
+**~4/17 actions. PIVOT STRATÉGIQUE MAJEUR. 3 nouvelles régressions critiques.**
+
+Le site a subi une refonte complète de positionnement entre le 11/08 et le 12/08.
+L'angle "exclusivité territoriale / 1 ville = 1 conseiller" a été abandonné au profit
+d'une nouvelle architecture "méthode PACTE". C'est le changement le plus significatif
+depuis l'ouverture de cet audit.
+
+### Observations au 12/08
+
+**Homepage — PIVOT COMPLET**
+- H1 : "Transformez votre visibilité locale en rendez-vous avec des propriétaires vendeurs"
+- Sous-titre : "De la visibilité au mandat, un seul système d'acquisition locale."
+- **CTA principal : "Recevoir l'audit de mon secteur"** (abandon du CTA "Vérifier si ma ville est disponible")
+- CTA secondaire : "Voir le système en démonstration"
+- Navigation : Accueil · La méthode · Tarifs · Audit de secteur · Contact · Demander mon audit
+- **Aucun prix visible sur la homepage** (inchangé)
+- **Pas de barre de scarcité** (inchangé — semaine 8)
+- Aucun emoji visible (maintenu)
+- Nouvelle architecture en sections : "méthode PACTE" (P·A·C·T·E) + 9 étapes "parcours" + 5 sections de démonstration
+- **10+ CTAs** : "Voir l'étape P →" · "Voir l'étape A →" · "Voir l'étape C →" · "Voir l'étape T →" · "Voir l'étape E →" · "Découvrir la méthode PACTE" · "Voir la démonstration complète" · "Découvrir la plateforme" · "Voir les déploiements et résultats" · "Comparer les formules"
+
+Analyse du pivot : le site bascule d'un pitch B2B scarcité/exclusivité vers un pitch "méthodologie d'expert". La méthode PACTE (Propriétaires · Acquisition · Capture · Traitement · Évaluation) ajoute de la complexité là où le brief demandait de la clarté. Le CTA "audit de secteur" remplace la vérification de ville disponible — l'urgence territoriale est évaporée.
+
+**Page /tarifs (ex-/offre) — PRIX ENFIN VISIBLES, MAIS PROBLÈMES MAJEURS**
+- H1 : "Une plateforme complète. Un tarif adapté à votre activité."
+- **Pricing enfin visible** (1ère fois en 8 semaines) :
+  - Offre Fondateur : 47 €/mois (pour les 50 premiers) — **TOUJOURS OUVERTE** (brief : fermée à 5)
+  - Solo : 97 €/mois
+  - Pro : 197 €/mois
+  - Agence : 997 €/mois + 1 997 € setup
+  - Secteur supplémentaire : 49 €/mois
+  - Done With You : 400 €/mois + 490 € setup
+  - Done For You : 1 400 €/mois + 990 € setup
+- **NOUVEAU DISCLAIMER CRITIQUE** : "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — tue le principal différenciateur du brief
+- Disclaimers persistants : "Aucun nombre de leads, rendez-vous ou mandats garanti" · "Aucune position Google ni délai de résultat ne sont garantis."
+- FAQ présente : 6 questions (progrès)
+- CTAs : "Demander mon audit de secteur" (×2) + "Demander votre audit"
+
+**Page /realisations — inchangée**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes."
+- 5 clients affichés : Brice Chupin (Nantes), Fatima Rabia (Nandy), Stéphanie Hulen (Lannion), Pascal Hamm (Aix-en-Provence), Eduardo De Sul (ville non précisée)
+- Eric Verneau (Angers) disparu de la page (régression)
+- **Aucun badge "Territoire complet"** (inchangé)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur →" · "Faire mesurer mon secteur"
+- Dernière carte : "Votre ville · À auditer" — cohérent avec le nouveau pivot, incohérent avec le brief
+
+### Score au 12/08 : ~4/17 (en baisse vs 5/17 au 11/08)
+
+Progrès :
+- Prix enfin visibles sur /tarifs (CR1 partiellement résolu — mais structure différente du brief)
+- FAQ présente sur /tarifs (FO7 partiellement résolu — absente de la homepage)
+- Aucun emoji (maintenu)
+
+Régressions majeures :
+- **RÉGRESSION STRATÉGIQUE** : abandon de l'exclusivité territoriale comme argument principal
+- **RÉGRESSION CR5** : nouveau disclaimer "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — contradictoire avec le positionnement
+- **RÉGRESSION CR3** : 10+ CTAs sur la homepage (record absolu)
+- **RÉGRESSION FO3** : Offre Fondateur ouverte pour 50 conseillers (brief : fermée à 5 fondateurs)
+- **RÉGRESSION** : Eric Verneau (Angers) disparu de /realisations
+- **RÉGRESSION H1** : nouveau H1 plus générique que le précédent ("Les vendeurs de votre ville cherchent sur Google...")
+
+Blocages critiques persistants :
+1. **CR6 — Barre de scarcité absente** (semaine 8 consécutive)
+2. **CR5 — Disclaimers renforcés** : 3 avertissements dont un qui contredit l'exclusivité
+3. **FO3 — Fondateur incohérent** : brief dit 5 fondateurs fermés, live dit 50 premiers ouverts
+4. **CR3 — Dilution CTA** : 10+ CTAs sans hiérarchie claire
+
+### Alerte stratégique
+
+Le pivot vers "méthode PACTE" est un changement d'architecture de persuasion complet.
+L'hypothèse testée : vendre une expertise méthodologique plutôt qu'une exclusivité territoriale.
+Risques identifiés :
+- La méthode PACTE crée de la complexité cognitive là où le brief voulait de la clarté radicale
+- L'abandon du CTA "Vérifier si ma ville est disponible" supprime le principal mécanisme de qualification et d'urgence
+- "Audit de secteur" comme CTA principal déplace l'entrée entonnoir vers une étape plus froide
+- Le disclaimer "Le secteur ne constitue pas automatiquement une exclusivité commerciale" contredit directement la valeur fondamentale vendue
+- 7 formules de pricing vs 4 dans le brief — risque de paralysie du choix
 
 ---
 
@@ -459,31 +541,31 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 11/08 | Statut au 10/08 | Notes |
+| # | Action | Statut au 12/08 | Statut au 11/08 | Notes |
 |---|--------|-----------------|-----------------|-------|
-| 1 | Corriger le pricing | **NON FAIT** | Non fait | 9ème audit : aucun prix visible. Blocage critique semaine 7. |
-| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 7 |
-| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 6 clients listés, 0 badge |
-| 4 | Réécrire H1 | **AMÉLIORÉ** | Amélioré | H1 centré douleur client — inchangé depuis 10/08 |
-| 5 | Unifier CTA principal | **PARTIEL** | Partiel | CTA dominant "Vérifier si ma ville est encore libre →" — nouveau CTA vidéo ajouté (dilution potentielle) |
-| 6 | Ajouter IA/automatisations features | **NON FAIT** | Non fait | Non confirmé visible |
-| 7 | Simplifier CTAs | **PARTIEL** | Partiel | 3 CTAs homepage : principal, vidéo 9min, méthode |
+| 1 | Corriger le pricing | **PARTIEL** | Non fait | Pricing visible sur /tarifs — 7 formules (vs 4 dans le brief), absent de la homepage |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 8 |
+| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 5 clients affichés (Angers disparu), 0 badge |
+| 4 | Réécrire H1 | **RÉGRESSION** | Amélioré | Nouveau H1 générique "Transformez votre visibilité..." — moins percutant qu'au 11/08 |
+| 5 | Unifier CTA principal | **RÉGRESSION** | Partiel | 10+ CTAs homepage — record absolu depuis l'ouverture de l'audit |
+| 6 | Ajouter IA/automatisations features | **NON CONFIRMÉ** | Non fait | Non confirmé visible |
+| 7 | Simplifier CTAs | **RÉGRESSION** | Partiel | 10+ CTAs homepage — pire état |
 | 8 | Case studies avec résultats | **NON FAIT** | Non fait | Pas de métriques, pas de livrables |
-| 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Section présente ("3 leviers, 3 vitesses") — différente du brief |
-| 10 | FAQ homepage | **NON FAIT** | Non fait | Absente |
-| 11 | Programme Fondateur — statut cohérent | **INCERTAIN** | Incertain | Sous-domaine externe — statut inconnu |
-| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible |
-| 13 | Modifier titre page /offre | **PARTIEL** | Partiel | "Ce que nous installons..." — différencié de la homepage |
-| 14 | Nettoyer navigation | **FAIT** | Fait | 5 liens en nav principale |
-| 15 | Simplifier footer | **NON VÉRIFIÉ** | Non fait | Non vérifié |
-| 16 | Retirer disclaimer non-résultat /offre | **RÉGRESSION** | Régression | Double disclaimer confirmé au 11/08 — inchangé depuis 10/08 |
-| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Angers dans /realisations, scarcity bar toujours absente |
+| 9 | Section "Comment ça marche" | **RÉGRESSION** | Partiel | Remplacée par méthode PACTE (5 étapes + 9 sous-étapes) — complexité accrue |
+| 10 | FAQ homepage | **NON FAIT** | Non fait | FAQ sur /tarifs uniquement — absente de la homepage |
+| 11 | Programme Fondateur — statut cohérent | **RÉGRESSION** | Incertain | Ouvert pour "50 premiers conseillers" à 47€ — brief : fermé à 5 fondateurs |
+| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu) |
+| 13 | Modifier titre page /offre | **FAIT** | Partiel | Page renommée /tarifs avec nouveau H1 différencié |
+| 14 | Nettoyer navigation | **PARTIEL** | Fait | Nav simplifiée mais différente du brief — "Tarifs" / "Audit de secteur" |
+| 15 | Simplifier footer | **NON VÉRIFIÉ** | Non vérifié | Non vérifié |
+| 16 | Retirer disclaimer non-résultat | **RÉGRESSION** | Régression | 3 disclaimers dont nouveau : "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — CRITIQUE |
+| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Scarcity bar absente + Angers retiré de /realisations |
 
-**Score au 11/08 : ~5/17 (inchangé). Blocages critiques semaine 7.**
-Actions complètes : emojis retirés (12), navigation simplifiée (14).
-Actions améliorées : H1 (4) — plus client-centré.
-Actions partielles : CTA (5/7), Comment ça marche (9), titre /offre (13).
-Blocages critiques semaine 7 : pricing absent (1), scarcité bar absente (2), double disclaimer /offre (16).
+**Score au 12/08 : ~4/17 (en baisse). Pivot stratégique majeur. 6 régressions.**
+Actions complètes : emojis retirés (12), titre /tarifs différencié (13).
+Actions partielles : pricing sur /tarifs (1), navigation (14).
+Régressions : H1 (4), CTAs (5/7/9), Fondateur ouvert (11), disclaimer exclusivité (16).
+Blocages critiques semaine 8 : barre scarcité (2), disclaimer anti-exclusivité (16), Fondateur incohérent (11), 10+ CTAs (5).
 
 ---
 
@@ -500,9 +582,9 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-11*
-*9ème session. ~5/17 actions (partiellement). 1 nouveauté mineure (CTA vidéo 9min), aucune amélioration des blocages critiques.*
-*Nouveauté : CTA "Voir la vidéo (9 minutes)" ajouté sur la homepage.*
-*Double disclaimer /offre : régression confirmée pour la 2e semaine consécutive.*
-*Blocages critiques persistants (semaine 7) : pricing absent (CR1), barre scarcité absente (CR6), double disclaimer aggravé (CR5).*
-*Priorité absolue : (1) intégrer le pricing — 7 semaines sans prix visible, conversion impossible. (2) supprimer le double disclaimer /offre. (3) créer la barre de scarcité.*
+*Audit mis à jour le 2026-08-12*
+*10ème session. ~4/17 actions (en baisse). Pivot stratégique majeur vers "méthode PACTE".*
+*Progrès : pricing enfin visible sur /tarifs, FAQ présente sur /tarifs, aucun emoji maintenu.*
+*Régressions majeures : H1 plus générique, 10+ CTAs, abandon de l'exclusivité territoriale, nouveau disclaimer anti-exclusivité, Fondateur ouvert pour 50 conseillers, Angers retiré des réalisations.*
+*Alerte stratégique : le positionnement "1 ville = 1 conseiller" est en train d'être abandonné. Décision à trancher : confirmer le pivot PACTE ou revenir au brief d'exclusivité territoriale.*
+*Priorité absolue : (1) supprimer le disclaimer "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — il contre-argue la valeur principale. (2) trancher le positionnement PACTE vs exclusivité. (3) réduire à 1 CTA principal. (4) barre de scarcité si retour au brief.*
