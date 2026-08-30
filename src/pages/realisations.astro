@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Realisations from '../components/Realisations.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Réalisations — Les territoires déjà installés — Écosystème Immo"
+  description="Cinq bases locales construites pour des conseillers indépendants. Bordeaux, Aix-en-Provence, Nandy, Lannion, Nantes. Ces territoires sont désormais fermés."
+>
+  <Header />
+  <main>
+    <section class="realisations-hero section">
+      <div class="container">
+        <div class="section-header center">
+          <p class="section-label">Réalisations</p>
+          <h1>Les territoires déjà installés</h1>
+          <p>
+            Cinq bases locales construites pour des conseillers indépendants.
+            Ces territoires sont désormais fermés — découvrez ce qui a été livré sur chacun.
+          </p>
+        </div>
+      </div>
+    </section>
+    <Realisations />
+    <CTASection
+      title="Votre territoire est peut-être encore disponible."
+      subtitle="La vérification est gratuite et sans engagement. Réponse sous 24h."
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .realisations-hero {
+    padding-bottom: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-subtle);
+  }
+
+  .realisations-hero .section-header {
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+  }
+
+  .realisations-hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+  }
+</style>

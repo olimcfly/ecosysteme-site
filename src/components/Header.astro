@@ -1,0 +1,253 @@
+---
+const navLinks = [
+  { label: 'Comment ça marche', href: '/#process' },
+  { label: 'Offres', href: '/offre' },
+  { label: 'Réalisations', href: '/realisations' },
+  { label: 'Blog', href: '/blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Écosystème Immo — accueil">
+      <span class="logo-mark">EI</span>
+      <span class="logo-text">Écosystème<br class="logo-break" /> Immo</span>
+    </a>
+
+    <!-- Navigation desktop -->
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`nav-link ${currentPath === link.href ? 'active' : ''}`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-cta">
+      <a href="#verifier" class="btn btn-primary btn-sm">
+        Vérifier ma ville
+      </a>
+    </div>
+
+    <!-- Bouton menu mobile -->
+    <button
+      class="menu-toggle"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      id="menu-btn"
+    >
+      <span class="menu-icon"></span>
+      <span class="menu-icon"></span>
+      <span class="menu-icon"></span>
+    </button>
+  </div>
+
+  <!-- Navigation mobile -->
+  <nav id="mobile-nav" class="nav-mobile" aria-hidden="true" aria-label="Navigation mobile">
+    {navLinks.map(link => (
+      <a href={link.href} class="nav-mobile-link">
+        {link.label}
+      </a>
+    ))}
+    <div class="nav-mobile-cta">
+      <a href="#verifier" class="btn btn-primary btn-full">
+        Vérifier si ma ville est disponible
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    gap: 2rem;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: var(--dark);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.25;
+  }
+
+  .logo-break {
+    display: none;
+  }
+
+  /* Desktop Nav */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    padding: 0.4375rem 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--muted);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--dark);
+    background: var(--bg-subtle);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  /* Header CTA */
+  .header-cta {
+    flex-shrink: 0;
+  }
+
+  /* Mobile toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .menu-toggle:hover {
+    background: var(--bg-subtle);
+  }
+
+  .menu-icon {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 1px;
+    transition: all 0.2s ease;
+  }
+
+  /* Mobile Nav */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+    background: #fff;
+    padding: 1rem 1.25rem;
+    gap: 0.25rem;
+  }
+
+  .nav-mobile.open {
+    display: flex;
+  }
+
+  .nav-mobile-link {
+    padding: 0.75rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+  }
+
+  .nav-mobile-link:last-of-type {
+    border-bottom: none;
+  }
+
+  .nav-mobile-cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .nav-desktop,
+    .header-cta {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .site-header {
+      top: 48px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo-break {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const nav = document.getElementById('mobile-nav');
+
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      nav.setAttribute('aria-hidden', String(!isOpen));
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        nav.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+</script>

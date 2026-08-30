@@ -1,0 +1,238 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Votre territoire est encore disponible ?",
+  subtitle = "La vérification est gratuite et sans engagement. Si votre ville est libre, vous recevez une confirmation sous 24h.",
+} = Astro.props;
+---
+
+<section id="verifier" class="section section-dark">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-header">
+        <h2 class="cta-title">{title}</h2>
+        <p class="cta-subtitle">{subtitle}</p>
+      </div>
+
+      <div class="cta-form-wrap">
+        <!--
+          Formulaire Netlify Forms — fonctionne automatiquement si déployé sur Netlify.
+          Pour un autre hébergement, remplacer action="" par votre endpoint de traitement.
+        -->
+        <form
+          name="verification"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="cta-form"
+          action="/confirmation"
+        >
+          <input type="hidden" name="form-name" value="verification" />
+          <input type="hidden" name="bot-field" class="sr-only" aria-hidden="true" />
+
+          <div class="form-grid form-grid-2">
+            <div class="form-group">
+              <label class="form-label form-label-light" for="prenom">Prénom</label>
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                class="form-input"
+                placeholder="Votre prénom"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-light" for="ville">Votre ville</label>
+              <input
+                id="ville"
+                name="ville"
+                type="text"
+                class="form-input form-input-featured"
+                placeholder="Ex. Lyon, Rennes, Montpellier..."
+                required
+                autocomplete="address-level2"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-light" for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="form-input"
+                placeholder="votre@email.fr"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-light" for="telephone">Téléphone</label>
+              <input
+                id="telephone"
+                name="telephone"
+                type="tel"
+                class="form-input"
+                placeholder="06 XX XX XX XX"
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-cta-submit btn-lg btn-full">
+              Vérifier si ma ville est disponible
+            </button>
+            <p class="form-reassurance">
+              Sans engagement &middot; Réponse sous 24h &middot; Un seul conseiller par ville
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="cta-contact">
+        <p>
+          Ou contactez directement Olivier Colas&nbsp;:
+          <a href="tel:+33785611700" class="contact-link">07 85 61 17 00</a>
+          &middot;
+          <a href="mailto:contact@ecosystemeimmo.fr" class="contact-link">contact@ecosystemeimmo.fr</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-dark {
+    background: var(--dark);
+    padding: 5rem 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .cta-header {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .cta-title {
+    color: #f8fafc;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 0.875rem;
+  }
+
+  .cta-subtitle {
+    color: #94a3b8;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  /* Form */
+  .cta-form-wrap {
+    width: 100%;
+    max-width: 680px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-label-light {
+    color: #cbd5e1;
+  }
+
+  .form-input {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #f1f5f9;
+  }
+
+  .form-input::placeholder {
+    color: #64748b;
+  }
+
+  .form-input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  }
+
+  .form-input-featured {
+    border-color: rgba(37, 99, 235, 0.4);
+  }
+
+  .form-submit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn-cta-submit {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+
+  .btn-cta-submit:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    text-decoration: none;
+  }
+
+  .form-reassurance {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  /* Contact secondary */
+  .cta-contact {
+    text-align: center;
+  }
+
+  .cta-contact p {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+
+  .contact-link {
+    color: #93c5fd;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .contact-link:hover {
+    color: #bfdbfe;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .cta-form-wrap {
+      padding: 1.375rem;
+    }
+
+    .form-grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

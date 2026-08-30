@@ -1,0 +1,408 @@
+---
+const plans = [
+  {
+    id: 'estimateur',
+    name: 'Estimateur',
+    price: '27',
+    unit: '/mois',
+    setup: '+ 197 € setup unique',
+    badge: null,
+    description: "Pour démarrer par la capture d'estimations vendeurs.",
+    features: [
+      'Estimateur immobilier intégré',
+      'Formulaire de capture vendeurs',
+      'Hébergement et maintenance',
+    ],
+    cta: 'Choisir cette formule',
+    ctaHref: '#verifier',
+    highlight: false,
+  },
+  {
+    id: 'mensuel',
+    name: 'Mensuelle',
+    price: '97',
+    unit: '/mois',
+    setup: '+ 497 € setup · 3 mois prépayés',
+    badge: 'Recommandée',
+    badgeType: 'blue',
+    description: "Système complet sans engagement annuel.",
+    features: [
+      'Site immobilier local à votre nom',
+      'Pages secteurs et quartiers',
+      'Google Business Profile',
+      'Estimateur et formulaire vendeur',
+      'CRM et suivi prospects',
+      'Automatisations et relances IA',
+      'Contenu SEO mensuel',
+      'Exclusivité territoriale',
+    ],
+    cta: 'Vérifier si ma ville est disponible',
+    ctaHref: '#verifier',
+    highlight: true,
+  },
+  {
+    id: 'annuel',
+    name: 'Annuelle',
+    price: '897',
+    unit: '/an',
+    setup: 'Setup offert · ≈ 74 €/mois',
+    badge: 'Meilleure valeur',
+    badgeType: 'gold',
+    description: "Pour sécuriser votre territoire durablement.",
+    features: [
+      'Tout le Mensuel',
+      'Setup offert (497 € économisés)',
+      'Exclusivité territoriale renforcée',
+      'Priorité sur les villes à forte demande',
+    ],
+    economy: 'Économisez 267 € vs mensuel',
+    cta: 'Sécuriser mon territoire',
+    ctaHref: '#verifier',
+    highlight: false,
+  },
+];
+---
+
+<section id="offres" class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">Formules</p>
+      <h2>Sécurisez votre territoire</h2>
+      <p>Un système. Un territoire. Un conseiller.<br />Chaque formule inclut l'exclusivité sur votre secteur.</p>
+    </div>
+
+    <!-- 3 plans principaux -->
+    <div class="plans-grid">
+      {plans.map(plan => (
+        <div class={`plan-card ${plan.highlight ? 'plan-highlight' : ''}`}>
+          <div class="plan-header">
+            <div class="plan-name-row">
+              <span class="plan-name">{plan.name}</span>
+              {plan.badge && (
+                <span class={`badge badge-${plan.badgeType}`}>{plan.badge}</span>
+              )}
+            </div>
+            <div class="plan-price-row">
+              <span class="plan-price">{plan.price} €</span>
+              <span class="plan-unit">{plan.unit}</span>
+            </div>
+            <p class="plan-setup">{plan.setup}</p>
+            {plan.economy && (
+              <p class="plan-economy">{plan.economy}</p>
+            )}
+          </div>
+
+          <p class="plan-description">{plan.description}</p>
+
+          <ul class="check-list plan-features">
+            {plan.features.map(f => <li>{f}</li>)}
+          </ul>
+
+          <div class="plan-cta">
+            <a
+              href={plan.ctaHref}
+              class={`btn btn-full ${plan.highlight ? 'btn-primary' : 'btn-outline'}`}
+            >
+              {plan.cta}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Option Exclusivité verrouillée -->
+    <div class="exclusivity-card">
+      <div class="exclusivity-content">
+        <div>
+          <div class="exclusivity-header">
+            <h3>Exclusivité verrouillée</h3>
+            <span class="badge badge-dark">Option complémentaire</span>
+          </div>
+          <p class="exclusivity-desc">
+            Verrou territorial à vie sur votre ville. Sans abonnement. Sans renouvellement.
+            Votre territoire reste bloqué pour les concurrents, quelle que soit votre formule.
+          </p>
+        </div>
+        <div class="exclusivity-right">
+          <div class="exclusivity-price">
+            <span class="exclusivity-amount">900 €</span>
+            <span class="exclusivity-unit">paiement unique</span>
+          </div>
+          <a href="mailto:contact@ecosystemeimmo.fr?subject=Option exclusivité verrouillée" class="btn btn-outline btn-sm exclusivity-btn">
+            Me renseigner
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Réassurance -->
+    <p class="pricing-reassurance">
+      Vos données, votre domaine, votre site — vous repartez avec tout si vous partez.
+      Un seul conseiller par territoire. La disponibilité dépend de votre ville.
+    </p>
+
+    <!-- Programme Fondateur — FERMÉ -->
+    <div class="fondateur-closed">
+      <div class="fondateur-inner">
+        <div>
+          <p class="fondateur-title">Programme Fondateur — Places épuisées</p>
+          <p class="fondateur-desc">
+            Les 5 premiers conseillers ont rejoint le programme à 47 €/mois à vie.
+            Ces places sont fermées. C'est eux qui apparaissent dans les réalisations ci-dessous.
+          </p>
+        </div>
+        <span class="badge badge-muted">Fermé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Plans grid */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+  }
+
+  .plan-card {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    transition: box-shadow var(--transition);
+  }
+
+  .plan-highlight {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent);
+    position: relative;
+  }
+
+  /* Plan header */
+  .plan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .plan-name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .plan-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .plan-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    line-height: 1;
+  }
+
+  .plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+  }
+
+  .plan-unit {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .plan-setup {
+    font-size: 0.8125rem;
+    color: var(--subtle);
+    margin-top: 0.25rem;
+  }
+
+  .plan-economy {
+    font-size: 0.8125rem;
+    color: var(--green);
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  /* Plan body */
+  .plan-description {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .plan-features {
+    flex: 1;
+  }
+
+  .plan-cta {
+    margin-top: auto;
+  }
+
+  /* Exclusivity card */
+  .exclusivity-card {
+    background: var(--bg);
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .exclusivity-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .exclusivity-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .exclusivity-header h3 {
+    font-size: 1.0625rem;
+  }
+
+  .exclusivity-desc {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .exclusivity-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .exclusivity-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .exclusivity-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .exclusivity-unit {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  /* Reassurance */
+  .pricing-reassurance {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--subtle);
+    padding: 0.75rem 0;
+  }
+
+  /* Fondateur closed */
+  .fondateur-closed {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.75rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    opacity: 0.7;
+  }
+
+  .fondateur-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .fondateur-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .fondateur-desc {
+    font-size: 0.875rem;
+    color: var(--subtle);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 900px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .exclusivity-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .exclusivity-right {
+      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .exclusivity-price {
+      align-items: flex-start;
+    }
+
+    .fondateur-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .plan-card {
+      padding: 1.5rem;
+    }
+
+    .exclusivity-card {
+      padding: 1.375rem;
+    }
+
+    .exclusivity-right {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .exclusivity-btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Vous vérifiez votre ville',
+    body: 'Renseignez votre commune. Si elle est disponible, vous recevez une confirmation et un brief personnalisé sous 24h.',
+  },
+  {
+    number: '02',
+    title: 'On installe votre système (en 21 jours)',
+    body: 'Site, SEO local, Google Business, pages secteurs, CRM et automatisations. Vous validez chaque étape. On livre clé en main.',
+  },
+  {
+    number: '03',
+    title: 'Votre territoire travaille pour vous',
+    body: 'Les vendeurs de votre ville vous trouvent sur Google. Les demandes arrivent directement dans votre CRM.',
+  },
+];
+---
+
+<section id="process" class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">Processus</p>
+      <h2>Comment ça marche</h2>
+      <p>De la vérification de disponibilité à l'arrivée des premiers contacts — un système complet, livré clé en main.</p>
+    </div>
+
+    <div class="steps-grid">
+      {steps.map((step, i) => (
+        <div class="step-card">
+          <div class="step-number" aria-hidden="true">{step.number}</div>
+          <div class="step-connector" aria-hidden="true" />
+          <div class="step-body">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-text">{step.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="process-cta">
+      <a href="#verifier" class="btn btn-primary btn-lg">
+        Vérifier si ma ville est disponible
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  .step-card:first-child {
+    padding-left: 0;
+  }
+
+  .step-card:last-child {
+    padding-right: 0;
+  }
+
+  /* Connector line between steps */
+  .step-connector {
+    position: absolute;
+    top: 26px;
+    left: calc(50% + 26px);
+    right: calc(-50% + 26px);
+    height: 1px;
+    background: var(--border-strong);
+    pointer-events: none;
+  }
+
+  .step-card:last-child .step-connector {
+    display: none;
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: var(--dark);
+    color: #f8fafc;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.625rem;
+    line-height: 1.3;
+  }
+
+  .step-text {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .process-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .step-card {
+      padding: 0;
+      flex-direction: row;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      margin-bottom: 0;
+    }
+
+    .step-connector {
+      top: 52px;
+      left: 25px;
+      right: auto;
+      width: 1px;
+      height: calc(100% + 2rem);
+      background: var(--border);
+    }
+
+    .step-card:last-child .step-connector {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .process-cta .btn {
+      width: 100%;
+    }
+  }
+</style>

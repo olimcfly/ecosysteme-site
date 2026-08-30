@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Offre — Un seul territoire. Un seul conseiller. Écosystème Immo"
+  description="Formules Estimateur, Mensuelle et Annuelle pour conseillers immobiliers indépendants. Exclusivité territoriale incluse. Premiers contacts vendeurs sous 60 à 90 jours."
+>
+  <Header />
+  <main>
+    <Hero
+      title="Un seul territoire. Un seul conseiller. Un système qui travaille pour vous."
+      subtitle="Choisissez la formule adaptée à votre ambition. Chaque plan inclut l'exclusivité sur votre secteur — site, SEO local, CRM, automatisations IA. Premiers contacts vendeurs observés sous 60 à 90 jours selon le territoire."
+      showSecondaryCta={false}
+    />
+    <Features />
+    <Pricing />
+    <FAQ />
+    <CTASection
+      title="Votre territoire vous attend."
+      subtitle="Vérifiez la disponibilité de votre ville. Gratuit et sans engagement — réponse sous 24h."
+    />
+  </main>
+  <Footer />
+</Layout>
