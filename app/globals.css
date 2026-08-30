@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0A1628;
+  --gold: #C9A84C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #ffffff;
+  color: #111827;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-blue-900/20;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white/90 hover:text-white font-medium px-6 py-3.5 rounded-xl transition-all duration-200 text-sm;
+  }
+
+  .section-label {
+    @apply inline-block text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-slate-900 leading-tight;
+  }
+
+  .section-sub {
+    @apply text-lg text-slate-500 leading-relaxed;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-200 p-6;
+  }
+}
