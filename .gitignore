@@ -1,0 +1,6 @@
+storage/leads.json
+storage/*.json
+.env
+*.log
+.DS_Store
+Thumbs.db
