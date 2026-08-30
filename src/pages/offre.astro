@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout
+  title="Un seul territoire. Un seul conseiller. Un système qui travaille pour vous. — Écosystème Immo"
+  description="Choisissez la formule adaptée à votre territoire. Mensuel, annuel ou exclusivité verrouillée — chaque offre inclut l'exclusivité territoriale."
+>
+  <Header />
+  <main>
+    <section class="bg-white pt-16 pb-10 sm:pt-20 sm:pb-12 px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="section-label">Nos offres</p>
+        <h1 class="text-3xl sm:text-5xl font-bold text-navy-900 leading-tight tracking-tight mb-5">
+          Un seul territoire.<br />Un seul conseiller.<br />Un système qui travaille pour vous.
+        </h1>
+        <p class="text-slate-500 text-base sm:text-lg leading-relaxed">
+          Chaque formule inclut l'exclusivité sur votre secteur.<br />
+          Vérifiez d'abord si votre ville est encore disponible.
+        </p>
+      </div>
+    </section>
+
+    <Pricing />
+    <FAQ />
+    <CtaFinal />
+  </main>
+  <Footer />
+</Layout>

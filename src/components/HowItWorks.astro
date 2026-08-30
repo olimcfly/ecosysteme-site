@@ -1,0 +1,43 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Vous vérifiez votre ville',
+    desc: 'Renseignez votre commune. Si elle est disponible, vous recevez une confirmation et un brief personnalisé sous 24h.',
+  },
+  {
+    num: '02',
+    title: 'On installe votre système en 21 jours',
+    desc: 'Site, SEO local, Google Business, pages secteurs, CRM et automatisations. Vous validez chaque étape. On livre clé en main.',
+  },
+  {
+    num: '03',
+    title: 'Votre territoire travaille pour vous',
+    desc: 'Les vendeurs de votre ville vous trouvent sur Google. Les demandes arrivent directement dans votre CRM.',
+  },
+];
+---
+<section id="process" class="bg-slate-50 py-20 sm:py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <p class="section-label text-center">Processus</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 text-center mb-14 tracking-tight">
+      Comment ça marche
+    </h2>
+
+    <div class="grid sm:grid-cols-3 gap-8 sm:gap-6">
+      {steps.map(step => (
+        <div class="relative pl-0 sm:pl-0">
+          <div class="text-5xl font-bold text-slate-100 select-none mb-4 leading-none">{step.num}</div>
+          <h3 class="text-lg font-semibold text-navy-900 mb-3 leading-snug">{step.title}</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="#verifier" class="btn-primary text-base px-8 py-4">
+        Vérifier si ma ville est disponible
+      </a>
+    </div>
+  </div>
+</section>
