@@ -1,5 +1,93 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-12 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-03 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-03 (11ème audit)
+
+**ALERTE : DEUXIÈME PIVOT MAJEUR — Modèle économique changé. Score ~3/17. 4 nouvelles régressions.**
+
+Entre le 12/08 et le 03/10 (7 semaines), le site a subi un pivot complet du modèle économique.
+Le passage d'un SaaS par abonnement mensuel (27-97-897€/mois) vers une offre projet one-shot
+(1 790€ - 3 990€ HT) est un changement de nature — plus un ajustement de copy.
+**Ce pivot invalide l'intégralité du brief de pricing fourni.**
+
+### Observations au 03/10
+
+**Homepage — NOUVEAU POSITIONNEMENT (3e architecture en 11 semaines)**
+- H1 : "Arrêtez de courir après votre prochaine opportunité vendeur."
+- Sous-titre : "ÉcosystèmeImmo construit autour de votre activité un système d'acquisition immobilier capable d'attirer, suivre et faire mûrir vos prospects vendeurs"
+- CTAs : "Analyser mon acquisition" · "Découvrir ÉcosystèmeImmo" · "Accéder gratuitement à l'Academy" · "Voir une démonstration" — 4 CTAs (amélioration vs 10+ au 12/08)
+- Navigation : Accueil · Essentiel · Complet · Academy · Comment ça marche · Tarifs · À propos · Ressources/Blog · Analyser mon acquisition — 9 liens (simplification réelle)
+- **Aucune mention de l'exclusivité territoriale** ("1 ville = 1 conseiller" a disparu)
+- **Pas de barre de scarcité** (inchangé — semaine 11 consécutive)
+- **Disclaimer toujours présent** : "Aucun nombre de prospects, de rendez-vous ou de mandats n'est garanti."
+- Aucun emoji visible (maintenu)
+
+Analyse : le H1 est orienté douleur ("Arrêtez de courir...") — meilleur angle client que le H1 précédent. Mais le concept d'exclusivité territoriale, principal différenciateur du brief, a entièrement disparu du site. Le CTA principal "Analyser mon acquisition" est plus froid que "Vérifier si ma ville est disponible" — il n'active aucune urgence.
+
+**Page /tarifs — PRICING ENTIÈREMENT REFONDU (modèle incompatible avec le brief)**
+- H1 : "Des prix clairs. Vous choisissez jusqu'où vous voulez déléguer."
+- **Nouveau modèle prix (one-shot / projet) :**
+  - Academy : 0 € (accès gratuit)
+  - Essentiel : 1 790 € HT (ou 3 × 600 € HT)
+  - Complet : 3 990 € HT (ou 3 × 1 350 € HT)
+  - Maintenance : 197 € HT/mois (optionnel)
+  - Gestion pub : 590 € HT setup + 490 € HT/mois (optionnel)
+- **INCOMPATIBLE avec le brief** : le brief décrit 27€/97€/897€/mois — ces tarifs ont disparu
+- Le modèle n'est plus SaaS par abonnement — c'est une prestation de service one-shot
+- **3 disclaimers** : "Aucun résultat n'est garanti" · "Budget pub non inclus" · "Aucun nombre de prospects/RDV/mandats n'est garanti"
+- **Aucune FAQ** sur cette page (régression — FAQ présente au 12/08)
+
+**Page /realisations — RÉGRESSION**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- **5 clients affichés** (Eric Verneau / Angers toujours absent — disparu depuis le 12/08)
+- Nouveau système de statut : Déployé / Activé / Validé
+- **Tous les clients en statut "Déployé" uniquement** — aucun "Activé", aucun "Validé"
+- "Votre ville · À auditer" en dernière carte
+- **Aucun badge "Territoire complet"** (inchangé)
+- Aucune mention des territoires fermés (Bordeaux · Nantes · Nandy · Aix · Lannion)
+- CTAs dirigent vers "/audit" (cohérent avec le pivot "analyser mon acquisition")
+
+### Score au 03/10 : ~3/17 (en baisse vs 4/17 au 12/08)
+
+Progrès :
+- Navigation simplifiée à 9 liens (amélioration vs 18 au départ, mais différente du brief)
+- CTAs réduits à 4 sur la homepage (amélioration vs 10+ au 12/08)
+- Aucun emoji (maintenu)
+- "Comment ça marche" dans la navigation (action 8 partiellement adressée)
+- H1 orienté douleur client (meilleur que le H1 générique du 12/08)
+
+Régressions majeures :
+- **RÉGRESSION CRITIQUE** : modèle prix one-shot vs abonnement mensuel — brief entièrement invalidé
+- **RÉGRESSION CR8** : exclusivité territoriale 100% absente du site
+- **RÉGRESSION FO3** : Offre Fondateur introuvable (avait au moins un statut au 12/08)
+- **RÉGRESSION** : FAQ sur /tarifs disparue
+- **RÉGRESSION** : Système "Déployé/Activé/Validé" sur /realisations — ne crée aucune urgence territoriale
+
+Blocages critiques persistants :
+1. **CR6 — Barre de scarcité absente** (semaine 11 consécutive — jamais implémentée)
+2. **CR5 — Disclaimer non-résultat** : 3 occurrences sur /tarifs
+3. **CR7 (NOUVEAU) — Pivot modèle économique** : tarifs incompatibles avec le brief — décision stratégique urgente
+4. **CR8 (NOUVEAU) — Exclusivité territoriale absente** : le différenciateur #1 a disparu du site
+
+### Décision stratégique urgente à trancher
+
+**Le site oscille entre 3 positionnements en 11 semaines** :
+1. Brief original : SaaS mensuel + exclusivité territoriale (27-97-897€/mois)
+2. Pivot PACTE (12/08) : méthode expert, CTA audit de secteur, maintien prix SaaS
+3. **Pivot actuel (03/10)** : prestation one-shot (1 790-3 990€), Academy gratuite, plus d'exclusivité
+
+**Si le modèle actuel (one-shot) est le modèle final :**
+→ Le brief est obsolète. Il faut réécrire l'ensemble du plan CRO avec les nouveaux tarifs.
+→ Le CTA "Analyser mon acquisition" peut fonctionner, mais il faut créer l'urgence autrement.
+→ L'Academy gratuite est un levier de qualification — à exploiter davantage.
+
+**Si le brief original (SaaS mensuel + exclusivité) est toujours la cible :**
+→ Le site est en régression totale. Retour aux actions Phase 1 du brief.
+→ Priorité : remettre les prix SaaS, remettre l'exclusivité, créer la barre de scarcité.
+
+**Recommandation : trancher maintenant.** Chaque pivot dilue la confiance et repart à zéro sur le SEO et la mémorisation.
 
 ---
 
@@ -541,31 +629,31 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 12/08 | Statut au 11/08 | Notes |
+| # | Action | Statut au 03/10 | Statut au 12/08 | Notes |
 |---|--------|-----------------|-----------------|-------|
-| 1 | Corriger le pricing | **PARTIEL** | Non fait | Pricing visible sur /tarifs — 7 formules (vs 4 dans le brief), absent de la homepage |
-| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 8 |
-| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 5 clients affichés (Angers disparu), 0 badge |
-| 4 | Réécrire H1 | **RÉGRESSION** | Amélioré | Nouveau H1 générique "Transformez votre visibilité..." — moins percutant qu'au 11/08 |
-| 5 | Unifier CTA principal | **RÉGRESSION** | Partiel | 10+ CTAs homepage — record absolu depuis l'ouverture de l'audit |
-| 6 | Ajouter IA/automatisations features | **NON CONFIRMÉ** | Non fait | Non confirmé visible |
-| 7 | Simplifier CTAs | **RÉGRESSION** | Partiel | 10+ CTAs homepage — pire état |
-| 8 | Case studies avec résultats | **NON FAIT** | Non fait | Pas de métriques, pas de livrables |
-| 9 | Section "Comment ça marche" | **RÉGRESSION** | Partiel | Remplacée par méthode PACTE (5 étapes + 9 sous-étapes) — complexité accrue |
-| 10 | FAQ homepage | **NON FAIT** | Non fait | FAQ sur /tarifs uniquement — absente de la homepage |
-| 11 | Programme Fondateur — statut cohérent | **RÉGRESSION** | Incertain | Ouvert pour "50 premiers conseillers" à 47€ — brief : fermé à 5 fondateurs |
+| 1 | Corriger le pricing | **RÉGRESSION** | Partiel | Pricing entièrement refondu — modèle one-shot (1790/3990€ HT) incompatible avec brief SaaS mensuel |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 11 consécutive |
+| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 5 clients en statut "Déployé" — aucun badge territoire fermé |
+| 4 | Réécrire H1 | **PARTIEL** | Régression | H1 "Arrêtez de courir..." — orienté douleur (bon), mais pas l'exclusivité territoriale du brief |
+| 5 | Unifier CTA principal | **PARTIEL** | Régression | 4 CTAs (amélioration vs 10+), mais "Analyser mon acquisition" sans urgence territoriale |
+| 6 | Ajouter IA/automatisations features | **NON CONFIRMÉ** | Non confirmé | Non visible |
+| 7 | Simplifier CTAs | **PARTIEL** | Régression | 4 CTAs homepage (amélioration significative vs 10+) |
+| 8 | Case studies avec résultats | **NON FAIT** | Non fait | Système Déployé/Activé/Validé présent, mais tous en "Déployé" uniquement |
+| 9 | Section "Comment ça marche" | **PARTIEL** | Régression | "Comment ça marche" dans la navigation (lien présent) — contenu non vérifié |
+| 10 | FAQ homepage | **NON FAIT** | Non fait | FAQ absente de la homepage ET de /tarifs (régression vs 12/08) |
+| 11 | Programme Fondateur — statut cohérent | **DISPARU** | Régression | Offre Fondateur introuvable sur le site — ni ouverte, ni fermée |
 | 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu) |
-| 13 | Modifier titre page /offre | **FAIT** | Partiel | Page renommée /tarifs avec nouveau H1 différencié |
-| 14 | Nettoyer navigation | **PARTIEL** | Fait | Nav simplifiée mais différente du brief — "Tarifs" / "Audit de secteur" |
+| 13 | Modifier titre page /offre | **PARTIEL** | Fait | /tarifs avec H1 différencié, mais modèle prix entièrement changé |
+| 14 | Nettoyer navigation | **PARTIEL** | Partiel | 9 liens (amélioration), incluant "Comment ça marche" et "Tarifs" |
 | 15 | Simplifier footer | **NON VÉRIFIÉ** | Non vérifié | Non vérifié |
-| 16 | Retirer disclaimer non-résultat | **RÉGRESSION** | Régression | 3 disclaimers dont nouveau : "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — CRITIQUE |
-| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Scarcity bar absente + Angers retiré de /realisations |
+| 16 | Retirer disclaimer non-résultat | **RÉGRESSION** | Régression | 3 disclaimers sur /tarifs, dont "Aucun nombre de prospects/RDV/mandats n'est garanti" |
+| 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Scarcity bar toujours absente + Angers absent de /realisations |
 
-**Score au 12/08 : ~4/17 (en baisse). Pivot stratégique majeur. 6 régressions.**
-Actions complètes : emojis retirés (12), titre /tarifs différencié (13).
-Actions partielles : pricing sur /tarifs (1), navigation (14).
-Régressions : H1 (4), CTAs (5/7/9), Fondateur ouvert (11), disclaimer exclusivité (16).
-Blocages critiques semaine 8 : barre scarcité (2), disclaimer anti-exclusivité (16), Fondateur incohérent (11), 10+ CTAs (5).
+**Score au 03/10 : ~3/17 (en baisse vs 4/17). 2ème pivot majeur. Modèle économique transformé.**
+Actions complètes : emojis retirés (12).
+Actions partielles : H1 douleur client (4), CTAs réduits (5/7), navigation (14), titre /tarifs (13).
+Régressions : pricing entièrement changé (1), FAQ disparue (10), Fondateur introuvable (11), 3 disclaimers (16).
+Blocages critiques : barre scarcité (2), modèle prix incompatible avec brief (CR7), exclusivité disparue (CR8), disclaimers (16).
 
 ---
 
@@ -582,9 +670,15 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-08-12*
-*10ème session. ~4/17 actions (en baisse). Pivot stratégique majeur vers "méthode PACTE".*
-*Progrès : pricing enfin visible sur /tarifs, FAQ présente sur /tarifs, aucun emoji maintenu.*
-*Régressions majeures : H1 plus générique, 10+ CTAs, abandon de l'exclusivité territoriale, nouveau disclaimer anti-exclusivité, Fondateur ouvert pour 50 conseillers, Angers retiré des réalisations.*
-*Alerte stratégique : le positionnement "1 ville = 1 conseiller" est en train d'être abandonné. Décision à trancher : confirmer le pivot PACTE ou revenir au brief d'exclusivité territoriale.*
-*Priorité absolue : (1) supprimer le disclaimer "Le secteur ne constitue pas automatiquement une exclusivité commerciale" — il contre-argue la valeur principale. (2) trancher le positionnement PACTE vs exclusivité. (3) réduire à 1 CTA principal. (4) barre de scarcité si retour au brief.*
+*Audit mis à jour le 2026-10-03*
+*11ème session. ~3/17 actions (en baisse). 2ème pivot majeur : modèle one-shot (1790/3990€ HT) + disparition de l'exclusivité territoriale.*
+*Progrès : CTAs réduits à 4 (vs 10+), navigation à 9 liens, H1 orienté douleur client, aucun emoji maintenu.*
+*Régressions majeures : modèle SaaS mensuel (27-97-897€) entièrement abandonné, exclusivité territoriale absente, FAQ disparue, 3 disclaimers sur /tarifs.*
+*Alerte stratégique : 3 pivots de positionnement en 11 semaines. Chaque pivot réinitialise la mémorisation et le SEO. Décision urgente : le modèle one-shot (1790/3990€) est-il le modèle final ?*
+*Si oui : réécrire entièrement le plan CRO avec les nouveaux tarifs et sans l'exclusivité territoriale.*
+*Si non : revenir au brief SaaS + exclusivité et ne plus pivoter.*
+*Priorité absolue : trancher le modèle économique avant toute autre modification.*
+
+---
+
+*Audit initial : 2026-07-16 | 11 sessions | olimcfly/ecosysteme-site*
