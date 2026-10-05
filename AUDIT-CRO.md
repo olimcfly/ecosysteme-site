@@ -1,5 +1,373 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-08-12 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-05 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-05 (12ème session)
+
+**DÉCISION STRATÉGIQUE CONFIRMÉE : retour au modèle SaaS. Brief de pricing réintégré.**
+
+Deux jours après la 11ème session, le brief de pricing est reconfirmé :
+le modèle cible reste le SaaS mensuel avec exclusivité territoriale — pas le one-shot.
+La 12ème session acte ce choix et produit le plan d'exécution opérationnel à partir de zéro.
+
+> **Note repo** : le dépôt git ne contient plus les fichiers source Astro (`src/`).
+> Le site tourne sur Astro — les chemins de fichiers ci-dessous sont les cibles à reconstituer.
+> Toute la copy est dans `COPY-CHANGES.md`, prête à intégrer.
+
+---
+
+### Brief de pricing réel (source Olivier Colas — confirmé 2026-10-05)
+
+| Formule | Prix | Détail |
+|---------|------|--------|
+| Beta fondateur | 47 €/mois à vie | **Fermé** — à afficher comme "Places épuisées" |
+| Estimateur seul | 27 €/mois | + 197 € setup unique |
+| Mensuel standard | 97 €/mois | + 497 € setup + 3 mois prépayés **[RECOMMANDÉE]** |
+| Annuel | 897 €/an | Setup offert · ≈ 74 €/mois **[MEILLEURE VALEUR]** |
+| Exclusivité verrouillée | 900 € | Paiement unique · verrou territorial à vie |
+
+**Villes fermées** : Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion
+
+---
+
+### Diagnostic au 05/10 — Score : ~3/17 (inchangé vs 03/10)
+
+Le site est en décalage total avec le brief. Blocages critiques actifs :
+
+**CRITIQUE — bloquent la conversion aujourd'hui**
+
+| Ref | Problème | État |
+|-----|----------|------|
+| CR1 | **Pricing SaaS absent** | Le site affiche 1 790 €/3 990 € HT (one-shot). Les formules 27/97/897 € sont introuvables. |
+| CR2 | **CTA sans urgence territoriale** | "Analyser mon acquisition" ≠ "Vérifier si ma ville est disponible". Aucun mécanisme de qualification ni d'urgence. |
+| CR3 | **Exclusivité territoriale absente** | Le différenciateur #1 ("1 ville = 1 conseiller") a disparu de toutes les pages. |
+| CR4 | **Barre de scarcité absente** | Semaine 12 consécutive. Bordeaux · Nantes · Nandy · Aix · Lannion : aucun signal de fermeture visible. |
+| CR5 | **3 disclaimers de non-résultat** | "/tarifs : 3 × 'Aucun résultat garanti'". Annihile la confiance avant l'achat. |
+| CR6 | **Programme Fondateur introuvable** | Ni "ouvert", ni "épuisé". La preuve sociale des 5 fondateurs est perdue. |
+
+**FORT — affaiblissent la persuasion**
+
+| Ref | Problème |
+|-----|----------|
+| FO1 | FAQ disparue de /tarifs (présente au 12/08 — régression) |
+| FO2 | Badges "Territoire complet" absents sur /réalisations |
+| FO3 | Système "Déployé/Activé/Validé" sans badge rouge — crée zéro urgence |
+| FO4 | Section "Comment ça marche" non vérifiable (lien nav présent, contenu inconnu) |
+| FO5 | Case studies sans résultats chiffrés |
+
+---
+
+### Plan d'exécution — 3 phases opérationnelles
+
+#### PHASE 1 — Conversion immédiate (Jour 1-2)
+
+**Priorité absolue** : remettre le pricing brief, l'exclusivité et la scarcité.
+
+**Action 1 — Réécrire le H1 + sous-titre hero**
+```
+H1 : Votre ville a une seule place disponible.
+
+Sous-titre :
+Écosystème Immo installe votre système d'acquisition local — site professionnel,
+SEO, Google Business, pages quartiers, CRM et automatisations IA.
+Exclusif à votre territoire. Un seul conseiller par ville.
+```
+Fichier : `src/components/Hero.astro`
+
+**Action 2 — Unifier le CTA principal**
+```
+Supprimer : "Analyser mon acquisition" comme CTA primaire
+CTA unique : "Vérifier si ma ville est disponible" → ancre #verifier
+CTA secondaire : "Comment ça marche" → ancre #process
+```
+Fichiers : `src/components/Hero.astro`, `src/components/Header.astro`
+
+**Action 3 — Barre de scarcité sticky (header global)**
+```html
+<div id="scarcity-bar" style="
+  background:#0f172a; color:#f8fafc; text-align:center;
+  padding:10px 20px; font-size:13px; letter-spacing:0.01em;
+  position:sticky; top:0; z-index:100;
+">
+  Territoires complets : Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion
+  &nbsp;—&nbsp;
+  <a href="#verifier" style="color:#e2e8f0; text-decoration:underline; font-weight:500;">
+    Vérifiez votre ville →
+  </a>
+</div>
+```
+Fichier : `src/layouts/Layout.astro`
+
+**Action 4 — Pricing SaaS complet**
+```
+Formule Estimateur      : 27 €/mois + 197 € setup
+Formule Mensuelle       : 97 €/mois + 497 € setup (3 mois prépayés) [RECOMMANDÉE]
+Formule Annuelle        : 897 €/an — setup offert ≈ 74 €/mois      [MEILLEURE VALEUR]
+Exclusivité verrouillée : 900 € paiement unique
+Programme Fondateur     : Places épuisées — 5 conseillers à 47 €/mois à vie
+```
+Fichiers : `src/components/Pricing.astro`, `src/pages/tarifs.astro` (ou `/offre.astro`)
+
+**Action 5 — Supprimer les disclaimers de non-résultat**
+```
+Supprimer les 3 occurrences : "Aucun résultat n'est garanti" / "Aucun nombre de
+prospects/RDV/mandats n'est garanti" / "Budget pub non inclus" (en note, pas en disclaimer)
+
+Remplacer par :
+"Premiers contacts vendeurs observés sous 60 à 90 jours selon le territoire."
+```
+Fichier : `src/pages/tarifs.astro`
+
+**Action 6 — Afficher le Programme Fondateur épuisé**
+```
+"Programme Fondateur — Places épuisées.
+ Les 5 premiers conseillers ont rejoint à 47 €/mois à vie.
+ Ces places sont définitivement fermées."
+```
+Fichier : `src/components/Pricing.astro`
+
+---
+
+#### PHASE 2 — Confiance et preuve sociale (Jour 3-5)
+
+**Action 7 — Badges "Territoire complet" sur /réalisations**
+```
+Chaque carte client : badge rouge "TERRITOIRE COMPLET"
+
+Bordeaux Métropole — Eduardo De Sul — Territoire complet
+Aix-en-Provence — Pascal Hamm — Territoire complet
+Nandy / Sénart — Fatima Rabia — Territoire complet
+Lannion / Trégor — Stéphanie Hulen — Territoire complet
+Nantes — Brice Chupin — Territoire complet
+
+CTA section : "Ces territoires sont fermés. Le vôtre est peut-être encore disponible.
+               [Vérifier ma ville]"
+```
+Fichiers : `src/components/Realisations.astro`, `src/pages/realisations.astro`
+
+**Action 8 — Section "Comment ça marche" (3 étapes)**
+```
+H2 : Comment ça marche
+
+Étape 01 — Vous vérifiez votre ville
+Renseignez votre commune. Si elle est disponible, vous recevez une
+confirmation et un brief personnalisé sous 24h.
+
+Étape 02 — On installe votre système (en 21 jours)
+Site, SEO local, Google Business, pages secteurs, CRM et automatisations.
+Vous validez chaque étape. On livre clé en main.
+
+Étape 03 — Votre territoire travaille pour vous
+Les vendeurs de votre ville vous trouvent sur Google.
+Les demandes arrivent directement dans votre CRM.
+
+CTA : Vérifier si ma ville est disponible
+```
+Fichier à créer : `src/components/HowItWorks.astro`
+Intégrer dans : `src/pages/index.astro` — après le Hero, avant Features
+
+**Action 9 — FAQ sur la homepage (3 objections critiques)**
+```
+Q : Est-ce que je dois gérer le site moi-même ?
+R : Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business.
+    Vous recevez les demandes, on gère le système.
+
+Q : En combien de temps je vois des résultats ?
+R : Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours.
+    Le référencement local se renforce sur 3 à 6 mois.
+
+Q : Et si je change de réseau ou de secteur ?
+R : Le domaine, le site et vos données vous appartiennent. Vous pouvez continuer
+    indépendamment de votre réseau.
+```
+Fichier à créer : `src/components/FAQ.astro`
+Intégrer dans : `src/pages/index.astro` — avant le CTA final
+
+**Action 10 — Case studies avec livrables concrets**
+```
+Pour chaque territoire affiché : nommer ce qui a été livré (voir COPY-CHANGES.md)
+Ex. Bordeaux : "Livré en 18 jours : site local, 6 pages secteurs, estimateur,
+ 3 articles SEO, séquence email vendeurs."
+```
+Fichiers : `src/components/Realisations.astro`
+
+---
+
+#### PHASE 3 — Finition UX, navigation, SEO (Jour 5-7)
+
+**Action 11 — Supprimer les emojis restants**
+```
+Features : remplacer 🌐 📍 ⭐ 📝 📋 ✉️ par numéros 01-06 ou icônes SVG outline
+```
+Fichier : `src/components/Features.astro`
+
+**Action 12 — Navigation : 5 liens + 1 CTA**
+```
+APRÈS : Accueil | Comment ça marche | Offres | Réalisations | Blog
+CTA nav : [Vérifier ma ville]
+
+Supprimer : Academy, "Comment ça marche" (si doublon), "Analyser mon acquisition",
+            "À propos", "Ressources/Blog" → fusionner en "Blog"
+```
+Fichier : `src/components/Header.astro`
+
+**Action 13 — Titre page /tarifs**
+```
+H1 : Un seul territoire. Un seul conseiller. Un système qui travaille pour vous.
+```
+Fichier : `src/pages/tarifs.astro`
+
+**Action 14 — Simplifier le footer**
+```
+Écosystème Immo — Système d'acquisition local pour conseillers immobiliers indépendants.
+Liens : Offres · Réalisations · Blog · Contact
+Olivier Colas — 07 85 61 17 00 — contact@ecosystemeimmo.fr
+Mentions légales | CGU | Confidentialité
+© 2026 Écosystème Immo — OCDM Agency
+```
+Fichier : `src/components/Footer.astro`
+
+---
+
+### Ordre exact d'exécution
+
+```
+Jour 1
+  1. src/layouts/Layout.astro          → Barre de scarcité sticky
+  2. src/components/Hero.astro         → H1 + sous-titre + CTA unifié
+  3. src/components/Header.astro       → CTA "Vérifier ma ville", retirer "Analyser"
+  4. src/components/Pricing.astro      → Pricing SaaS complet + Fondateur épuisé
+  5. src/pages/tarifs.astro            → Pricing + supprimer 3 disclaimers + H1
+
+Jour 2
+  6. src/pages/realisations.astro      → Badges "Territoire complet"
+  7. src/components/Realisations.astro → Descriptions livrées + CTA section
+
+Jour 3–4
+  8. src/components/HowItWorks.astro   → Créer (3 étapes)
+  9. src/pages/index.astro             → Intégrer HowItWorks après Hero
+ 10. src/components/FAQ.astro          → Créer (3 questions)
+ 11. src/pages/index.astro             → Intégrer FAQ avant CTA finale
+
+Jour 5–7
+ 12. src/components/Features.astro     → Supprimer emojis → numéros 01-06
+ 13. src/components/Header.astro       → Navigation 5 liens + CTA (finaliser)
+ 14. src/pages/tarifs.astro            → Titre H1 différencié
+ 15. src/layouts/Layout.astro          → Vérifier Angers dans scarcity bar
+ 16. src/components/Footer.astro       → Simplifier
+```
+
+---
+
+### Liste des fichiers à modifier
+
+| Fichier | Actions | Phase |
+|---------|---------|-------|
+| `src/layouts/Layout.astro` | Barre scarcité sticky | P1 |
+| `src/components/Hero.astro` | H1, sous-titre, CTA | P1 |
+| `src/components/Header.astro` | CTA nav + nav simplifiée | P1 + P3 |
+| `src/components/Pricing.astro` | Pricing SaaS + Fondateur épuisé | P1 |
+| `src/pages/tarifs.astro` | Pricing + 3 disclaimers supprimés + H1 | P1 + P3 |
+| `src/pages/realisations.astro` | Badges territoire complet | P2 |
+| `src/components/Realisations.astro` | Descriptions livrées + CTA section | P2 |
+| `src/components/HowItWorks.astro` | Créer — 3 étapes | P2 |
+| `src/components/FAQ.astro` | Créer — 3 objections | P2 |
+| `src/pages/index.astro` | Intégrer HowItWorks + FAQ | P2 |
+| `src/components/Features.astro` | Emojis → numéros 01-06 | P3 |
+| `src/components/Footer.astro` | Simplifier | P3 |
+
+> Copy complète dans `COPY-CHANGES.md`. Aucune refonte d'architecture nécessaire.
+> Toutes les modifications sont des substitutions de texte + ajout de 2 composants.
+> Mobile-first : vérifier que scarcity bar, H1 et CTA hero sont visibles sans scroll sur 375px.
+
+---
+
+### Tableau de suivi — état au 05/10
+
+| # | Action | Statut | Notes |
+|---|--------|--------|-------|
+| 1 | Pricing SaaS (27/97/897€) | **NON FAIT** | Site affiche 1790/3990€ one-shot |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Semaine 12 consécutive |
+| 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Statut "Déployé" sans badge rouge |
+| 4 | H1 "Votre ville a une seule place disponible" | **NON FAIT** | H1 actuel orienté douleur mais pas exclusivité |
+| 5 | CTA "Vérifier si ma ville est disponible" | **NON FAIT** | CTA actuel "Analyser mon acquisition" |
+| 6 | Exclusivité territoriale dans hero | **NON FAIT** | Absente du site |
+| 7 | Programme Fondateur épuisé affiché | **NON FAIT** | Introuvable sur le site |
+| 8 | Supprimer 3 disclaimers non-résultat | **NON FAIT** | 3 occurrences sur /tarifs |
+| 9 | Section "Comment ça marche" | **PARTIEL** | Lien nav présent — contenu non confirmé |
+| 10 | FAQ homepage | **NON FAIT** | Absente homepage ET /tarifs |
+| 11 | Case studies avec livrables | **NON FAIT** | Tous en "Déployé" uniquement |
+| 12 | Supprimer emojis | **FAIT** | Maintenu depuis 12/08 |
+| 13 | Navigation simplifiée | **PARTIEL** | 9 liens (mieux que 18), cible : 5 + CTA |
+| 14 | Titre H1 /tarifs différencié | **PARTIEL** | Titre présent, modèle incompatible |
+| 15 | Footer simplifié | **NON VÉRIFIÉ** | — |
+| 16 | Angers dans scarcity bar | **NON FAIT** | Scarcity bar absente |
+
+**Score au 05/10 : ~3/17. Décision stratégique : retour au modèle SaaS confirmé.**
+
+---
+
+*Audit 12ème session — 2026-10-05*
+*Décision actée : modèle SaaS mensuel (27/97/897€) + exclusivité territoriale = brief final.*
+*Le modèle one-shot (1790/3990€ HT) est abandonné. Plan d'exécution Phase 1 à démarrer immédiatement.*
+*Prochaine vérification : 7 à 10 jours après démarrage Phase 1.*
+
+---
+
+## SITUATION AU 2026-10-03 (11ème audit)
+
+**ALERTE : DEUXIÈME PIVOT MAJEUR — Modèle économique changé. Score ~3/17. 4 nouvelles régressions.**
+
+Entre le 12/08 et le 03/10 (7 semaines), le site a subi un pivot complet du modèle économique.
+Le passage d'un SaaS par abonnement mensuel (27-97-897€/mois) vers une offre projet one-shot
+(1 790€ - 3 990€ HT) est un changement de nature — plus un ajustement de copy.
+**Ce pivot invalide l'intégralité du brief de pricing fourni.**
+
+### Observations au 03/10
+
+**Homepage — NOUVEAU POSITIONNEMENT (3e architecture en 11 semaines)**
+- H1 : "Arrêtez de courir après votre prochaine opportunité vendeur."
+- Sous-titre : "ÉcosystèmeImmo construit autour de votre activité un système d'acquisition immobilier capable d'attirer, suivre et faire mûrir vos prospects vendeurs"
+- CTAs : "Analyser mon acquisition" · "Découvrir ÉcosystèmeImmo" · "Accéder gratuitement à l'Academy" · "Voir une démonstration" — 4 CTAs (amélioration vs 10+ au 12/08)
+- Navigation : Accueil · Essentiel · Complet · Academy · Comment ça marche · Tarifs · À propos · Ressources/Blog · Analyser mon acquisition — 9 liens (simplification réelle)
+- **Aucune mention de l'exclusivité territoriale** ("1 ville = 1 conseiller" a disparu)
+- **Pas de barre de scarcité** (inchangé — semaine 11 consécutive)
+- **Disclaimer toujours présent** : "Aucun nombre de prospects, de rendez-vous ou de mandats n'est garanti."
+- Aucun emoji visible (maintenu)
+
+Analyse : le H1 est orienté douleur ("Arrêtez de courir...") — meilleur angle client que le H1 précédent. Mais le concept d'exclusivité territoriale, principal différenciateur du brief, a entièrement disparu du site. Le CTA principal "Analyser mon acquisition" est plus froid que "Vérifier si ma ville est disponible" — il n'active aucune urgence.
+
+**Page /tarifs — PRICING ENTIÈREMENT REFONDU (modèle incompatible avec le brief)**
+- H1 : "Des prix clairs. Vous choisissez jusqu'où vous voulez déléguer."
+- **Nouveau modèle prix (one-shot / projet) :**
+  - Academy : 0 € (accès gratuit)
+  - Essentiel : 1 790 € HT (ou 3 × 600 € HT)
+  - Complet : 3 990 € HT (ou 3 × 1 350 € HT)
+  - Maintenance : 197 € HT/mois (optionnel)
+  - Gestion pub : 590 € HT setup + 490 € HT/mois (optionnel)
+- **INCOMPATIBLE avec le brief** : le brief décrit 27€/97€/897€/mois — ces tarifs ont disparu
+- Le modèle n'est plus SaaS par abonnement — c'est une prestation de service one-shot
+- **3 disclaimers** : "Aucun résultat n'est garanti" · "Budget pub non inclus" · "Aucun nombre de prospects/RDV/mandats n'est garanti"
+- **Aucune FAQ** sur cette page (régression — FAQ présente au 12/08)
+
+**Page /realisations — RÉGRESSION**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- **5 clients affichés** (Eric Verneau / Angers toujours absent — disparu depuis le 12/08)
+- Nouveau système de statut : Déployé / Activé / Validé
+- **Tous les clients en statut "Déployé" uniquement** — aucun "Activé", aucun "Validé"
+- "Votre ville · À auditer" en dernière carte
+- **Aucun badge "Territoire complet"** (inchangé)
+- Aucune mention des territoires fermés (Bordeaux · Nantes · Nandy · Aix · Lannion)
+- CTAs dirigent vers "/audit" (cohérent avec le pivot "analyser mon acquisition")
+
+### Score au 03/10 : ~3/17 (en baisse vs 4/17 au 12/08)
+
+Blocages critiques persistants :
+1. **CR6 — Barre de scarcité absente** (semaine 11 consécutive — jamais implémentée)
+2. **CR5 — Disclaimer non-résultat** : 3 occurrences sur /tarifs
+3. **CR7 (NOUVEAU) — Pivot modèle économique** : tarifs incompatibles avec le brief
+4. **CR8 (NOUVEAU) — Exclusivité territoriale absente** : le différenciateur #1 a disparu du site
 
 ---
 
