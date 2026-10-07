@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import VerifyForm from '../components/VerifyForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Offres — Écosystème Immo"
+  description="Formule Estimateur, Mensuelle ou Annuelle — un seul territoire, un seul conseiller. Découvrez les formules Écosystème Immo."
+  page="offre"
+>
+  <Header page="offre" />
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1>Un seul territoire. Un seul conseiller. Un système qui travaille pour vous.</h1>
+        <p class="page-subtitle">
+          Chaque formule inclut l'exclusivité sur votre secteur.
+          Un seul conseiller par ville — vérifiez si la vôtre est disponible.
+        </p>
+      </div>
+    </div>
+
+    <Pricing />
+    <FAQ />
+    <VerifyForm />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-header {
+    padding: 72px 0 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-bottom: 64px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  .page-subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 600px) {
+    .page-header {
+      padding: 48px 0 0;
+    }
+
+    .page-header .container {
+      padding-bottom: 48px;
+    }
+  }
+</style>

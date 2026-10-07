@@ -1,0 +1,187 @@
+---
+---
+
+<section id="verifier" class="verify">
+  <div class="container">
+    <div class="verify-inner">
+      <div class="verify-header">
+        <h2>Votre territoire est encore disponible&nbsp;?</h2>
+        <p class="verify-sub">
+          La vérification est gratuite et sans engagement.
+          Si votre ville est libre, vous recevez une confirmation sous 24h.
+        </p>
+      </div>
+
+      <form
+        class="verify-form"
+        name="verification-ville"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/merci"
+      >
+        <input type="hidden" name="form-name" value="verification-ville" />
+        <p class="hidden-field">
+          <label>
+            Ne pas remplir :
+            <input name="bot-field" autocomplete="off" />
+          </label>
+        </p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ville">Votre ville ou commune</label>
+            <input
+              type="text"
+              id="ville"
+              name="ville"
+              placeholder="Ex: Lyon, Montpellier, Rennes..."
+              required
+              autocomplete="address-level2"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Votre adresse email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="vous@exemple.fr"
+              required
+              autocomplete="email"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary submit-btn">
+            Vérifier ma disponibilité
+          </button>
+        </div>
+      </form>
+
+      <p class="verify-reassurance">
+        Sans engagement · Réponse sous 24h · Un seul conseiller par ville
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .verify {
+    background: var(--dark);
+    padding: 88px 0;
+  }
+
+  .verify-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .verify-header {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .verify-sub {
+    font-size: 17px;
+    color: #94a3b8;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .verify-form {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 14px;
+    align-items: flex-end;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    padding: 13px 16px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #f8fafc;
+    font-family: var(--font);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    border-color: #64748b;
+  }
+
+  input::placeholder {
+    color: #475569;
+  }
+
+  .submit-btn {
+    white-space: nowrap;
+    padding: 13px 24px;
+    font-size: 14px;
+    align-self: flex-end;
+  }
+
+  .verify-reassurance {
+    font-size: 13px;
+    color: #475569;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 700px) {
+    .verify {
+      padding: 60px 0;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .submit-btn {
+      width: 100%;
+      text-align: center;
+      padding: 14px 20px;
+    }
+
+    .verify-form {
+      padding: 24px 20px;
+    }
+  }
+</style>

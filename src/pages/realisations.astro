@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Realisations from '../components/Realisations.astro';
+import VerifyForm from '../components/VerifyForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Réalisations — Écosystème Immo"
+  description="Cinq territoires déjà installés pour des conseillers immobiliers indépendants. Bordeaux, Nantes, Nandy, Aix-en-Provence, Lannion — territoires fermés."
+  page="realisations"
+>
+  <Header page="realisations" />
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1>Des systèmes d'acquisition déjà déployés dans plusieurs villes.</h1>
+        <p class="page-subtitle">
+          Ces territoires sont désormais fermés. Le vôtre est peut-être encore disponible.
+        </p>
+      </div>
+    </div>
+
+    <Realisations />
+    <VerifyForm />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-header {
+    padding: 72px 0 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .container {
+    max-width: 660px;
+    margin: 0 auto;
+    padding-bottom: 64px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+
+  .page-subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 600px) {
+    .page-header {
+      padding: 48px 0 0;
+    }
+
+    .page-header .container {
+      padding-bottom: 48px;
+    }
+  }
+</style>

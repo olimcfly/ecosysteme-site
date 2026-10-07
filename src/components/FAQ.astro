@@ -1,0 +1,159 @@
+---
+const questions = [
+  {
+    q: "Est-ce que je dois gérer le site moi-même ?",
+    a: "Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business Profile. Vous recevez les demandes, on gère le système.",
+  },
+  {
+    q: "En combien de temps je vois des résultats ?",
+    a: "Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours. Le référencement local se renforce sur 3 à 6 mois. Le système travaille en continu, pas ponctuellement.",
+  },
+  {
+    q: "Et si je change de réseau ou de secteur ?",
+    a: "Le domaine, le site et toutes vos données vous appartiennent. Vous pouvez continuer à utiliser le système indépendamment de votre réseau.",
+  },
+];
+---
+
+<section class="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <p class="label">Questions fréquentes</p>
+        <h2>Ce qu'on nous demande souvent</h2>
+      </div>
+
+      <ul class="faq-list">
+        {questions.map((item, i) => (
+          <li class="faq-item">
+            <button class="faq-q" aria-expanded="false" data-faq={i}>
+              <span>{item.q}</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-a" id={`faq-${i}`} hidden>
+              <p>{item.a}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const i = btn.getAttribute('data-faq');
+      const panel = document.getElementById(`faq-${i}`);
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) {
+        panel!.setAttribute('hidden', '');
+      } else {
+        panel!.removeAttribute('hidden');
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background: var(--bg-alt);
+  }
+
+  .faq-inner {
+    max-width: 720px;
+  }
+
+  .faq-header {
+    margin-bottom: 40px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+  }
+
+  .faq-list {
+    list-style: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    transition: background 0.1s;
+  }
+
+  .faq-q:hover {
+    background: var(--bg-alt);
+  }
+
+  .faq-q[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .faq-a {
+    padding: 0 28px 22px;
+  }
+
+  .faq-a p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .faq-q {
+      padding: 18px 20px;
+      font-size: 15px;
+    }
+
+    .faq-a {
+      padding: 0 20px 18px;
+    }
+  }
+</style>
