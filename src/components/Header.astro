@@ -1,0 +1,181 @@
+---
+interface Props {
+  page?: string;
+}
+const { page = "" } = Astro.props;
+---
+
+<header>
+  <div class="container">
+    <a href="/" class="logo" aria-label="Écosystème Immo — accueil">
+      Écosystème Immo
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <a href="/#process" class={page === "" ? "" : ""}>Comment ça marche</a>
+      <a href="/offre">Offres</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/blog">Blog</a>
+    </nav>
+
+    <a href="#verifier" class="btn btn-primary header-cta">Vérifier ma ville</a>
+
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav>
+    <a href="/#process">Comment ça marche</a>
+    <a href="/offre">Offres</a>
+    <a href="/realisations">Réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="#verifier" class="btn btn-primary">Vérifier ma ville</a>
+  </nav>
+</div>
+
+<script>
+  const burger = document.querySelector('.burger') as HTMLButtonElement;
+  const menu = document.getElementById('mobile-menu') as HTMLElement;
+
+  burger?.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+  });
+
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  header {
+    position: sticky;
+    top: 34px;
+    z-index: 150;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+
+  header .container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 64px;
+  }
+
+  .logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    margin-right: auto;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+  }
+
+  nav a:hover {
+    opacity: 1;
+  }
+
+  .header-cta {
+    padding: 10px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: transform 0.2s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 98px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 20px var(--px);
+    z-index: 149;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-menu nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .mobile-menu nav a {
+    font-size: 15px;
+    opacity: 1;
+  }
+
+  .mobile-menu .btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    header .container {
+      gap: 16px;
+    }
+
+    nav,
+    .header-cta {
+      display: none;
+    }
+
+    .burger {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 768px) {
+    header {
+      top: 33px;
+    }
+  }
+</style>

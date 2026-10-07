@@ -1,0 +1,168 @@
+---
+const territories = [
+  {
+    city: "Bordeaux Métropole",
+    advisor: "Eduardo De Sul",
+    desc: "Livré en 18 jours : site local, 6 pages secteurs, estimateur intégré, 3 articles SEO de démarrage, séquence email vendeurs. Eduardo dispose d'une présence propriétaire sur Bordeaux — indépendante de son réseau.",
+  },
+  {
+    city: "Aix-en-Provence",
+    advisor: "Pascal Hamm",
+    desc: "Site brandé, pages services, estimateur, structure SEO locale. Fondation digitale posée sur un marché à forte concurrence.",
+  },
+  {
+    city: "Nandy / Sénart",
+    advisor: "Fatima Rabia",
+    desc: "Site local humanisé, formulaire vendeur, pages secteurs. Présence propriétaire sur son territoire d'origine.",
+  },
+  {
+    city: "Lannion / Trégor",
+    advisor: "Stéphanie Hulen",
+    desc: "Site local, pages géographiques, contenus et formulaires. Présence digitale ancrée dans l'identité bretonne de son territoire.",
+  },
+  {
+    city: "Nantes",
+    advisor: "Brice Chupin",
+    desc: "Positionnement \"coach immobilier\" rendu visible localement. Présence différenciante sur Nantes.",
+  },
+];
+---
+
+<section class="realisations">
+  <div class="container">
+    <div class="section-header">
+      <p class="label">Territoires installés</p>
+      <h2>Les territoires déjà installés</h2>
+      <p class="intro">
+        Cinq bases locales construites pour des conseillers indépendants.
+        Ces territoires sont désormais fermés.
+      </p>
+    </div>
+
+    <ul class="territory-grid">
+      {territories.map((t) => (
+        <li class="territory-card">
+          <div class="territory-top">
+            <span class="badge-closed">Territoire complet</span>
+          </div>
+          <div class="territory-body">
+            <p class="territory-city">{t.city}</p>
+            <p class="territory-advisor">{t.advisor}</p>
+            <p class="territory-desc">{t.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="realisations-cta">
+      <p class="cta-text">Ces territoires sont fermés. Le vôtre est peut-être encore disponible.</p>
+      <a href="#verifier" class="btn btn-primary">Vérifier ma ville</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .realisations {
+    background: var(--bg);
+  }
+
+  .section-header {
+    margin-bottom: 52px;
+    max-width: 600px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 14px;
+  }
+
+  .intro {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .territory-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .territory-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .territory-top {
+    background: #fef2f2;
+    padding: 14px 20px;
+    border-bottom: 1px solid #fecaca;
+  }
+
+  .territory-body {
+    padding: 24px 20px;
+  }
+
+  .territory-city {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .territory-advisor {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .territory-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+
+  .realisations-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cta-text {
+    font-size: 18px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .territory-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .territory-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

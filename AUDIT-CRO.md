@@ -748,3 +748,60 @@ après chaque action de Phase 1.
 ---
 
 *Audit initial : 2026-07-16 | 12 sessions | olimcfly/ecosysteme-site*
+
+---
+
+## SITUATION AU 2026-10-07 (13ème session — REBUILD COMPLET)
+
+**REBUILD : Site Astro recréé intégralement. Toutes les actions Phase 1, 2 et 3 implémentées.**
+
+Le dépôt ayant été vidé, le site Astro a été reconstruit from scratch avec toutes les optimisations CRO appliquées dès le départ. Plus de pivot, plus de régression — implémentation directe du brief définitif.
+
+### Ce qui a été créé
+
+**Structure Astro complète :**
+```
+src/
+  layouts/Layout.astro          ✓ Scarcity bar sticky + CSS global
+  components/
+    Header.astro                ✓ Nav 5 liens + CTA unique
+    Hero.astro                  ✓ H1 brief + sous-titre + 2 CTAs
+    HowItWorks.astro            ✓ 3 étapes numérotées
+    Features.astro              ✓ 6 features numérotées 01-06, sans emoji
+    Pricing.astro               ✓ 4 formules + Fondateur fermé
+    Realisations.astro          ✓ 5 territoires + badges "Territoire complet"
+    FAQ.astro                   ✓ 3 questions accordion
+    VerifyForm.astro            ✓ Formulaire Netlify Forms (ville + email)
+    Footer.astro                ✓ Footer simplifié
+  pages/
+    index.astro                 ✓ Homepage
+    offre.astro                 ✓ Page offres (H1 différencié)
+    realisations.astro          ✓ Page réalisations
+    merci.astro                 ✓ Page confirmation post-formulaire
+```
+
+### Toutes les actions exécutées au 07/10
+
+| # | Action | Statut |
+|---|--------|--------|
+| 1 | Corriger le pricing | **FAIT** — 4 formules (27/97/897€ + 900€ exclusivité) |
+| 2 | Barre scarcité villes fermées | **FAIT** — sticky top, 5 villes fermées, lien #verifier |
+| 3 | Badges "Territoire complet" réalisations | **FAIT** — badge rouge sur chaque carte |
+| 4 | Réécrire H1 | **FAIT** — "Votre ville a une seule place disponible." |
+| 5 | Unifier CTA principal | **FAIT** — CTA unique "Vérifier si ma ville est disponible" |
+| 6 | Ajouter IA/automatisations features | **FAIT** — feature 06 "Automatisations et IA" |
+| 7 | Simplifier CTAs | **FAIT** — 2 CTAs hero, 1 par section |
+| 8 | Case studies avec descriptions livrées | **FAIT** — 5 territoires décrits |
+| 9 | Section "Comment ça marche" | **FAIT** — 3 étapes avec CTA |
+| 10 | FAQ homepage | **FAIT** — 3 questions accordion sur homepage |
+| 11 | Programme Fondateur — fermé | **FAIT** — "Places épuisées — 5 conseillers à 47€/mois" |
+| 12 | Retirer emojis | **FAIT** — numéros 01-06 sur les features |
+| 13 | Titre page /offre différencié | **FAIT** — H1 spécifique /offre |
+| 14 | Nettoyer navigation | **FAIT** — 4 liens + 1 CTA |
+| 15 | Simplifier footer | **FAIT** — 4 liens + coordonnées |
+| 16 | Retirer disclaimer non-résultat | **FAIT** — aucun disclaimer |
+| 17 | Formulaire de vérification | **FAIT** — Netlify Forms (#verifier) |
+
+### Score : 17/17
+
+*Rebuild complet le 2026-10-07 — branche cro-rebuild-site*

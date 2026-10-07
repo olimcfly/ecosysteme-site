@@ -1,0 +1,181 @@
+---
+const features = [
+  {
+    num: "01",
+    title: "Site immobilier local",
+    desc: "Professionnel, mobile-first, brandé à votre nom. Pensé pour capter les propriétaires vendeurs de votre secteur.",
+  },
+  {
+    num: "02",
+    title: "Pages secteurs et quartiers",
+    desc: "Des pages dédiées à vos communes et zones d'influence, optimisées pour apparaître sur Google quand un vendeur cherche dans votre ville.",
+  },
+  {
+    num: "03",
+    title: "Google Business Profile",
+    desc: "Une fiche locale cohérente avec votre site. Indispensable pour apparaître sur Google Maps et dans les résultats locaux.",
+  },
+  {
+    num: "04",
+    title: "Formulaire vendeur",
+    desc: "Un point d'entrée clair pour capter les demandes d'estimation et les contacts vendeurs directement depuis votre site.",
+  },
+  {
+    num: "05",
+    title: "CRM et suivi prospects",
+    desc: "Suivi centralisé de vos contacts, statuts et prochaines actions. Tout au même endroit, sans outils dispersés.",
+  },
+  {
+    num: "06",
+    title: "Automatisations et IA",
+    desc: "Rappels automatiques, relances intelligentes, scoring prospects. Le système travaille quand vous prospectez.",
+  },
+];
+---
+
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <p class="label">Ce qui est installé</p>
+      <h2>Un système d'acquisition local, pas un outil de plus.</h2>
+      <p class="intro">
+        Visibilité locale, contenus SEO, capture vendeurs, suivi CRM et automatisations IA
+        — activé sur votre territoire exclusif.
+      </p>
+    </div>
+
+    <ul class="feature-grid">
+      {features.map((f) => (
+        <li class="feature-card">
+          <span class="feature-num">{f.num}</span>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: var(--bg);
+  }
+
+  .section-header {
+    margin-bottom: 52px;
+    max-width: 680px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .intro {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .feature-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    padding: 36px 32px;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .feature-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .feature-card:nth-child(n+4) {
+    border-bottom: none;
+  }
+
+  .feature-num {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--border);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-card:nth-child(3n) {
+      border-right: 1px solid var(--border);
+    }
+
+    .feature-card:nth-child(2n) {
+      border-right: none;
+    }
+
+    .feature-card:nth-child(n+4) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-card:nth-child(n+5) {
+      border-bottom: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+      border-right: none !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+
+    .feature-card:last-child {
+      border-bottom: none !important;
+    }
+
+    .feature-card {
+      padding: 28px 24px;
+    }
+  }
+</style>

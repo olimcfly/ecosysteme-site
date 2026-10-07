@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Demande reçue — Écosystème Immo"
+  description="Votre demande de vérification a été reçue. Vous recevrez une réponse sous 24h."
+>
+  <Header />
+  <main>
+    <div class="thank-you">
+      <div class="container">
+        <div class="ty-content">
+          <div class="ty-check">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="23" stroke="#22c55e" stroke-width="2"/>
+              <path d="M14 24l8 8 12-16" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1>Demande bien reçue.</h1>
+          <p>
+            Nous vérifions la disponibilité de votre ville et vous répondons sous 24h
+            avec une confirmation ou les prochaines étapes.
+          </p>
+          <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .thank-you {
+    padding: 100px 0;
+    background: var(--bg);
+  }
+
+  .ty-content {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ty-check {
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+</style>

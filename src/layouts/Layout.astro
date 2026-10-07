@@ -1,0 +1,172 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  page?: string;
+}
+
+const {
+  title = "Écosystème Immo — Système d'acquisition local",
+  description = "Un seul conseiller par ville. Site professionnel, SEO local, CRM et automatisations IA — installés sur votre territoire exclusif en 21 jours.",
+  page = "",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ecosystemeimmo.fr" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="scarcity-bar">
+    Territoires complets&nbsp;: Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion
+    &nbsp;—&nbsp;
+    <a href="#verifier">Vérifiez votre ville →</a>
+  </div>
+
+  <slot />
+
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --dark: #0f172a;
+    --dark-2: #1e293b;
+    --text: #1e293b;
+    --muted: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --red: #dc2626;
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+    --max-w: 1080px;
+    --px: 20px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--px);
+  }
+
+  .scarcity-bar {
+    background: var(--dark);
+    color: #f1f5f9;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    line-height: 1.5;
+  }
+
+  .scarcity-bar a {
+    color: #e2e8f0;
+    text-decoration: underline;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .scarcity-bar a:hover {
+    color: #ffffff;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    border: none;
+    font-family: var(--font);
+    line-height: 1;
+  }
+
+  .btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    background: var(--dark);
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid var(--dark);
+  }
+
+  .btn-white {
+    background: #ffffff;
+    color: var(--dark);
+  }
+
+  .badge-closed {
+    display: inline-block;
+    background: var(--red);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 3px;
+  }
+
+  section {
+    padding: 88px 0;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 60px 0;
+    }
+
+    .scarcity-bar {
+      font-size: 12px;
+      padding: 9px 16px;
+    }
+  }
+</style>

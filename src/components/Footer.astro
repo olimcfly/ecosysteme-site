@@ -1,0 +1,149 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="brand-name">Écosystème Immo</p>
+        <p class="brand-desc">Système d'acquisition local pour conseillers immobiliers indépendants.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Liens du pied de page">
+        <a href="/offre">Offres</a>
+        <a href="/realisations">Réalisations</a>
+        <a href="/blog">Blog</a>
+        <a href="mailto:contact@ecosystemeimmo.fr">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-contact">
+        <a href="tel:+33785611700">07 85 61 17 00</a>
+        <span class="sep">·</span>
+        <a href="mailto:contact@ecosystemeimmo.fr">contact@ecosystemeimmo.fr</a>
+      </div>
+      <div class="footer-legal">
+        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/cgu">CGU</a>
+        <a href="/confidentialite">Confidentialité</a>
+      </div>
+      <p class="footer-copy">© {year} Écosystème Immo — OCDM Agency</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--dark);
+    color: #94a3b8;
+    padding: 56px 0 40px;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #1e293b;
+    margin-bottom: 28px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 8px;
+  }
+
+  .brand-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 300px;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-nav a:hover {
+    color: #f8fafc;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .footer-contact {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .footer-contact a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-contact a:hover {
+    color: #f8fafc;
+  }
+
+  .sep {
+    opacity: 0.4;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-legal a:hover {
+    color: #94a3b8;
+  }
+
+  .footer-copy {
+    margin-left: auto;
+    color: #475569;
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .footer-top {
+      flex-direction: column;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      margin-left: 0;
+    }
+  }
+</style>

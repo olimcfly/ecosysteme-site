@@ -1,0 +1,122 @@
+---
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="eyebrow">Exclusivité territoriale · 1 ville = 1 seul conseiller</p>
+      <h1>Votre ville a une seule place disponible.</h1>
+      <p class="subtitle">
+        Écosystème Immo installe votre système d'acquisition local — site professionnel,
+        SEO, Google Business, pages quartiers, CRM et automatisations IA.
+        Exclusif à votre territoire. Un seul conseiller par ville.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#verifier" class="btn btn-primary btn-lg">
+          Vérifier si ma ville est disponible
+        </a>
+        <a href="#process" class="btn btn-secondary btn-lg">
+          Comment ça marche
+        </a>
+      </div>
+
+      <div class="trust-row">
+        <span>Livraison en 21 jours</span>
+        <span class="dot">·</span>
+        <span>Domaine et données à vous</span>
+        <span class="dot">·</span>
+        <span>Premiers contacts sous 60–90 jours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--bg);
+    padding: 80px 0 88px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+
+  .subtitle {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 36px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 16px;
+  }
+
+  .trust-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+
+  .dot {
+    opacity: 0.4;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 56px 0 64px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+    }
+
+    .btn-lg {
+      width: 100%;
+      text-align: center;
+      padding: 16px 24px;
+    }
+
+    .trust-row .dot {
+      display: none;
+    }
+
+    .trust-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+</style>
