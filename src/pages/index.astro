@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Features from '../components/Features.astro';
+import Pricing from '../components/Pricing.astro';
+import Realisations from '../components/Realisations.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout
+  title="Votre système d'acquisition immobilier local"
+  description="Écosystème Immo installe votre système d'acquisition local — site, SEO, CRM et IA. Exclusif à votre territoire. Un seul conseiller par ville."
+>
+  <Header />
+  <main>
+    <Hero />
+    <HowItWorks />
+    <Features />
+    <Pricing />
+    <Realisations />
+    <FAQ />
+    <section class="cta-final" id="verifier">
+      <div class="container">
+        <h2>Votre territoire est encore disponible ?</h2>
+        <p class="sub">
+          La vérification est gratuite et sans engagement.<br>
+          Si votre ville est libre, vous recevez une confirmation sous 24h.
+        </p>
+        <a
+          href="mailto:contact@ecosystemeimmo.fr?subject=Vérification territoire disponible"
+          class="btn-primary"
+        >
+          Vérifier si ma ville est disponible
+        </a>
+        <p class="trust">Sans engagement · Réponse sous 24h · Un seul conseiller par ville</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .cta-final {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 96px 16px;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .sub {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.9; }
+
+  .trust {
+    font-size: 13px;
+    color: #334155;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 480px) {
+    .cta-final { padding: 72px 16px; }
+    .btn-primary { width: 100%; text-align: center; }
+  }
+</style>

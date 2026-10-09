@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout
+  title="Un seul territoire. Un seul conseiller. Un système qui travaille pour vous."
+  description="Choisissez la formule qui sécurise votre territoire exclusif. Estimateur 27€/mois, Mensuel 97€/mois, Annuel 897€/an. Un seul conseiller par ville."
+>
+  <Header />
+  <main>
+    <section class="offre-hero">
+      <div class="container">
+        <h1>Un seul territoire. Un seul conseiller.<br>Un système qui travaille pour vous.</h1>
+        <p class="lead">
+          Premiers contacts vendeurs observés sous 60 à 90 jours selon le territoire.
+        </p>
+      </div>
+    </section>
+
+    <Pricing />
+    <FAQ />
+
+    <section class="cta-final" id="verifier">
+      <div class="container">
+        <h2>Votre territoire est encore disponible ?</h2>
+        <p class="sub">
+          La vérification est gratuite et sans engagement.<br>
+          Si votre ville est libre, vous recevez une confirmation sous 24h.
+        </p>
+        <a
+          href="mailto:contact@ecosystemeimmo.fr?subject=Vérification territoire disponible"
+          class="btn-primary"
+        >
+          Vérifier si ma ville est disponible
+        </a>
+        <p class="trust">Sans engagement · Réponse sous 24h · Un seul conseiller par ville</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .offre-hero {
+    background: #f8fafc;
+    padding: 72px 16px 80px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  h1 {
+    font-size: clamp(26px, 4.5vw, 44px);
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  .cta-final {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 96px 16px;
+    text-align: center;
+  }
+
+  .cta-final .container { max-width: 600px; }
+
+  h2 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .sub {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.9; }
+
+  .trust {
+    font-size: 13px;
+    color: #334155;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 480px) {
+    .cta-final { padding: 72px 16px; }
+    .btn-primary { width: 100%; text-align: center; }
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+const faqs = [
+  {
+    q: "Est-ce que je dois gérer le site moi-même ?",
+    a: "Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business Profile. Vous recevez les demandes, on gère le système.",
+  },
+  {
+    q: "En combien de temps je vois des résultats ?",
+    a: "Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours. Le référencement local se renforce sur 3 à 6 mois. Le système travaille en continu, pas ponctuellement.",
+  },
+  {
+    q: "Et si je change de réseau ou de secteur ?",
+    a: "Le domaine, le site et toutes vos données vous appartiennent. Vous pouvez continuer à utiliser le système indépendamment de votre réseau.",
+  },
+];
+---
+<section class="faq" id="faq">
+  <div class="container">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      {faqs.map(item => (
+        <details class="faq-item">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: #f8fafc;
+    padding: 80px 16px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .faq-list { display: flex; flex-direction: column; }
+
+  .faq-item {
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .faq-item:first-child { border-top: 1px solid #e2e8f0; }
+
+  summary {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    cursor: pointer;
+    padding: 20px 32px 20px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+    position: relative;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    font-weight: 300;
+    color: #94a3b8;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  details[open] > summary::after { content: '−'; }
+
+  .faq-item p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.7;
+    padding: 0 0 20px;
+  }
+</style>

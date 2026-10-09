@@ -1,0 +1,135 @@
+---
+---
+<footer>
+  <div class="container">
+    <div class="top">
+      <div class="brand">
+        <strong>Écosystème Immo</strong>
+        <span>Système d'acquisition local pour conseillers immobiliers indépendants.</span>
+      </div>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="/offre">Offres</a>
+        <a href="/realisations">Réalisations</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <address class="contact">
+        <p>Olivier Colas</p>
+        <p><a href="tel:+33785611700">07 85 61 17 00</a></p>
+        <p><a href="mailto:contact@ecosystemeimmo.fr">contact@ecosystemeimmo.fr</a></p>
+      </address>
+    </div>
+    <div class="bottom">
+      <nav class="legal" aria-label="Liens légaux">
+        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/cgu">CGU</a>
+        <a href="/confidentialite">Confidentialité</a>
+      </nav>
+      <p class="copy">© 2026 Écosystème Immo — OCDM Agency</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: #0f172a;
+    color: #64748b;
+    padding: 56px 16px 40px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #1e293b;
+    margin-bottom: 24px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .brand span {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-nav a {
+    font-size: 14px;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-nav a:hover { color: #f8fafc; }
+
+  .contact {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .contact p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contact a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .contact a:hover { color: #f8fafc; }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .legal {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .legal a {
+    font-size: 13px;
+    color: #334155;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .legal a:hover { color: #64748b; }
+
+  .copy {
+    font-size: 12px;
+    color: #334155;
+  }
+
+  @media (max-width: 680px) {
+    .top { grid-template-columns: 1fr; gap: 28px; }
+    .bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>

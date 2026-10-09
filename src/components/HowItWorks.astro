@@ -1,0 +1,120 @@
+---
+const steps = [
+  {
+    num: "01",
+    title: "Vous vérifiez votre ville",
+    body: "Renseignez votre commune. Si elle est disponible, vous recevez une confirmation et un brief personnalisé sous 24h.",
+  },
+  {
+    num: "02",
+    title: "On installe votre système en 21 jours",
+    body: "Site, SEO local, Google Business, pages secteurs, CRM et automatisations. Vous validez chaque étape. On livre clé en main.",
+  },
+  {
+    num: "03",
+    title: "Votre territoire travaille pour vous",
+    body: "Les vendeurs de votre ville vous trouvent sur Google. Les demandes arrivent directement dans votre CRM.",
+  },
+];
+---
+<section class="how" id="process">
+  <div class="container">
+    <h2>Comment ça marche</h2>
+    <div class="steps">
+      {steps.map(step => (
+        <div class="step">
+          <span class="step-num">{step.num}</span>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      ))}
+    </div>
+    <div class="cta-wrap">
+      <a href="#verifier" class="btn-primary">Vérifier si ma ville est disponible</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: #fff;
+    padding: 96px 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    text-align: center;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .step {
+    padding: 32px 28px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .step-num {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 14px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.65;
+  }
+
+  .cta-wrap { text-align: center; }
+
+  .btn-primary {
+    display: inline-block;
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 14px 26px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .how { padding: 72px 16px; }
+    h2 { margin-bottom: 40px; }
+  }
+</style>

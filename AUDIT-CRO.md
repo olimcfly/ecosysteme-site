@@ -1,9 +1,65 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-03 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-09 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
 
 ---
 
-## SITUATION AU 2026-10-03 (11ème audit)
+## SESSION 13 — 2026-10-09 — COMPOSANTS PRODUCTION CRÉÉS
+
+**Action : création des fichiers Astro implémentables directement dans le projet.**
+
+Suite aux 12 audits successifs sans implémentation complète, cette session crée l'ensemble
+des composants Astro production-ready, prêts à remplacer les fichiers existants sur le site live.
+
+### Fichiers créés dans ce commit
+
+| Fichier | Contenu |
+|---------|---------|
+| `src/layouts/Layout.astro` | Layout global + **barre de scarcité sticky** (CR6 — levier #1) |
+| `src/components/Header.astro` | Navigation 5 liens + CTA "Vérifier ma ville" (CR9) |
+| `src/components/Hero.astro` | H1 "Votre ville a une seule place disponible." + sous-titre + CTAs (CR4) |
+| `src/components/HowItWorks.astro` | Section 3 étapes — nouveau composant (FO4) |
+| `src/components/Features.astro` | 6 fonctionnalités — sans emoji — numéros 01-06 (MO1) |
+| `src/components/Pricing.astro` | Pricing SaaS complet (27/97/897€ + Exclusivité + Fondateur fermé) (CR1, CR7) |
+| `src/components/Realisations.astro` | 5 territoires avec badge "TERRITOIRE COMPLET" rouge (FO2) |
+| `src/components/FAQ.astro` | 3 objections critiques — nouveau composant (FO7) |
+| `src/components/Footer.astro` | Footer simplifié (FA1) |
+| `src/pages/index.astro` | Homepage complète — Hero → Process → Features → Pricing → Réalisations → FAQ → CTA |
+| `src/pages/offre.astro` | Page offre avec H1 différencié + pricing + FAQ + CTA (MO4) |
+
+### Décisions prises
+
+- **Pricing retenu** : modèle SaaS mensuel du brief original (27/97/897€) — le modèle "Sur devis" bloque la conversion autonome
+- **CTA unifié** : "Vérifier si ma ville est disponible" sur toute la homepage — un seul CTA dominant
+- **Barre de scarcité** : Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion — sticky, z-index 100
+- **Exclusivité territoriale** : présente dans le H1, le sous-titre, la barre de scarcité, les plans et les réalisations
+- **Programme Fondateur** : affiché "Places épuisées" — 5 conseillers à 47€/mois à vie (fermé)
+- **Disclaimer de non-résultat** : supprimé — remplacé par "Premiers contacts sous 60 à 90 jours"
+- **Emojis** : aucun dans aucun composant
+
+### Ordre d'intégration recommandé sur le site live
+
+```
+1. Copier src/layouts/Layout.astro          → barre scarcité visible immédiatement
+2. Copier src/components/Hero.astro         → H1 + CTA corrigés
+3. Copier src/components/Pricing.astro      → prix SaaS visibles + Fondateur fermé
+4. Copier src/components/Header.astro       → nav simplifiée
+5. Copier src/components/Realisations.astro → badges territoire complet
+6. Copier src/components/HowItWorks.astro   → nouveau composant
+7. Intégrer dans src/pages/index.astro      → ajouter HowItWorks après Hero
+8. Copier src/components/FAQ.astro          → nouveau composant
+9. Intégrer dans src/pages/index.astro      → ajouter FAQ avant section CTA finale
+10. Copier src/pages/offre.astro            → titre H1 différencié
+11. Copier src/components/Footer.astro      → simplifier
+```
+
+### Score estimé après intégration complète
+
+Si tous les composants sont intégrés : **15/17** — blocages restants : case studies sans
+chiffres (FO5) et IA/automatisations non différenciée (FO6).
+
+---
+
+## SITUATION AU 2026-10-06 (12ème audit)
 
 **ALERTE : DEUXIÈME PIVOT MAJEUR — Modèle économique changé. Score ~3/17. 4 nouvelles régressions.**
 
