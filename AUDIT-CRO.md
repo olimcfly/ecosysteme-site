@@ -1,5 +1,70 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-06 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-10 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-10 (13ème audit)
+
+**STAGNATION — Score ~2/17 (inchangé). Aucun changement détecté depuis le 06/10.**
+
+Aucune modification significative entre le 06/10 et le 10/10 (4 jours).
+Une légère réorganisation de la navigation en sous-menus (Offres, Ressources, Audit) est détectée,
+mais le nombre de destinations reste identique. Tous les blocages critiques persistent.
+
+### Observations au 10/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 4ème H1 consécutif)
+- Sous-titre : "ÉcosystèmeImmo construit votre Écosystème Vendeur pour attirer, capter, suivre et faire mûrir vos opportunités... pendant que vous vous concentrez sur les estimations, les mandats et les ventes." (légère reformulation)
+- CTAs : "Analyser mon acquisition" (principal) · "Découvrir ÉcosystèmeImmo" · "Découvrir Essentiel" · "Découvrir Complet" · "Accéder gratuitement à l'Academy" · "Voir une démonstration" · "Voir son site" (×5 pilotes) — pas de hiérarchie claire, toujours trop de CTAs
+- **Navigation — LÉGÈRE RÉORGANISATION (mais toujours surchargée)** :
+  - Niveau 1 : Accueil · Offres · Comment ça marche · À propos · Ressources · Audit · Analyser mon acquisition
+  - Offres (sous-menu) : Actif Vendeur · Essentiel · Complet · Pub/Accélération · Maintenance
+  - Ressources (sous-menu) : Blog · Ressources · Formations
+  - Audit (sous-menu) : Audit SEO · Audit Acquisition
+  - Footer (supplémentaires) : Academy · Comparatifs logiciels · Guides · Hébergement Hostinger · Démonstration · Contact · Devenir conseiller · Devenir Ambassadeur · Mentions légales · CGV · etc.
+  - Total toujours > 15 destinations — loin du cible de 5 liens
+- **Pas de barre de scarcité** (semaine 13 consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- Aucun emoji (maintenu)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **Pricing "Sur devis"** : Essentiel · Complet · Maintenance · Pub/Accélération · Site Local Performance — tous "Sur devis" (inchangé)
+- **Disclaimer toujours présent** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti."
+- **Aucune FAQ** (inchangé)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non précisée) — tous en statut "Déployé"
+- **Aucun badge "Territoire complet"** (inchangé)
+- "Votre ville · À auditer" en dernière carte
+
+### Score au 10/10 : ~2/17 (inchangé depuis le 06/10)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 7ème semaine)
+- Navigation réorganisée en sous-menus (légère amélioration cosmétique sans impact sur la conversion)
+
+Aucun nouveau progrès ni nouvelle régression depuis le 06/10.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toute la page /tarifs — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : semaine 13 consécutive — jamais implémentée depuis le lancement
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation > 15 liens** : loin du cible de 5 liens malgré le sous-menu
+5. **CR5 — Disclaimer non-résultat** : toujours présent sur /tarifs
+
+### Alerte stratégique — Site figé depuis 4 jours
+
+Le site n'a pas bougé depuis le 06/10. Aucun des blocages critiques n'a été adressé.
+Le modèle "Sur devis" est maintenu — incompatible avec la conversion en autonomie.
+
+**Rappel des 3 décisions urgentes à prendre (inchangées depuis le 03/10) :**
+1. Afficher des prix réels — quel que soit le modèle choisi (SaaS 27/97/897€ ou prestation)
+2. Remettre la barre de scarcité — c'est le levier #1 absent depuis 13 semaines
+3. Réduire la navigation à 5–6 liens maximum
 
 ---
 
