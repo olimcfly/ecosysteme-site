@@ -1,5 +1,73 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-10 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-11 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-11 (14ème audit)
+
+**STAGNATION — Score ~2/17 (inchangé). 1 régression mineure détectée.**
+
+Aucun changement significatif depuis le 10/10 (1 jour).
+Une nouvelle offre "Actif Vendeur" est présente dans la navigation — impossible de confirmer si elle est réellement nouvelle
+(absence de données au 10/10 sur ce point). Un nouveau disclaimer sur la migration apparaît sur /tarifs (régression).
+Un nouveau CTA "Créer mon site" → /audit a été ajouté sur /tarifs (sans impact sur la conversion principale).
+Tous les blocages critiques persistent sans exception.
+
+### Observations au 11/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 5ème occurrence consécutive)
+- CTAs : "Analyser mon acquisition" · "Découvrir ÉcosystèmeImmo" · "Découvrir Essentiel" · "Découvrir Complet" · "Voir une démonstration" · "Accéder gratuitement à l'Academy" — 6 CTAs sans hiérarchie (inchangé)
+- **Navigation — INCHANGÉE** (structure identique au 10/10) :
+  - Niveau 1 : Accueil · Offres · Comment ça marche · À propos · Ressources · Audit · Analyser mon acquisition
+  - Offres (sous-menu) : **Actif Vendeur** (nouvelle page `/actif-vendeur`) · Essentiel · Complet · Pub/Accélération · Maintenance
+  - Ressources (sous-menu) : Blog · Ressources · Formations
+  - Audit (sous-menu) : Audit SEO · Audit Acquisition
+  - Footer : 27 destinations uniques (nav + footer combinés) — toujours > 15 destinations, cible : 5 liens
+- **Pas de barre de scarcité** (14ème semaine consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- **Disclaimer** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Aucun emoji (maintenu)
+
+**Page /tarifs — 1 RÉGRESSION MINEURE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **Pricing "Sur devis"** : Essentiel · Complet · Maintenance · Pub/Accélération · Site Local Performance · Actif Vendeur — tous "Sur devis" (inchangé)
+- **NOUVEAU DISCLAIMER** : "La migration ne rend pas tout gratuit et ne garantit pas que toutes les briques soient transférables sans condition." — crée un doute sur la portabilité des données, contredit la réassurance de propriété dans le brief
+- Disclaimers persistants : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (×2) · "La maintenance est optionnelle." · "Budget publicitaire non inclus."
+- **Aucune FAQ** (inchangé)
+- Nouveau CTA "Créer mon site" → /audit (nouveau, mais redirige vers le même audit)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non précisée) — tous "Déployé" (inchangé)
+- **Aucun badge "Territoire complet"** (inchangé)
+- "Votre ville · À auditer" en dernière carte (inchangé)
+
+### Score au 11/10 : ~2/17 (inchangé depuis le 06/10)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 8ème semaine)
+
+Régression depuis le 10/10 :
+- **RÉGRESSION MINEURE** : Nouveau disclaimer sur /tarifs concernant la migration — ajoute un signal de méfiance sur la portabilité
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toute la page /tarifs — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : 14ème semaine consécutive — jamais implémentée depuis le lancement
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation > 15 destinations** : 27 destinations uniques (nav + footer) — loin du cible de 5 liens
+5. **CR5 — Disclaimers multiples** : 4 disclaimers sur /tarifs dont un nouveau sur la migration
+
+### Alerte stratégique — Site figé depuis 5 jours
+
+Le site n'a pas bougé depuis le 06/10. Le modèle "Sur devis" est maintenu sur toutes les offres.
+Chaque nouveau disclaimer ajouté détériore la confiance sans aucune contrepartie en preuve ou en conversion.
+
+**Les 3 décisions urgentes restent les mêmes depuis le 03/10 :**
+1. Afficher des prix réels — quel que soit le modèle (SaaS 27/97/897€ ou prestation)
+2. Créer la barre de scarcité — levier #1 absent depuis 14 semaines
+3. Réduire la navigation à 5–6 liens maximum
 
 ---
 
@@ -763,30 +831,30 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 06/10 | Statut au 03/10 | Notes |
+| # | Action | Statut au 11/10 | Statut au 06/10 | Notes |
 |---|--------|-----------------|-----------------|-------|
-| 1 | Corriger le pricing | **RÉGRESSION TOTALE** | Régression | Passage à "Sur devis" — 0 prix visible sur tout le site (pire état depuis le lancement) |
-| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — semaine 12 consécutive |
+| 1 | Corriger le pricing | **RÉGRESSION TOTALE** | Régression totale | "Sur devis" partout — 0 prix visible sur tout le site |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — 14ème semaine consécutive |
 | 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 5 clients en statut "Déployé" — aucun badge territoire fermé |
-| 4 | Réécrire H1 | **RÉGRESSION** | Partiel | Nouveau H1 "Transformez votre acquisition..." — générique, sans urgence ni exclusivité (4ème H1 en 12 semaines) |
-| 5 | Unifier CTA principal | **NON FAIT** | Partiel | Multiples CTAs sans hiérarchie |
+| 4 | Réécrire H1 | **RÉGRESSION** | Régression | H1 "Transformez votre acquisition..." — générique, sans urgence ni exclusivité (5ème occurrence consécutive) |
+| 5 | Unifier CTA principal | **NON FAIT** | Non fait | 6 CTAs sans hiérarchie claire |
 | 6 | Ajouter IA/automatisations features | **NON CONFIRMÉ** | Non confirmé | Non visible |
-| 7 | Simplifier CTAs | **NON FAIT** | Partiel | Toujours plusieurs CTAs sans CTA dominant |
-| 8 | Case studies avec résultats | **NON FAIT** | Non fait | Tous en statut "Déployé" uniquement |
-| 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Lien nav présent — contenu non vérifié |
+| 7 | Simplifier CTAs | **NON FAIT** | Non fait | 6 CTAs sans CTA dominant |
+| 8 | Case studies avec résultats | **NON FAIT** | Non fait | Tous en statut "Déployé" uniquement — aucun chiffre |
+| 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Page `/comment-ca-marche` détectée en nav — contenu non vérifié |
 | 10 | FAQ homepage | **NON FAIT** | Non fait | Absente homepage ET /tarifs |
 | 11 | Programme Fondateur — statut cohérent | **DISPARU** | Disparu | Toujours introuvable |
-| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu — seul point positif) |
-| 13 | Modifier titre page /tarifs | **PARTIEL** | Partiel | H1 différencié, mais pricing "Sur devis" |
-| 14 | Nettoyer navigation | **RÉGRESSION TOTALE** | Partiel | 20+ liens (record absolu — pire qu'au lancement avec 18 liens) |
-| 15 | Simplifier footer | **NON VÉRIFIÉ** | Non vérifié | Non vérifié |
-| 16 | Retirer disclaimer non-résultat | **RÉGRESSION** | Régression | Disclaimer maintenu + "expertise et suivi commercial restent essentiels" |
+| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu — 8ème semaine) |
+| 13 | Modifier titre page /tarifs | **PARTIEL** | Partiel | H1 différencié, mais pricing "Sur devis" vide tout sens |
+| 14 | Nettoyer navigation | **RÉGRESSION TOTALE** | Régression totale | 27 destinations uniques (nav + footer) — loin du cible de 5 liens |
+| 15 | Simplifier footer | **NON FAIT** | Non vérifié | Footer audité au 11/10 : 8 colonnes, 27 destinations — non simplifié |
+| 16 | Retirer disclaimer non-résultat | **AGGRAVÉ** | Régression | 4 disclaimers sur /tarifs dont 1 nouveau sur la migration — aggravation |
 | 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Scarcity bar toujours absente |
 
-**Score au 06/10 : ~2/17 (en baisse vs 3/17). 3 nouvelles régressions critiques en 3 jours.**
+**Score au 11/10 : ~2/17 (inchangé depuis le 06/10 — 5 jours de stagnation).**
 Actions complètes : emojis retirés (12).
-Régressions depuis le 03/10 : pricing → "Sur devis" (1), navigation 20+ liens (14), H1 générique (4).
-Blocages critiques : 0 prix visible (1), barre scarcité jamais créée (2), exclusivité absente (CR8), navigation explosée (CR9).
+Seule nouveauté : nouveau disclaimer sur /tarifs (migration) — régression mineure.
+Blocages critiques : 0 prix visible (1), barre scarcité jamais créée (2), exclusivité absente (CR8), navigation 27 destinations (CR9), 4 disclaimers sur /tarifs (CR5 aggravé).
 
 ---
 
@@ -803,13 +871,13 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-10-06*
-*12ème session. ~2/17 actions (en baisse). 3 nouvelles régressions en 3 jours.*
-*Seul point maintenu : aucun emoji (semaine 6).*
-*Régressions majeures : pricing "Sur devis" (0 prix visible sur le site), navigation 20+ liens (pire état — dépasse les 18 liens du lancement), nouveau H1 générique (4ème changement).*
-*Alerte stratégique maximale : le site ne peut pas convertir en autonomie avec "Sur devis" partout. Décision urgente : afficher des prix réels (quel que soit le modèle choisi) ET ramener la navigation sous 6 liens.*
-*Le plan CRO en COPY-CHANGES.md reste valide pour le brief SaaS mensuel (27/97/897€). Si le modèle "Sur devis" est confirmé, le plan doit être réécrit.*
+*Audit mis à jour le 2026-10-11*
+*14ème session. ~2/17 actions (inchangé). 1 régression mineure (nouveau disclaimer migration sur /tarifs).*
+*Seul point maintenu : aucun emoji (8ème semaine).*
+*Site figé depuis 5 jours. Aucun blocage critique adressé.*
+*Alerte stratégique : le modèle "Sur devis" est incompatible avec la conversion autonome. 3 décisions urgentes toujours en attente depuis le 03/10.*
+*Le plan CRO en COPY-CHANGES.md reste valide pour le brief SaaS mensuel (27/97/897€). Si le modèle "Sur devis" est confirmé définitivement, le plan doit être réécrit.*
 
 ---
 
-*Audit initial : 2026-07-16 | 12 sessions | olimcfly/ecosysteme-site*
+*Audit initial : 2026-07-16 | 14 sessions | olimcfly/ecosysteme-site*
