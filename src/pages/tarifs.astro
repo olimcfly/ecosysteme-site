@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+---
+<Layout
+  title="Tarifs — Sécurisez votre territoire"
+  description="27 €/mois, 97 €/mois ou 897 €/an. Chaque formule inclut l'exclusivité territoriale. Un seul conseiller par ville."
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Un seul territoire. Un seul conseiller.<br>Un système qui travaille pour vous.</h1>
+      <p>Chaque formule inclut l'exclusivité sur votre secteur. La disponibilité dépend de votre ville.</p>
+    </div>
+  </section>
+  <Pricing />
+  <FAQ />
+  <CTASection />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--c-dark);
+    padding: 64px 0 56px;
+  }
+  .page-hero h1 {
+    font-size: clamp(24px, 4vw, 38px);
+    color: var(--c-white);
+    margin-bottom: 16px;
+  }
+  .page-hero p {
+    font-size: 17px;
+    color: #94a3b8;
+    max-width: 520px;
+  }
+</style>

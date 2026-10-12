@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+const ville = Astro.url.searchParams.get('ville') ?? '';
+---
+<Layout
+  title="Vérification de disponibilité — Écosystème Immo"
+  description="Vérification de la disponibilité de votre territoire. Réponse sous 24h."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="box">
+        <div class="icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="#1e293b"/>
+            <path d="M12 20L17 25L28 14" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1>Demande reçue</h1>
+        {ville && <p class="ville">Ville demandée : <strong>{ville}</strong></p>}
+        <p class="message">Nous vérifions la disponibilité de votre territoire et revenons vers vous sous 24h.</p>
+        <p class="sub">Si votre ville est disponible, vous recevrez une confirmation et un brief personnalisé par email ou téléphone.</p>
+        <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--c-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .box {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--c-white);
+  }
+
+  .ville { font-size: 16px; color: #94a3b8; }
+  .ville strong { color: var(--c-white); }
+
+  .message {
+    font-size: 18px;
+    color: #94a3b8;
+    line-height: 1.65;
+  }
+
+  .sub {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.65;
+  }
+</style>

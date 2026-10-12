@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Page introuvable">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Page introuvable</h1>
+      <p>Cette page n'existe pas ou a été déplacée.</p>
+      <a href="/" class="btn btn-primary" style="margin-top: 8px;">Retour à l'accueil</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--c-dark);
+    padding: 96px 0;
+  }
+  h1 { font-size: 40px; color: var(--c-white); margin-bottom: 12px; }
+  p  { font-size: 17px; color: #94a3b8; }
+</style>

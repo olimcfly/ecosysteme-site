@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Features from '../components/Features.astro';
+import CTASection from '../components/CTASection.astro';
+---
+<Layout
+  title="Comment ça marche — Écosystème Immo"
+  description="Vérifiez votre ville, on installe votre système en 21 jours, votre territoire travaille pour vous. SEO, CRM, automatisations IA."
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Du premier contact au système activé en 21 jours.</h1>
+      <p>Trois étapes. Zéro technique. Vous vous concentrez sur les vendeurs, on gère le reste.</p>
+    </div>
+  </section>
+  <HowItWorks />
+  <Features />
+  <CTASection />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--c-dark);
+    padding: 64px 0 56px;
+  }
+  .page-hero h1 {
+    font-size: clamp(24px, 4vw, 38px);
+    color: var(--c-white);
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+  .page-hero p {
+    font-size: 17px;
+    color: #94a3b8;
+    max-width: 500px;
+  }
+</style>

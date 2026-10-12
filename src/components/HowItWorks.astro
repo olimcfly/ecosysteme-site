@@ -1,0 +1,97 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Vous vérifiez votre ville',
+    desc: 'Renseignez votre commune. Si elle est disponible, vous recevez une confirmation et un brief personnalisé sous 24h.',
+  },
+  {
+    num: '02',
+    title: 'On installe votre système',
+    desc: 'Site, SEO local, Google Business, pages secteurs, CRM et automatisations. Vous validez chaque étape. On livre clé en main en 21 jours.',
+  },
+  {
+    num: '03',
+    title: 'Votre territoire travaille pour vous',
+    desc: 'Les vendeurs de votre ville vous trouvent sur Google. Les demandes arrivent directement dans votre CRM.',
+  },
+];
+---
+<section id="process" class="section how-section">
+  <div class="container">
+    <span class="section-label">Processus</span>
+    <h2 class="section-heading">Comment ça marche</h2>
+    <p class="section-sub" style="margin-bottom: 48px;">Trois étapes. Zéro technique. Vous vous concentrez sur les vendeurs, on gère le reste.</p>
+
+    <div class="steps">
+      {steps.map(step => (
+        <div class="step">
+          <div class="step-num">{step.num}</div>
+          <h3>{step.title}</h3>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div style="margin-top: 40px;">
+      <a href="#verifier" class="btn btn-primary">Vérifier si ma ville est disponible</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-section { background: var(--c-light); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: calc(33.33% + 16px);
+    right: calc(33.33% + 16px);
+    height: 1px;
+    background: var(--c-border);
+    pointer-events: none;
+  }
+
+  .step { position: relative; }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--c-dark);
+    color: var(--c-white);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: var(--c-muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 768px) {
+    .steps { grid-template-columns: 1fr; gap: 28px; }
+    .steps::before { display: none; }
+  }
+</style>
