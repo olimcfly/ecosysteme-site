@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Realisations from '../components/Realisations.astro';
+import CTASection from '../components/CTASection.astro';
+---
+<Layout
+  title="Réalisations — Territoires déployés"
+  description="5 systèmes d'acquisition locaux déployés pour des conseillers immobiliers indépendants. Ces territoires sont désormais fermés."
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Des systèmes d'acquisition déjà déployés dans plusieurs villes.</h1>
+      <p>Cinq bases locales construites pour des conseillers indépendants. Ces territoires sont désormais fermés.</p>
+    </div>
+  </section>
+  <Realisations />
+  <CTASection />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--c-dark);
+    padding: 64px 0 56px;
+  }
+  .page-hero h1 {
+    font-size: clamp(24px, 4vw, 38px);
+    color: var(--c-white);
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+  .page-hero p {
+    font-size: 17px;
+    color: #94a3b8;
+    max-width: 540px;
+  }
+</style>

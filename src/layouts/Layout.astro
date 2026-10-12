@@ -1,0 +1,177 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Système d'acquisition local pour conseillers immobiliers",
+  description = "Écosystème Immo installe votre système d'acquisition local — site professionnel, SEO, Google Business, CRM et automatisations IA. Exclusif à votre territoire. Un seul conseiller par ville."
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} — Écosystème Immo</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-dark:       #0f172a;
+      --c-dark-2:     #1e293b;
+      --c-dark-3:     #334155;
+      --c-muted:      #64748b;
+      --c-border:     #e2e8f0;
+      --c-light:      #f8fafc;
+      --c-white:      #ffffff;
+      --c-blue:       #1d4ed8;
+      --c-blue-hover: #1e40af;
+      --c-red:        #dc2626;
+      --c-radius:     6px;
+      --c-max-w:      1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--c-dark-2);
+      background: var(--c-white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      color: var(--c-dark);
+      font-weight: 700;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      max-width: var(--c-max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: 80px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-blue);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(26px, 4vw, 38px);
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--c-muted);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--c-radius);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s ease;
+      white-space: nowrap;
+      line-height: 1;
+      font-family: inherit;
+    }
+
+    .btn-primary { background: var(--c-blue); color: var(--c-white); }
+    .btn-primary:hover { background: var(--c-blue-hover); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--c-dark);
+      border: 1.5px solid var(--c-border);
+    }
+    .btn-ghost:hover { border-color: var(--c-dark-3); }
+
+    .btn-dark { background: var(--c-dark); color: var(--c-white); }
+    .btn-dark:hover { background: var(--c-dark-2); }
+
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sticky-top">
+    <div id="scarcity-bar">
+      <span class="bar-full">Territoires complets&nbsp;: Bordeaux · Nantes · Nandy · Aix-en-Provence · Lannion &nbsp;—&nbsp; <a href="#verifier">Vérifiez votre ville →</a></span>
+      <span class="bar-short">Bordeaux · Nantes · Nandy · Aix · Lannion complets &mdash; <a href="#verifier">Vérifier →</a></span>
+    </div>
+    <Header />
+  </div>
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  .sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  #scarcity-bar {
+    background: var(--c-dark);
+    color: #cbd5e1;
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+
+  #scarcity-bar a {
+    color: #e2e8f0;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  #scarcity-bar a:hover { color: white; }
+
+  .bar-short { display: none; }
+
+  @media (max-width: 640px) {
+    .bar-full  { display: none; }
+    .bar-short { display: inline; font-size: 11.5px; }
+    #scarcity-bar { padding: 8px 16px; }
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+const faqs = [
+  {
+    q: "Est-ce que je dois gérer le site moi-même ?",
+    a: "Non. On gère tout — maintenance, mises à jour, contenus SEO, Google Business Profile. Vous recevez les demandes, on gère le système.",
+  },
+  {
+    q: "En combien de temps je vois des résultats ?",
+    a: "Les premiers contacts vendeurs arrivent généralement sous 60 à 90 jours. Le référencement local se renforce sur 3 à 6 mois. Le système travaille en continu, pas ponctuellement.",
+  },
+  {
+    q: "Et si je change de réseau ou de secteur ?",
+    a: "Le domaine, le site et toutes vos données vous appartiennent. Vous pouvez continuer à utiliser le système indépendamment de votre réseau.",
+  },
+];
+---
+<section class="section faq-section">
+  <div class="container">
+    <span class="section-label">Questions fréquentes</span>
+    <h2 class="section-heading" style="margin-bottom: 32px;">Ce que vous devez savoir avant de démarrer</h2>
+
+    <div class="faq-list">
+      {faqs.map((faq, i) => (
+        <details class="item" open={i === 0}>
+          <summary>
+            <span>{faq.q}</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M3.5 6L8 10.5L12.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="answer">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section { background: var(--c-light); }
+
+  .faq-list {
+    max-width: 700px;
+    border: 1px solid var(--c-border);
+    border-radius: var(--c-radius);
+    overflow: hidden;
+  }
+
+  .item {
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .item:last-child { border-bottom: none; }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-dark);
+    list-style: none;
+    user-select: none;
+    gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  .chevron {
+    flex-shrink: 0;
+    color: var(--c-muted);
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .chevron { transform: rotate(180deg); }
+
+  .answer {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+</style>

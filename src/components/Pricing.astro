@@ -1,0 +1,272 @@
+---
+const plans = [
+  {
+    id: 'estimateur',
+    label: 'Estimateur',
+    price: '27 €',
+    period: '/mois',
+    setup: '+ 197 € setup unique',
+    recommended: false,
+    badge: null,
+    items: [
+      "Estimateur immobilier intégré à votre site",
+      "Formulaire de capture vendeurs",
+      "Hébergement et maintenance",
+    ],
+    audience: "Pour démarrer par la capture d'estimations.",
+    cta: 'Choisir cette formule',
+    ctaHref: '#verifier',
+  },
+  {
+    id: 'mensuel',
+    label: 'Mensuel',
+    price: '97 €',
+    period: '/mois',
+    setup: '+ 497 € setup · 3 mois prépayés',
+    recommended: true,
+    badge: 'Recommandée',
+    items: [
+      "Site immobilier local à votre nom",
+      "Pages secteurs et quartiers",
+      "Google Business Profile",
+      "Estimateur et formulaire vendeur",
+      "CRM et suivi prospects",
+      "Automatisations et relances IA",
+      "Contenu SEO mensuel",
+      "Exclusivité territoriale",
+    ],
+    audience: "Système complet sans engagement annuel.",
+    cta: 'Vérifier si ma ville est disponible',
+    ctaHref: '#verifier',
+  },
+  {
+    id: 'annuel',
+    label: 'Annuel',
+    price: '897 €',
+    period: '/an',
+    priceNote: '≈ 74 €/mois · Économisez 267 €',
+    setup: 'Setup offert',
+    recommended: false,
+    badge: 'Meilleure valeur',
+    items: [
+      "Tout le Mensuel, plus :",
+      "Setup offert (497 € économisés)",
+      "Exclusivité territoriale renforcée",
+      "Priorité sur les villes à forte demande",
+    ],
+    audience: "Pour sécuriser son territoire durablement.",
+    cta: 'Sécuriser mon territoire',
+    ctaHref: '#verifier',
+  },
+  {
+    id: 'exclusivite',
+    label: 'Exclusivité verrouillée',
+    price: '900 €',
+    period: '',
+    setup: 'Paiement unique · verrou à vie',
+    recommended: false,
+    badge: null,
+    items: [
+      "Verrou territorial à vie sur votre ville",
+      "Sans abonnement ni renouvellement",
+      "Territoire bloqué pour les concurrents, quelle que soit votre formule",
+    ],
+    audience: "Votre territoire reste bloqué pour les concurrents à vie.",
+    cta: 'Me renseigner',
+    ctaHref: 'mailto:contact@ecosystemeimmo.fr',
+  },
+];
+---
+<section id="tarifs" class="section pricing-section">
+  <div class="container">
+    <span class="section-label">Tarifs</span>
+    <h2 class="section-heading">Sécurisez votre territoire</h2>
+    <p class="section-sub" style="margin-bottom: 40px;">
+      Un système. Un territoire. Un conseiller.<br>
+      Chaque formule inclut l'exclusivité sur votre secteur.
+    </p>
+
+    <div class="grid">
+      {plans.map(plan => (
+        <div class={`plan${plan.recommended ? ' plan--dark' : ''}`}>
+          {plan.badge && (
+            <div class={`badge${plan.recommended ? ' badge--blue' : ''}`}>{plan.badge}</div>
+          )}
+
+          <div class="plan-header">
+            <p class="plan-label">{plan.label}</p>
+            <p class="plan-price">
+              <span class="amount">{plan.price}</span>
+              <span class="period">{plan.period}</span>
+            </p>
+            {plan.priceNote && <p class="price-note">{plan.priceNote}</p>}
+            <p class="setup">{plan.setup}</p>
+          </div>
+
+          <ul class="items">
+            {plan.items.map(item => (
+              <li>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <path d="M2 7L5 10L11 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <p class="audience">{plan.audience}</p>
+
+          <a href={plan.ctaHref} class={`btn ${plan.recommended ? 'btn-primary' : 'btn-dark'}`}>
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="fondateur">
+      <p class="fondateur-title">Programme Fondateur — Places épuisées</p>
+      <p class="fondateur-body">Les 5 premiers conseillers ont rejoint le programme à 47 €/mois à vie. Ces places sont fermées. Ce sont eux qui figurent dans les réalisations ci-dessous.</p>
+    </div>
+
+    <p class="reassurance">
+      Vos données, votre domaine, votre site — vous repartez avec tout si vous partez.
+      Un seul conseiller par territoire. La disponibilité dépend de votre ville.
+    </p>
+  </div>
+</section>
+
+<style>
+  .pricing-section { background: var(--c-light); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--c-border);
+    border: 1px solid var(--c-border);
+    border-radius: calc(var(--c-radius) + 1px);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .plan {
+    background: var(--c-white);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .plan--dark {
+    background: var(--c-dark);
+  }
+
+  .badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #f1f5f9;
+    color: var(--c-dark-3);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .badge--blue { background: var(--c-blue); color: white; }
+
+  .plan-header { margin-bottom: 22px; }
+
+  .plan-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 8px;
+  }
+  .plan--dark .plan-label { color: #64748b; }
+
+  .amount {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--c-dark);
+    line-height: 1;
+  }
+  .plan--dark .amount { color: var(--c-white); }
+
+  .period { font-size: 14px; color: var(--c-muted); margin-left: 2px; }
+  .plan--dark .period { color: #64748b; }
+
+  .price-note {
+    font-size: 12px;
+    color: var(--c-muted);
+    margin-top: 4px;
+  }
+  .plan--dark .price-note { color: #64748b; }
+
+  .setup {
+    font-size: 12px;
+    color: var(--c-muted);
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .plan--dark .setup { color: #64748b; }
+
+  .items {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+
+  .items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 5px 0;
+    color: var(--c-dark-2);
+  }
+  .plan--dark .items li { color: #e2e8f0; }
+
+  .items li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--c-blue);
+  }
+  .plan--dark .items li svg { color: #60a5fa; }
+
+  .audience {
+    font-size: 12px;
+    color: var(--c-muted);
+    margin-bottom: 18px;
+    line-height: 1.5;
+    flex-grow: 0;
+  }
+  .plan--dark .audience { color: #64748b; }
+
+  .plan .btn { width: 100%; justify-content: center; }
+
+  .fondateur {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: var(--c-radius);
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .fondateur-title { font-size: 14px; font-weight: 600; color: var(--c-dark); margin-bottom: 4px; }
+  .fondateur-body  { font-size: 13px; color: var(--c-muted); line-height: 1.6; }
+
+  .reassurance {
+    font-size: 13px;
+    color: var(--c-muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .grid { grid-template-columns: 1fr; } .amount { font-size: 28px; } }
+</style>

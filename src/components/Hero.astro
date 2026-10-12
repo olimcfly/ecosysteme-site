@@ -1,0 +1,142 @@
+---
+---
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge">Système d'acquisition local · Exclusivité territoriale</div>
+      <h1>Votre ville a une seule place disponible.</h1>
+      <p class="sub">
+        Écosystème Immo installe votre système d'acquisition local — site professionnel,
+        SEO, Google Business, pages quartiers, CRM et automatisations IA.
+        <strong>Un seul conseiller par ville.</strong>
+      </p>
+      <div class="ctas">
+        <a href="#verifier" class="btn btn-primary">Vérifier si ma ville est disponible</a>
+        <a href="#process"  class="btn-outline">Comment ça marche</a>
+      </div>
+      <p class="reassurance">Vérification gratuite · Réponse sous 24h · Sans engagement</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="n">5</span>
+        <span class="l">Territoires déployés</span>
+      </div>
+      <div class="stat">
+        <span class="n">21</span>
+        <span class="l">Jours de déploiement</span>
+      </div>
+      <div class="stat">
+        <span class="n">1</span>
+        <span class="l">Conseiller par ville</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #hero {
+    background: var(--c-dark);
+    padding: 96px 0 80px;
+  }
+
+  .hero-content { max-width: 680px; }
+
+  .badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(29, 78, 216, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #93c5fd;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5.5vw, 54px);
+    color: var(--c-white);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .sub {
+    font-size: 18px;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 600px;
+  }
+  .sub strong { color: #e2e8f0; font-weight: 500; }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+    align-items: center;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 24px;
+    border: 1.5px solid #334155;
+    border-radius: var(--c-radius);
+    font-size: 15px;
+    font-weight: 600;
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .btn-outline:hover { border-color: #64748b; }
+
+  .reassurance {
+    font-size: 12.5px;
+    color: #475569;
+    letter-spacing: 0.03em;
+  }
+
+  .stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid #1e293b;
+    flex-wrap: wrap;
+  }
+
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+
+  .n {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--c-white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .l {
+    font-size: 12px;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    #hero { padding: 64px 0 56px; }
+    h1 { font-size: clamp(28px, 6vw, 40px); }
+    .sub { font-size: 16px; }
+    .stats { gap: 32px; margin-top: 48px; padding-top: 32px; }
+    .n { font-size: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .ctas { flex-direction: column; align-items: stretch; }
+    .ctas a { text-align: center; justify-content: center; }
+  }
+</style>

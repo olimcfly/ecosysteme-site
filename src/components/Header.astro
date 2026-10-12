@@ -1,0 +1,123 @@
+---
+const nav = [
+  { href: '/',                    label: 'Accueil' },
+  { href: '/comment-ca-marche',   label: 'Comment ça marche' },
+  { href: '/tarifs',              label: 'Offres' },
+  { href: '/realisations',        label: 'Réalisations' },
+  { href: '/blog',                label: 'Blog' },
+];
+---
+<header>
+  <div class="container">
+    <nav>
+      <a href="/" class="logo" aria-label="Écosystème Immo — Accueil">Écosystème Immo</a>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-list" id="nav-list" role="list">
+        {nav.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+
+      <a href="#verifier" class="btn btn-primary nav-cta">Vérifier ma ville</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    background: var(--c-dark);
+    border-bottom: 1px solid #1e293b;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 0;
+  }
+
+  .logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-white);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0 auto;
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .nav-list a:hover { color: var(--c-white); }
+
+  .nav-cta {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+  }
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--c-white);
+    border-radius: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .burger { display: flex; }
+    .nav-cta { display: none; }
+
+    .nav-list {
+      display: none;
+      position: absolute;
+      left: 0; right: 0;
+      top: 100%;
+      background: var(--c-dark);
+      flex-direction: column;
+      padding: 12px 20px 20px;
+      border-top: 1px solid #1e293b;
+      gap: 0;
+    }
+    .nav-list.open { display: flex; }
+    .nav-list a { font-size: 16px; padding: 14px 0; border-bottom: 1px solid #1e293b; }
+    .nav-list li:last-child a { border-bottom: none; }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('burger');
+  const list   = document.getElementById('nav-list');
+  burger?.addEventListener('click', () => {
+    const open = list?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+</script>

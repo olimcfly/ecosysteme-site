@@ -1,0 +1,83 @@
+---
+---
+<section id="verifier" class="section cta-section">
+  <div class="container">
+    <div class="box">
+      <h2>Votre territoire est encore disponible ?</h2>
+      <p class="intro">La vérification est gratuite et sans engagement. Si votre ville est libre, vous recevez une confirmation sous 24h.</p>
+
+      <form class="form" action="/audit" method="GET">
+        <div class="row">
+          <input
+            type="text"
+            name="ville"
+            placeholder="Entrez votre ville ou code postal"
+            required
+            autocomplete="address-level2"
+            aria-label="Votre ville ou code postal"
+          />
+          <button type="submit" class="btn btn-primary">Vérifier la disponibilité</button>
+        </div>
+      </form>
+
+      <p class="small">Sans engagement · Réponse sous 24h · Un seul conseiller par ville</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section { background: var(--c-dark); }
+
+  .box {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: clamp(24px, 4vw, 36px);
+    color: var(--c-white);
+    margin-bottom: 14px;
+  }
+
+  .intro {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  .form { margin-bottom: 14px; }
+
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .row input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 18px;
+    border: 1.5px solid #334155;
+    border-radius: var(--c-radius);
+    background: #1e293b;
+    color: var(--c-white);
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .row input::placeholder { color: #64748b; }
+  .row input:focus { border-color: var(--c-blue); }
+
+  .small {
+    font-size: 12px;
+    color: #475569;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 540px) {
+    .row { flex-direction: column; }
+    .row .btn { width: 100%; }
+  }
+</style>
