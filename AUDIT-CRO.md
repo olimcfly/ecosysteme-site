@@ -1,5 +1,69 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-11 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-14 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-14 (15ème audit)
+
+**STAGNATION PROLONGÉE — Score ~2/17 (inchangé). Aucun changement depuis le 11/10.**
+
+Aucune modification détectée entre le 11/10 et le 14/10 (3 jours).
+Tous les blocages critiques persistent sans exception. Le site est figé depuis 8 jours.
+
+### Observations au 14/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 6ème occurrence consécutive)
+- Sous-titre : "ÉcosystèmeImmo construit votre Écosystème Vendeur pour attirer, capter, suivre et faire mûrir vos opportunités pendant que vous vous concentrez sur les estimations, les mandats et les ventes." (inchangé)
+- CTAs : "Analyser mon acquisition" (×3) · "Découvrir ÉcosystèmeImmo" · "Découvrir Essentiel" · "Découvrir Complet" · "Accéder gratuitement à l'Academy" · "Voir une démonstration" · "Voir son site" (×5) — 8 CTAs actifs sans hiérarchie (inchangé)
+- Navigation header : Accueil · Actif Vendeur · Essentiel · Complet · Pub/Accélération · Maintenance · Comment ça marche · À propos · Blog · Ressources · Formations · Audit SEO · Audit Acquisition · Analyser mon acquisition — **14 destinations header**
+- Navigation footer : Actif Vendeur · Essentiel · Complet · Pub/Accélération · Maintenance · Comment ça marche · À propos · Academy · Blog · Comparatifs logiciels · Guides · Hébergement Hostinger · Analyser mon acquisition · Démonstration · Audit SEO · Audit Acquisition · Contact · Devenir conseiller · Devenir Ambassadeur · Mentions légales · Politique de confidentialité · CGV · Gestion des cookies · Espace client — **25 destinations footer**
+- Total destinations uniques nav+footer : **~30** (aggravation vs 27 au 11/10)
+- **Pas de barre de scarcité** (15ème semaine consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- **Disclaimer** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Aucun emoji (maintenu)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **Pricing "Sur devis"** : Essentiel · Complet · Maintenance · Pub/Accélération · Site Local Performance — tous "Sur devis" (inchangé)
+- **5 disclaimers** :
+  1. "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (×2)
+  2. Maintenance optionnelle (périmètre au devis, préavis 30 jours)
+  3. Migration : "ne rend pas tout gratuit et ne garantit pas que toutes les briques soient transférables sans condition"
+  4. Budget publicitaire : "payé directement aux régies"
+- **Aucune FAQ** (inchangé)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non précisée) — tous "Déployé" (inchangé)
+- **Aucun badge "Territoire complet"** (inchangé)
+- "Votre ville · À auditer" en dernière carte (inchangé)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur" · "Faire mesurer mon secteur" · "Analyser mon acquisition"
+
+### Score au 14/10 : ~2/17 (inchangé depuis le 06/10 — 8 jours de stagnation)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 9ème semaine)
+
+Aucune régression, aucun progrès depuis le 11/10.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toute la page /tarifs — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : 15ème semaine consécutive — jamais implémentée depuis le lancement
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation > 30 destinations** : ~30 destinations uniques (nav+footer) — aggravation vs 27 au 11/10
+5. **CR5 — 5 disclaimers sur /tarifs** : dont migration + budget pub
+
+### Alerte stratégique — Site figé depuis 8 jours
+
+Le site n'a pas bougé depuis le 06/10 (8 jours). Aucun des 3 blocages prioritaires n'a été traité.
+
+**Les 3 décisions urgentes restent identiques depuis le 03/10 :**
+1. Afficher des prix réels — quel que soit le modèle (SaaS 27/97/897€ ou prestation)
+2. Créer la barre de scarcité — levier #1 absent depuis 15 semaines
+3. Réduire la navigation à 5–6 liens maximum
 
 ---
 
@@ -871,10 +935,11 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-10-11*
-*14ème session. ~2/17 actions (inchangé). 1 régression mineure (nouveau disclaimer migration sur /tarifs).*
-*Seul point maintenu : aucun emoji (8ème semaine).*
-*Site figé depuis 5 jours. Aucun blocage critique adressé.*
+*Audit mis à jour le 2026-10-14*
+*15ème session. ~2/17 actions (inchangé depuis le 06/10 — 8 jours de stagnation).*
+*Seul point maintenu : aucun emoji (9ème semaine).*
+*Site figé depuis 8 jours. Aucun blocage critique adressé.*
+*Navigation aggravée : ~30 destinations uniques (vs 27 au 11/10).*
 *Alerte stratégique : le modèle "Sur devis" est incompatible avec la conversion autonome. 3 décisions urgentes toujours en attente depuis le 03/10.*
 *Le plan CRO en COPY-CHANGES.md reste valide pour le brief SaaS mensuel (27/97/897€). Si le modèle "Sur devis" est confirmé définitivement, le plan doit être réécrit.*
 
