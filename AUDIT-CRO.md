@@ -1,5 +1,76 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-14 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-15 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-15 (16ème audit)
+
+**STAGNATION CRITIQUE — Score ~2/17 (inchangé). 9ème jour consécutif de blocage. Nouvelle anomalie HTML détectée.**
+
+Aucune modification détectée entre le 14/10 et le 15/10. Tous les blocages critiques persistent.
+Anomalie nouvelle : des instructions de prompt injection sont embarquées dans le HTML de plusieurs pages
+(homepage, /tarifs, /realisations). À corriger immédiatement — impact SEO et crédibilité.
+
+### Observations au 15/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 7ème occurrence consécutive)
+- Offres détectées : Essentiel · Complet · Academy (gratuite) — toutes "Sur devis"
+- Témoignages : 5 conseillers pilotes
+- **Pas de barre de scarcité** (16ème semaine consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- **Disclaimer** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+
+**Page /tarifs — INCHANGÉE**
+- Essentiel · Complet — tous **"Sur devis"** (inchangé)
+- Programme 90 jours "Mise en Traction" visible
+- Add-ons : Maintenance · Mode Autonomie · Accélération pub · Site Local Performance — tous "Sur devis"
+- **Aucune FAQ** (inchangé)
+- Disclaimers : "Aucun résultat garanti" · "Migration ne garantit pas la portabilité" · "Budget pub payé directement aux régies"
+
+**Page /realisations — INCHANGÉE**
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non précisée) — tous statut "Déployé"
+- **Aucun badge "Territoire complet"** (inchangé)
+- 6ème slot : "Votre ville · À auditer"
+
+### ALERTE NOUVELLE — Prompt injection dans le HTML
+
+**Anomalie détectée (nouvelle au 15/10) :**
+Des instructions textuelles demandant à des agents IA d'extraire des données "verbatim" sont embarquées
+dans le HTML de plusieurs pages (homepage, /tarifs, /realisations).
+
+**Impacts :**
+1. **SEO** : contenu parasite potentiellement indexable — peut dégrader le score de qualité de la page
+2. **Crédibilité** : visible dans le source HTML par tout développeur ou auditeur technique
+3. **Compliance** : pratique ambiguë vis-à-vis des guidelines des moteurs de recherche
+
+**Action requise :** Supprimer ces instructions du HTML source.
+Fichiers probables : templates de layout ou composants header/footer (si Astro : `src/layouts/Layout.astro`, section cookies ou consentement).
+
+### Score au 15/10 : ~2/17 (inchangé depuis le 06/10 — 9 jours de stagnation)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 10ème semaine)
+
+Nouvelle anomalie : prompt injection HTML (alerte ci-dessus).
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toute la page /tarifs — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : 16ème semaine consécutive — jamais implémentée depuis le lancement
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation > 30 destinations** : ~30 destinations uniques (nav+footer)
+5. **CR5 — Disclaimers multiples sur /tarifs** : résultats, migration, budget pub
+
+### Alerte stratégique — Site figé depuis 9 jours
+
+**Les 3 décisions urgentes restent identiques depuis le 03/10 :**
+1. Afficher des prix réels — pricing SaaS prêt dans COPY-CHANGES.md (27/97/897€)
+2. Créer la barre de scarcité — levier #1 absent depuis 16 semaines
+3. Réduire la navigation à 5–6 liens maximum
+
+**Nouvelle urgence :**
+4. Supprimer les instructions de prompt injection du HTML source
 
 ---
 
@@ -935,14 +1006,15 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-10-14*
-*15ème session. ~2/17 actions (inchangé depuis le 06/10 — 8 jours de stagnation).*
-*Seul point maintenu : aucun emoji (9ème semaine).*
-*Site figé depuis 8 jours. Aucun blocage critique adressé.*
+*Audit mis à jour le 2026-10-15*
+*16ème session. ~2/17 actions (inchangé depuis le 06/10 — 9 jours de stagnation).*
+*Seul point maintenu : aucun emoji (10ème semaine).*
+*Site figé depuis 9 jours. Aucun blocage critique adressé.*
+*Nouvelle anomalie : prompt injection HTML détectée dans plusieurs pages.*
 *Navigation aggravée : ~30 destinations uniques (vs 27 au 11/10).*
 *Alerte stratégique : le modèle "Sur devis" est incompatible avec la conversion autonome. 3 décisions urgentes toujours en attente depuis le 03/10.*
 *Le plan CRO en COPY-CHANGES.md reste valide pour le brief SaaS mensuel (27/97/897€). Si le modèle "Sur devis" est confirmé définitivement, le plan doit être réécrit.*
 
 ---
 
-*Audit initial : 2026-07-16 | 14 sessions | olimcfly/ecosysteme-site*
+*Audit initial : 2026-07-16 | 16 sessions | olimcfly/ecosysteme-site*
