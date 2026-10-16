@@ -1,5 +1,72 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-15 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-16 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-16 (17ème audit)
+
+**STAGNATION CRITIQUE — Score ~2/17 (inchangé). 10ème jour consécutif de blocage. Navigation aggravée à 39 destinations. Prompt injection confirmée sur /realisations.**
+
+Aucune modification détectée entre le 15/10 et le 16/10. Tous les blocages critiques persistent.
+Nouvelle aggravation : la navigation atteint 39 destinations uniques (14 header + 25 footer), vs ~30 au 15/10.
+La prompt injection signalée le 15/10 est confirmée : le texte de la requête d'un agent IA est rendu visible dans la section cookies de /realisations — comportement anormal.
+
+### Observations au 16/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 8ème occurrence consécutive)
+- Sous-titre : "ÉcosystèmeImmo construit votre Écosystème Vendeur pour attirer, capter, suivre et faire mûrir vos opportunités pendant que vous vous concentrez sur les estimations, les mandats et les ventes." (inchangé)
+- CTAs actifs : "Analyser mon acquisition" (×3) · "Découvrir ÉcosystèmeImmo" · "Découvrir Essentiel" · "Découvrir Complet" · "Accéder gratuitement à l'Academy" · "Voir une démonstration" · "Voir son site" (×5 pilotes) — 8 CTAs distincts sans hiérarchie (inchangé)
+- Navigation header : Accueil · Actif Vendeur · Essentiel · Complet · Pub/Accélération · Maintenance · Comment ça marche · À propos · Blog · Ressources · Formations · Audit SEO · Audit Acquisition · Analyser mon acquisition — **14 liens header**
+- Navigation footer : Actif Vendeur · Essentiel · Complet · Pub/Accélération · Maintenance · Comment ça marche · À propos · Academy · Blog · Comparatifs logiciels · Guides · Hébergement Hostinger · Actif Vendeur (doublon) · Analyser mon acquisition · Démonstration · Audit SEO · Audit Acquisition · Contact · Devenir conseiller · Devenir Ambassadeur · Mentions légales · Politique de confidentialité · CGV · Gestion des cookies · Espace client — **25 liens footer**
+- **Total destinations uniques nav+footer : 39 liens** (AGGRAVATION — vs ~30 au 15/10 ; doublon "Actif Vendeur" détecté dans le footer)
+- **Pas de barre de scarcité** (17ème semaine consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé) — "Sur devis" + "Tarifs sur devis, communiqués après diagnostic de votre acquisition."
+- **Disclaimer** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Aucun emoji (maintenu)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **Pricing "Sur devis"** : Essentiel · Complet · Maintenance · Pub/Accélération · Site Local Performance — tous "Sur devis" (inchangé)
+- **4 disclaimers** : (1) "Aucun nombre de prospects…" × 1 sur Essentiel/Complet · (2) Maintenance optionnelle, préavis 30 jours · (3) Migration : "ne rend pas tout gratuit et ne garantit pas que toutes les briques soient transférables" · (4) "Budget publicitaire non inclus, payé directement aux régies"
+- **Aucune FAQ** (inchangé)
+- Aucune mention de l'exclusivité territoriale
+
+**Page /realisations — INCHANGÉE + ANOMALIE CONFIRMÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non précisée) — tous "Déployé" (inchangé)
+- **Aucun badge "Territoire complet"** (inchangé)
+- 6ème slot : "Votre ville · À auditer" (inchangé)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur →" · "Faire mesurer mon secteur" → /audit (inchangés)
+- **ANOMALIE CONFIRMÉE — Prompt injection** : dans la section cookies de /realisations, le texte d'une requête d'agent IA envoyée à la page ("Extrais verbatim : ...") est rendu visible dans le DOM. Le contenu de la requête apparaît comme du texte de page. Comportement anormal — probablement lié à un cookie banner ou composant de consentement qui rend du texte dynamique dans le DOM. Impact : tout crawler ou agent IA qui analyse cette page voit le texte injecté comme du contenu légitime de page.
+
+### Score au 16/10 : ~2/17 (inchangé depuis le 06/10 — 10 jours de stagnation)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 11ème semaine)
+
+Nouvelles régressions depuis le 15/10 :
+- **RÉGRESSION** : Navigation aggravée à 39 destinations uniques (vs ~30 au 15/10) — doublon "Actif Vendeur" dans le footer
+- **ANOMALIE CONFIRMÉE** : Prompt injection visible dans le DOM de /realisations (section cookies)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toute la page /tarifs + homepage — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : 17ème semaine consécutive — jamais implémentée depuis le lancement
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation 39 destinations** : aggravation record — 14 header + 25 footer
+5. **CR5 — 4 disclaimers sur /tarifs** : dont migration + budget pub
+
+### Alerte stratégique — Site figé depuis 10 jours
+
+**Les 3 décisions urgentes restent identiques depuis le 03/10 — 13 jours sans action :**
+1. Afficher des prix réels — pricing SaaS prêt dans COPY-CHANGES.md (27/97/897€)
+2. Créer la barre de scarcité — levier #1 absent depuis 17 semaines
+3. Réduire la navigation à 5–6 liens maximum
+
+**Urgences nouvelles ou confirmées :**
+4. Supprimer les instructions de prompt injection du DOM (section cookies / composant consentement)
+5. Supprimer le doublon "Actif Vendeur" dans le footer
 
 ---
 
@@ -966,30 +1033,30 @@ Voir COPY-CHANGES.md pour tous les textes prêts à copier-coller.
 
 ## ÉTAT D'IMPLÉMENTATION — SUIVI CUMULÉ
 
-| # | Action | Statut au 11/10 | Statut au 06/10 | Notes |
+| # | Action | Statut au 16/10 | Statut au 11/10 | Notes |
 |---|--------|-----------------|-----------------|-------|
 | 1 | Corriger le pricing | **RÉGRESSION TOTALE** | Régression totale | "Sur devis" partout — 0 prix visible sur tout le site |
-| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — 14ème semaine consécutive |
+| 2 | Barre scarcité villes fermées | **NON FAIT** | Non fait | Toujours absente — 17ème semaine consécutive |
 | 3 | Badges "Territoire complet" réalisations | **NON FAIT** | Non fait | 5 clients en statut "Déployé" — aucun badge territoire fermé |
-| 4 | Réécrire H1 | **RÉGRESSION** | Régression | H1 "Transformez votre acquisition..." — générique, sans urgence ni exclusivité (5ème occurrence consécutive) |
-| 5 | Unifier CTA principal | **NON FAIT** | Non fait | 6 CTAs sans hiérarchie claire |
+| 4 | Réécrire H1 | **RÉGRESSION** | Régression | H1 "Transformez votre acquisition..." — générique, sans urgence ni exclusivité (8ème occurrence consécutive) |
+| 5 | Unifier CTA principal | **NON FAIT** | Non fait | 8 CTAs sans hiérarchie claire (aggravation vs 6 au 11/10) |
 | 6 | Ajouter IA/automatisations features | **NON CONFIRMÉ** | Non confirmé | Non visible |
-| 7 | Simplifier CTAs | **NON FAIT** | Non fait | 6 CTAs sans CTA dominant |
+| 7 | Simplifier CTAs | **NON FAIT** | Non fait | 8 CTAs sans CTA dominant |
 | 8 | Case studies avec résultats | **NON FAIT** | Non fait | Tous en statut "Déployé" uniquement — aucun chiffre |
-| 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Page `/comment-ca-marche` détectée en nav — contenu non vérifié |
+| 9 | Section "Comment ça marche" | **PARTIEL** | Partiel | Page `/comment-ca-marche` en nav — contenu non vérifié |
 | 10 | FAQ homepage | **NON FAIT** | Non fait | Absente homepage ET /tarifs |
 | 11 | Programme Fondateur — statut cohérent | **DISPARU** | Disparu | Toujours introuvable |
-| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu — 8ème semaine) |
+| 12 | Retirer emojis | **FAIT** | Fait | Aucun emoji visible (maintenu — 11ème semaine) |
 | 13 | Modifier titre page /tarifs | **PARTIEL** | Partiel | H1 différencié, mais pricing "Sur devis" vide tout sens |
-| 14 | Nettoyer navigation | **RÉGRESSION TOTALE** | Régression totale | 27 destinations uniques (nav + footer) — loin du cible de 5 liens |
-| 15 | Simplifier footer | **NON FAIT** | Non vérifié | Footer audité au 11/10 : 8 colonnes, 27 destinations — non simplifié |
-| 16 | Retirer disclaimer non-résultat | **AGGRAVÉ** | Régression | 4 disclaimers sur /tarifs dont 1 nouveau sur la migration — aggravation |
+| 14 | Nettoyer navigation | **RÉGRESSION TOTALE** | Régression totale | **39 destinations uniques** (14 header + 25 footer) — aggravation record vs 27 au 11/10 |
+| 15 | Simplifier footer | **NON FAIT** | Non fait | 25 destinations footer dont doublon "Actif Vendeur" — non simplifié |
+| 16 | Retirer disclaimer non-résultat | **AGGRAVÉ** | Aggravé | 4 disclaimers sur /tarifs dont migration + budget pub — inchangé |
 | 17 | Ajouter Angers dans scarcity bar | **NON FAIT** | Non fait | Scarcity bar toujours absente |
 
-**Score au 11/10 : ~2/17 (inchangé depuis le 06/10 — 5 jours de stagnation).**
+**Score au 16/10 : ~2/17 (inchangé depuis le 06/10 — 10 jours de stagnation).**
 Actions complètes : emojis retirés (12).
-Seule nouveauté : nouveau disclaimer sur /tarifs (migration) — régression mineure.
-Blocages critiques : 0 prix visible (1), barre scarcité jamais créée (2), exclusivité absente (CR8), navigation 27 destinations (CR9), 4 disclaimers sur /tarifs (CR5 aggravé).
+Nouvelle régression : navigation à 39 destinations (aggravation record). Anomalie confirmée : prompt injection DOM sur /realisations.
+Blocages critiques : 0 prix visible (1), barre scarcité jamais créée (2), exclusivité absente (CR8), navigation 39 destinations (CR9 aggravé), 4 disclaimers /tarifs (CR5), prompt injection DOM (anomalie).
 
 ---
 
@@ -1006,15 +1073,15 @@ après chaque action de Phase 1.
 
 ---
 
-*Audit mis à jour le 2026-10-15*
-*16ème session. ~2/17 actions (inchangé depuis le 06/10 — 9 jours de stagnation).*
-*Seul point maintenu : aucun emoji (10ème semaine).*
-*Site figé depuis 9 jours. Aucun blocage critique adressé.*
-*Nouvelle anomalie : prompt injection HTML détectée dans plusieurs pages.*
-*Navigation aggravée : ~30 destinations uniques (vs 27 au 11/10).*
+*Audit mis à jour le 2026-10-16*
+*17ème session. ~2/17 actions (inchangé depuis le 06/10 — 10 jours de stagnation).*
+*Seul point maintenu : aucun emoji (11ème semaine).*
+*Site figé depuis 10 jours. Aucun blocage critique adressé.*
+*Anomalie confirmée : prompt injection DOM visible sur /realisations (section cookies/consentement).*
+*Navigation aggravée : 39 destinations uniques (14 header + 25 footer, doublon "Actif Vendeur" footer) — record absolu.*
 *Alerte stratégique : le modèle "Sur devis" est incompatible avec la conversion autonome. 3 décisions urgentes toujours en attente depuis le 03/10.*
 *Le plan CRO en COPY-CHANGES.md reste valide pour le brief SaaS mensuel (27/97/897€). Si le modèle "Sur devis" est confirmé définitivement, le plan doit être réécrit.*
 
 ---
 
-*Audit initial : 2026-07-16 | 16 sessions | olimcfly/ecosysteme-site*
+*Audit initial : 2026-07-16 | 17 sessions | olimcfly/ecosysteme-site*
