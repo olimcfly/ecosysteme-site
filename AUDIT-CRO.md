@@ -1,5 +1,84 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-16 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-20 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-20 (18ème audit)
+
+**STAGNATION — Score ~2/17 (inchangé). 14ème jour consécutif de blocage. 2 nouveautés structurelles sans impact sur la conversion.**
+
+Quatre jours depuis le 17ème audit (16/10). Aucun blocage critique adressé.
+Deux évolutions structurelles détectées sur la homepage — sans impact conversion.
+La prompt injection sur /realisations est toujours présente et confirmée.
+
+### Observations au 20/10
+
+**Homepage — PARTIELLEMENT RESTRUCTURÉE (sans impact conversion)**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 9ème occurrence consécutive)
+- Sous-titre : "ÉcosystèmeImmo construit votre Écosystème Vendeur pour attirer, capter, suivre et faire mûrir vos opportunités..." (inchangé)
+- CTAs actifs : "Analyser mon acquisition" (×3) · "Découvrir ÉcosystèmeImmo" · "Voir une démonstration" · "Découvrir Essentiel" · "Découvrir Complet" · "Accéder gratuitement à l'Academy" · "Voir son site" (×5 pilotes) — 8 CTAs sans hiérarchie (inchangé)
+- Navigation header : Accueil · Offres (sous-menu: Actif Vendeur, Essentiel, Complet, Pub/Accélération, Maintenance) · Comment ça marche · À propos · Ressources (sous-menu: Blog, Ressources, Formations) · Audit (sous-menu: Audit SEO, Audit Acquisition) · Analyser mon acquisition — **~14 destinations header**
+- Navigation footer : 4 colonnes — Offres (7 liens) · Ressources (5 liens) · Démarrer (8 liens dont doublon "Actif Vendeur") · Juridique (4 liens) + "Espace client" — **~25 destinations footer**
+- Total destinations uniques nav+footer : **~39** (inchangé)
+- **Pas de barre de scarcité** (18ème semaine consécutive — jamais implémentée)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- **Disclaimer** : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Aucun emoji (maintenu — 12ème semaine)
+
+**NOUVEAUTÉ 1 — Section "Objections fréquentes" (4 blocs, homepage)**
+Nouvelle section avec 4 blocs d'objections/réponses sur la homepage. Amélioration marginale (FAQ partielle).
+Impact conversion : faible — les objections sont traitées, mais après 10+ sections et sans prix ni exclusivité en amont.
+
+**NOUVEAUTÉ 2 — Section "Méthode en 3 étapes : Clarifier, Construire, Activer" (homepage)**
+Substitut partiel à "Comment ça marche". 3 étapes présentes mais différentes du brief (vs "Vérifier ville / Installer 21 jours / Territoire travaille").
+Impact conversion : faible — la mécanique d'achat reste floue, pas d'urgence territoriale.
+
+**Structure homepage étendue (13 sections désormais) :**
+1. Hero · 2. Constat · 3. Principe · 4. Écosystème Vendeur (6 étapes) · 5. Image espace de travail · 6. Témoignages + 5 pilotes · 7. Méthode 3 étapes · 8. 6 fondations · 9. Objections fréquentes · 10. Offres Essentiel/Complet · 11. "Votre actif" · 12. Academy · 13. CTA finale
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **Pricing "Sur devis"** : Essentiel · Complet · Maintenance · Accélération · Site Local Performance — tous "Sur devis" (inchangé)
+- **4 disclaimers** : résultats non garantis · maintenance optionnelle · migration non garantie · budget pub non inclus (inchangé)
+- **Aucune FAQ** (inchangé)
+- Aucune mention de l'exclusivité territoriale
+
+**Page /realisations — INCHANGÉE + ANOMALIE PERSISTANTE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul — tous "Déployé" (inchangé)
+- **Aucun badge "Territoire complet"** (inchangé)
+- 6ème slot : "Votre ville · À auditer" (inchangé)
+- **ANOMALIE PERSISTANTE — Prompt injection** : texte "Extrais :" visible dans la section cookies/consentement — confirmé pour la 3ème fois. Toujours non corrigé.
+
+### Score au 20/10 : ~2/17 (inchangé depuis le 06/10 — 14 jours de stagnation)
+
+Progrès maintenus :
+- Aucun emoji (maintenu, 12ème semaine)
+
+Évolutions détectées depuis le 16/10 :
+- Section "Objections fréquentes" ajoutée en homepage (amélioration marginale)
+- Section "Méthode 3 étapes : Clarifier/Construire/Activer" présente en homepage (partiel)
+- Ces évolutions n'adressent aucun des 5 blocages critiques
+
+Blocages critiques persistants (inchangés depuis le 06/10 — 14 jours) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur tout le site — blocage total de conversion autonome
+2. **CR6 — Barre de scarcité absente** : 18ème semaine consécutive — jamais implémentée
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 absent de toutes les pages
+4. **CR9 — Navigation ~39 destinations** : 14 header + 25 footer — inchangé
+5. **CR5 — 4 disclaimers sur /tarifs** : dont migration + budget pub
+6. **ANOMALIE — Prompt injection DOM** : texte "Extrais:" visible sur /realisations — non corrigé (3ème confirmation)
+
+### Alerte stratégique — 14 jours de stagnation
+
+**Les 3 décisions urgentes restent identiques depuis le 03/10 — 17 jours sans action sur les critiques :**
+1. Afficher des prix réels — pricing SaaS prêt dans COPY-CHANGES.md (27/97/897€)
+2. Créer la barre de scarcité — levier #1 absent depuis 18 semaines
+3. Réduire la navigation à 5–6 liens maximum
+
+**Urgences persistantes :**
+4. Supprimer le texte de prompt injection du composant cookies/consentement
+5. Supprimer le doublon "Actif Vendeur" dans le footer (colonne "Démarrer")
 
 ---
 
