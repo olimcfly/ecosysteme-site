@@ -1,5 +1,37 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-20 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-21 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-21 (19ème audit)
+
+**PLAN D'EXÉCUTION ÉMIS — Score 2/17. 15ème jour consécutif de blocage. Plan opérationnel complet généré.**
+
+Aucune modification détectée depuis le 20/10. Tous les blocages critiques persistent.
+Suite à 18 sessions d'audit sans exécution des recommandations, un plan d'exécution opérationnel
+complet a été généré dans `PLAN-EXECUTION.md` — ordre précis, code prêt, durées estimées.
+
+### Score au 21/10 : 2/17 (inchangé depuis le 06/10 — 15 jours de stagnation)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur tout le site
+2. **CR6 — Barre de scarcité absente** : 18ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation 39 destinations** : 14 header + 25 footer
+5. **BUG — Prompt injection DOM** : texte "Extrais :" visible sur /realisations (non corrigé)
+
+### Plan d'exécution généré : `PLAN-EXECUTION.md`
+
+Contient :
+- Classement de 17 blocages par impact (critique / fort / moyen / faible)
+- 13 modifications avec code exact et fichiers cibles
+- Ordre d'exécution jour par jour (Jour 1 : 4h, Jour 2 : 3h, Jour 3 : 2h)
+- Score projeté après chaque phase (2/17 → 9/17 → 13/17 → 16/17)
+
+**Les 3 premières actions (< 75 min cumulées) remontent le score de 2/17 à ~6/17 :**
+1. Supprimer la prompt injection DOM (15 min) — P1.5
+2. Ajouter la barre de scarcité dans Layout.astro (20 min) — P1.1
+3. Réduire la navigation à 5 liens (45 min) — P1.3
 
 ---
 
