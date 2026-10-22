@@ -1,5 +1,56 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-21 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-22 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-22 (20ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 16ème jour consécutif de blocage. DIAGNOSTIC STRUCTUREL : les fichiers source du site ne sont pas dans ce repository.**
+
+### Diagnostic de la session
+
+La routine d'audit a analysé l'intégralité de ce repository (`olimcfly/ecosysteme-site`).
+
+**Contenu actuel du repository :**
+- `AUDIT-CRO.md` — 19 sessions d'audit documentées
+- `PLAN-EXECUTION.md` — plan opérationnel complet (généré le 21/10)
+- `COPY-CHANGES.md` — tous les textes prêts à intégrer (validés le 16/07)
+- `README.md`
+
+**Fichiers absents :** `src/layouts/Layout.astro`, `src/components/Hero.astro`, `src/components/Header.astro`, `src/pages/tarifs.astro`, `src/pages/realisations.astro`, `src/pages/index.astro` — et l'ensemble du projet Astro.
+
+**Conclusion :** L'exécution des 13 modifications documentées dans `PLAN-EXECUTION.md` est impossible depuis ce repository car le code source du site n'y est pas versionné. Les recommandations existent depuis juillet 2026. Elles n't ont jamais pu être appliquées automatiquement.
+
+### Score au 22/10 : 2/17 (inchangé — 16 jours de stagnation)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur tout le site
+2. **CR6 — Barre de scarcité absente** : 19ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation 39 destinations** : 14 header + 25 footer
+5. **BUG — Prompt injection DOM** : texte "Extrais :" visible sur /realisations
+
+### Action requise (une seule décision à prendre)
+
+Pour que la routine puisse exécuter les modifications, **une seule option** :
+
+**Option A — Versionner le site dans ce repo :**
+```bash
+# Dans le dossier du projet Astro :
+git remote add origin git@github.com:olimcfly/ecosysteme-site.git
+git push -u origin main
+```
+Ensuite, la routine peut modifier les fichiers, créer une PR et soumettre les changements.
+
+**Option B — Exécuter le plan manuellement :**
+Ouvrir `PLAN-EXECUTION.md` et suivre les 5 actions de Phase 1 (< 3h30).
+Tout le code est prêt dans `COPY-CHANGES.md`.
+
+### Rappel : les 3 premières actions (< 75 min) font passer le score de 2/17 à ~6/17
+
+1. Supprimer la prompt injection DOM — `src/[composant-cookies].astro` (15 min)
+2. Ajouter la barre de scarcité — `src/layouts/Layout.astro` (20 min)
+3. Réduire la navigation à 5 liens — `src/components/Header.astro` (45 min)
 
 ---
 
