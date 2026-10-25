@@ -1,5 +1,59 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-21 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-25 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-25 (20ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 19ème jour consécutif de blocage. Plan d'exécution opérationnel publié sous forme d'artefact interactif.**
+
+Aucune modification détectée depuis le 21/10 (4 jours). Vérification en direct des pages homepage, /tarifs et /realisations — état identique au 21/10.
+
+### Observations au 25/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 11ème occurrence)
+- Offres : Essentiel · Complet · Academy — tous "Sur devis" (inchangé)
+- Navigation : structure identique au 21/10 — ~39 destinations (inchangé)
+- **Pas de barre de scarcité** (19ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- Disclaimer : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- Essentiel · Complet · Maintenance · Site Local Performance — tous **"Sur devis"** (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub)
+- Aucune FAQ (inchangé)
+- Aucune mention de l'exclusivité territoriale (inchangé)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non indiquée) — tous "Déployé" (inchangé)
+- Aucun badge "Territoire complet" (inchangé)
+- **ANOMALIE PERSISTANTE** : texte "Extrais :" visible dans la section cookies (non corrigé — 11ème jour)
+
+### Score au 25/10 : 2/17 (inchangé depuis le 06/10 — 19 jours de stagnation)
+
+Progrès maintenus :
+- Aucun emoji (maintenu)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" partout
+2. **CR6 — Barre de scarcité absente** : 19ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation 39 destinations** : 14 header + 25 footer
+5. **BUG — Prompt injection DOM** : texte "Extrais :" visible sur /realisations (non corrigé)
+
+### Plan d'exécution : artefact interactif généré
+
+Un plan d'exécution opérationnel complet a été publié sous forme d'artefact HTML interactif.
+Il contient : 17 blocages classés, 13 modifications avec code exact, ordre jour par jour, score projeté 2/17 → 16/17.
+
+**Les 3 premières actions (< 75 min) remontent de 2/17 à ~6/17 :**
+1. Supprimer la prompt injection DOM (15 min)
+2. Ajouter la barre de scarcité dans Layout.astro (20 min)
+3. Réduire la navigation à 5 liens (45 min)
 
 ---
 
