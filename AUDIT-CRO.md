@@ -1,5 +1,60 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-25 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-26 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-26 (21ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 20ème jour consécutif de blocage. Possible correction du bug DOM "Extrais :" sur /realisations (à confirmer).**
+
+Aucune modification de conversion détectée depuis le 25/10 (1 jour). Vérification en direct des 3 pages — état identique au 25/10 sur tous les blocages critiques.
+
+### Observations au 26/10
+
+**Homepage — INCHANGÉE**
+- H1 : **"Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous."** (inchangé — 12ème occurrence)
+- CTAs : Analyser mon acquisition (×3) · Découvrir Essentiel · Découvrir Complet · Accéder gratuitement à l'Academy · Voir une démonstration · Voir son site (×5) — 13 CTAs actifs, aucune hiérarchie
+- Offres : "Sur devis" (inchangé)
+- **Pas de barre de scarcité** (20ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- **Aucun prix visible** (inchangé)
+- Navigation header : Accueil · Offres (5 sous-menus) · Comment ça marche · À propos · Nos valeurs · Ressources (3) · Audit (2) · Analyser mon acquisition → toujours ~14 liens
+- Footer : ~28 liens (inchangé)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" : 7 occurrences + 3 "Tarifs sur devis"** — aucun prix réel visible
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub)
+- CTAs cartes : "Découvrir Essentiel" / "Découvrir Complet" — sans conversion
+
+**Page /realisations — INCHANGÉE (sauf bug DOM potentiellement corrigé)**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non indiquée) — tous "Déployé"
+- Aucun badge "Territoire complet" (inchangé)
+- **Bug "Extrais :" : non détecté lors de cet audit** (potentiellement corrigé — 1er audit sans détection depuis le 15/10)
+- CTA : "Voir ce qu'il faut construire sur mon secteur →" → /audit (toujours hors funnel principal)
+
+### Score au 26/10 : 2/17 (inchangé — 20 jours de stagnation)
+
+Progrès potentiel :
+- Bug "Extrais :" probablement corrigé (+1 point conditionnel si confirmé en browser réel)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" partout — 10 occurrences sur /tarifs seule
+2. **CR6 — Barre de scarcité absente** : 20ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation ~14 liens header + 28 footer** : dispersion maximale
+
+### Priorités immédiates (inchangées — cf. PLAN-EXECUTION.md)
+
+Les 3 premières actions (< 75 min) remontent de 2/17 à ~6/17 :
+1. **P1.1 — Barre de scarcité** dans Layout.astro (20 min) — visible 100% des pages
+2. **P1.3 — Navigation 5 liens** dans Header.astro (45 min) — réduction immédiate de la dispersion
+3. **P1.2 — Hero H1 + CTA unique** dans Hero.astro (30 min) — message principal recadré
+
+La Phase 1 complète (3-4h) remonte le score de 2/17 à ~9/17.
+Plan détaillé avec code prêt : `PLAN-EXECUTION.md`
 
 ---
 
