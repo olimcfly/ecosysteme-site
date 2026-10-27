@@ -1,5 +1,59 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-26 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-27 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-27 (22ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 21ème jour consécutif de blocage. Prompt injection confirmée sur /tarifs (nouvelle page touchée).**
+
+Aucune modification détectée depuis le 26/10. Vérification en direct des 3 pages — état identique au 26/10 sur tous les blocages critiques.
+
+### Observations au 27/10
+
+**Homepage — INCHANGÉE**
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- 3 étapes affichées : Clarifier · Construire · Activer (différentes du brief "Vérifier / Installer / Territoire travaille")
+- 5 témoignages pilotes (inchangé)
+- **Aucun prix réel** (inchangé)
+- **Pas de barre de scarcité** (21ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- Disclaimer : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+
+**Page /tarifs — INCHANGÉE + PROMPT INJECTION CONFIRMÉE (nouvelle page)**
+- Essentiel · Complet · Maintenance · Pub/Accélération · Site Local Performance — tous "Sur devis" (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- Disclaimers : résultats + maintenance + migration + pub (inchangé)
+- **ALERTE NOUVELLE — Prompt injection sur /tarifs** : le DOM de /tarifs contient désormais une instruction d'extraction IA visible, identique à celle détectée sur /realisations. La contamination s'est étendue à une deuxième page.
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville non indiquée) — tous "Déployé" (inchangé)
+- Aucun badge "Territoire complet" (inchangé)
+- **Prompt injection toujours présente** (3ème confirmation sur cette page)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur →" · "Faire mesurer mon secteur" → /audit
+
+### Score au 27/10 : 2/17 (inchangé — 21 jours de stagnation)
+
+Nouvelle régression :
+- **RÉGRESSION — Prompt injection étendue à /tarifs** : la contamination touche désormais au moins 2 pages (/tarifs + /realisations). Tout agent IA ou crawler qui analyse ces pages lit du texte parasite comme du contenu légitime — impact SEO, crédibilité et qualification des leads.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" partout — 10 occurrences sur /tarifs seule
+2. **CR6 — Barre de scarcité absente** : 21ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation ~14 liens header + 25 footer** : dispersion maximale
+5. **BUG — Prompt injection DOM** : confirmée sur /tarifs ET /realisations (aggravation)
+
+### Priorités immédiates (ordre d'exécution — < 75 min pour les 3 premières)
+
+Les 3 premières actions remontent de 2/17 à ~6/17 en moins de 75 minutes :
+1. **P1.5 — Supprimer la prompt injection** (15 min) — `/tarifs` + `/realisations` + vérifier homepage
+2. **P1.1 — Barre de scarcité** dans Layout.astro (20 min) — visible 100% des pages
+3. **P1.3 — Navigation 5 liens** dans Header.astro (45 min) — réduction immédiate de la dispersion
+
+La Phase 1 complète (3-4h) remonte le score de 2/17 à ~9/17.
+Plan détaillé avec code prêt : `PLAN-EXECUTION.md` | Copy prête : `COPY-CHANGES.md`
 
 ---
 
