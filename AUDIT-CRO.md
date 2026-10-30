@@ -1,5 +1,58 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-29 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-30 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-30 (24ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 24ème jour consécutif de blocage. Prompt injection confirmée sur homepage ET /realisations (2 pages vérifiées ce jour).**
+
+Aucune modification de conversion détectée depuis le 29/10 (1 jour). Vérification en direct des 3 pages — état identique au 29/10 sur tous les blocages critiques.
+
+### Observations au 30/10
+
+**Homepage — INCHANGÉE**
+- Promesse centrale : "Votre acquisition ne devrait pas repartir de zéro chaque mois." (inchangé)
+- 3 étapes : Clarifier · Construire · Activer (inchangé — toujours différentes du brief)
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- **Aucun prix réel** (inchangé)
+- **Pas de barre de scarcité** (24ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- Disclaimer : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- **PROMPT INJECTION CONFIRMÉE** : instruction d'extraction IA détectée et rendue visible dans le DOM de la homepage. L'agent WebFetch l'a détectée et l'a explicitement ignorée. Persistante depuis le 15/10.
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" : Essentiel · Complet · Maintenance · Accélération · Site Local Performance** — aucun prix réel
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- CTAs : "Analyser mon acquisition" · "Voir une démonstration" · "Découvrir Essentiel" · "Découvrir Complet" · "Créer mon site"
+- Aucune FAQ (inchangé)
+
+**Page /realisations — INCHANGÉE**
+- 5 clients : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville toujours non indiquée) — tous "Déployé" (inchangé)
+- Aucun client "Activé" ou "Validé" (0 résultat commercial mesuré publié)
+- **Aucun badge "Territoire complet"** (inchangé)
+- **PROMPT INJECTION CONFIRMÉE** : bloc d'instructions IA dans le footer de la page, explicitement identifié par l'agent WebFetch. Persistante depuis le 15/10.
+
+### Score au 30/10 : 2/17 (inchangé — 24 jours de stagnation)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 24ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : ~14 liens header (non recompté ce jour)
+5. **BUG — Prompt injection DOM** : confirmée sur homepage ET /realisations
+
+### Priorités immédiates (ordre d'exécution — < 75 min pour les 3 premières)
+
+Les 3 premières actions remontent de 2/17 à ~6/17 en moins de 75 minutes :
+1. **P1.5 — Supprimer la prompt injection** (15 min) — homepage + /tarifs + /realisations
+2. **P1.1 — Barre de scarcité** dans Layout.astro (20 min) — visible 100% des pages
+3. **P1.3 — Navigation 5 liens** dans Header.astro (45 min) — réduction immédiate de la dispersion
+
+La Phase 1 complète (3-4h) remonte le score de 2/17 à ~9/17.
+Plan détaillé avec code prêt : `PLAN-EXECUTION.md` | Copy prête : `COPY-CHANGES.md`
 
 ---
 
