@@ -1,5 +1,64 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-30 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-10-31 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-10-31 (25ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 25ème jour consécutif de blocage. Bonne nouvelle : prompt injection non détectée (possiblement corrigée). Tous les blocages de conversion restent inchangés.**
+
+Vérification en direct des 3 pages — état identique au 30/10 sur tous les blocages critiques de conversion.
+
+### Observations au 31/10
+
+**Homepage — INCHANGÉE**
+- H1 : "Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous." (inchangé — 13ème occurrence)
+- 3 étapes : Clarifier · Construire · Activer (inchangé — toujours différentes du brief)
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- **Aucun prix réel** (inchangé)
+- **Pas de barre de scarcité** (25ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- Disclaimer : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Navigation header : Accueil · Offres (5 sous-menus) · Comment ça marche · À propos · Nos valeurs · Ressources (3) · Audit (2) · Analyser mon acquisition → ~14 liens (inchangé)
+- CTAs : Analyser mon acquisition (×2) · Découvrir ÉcosystèmeImmo · Découvrir Essentiel · Découvrir Complet · Accéder gratuitement à l'Academy · Voir une démonstration · Voir son site (×5 pilotes) — dispersion inchangée
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée — 1ère absence depuis le 15/10)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance** — aucun prix réel (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- CTAs : "Analyser mon acquisition" · "Voir une démonstration" · "Découvrir Essentiel" · "Découvrir Complet" · "Créer mon site"
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 6 entrées : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville toujours non indiquée) · "Votre ville · À auditer" — tous "Déployé"
+- **Aucun badge "Territoire complet"** (inchangé)
+- **Eduardo De Sul : ville manquante** (inchangé)
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée — absente sur les 3 pages)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur →" · "Faire mesurer mon secteur"
+
+### Score au 31/10 : 2/17 (inchangé — 25 jours de stagnation)
+
+Évolution notable :
+- **CORRECTION — Prompt injection supprimée** : non détectée sur les 3 pages (homepage + /tarifs + /realisations). Première occurrence depuis le 15/10. P1.5 peut être marquée complète.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 25ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : ~14 liens header + footer chargé
+
+### Priorités immédiates (ordre d'exécution — < 60 min pour les 3 premières)
+
+P1.5 étant corrigée, les 3 premières actions remontent de 2/17 à ~6/17 en moins de 60 minutes :
+1. **P1.1 — Barre de scarcité** dans Layout.astro (20 min) — visible 100% des pages
+2. **P1.3 — Navigation 5 liens** dans Header.astro (45 min) — réduction immédiate de la dispersion
+3. **P1.2 — Hero H1 + CTA unique** dans Hero.astro (30 min) — message principal recadré
+
+La Phase 1 complète (2-3h) remonte le score de 2/17 à ~9/17.
+Plan détaillé avec code prêt : `PLAN-EXECUTION.md` | Copy prête : `COPY-CHANGES.md`
 
 ---
 
