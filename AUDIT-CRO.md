@@ -1,5 +1,49 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-31 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-11-01 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-11-01 (26ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 26ème jour consécutif de blocage. Le plan complet est prêt. La copy est prête. Aucune ligne de code n'a changé.**
+
+Vérification en direct des 2 pages — état identique au 31/10 sur tous les blocages critiques.
+
+### Observations au 01/11
+
+**Homepage — INCHANGÉE**
+- H1 : "Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous." (inchangé — 14ème occurrence)
+- Navigation header : Accueil · Offres (5 sous-menus) · Comment ça marche · À propos · Nos valeurs · Ressources (3) · Audit (2) · Analyser mon acquisition — surchargée
+- CTAs : Analyser mon acquisition (×multiples) · Découvrir ÉcosystèmeImmo · Découvrir Essentiel · Découvrir Complet · Accéder gratuitement à l'Academy · Voir une démonstration — dispersion inchangée
+- **Aucun prix visible** — "Sur devis" (inchangé)
+- **Pas de barre de scarcité** (26ème jour consécutif)
+- **Exclusivité territoriale absente** (inchangé)
+- **Prompt injection** : non détectée (correction confirmée depuis le 31/10)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" sur toutes les offres** : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- FAQ : absente (inchangé)
+
+### Score au 01/11 : 2/17 (inchangé — 26 jours de stagnation)
+
+**Aucune progression depuis le 06/10. Le plan d'exécution existe depuis le 21/10. La copy existe depuis le 16/07.**
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 26ème jour consécutif
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : sous-menus imbriqués, ~14 destinations header
+
+### Priorités immédiates (ordre — < 60 min pour les 3 premières)
+
+Le plan complet est dans `PLAN-EXECUTION.md`. Les 3 premières actions font passer de 2/17 à ~6/17 en 1h :
+1. **P1.1 — Barre de scarcité** dans `src/layouts/Layout.astro` (20 min)
+2. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
+3. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
+4. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
 
 ---
 
