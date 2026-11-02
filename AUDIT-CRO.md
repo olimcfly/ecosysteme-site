@@ -1,5 +1,58 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-11-01 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-11-02 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-11-02 (27ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 27ème jour consécutif de blocage. Prompt injection potentiellement revenue sur homepage ET /tarifs.**
+
+Vérification en direct des 2 pages — état identique au 01/11 sur tous les blocages critiques.
+Les deux agents WebFetch ont signalé avoir trouvé des instructions embarquées dans le DOM de chaque page ("consigne demandant d'extraire des éléments précis") — la prompt injection, supposément corrigée au 31/10, semble présente à nouveau ou n'avait jamais été intégralement supprimée.
+
+### Observations au 02/11
+
+**Homepage — INCHANGÉE**
+- H1 : aucune barre de scarcité, aucun prix, aucune exclusivité territoriale (inchangé — 27ème occurrence)
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- Méthode : 3 étapes Clarifier · Construire · Activer (inchangées du brief)
+- CTAs : Analyser mon acquisition · Découvrir ÉcosystèmeImmo · Voir une démonstration — dispersion inchangée
+- **Aucun prix visible** (inchangé)
+- **Pas de barre de scarcité** (27ème jour consécutif)
+- **Exclusivité territoriale absente** (inchangé)
+- **Prompt injection** : texte d'instruction embarqué détecté dans le DOM par l'agent WebFetch — possiblement revenue après la correction du 31/10
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" sur toutes les offres** : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- FAQ : absente (inchangé)
+- **Prompt injection** : texte d'instruction embarqué détecté dans le DOM par l'agent WebFetch
+
+### Score au 02/11 : 2/17 (inchangé — 27 jours de stagnation)
+
+**Aucune progression depuis le 06/10. La copy est prête depuis le 16/07. Le plan est prêt depuis le 21/10. Aucune ligne de code n'a changé depuis 27 jours.**
+
+Régression potentielle :
+- **ALERTE — Prompt injection revenue** : après la correction supposée du 31/10, les deux pages (homepage + /tarifs) présentent à nouveau des instructions embarquées dans le DOM, détectées indépendamment par deux agents sur des pages différentes. À vérifier et corriger en priorité.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 27ème jour consécutif
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : sous-menus imbriqués, ~14 destinations header
+5. **BUG — Prompt injection DOM** : potentiellement revenue sur homepage + /tarifs
+
+### Priorités immédiates (ordre — < 60 min pour les 3 premières)
+
+Le plan complet est dans `PLAN-EXECUTION.md`. La copy est dans `COPY-CHANGES.md`.
+
+1. **P1.5 — Vérifier et supprimer la prompt injection** — grep "Extrais" + "verbatim" dans src/ (15 min)
+2. **P1.1 — Barre de scarcité** dans `src/layouts/Layout.astro` (20 min)
+3. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
+4. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
+5. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
 
 ---
 
