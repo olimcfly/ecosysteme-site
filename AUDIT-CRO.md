@@ -1,5 +1,50 @@
 # Audit CRO — Écosystème Immo
-> Mis à jour le 2026-10-30 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+> Mis à jour le 2026-11-03 | Audit initial : 2026-07-16 | Site : ecosystemeimmo.fr
+
+---
+
+## SITUATION AU 2026-11-03 (28ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 28ème jour consécutif de blocage. Prompt injection confirmée sur homepage (revenue pour la 2ème fois).**
+
+Vérification en direct homepage + /tarifs — état identique au 02/11 sur tous les blocages critiques.
+
+### Observations au 03/11
+
+**Homepage — INCHANGÉE**
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- Process : 3 étapes Clarifier · Construire · Activer (inchangées)
+- **Aucun prix visible** (inchangé)
+- **Pas de barre de scarcité** (28ème jour consécutif)
+- **Exclusivité territoriale absente** (inchangé)
+- **Prompt injection CONFIRMÉE** : bloc d'instructions d'extraction IA détecté dans le DOM par l'agent WebFetch — revenue après la correction supposée du 31/10. Revenue pour la 2ème fois depuis le 15/10.
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" sur toutes les offres** : Essentiel · Complet · Maintenance · Accélération · Site Local Performance · Mise en Traction · Mode Autonomie (inchangé)
+- Formulation : "Tarifs sur devis, communiqués après diagnostic de votre acquisition." (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants : résultats · maintenance · migration · pub (inchangé)
+- FAQ : absente (inchangé)
+
+### Score au 03/11 : 2/17 (inchangé — 28 jours de stagnation)
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 28ème jour consécutif
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : inchangée
+5. **BUG — Prompt injection DOM** : revenue sur homepage — persistante depuis le 15/10, revenue après "correction" du 31/10
+
+### Priorités immédiates
+
+Le plan complet est dans `PLAN-EXECUTION.md`. La copy est dans `COPY-CHANGES.md`.
+
+1. **P1.5 — Supprimer la prompt injection** — `grep -r "Extrais" src/` + `grep -r "verbatim" src/` (15 min)
+2. **P1.1 — Barre de scarcité** dans `src/layouts/Layout.astro` (20 min)
+3. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
+4. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
+5. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
 
 ---
 
