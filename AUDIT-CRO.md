@@ -5,7 +5,7 @@
 
 ## SITUATION AU 2026-11-03 (28ème audit)
 
-**STAGNATION — Score 2/17 (inchangé). 28ème jour consécutif de blocage. Prompt injection confirmée sur homepage (revenue pour la 2ème fois).**
+**STAGNATION — Score 2/17 (inchangé). 28ème jour consécutif de blocage. Prompt injection confirmée sur homepage (revenue pour la 2ème fois depuis la correction du 31/10).**
 
 Vérification en direct homepage + /tarifs — état identique au 02/11 sur tous les blocages critiques.
 
@@ -17,7 +17,7 @@ Vérification en direct homepage + /tarifs — état identique au 02/11 sur tous
 - **Aucun prix visible** (inchangé)
 - **Pas de barre de scarcité** (28ème jour consécutif)
 - **Exclusivité territoriale absente** (inchangé)
-- **Prompt injection CONFIRMÉE** : bloc d'instructions d'extraction IA détecté dans le DOM par l'agent WebFetch — revenue après la correction supposée du 31/10. Revenue pour la 2ème fois depuis le 15/10.
+- **Prompt injection CONFIRMÉE** : bloc d'instructions d'extraction IA détecté et refusé explicitement par l'agent WebFetch — revenue après correction supposée du 31/10. 2ème occurrence post-correction.
 
 **Page /tarifs — INCHANGÉE**
 - H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
@@ -29,14 +29,16 @@ Vérification en direct homepage + /tarifs — état identique au 02/11 sur tous
 
 ### Score au 03/11 : 2/17 (inchangé — 28 jours de stagnation)
 
+**28 jours sans modification des blocages critiques. La copy est prête depuis le 16/07. Le plan est prêt depuis le 21/10.**
+
 Blocages critiques persistants (inchangés depuis le 06/10) :
 1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
 2. **CR6 — Barre de scarcité absente** : 28ème jour consécutif
 3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
-4. **CR9 — Navigation surchargée** : inchangée
-5. **BUG — Prompt injection DOM** : revenue sur homepage — persistante depuis le 15/10, revenue après "correction" du 31/10
+4. **CR9 — Navigation surchargée** : structure inchangée
+5. **BUG — Prompt injection DOM** : revenue sur homepage — présente depuis le 15/10, revenue après correction du 31/10
 
-### Priorités immédiates
+### Priorités immédiates (ordre — < 60 min pour les 3 premières)
 
 Le plan complet est dans `PLAN-EXECUTION.md`. La copy est dans `COPY-CHANGES.md`.
 
@@ -45,6 +47,164 @@ Le plan complet est dans `PLAN-EXECUTION.md`. La copy est dans `COPY-CHANGES.md`
 3. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
 4. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
 5. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
+
+---
+
+---
+
+## SITUATION AU 2026-11-02 (27ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 27ème jour consécutif de blocage. Prompt injection potentiellement revenue sur homepage ET /tarifs.**
+
+Vérification en direct des 2 pages — état identique au 01/11 sur tous les blocages critiques.
+Les deux agents WebFetch ont signalé avoir trouvé des instructions embarquées dans le DOM de chaque page ("consigne demandant d'extraire des éléments précis") — la prompt injection, supposément corrigée au 31/10, semble présente à nouveau ou n'avait jamais été intégralement supprimée.
+
+### Observations au 02/11
+
+**Homepage — INCHANGÉE**
+- H1 : aucune barre de scarcité, aucun prix, aucune exclusivité territoriale (inchangé — 27ème occurrence)
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- Méthode : 3 étapes Clarifier · Construire · Activer (inchangées du brief)
+- CTAs : Analyser mon acquisition · Découvrir ÉcosystèmeImmo · Voir une démonstration — dispersion inchangée
+- **Aucun prix visible** (inchangé)
+- **Pas de barre de scarcité** (27ème jour consécutif)
+- **Exclusivité territoriale absente** (inchangé)
+- **Prompt injection** : texte d'instruction embarqué détecté dans le DOM par l'agent WebFetch — possiblement revenue après la correction du 31/10
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" sur toutes les offres** : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- FAQ : absente (inchangé)
+- **Prompt injection** : texte d'instruction embarqué détecté dans le DOM par l'agent WebFetch
+
+### Score au 02/11 : 2/17 (inchangé — 27 jours de stagnation)
+
+**Aucune progression depuis le 06/10. La copy est prête depuis le 16/07. Le plan est prêt depuis le 21/10. Aucune ligne de code n'a changé depuis 27 jours.**
+
+Régression potentielle :
+- **ALERTE — Prompt injection revenue** : après la correction supposée du 31/10, les deux pages (homepage + /tarifs) présentent à nouveau des instructions embarquées dans le DOM, détectées indépendamment par deux agents sur des pages différentes. À vérifier et corriger en priorité.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 27ème jour consécutif
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : sous-menus imbriqués, ~14 destinations header
+5. **BUG — Prompt injection DOM** : potentiellement revenue sur homepage + /tarifs
+
+### Priorités immédiates (ordre — < 60 min pour les 3 premières)
+
+Le plan complet est dans `PLAN-EXECUTION.md`. La copy est dans `COPY-CHANGES.md`.
+
+1. **P1.5 — Vérifier et supprimer la prompt injection** — grep "Extrais" + "verbatim" dans src/ (15 min)
+2. **P1.1 — Barre de scarcité** dans `src/layouts/Layout.astro` (20 min)
+3. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
+4. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
+5. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
+
+---
+
+## SITUATION AU 2026-11-01 (26ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 26ème jour consécutif de blocage. Le plan complet est prêt. La copy est prête. Aucune ligne de code n'a changé.**
+
+Vérification en direct des 2 pages — état identique au 31/10 sur tous les blocages critiques.
+
+### Observations au 01/11
+
+**Homepage — INCHANGÉE**
+- H1 : "Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous." (inchangé — 14ème occurrence)
+- Navigation header : Accueil · Offres (5 sous-menus) · Comment ça marche · À propos · Nos valeurs · Ressources (3) · Audit (2) · Analyser mon acquisition — surchargée
+- CTAs : Analyser mon acquisition (×multiples) · Découvrir ÉcosystèmeImmo · Découvrir Essentiel · Découvrir Complet · Accéder gratuitement à l'Academy · Voir une démonstration — dispersion inchangée
+- **Aucun prix visible** — "Sur devis" (inchangé)
+- **Pas de barre de scarcité** (26ème jour consécutif)
+- **Exclusivité territoriale absente** (inchangé)
+- **Prompt injection** : non détectée (correction confirmée depuis le 31/10)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" sur toutes les offres** : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- FAQ : absente (inchangé)
+
+### Score au 01/11 : 2/17 (inchangé — 26 jours de stagnation)
+
+**Aucune progression depuis le 06/10. Le plan d'exécution existe depuis le 21/10. La copy existe depuis le 16/07.**
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 26ème jour consécutif
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : sous-menus imbriqués, ~14 destinations header
+
+### Priorités immédiates (ordre — < 60 min pour les 3 premières)
+
+Le plan complet est dans `PLAN-EXECUTION.md`. Les 3 premières actions font passer de 2/17 à ~6/17 en 1h :
+1. **P1.1 — Barre de scarcité** dans `src/layouts/Layout.astro` (20 min)
+2. **P1.3 — Navigation 5 liens** dans `src/components/Header.astro` (45 min)
+3. **P1.2 — Hero H1 + CTA unique** dans `src/components/Hero.astro` (30 min)
+4. **P1.4 — Pricing réel /tarifs** dans `src/pages/tarifs.astro` (90 min)
+
+---
+
+## SITUATION AU 2026-10-31 (25ème audit)
+
+**STAGNATION — Score 2/17 (inchangé). 25ème jour consécutif de blocage. Bonne nouvelle : prompt injection non détectée (possiblement corrigée). Tous les blocages de conversion restent inchangés.**
+
+Vérification en direct des 3 pages — état identique au 30/10 sur tous les blocages critiques de conversion.
+
+### Observations au 31/10
+
+**Homepage — INCHANGÉE**
+- H1 : "Transformez votre acquisition immobilière en un actif qui travaille toute l'année autour de vous." (inchangé — 13ème occurrence)
+- 3 étapes : Clarifier · Construire · Activer (inchangé — toujours différentes du brief)
+- Offres : Essentiel · Complet — "Sur devis" (inchangé)
+- **Aucun prix réel** (inchangé)
+- **Pas de barre de scarcité** (25ème semaine consécutive)
+- **Aucune mention de l'exclusivité territoriale** (inchangé)
+- Disclaimer : "Aucun nombre de prospects, de rendez-vous, de mandats ou de ventes n'est garanti." (inchangé)
+- Navigation header : Accueil · Offres (5 sous-menus) · Comment ça marche · À propos · Nos valeurs · Ressources (3) · Audit (2) · Analyser mon acquisition → ~14 liens (inchangé)
+- CTAs : Analyser mon acquisition (×2) · Découvrir ÉcosystèmeImmo · Découvrir Essentiel · Découvrir Complet · Accéder gratuitement à l'Academy · Voir une démonstration · Voir son site (×5 pilotes) — dispersion inchangée
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée — 1ère absence depuis le 15/10)
+
+**Page /tarifs — INCHANGÉE**
+- H1 : "Choisissez jusqu'où vous voulez construire votre acquisition." (inchangé)
+- **"Sur devis" : Essentiel · Complet · Maintenance · Gestion publicitaire · Site Local Performance** — aucun prix réel (inchangé)
+- Exclusivité territoriale : absente (inchangé)
+- 4 disclaimers persistants (résultats · maintenance · migration · pub) (inchangé)
+- CTAs : "Analyser mon acquisition" · "Voir une démonstration" · "Découvrir Essentiel" · "Découvrir Complet" · "Créer mon site"
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée)
+
+**Page /realisations — INCHANGÉE**
+- H1 : "Des systèmes d'acquisition déjà déployés dans plusieurs villes." (inchangé)
+- 6 entrées : Brice Chupin (Nantes) · Fatima Rabia (Nandy) · Stéphanie Hulen (Lannion) · Pascal Hamm (Aix-en-Provence) · Eduardo De Sul (ville toujours non indiquée) · "Votre ville · À auditer" — tous "Déployé"
+- **Aucun badge "Territoire complet"** (inchangé)
+- **Eduardo De Sul : ville manquante** (inchangé)
+- **Prompt injection : NON DÉTECTÉE** (correction confirmée — absente sur les 3 pages)
+- CTAs : "Voir ce qu'il faut construire sur mon secteur →" · "Faire mesurer mon secteur"
+
+### Score au 31/10 : 2/17 (inchangé — 25 jours de stagnation)
+
+Évolution notable :
+- **CORRECTION — Prompt injection supprimée** : non détectée sur les 3 pages (homepage + /tarifs + /realisations). Première occurrence depuis le 15/10. P1.5 peut être marquée complète.
+
+Blocages critiques persistants (inchangés depuis le 06/10) :
+1. **CR1 — Aucun prix visible** : "Sur devis" sur toutes les offres
+2. **CR6 — Barre de scarcité absente** : 25ème semaine consécutive
+3. **CR8 — Exclusivité territoriale absente** : différenciateur #1 non communiqué
+4. **CR9 — Navigation surchargée** : ~14 liens header + footer chargé
+
+### Priorités immédiates (ordre d'exécution — < 60 min pour les 3 premières)
+
+P1.5 étant corrigée, les 3 premières actions remontent de 2/17 à ~6/17 en moins de 60 minutes :
+1. **P1.1 — Barre de scarcité** dans Layout.astro (20 min) — visible 100% des pages
+2. **P1.3 — Navigation 5 liens** dans Header.astro (45 min) — réduction immédiate de la dispersion
+3. **P1.2 — Hero H1 + CTA unique** dans Hero.astro (30 min) — message principal recadré
+
+La Phase 1 complète (2-3h) remonte le score de 2/17 à ~9/17.
+Plan détaillé avec code prêt : `PLAN-EXECUTION.md` | Copy prête : `COPY-CHANGES.md`
 
 ---
 
